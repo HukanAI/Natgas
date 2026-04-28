@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NatGas Storage Dashboard</title>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NatGas">
+<meta name="theme-color" content="#0d1117">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root{
+  --bg:#0d1117;--bg2:#161b22;--bg3:#1c2128;--bg4:#21262d;
+  --border:#21262d;--border2:#30363d;
+  --text:#e6edf3;--text2:#8b949e;--text3:#6e7681;
+  --blue:#4493f8;--red:#ff7b72;--green:#3fb950;--yellow:#e3b341;--purple:#a371f7;
+  --font:'Inter',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font);padding:14px;min-height:100vh;font-size:13px;line-height:1.5}
+.hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:10px}
+.hdr-l h1{font-size:13px;font-weight:600;color:var(--blue);letter-spacing:.5px;margin-bottom:2px}
+.hdr-l .sub{font-size:11px;color:var(--text2)}
+.hdr-r{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.upd{font-size:11px;color:var(--text2);font-family:var(--mono)}
+.btn{background:var(--bg2);border:1px solid var(--border2);color:var(--text2);padding:5px 12px;border-radius:6px;cursor:pointer;font-size:11px;font-family:var(--font);font-weight:500;transition:all .15s}
+.btn:hover{border-color:var(--blue);color:var(--blue)}
+.btn.primary{background:#1f3a6e;border-color:var(--blue);color:var(--blue)}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
+.dot.ok{background:var(--green);animation:pulse 2s infinite}
+.dot.err{background:var(--red)}
+.dot.loading{background:var(--yellow);animation:pulse .6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.badge{font-size:10px;font-family:var(--mono);padding:3px 8px;border-radius:4px;border:1px solid}
+.badge-live{background:rgba(63,185,80,.1);color:var(--green);border-color:rgba(63,185,80,.3)}
+.badge-loading{background:rgba(68,147,248,.1);color:var(--blue);border-color:rgba(68,147,248,.3)}
+.badge-err{background:rgba(255,123,114,.1);color:var(--red);border-color:rgba(255,123,114,.3)}
+.api-counter{font-size:10px;font-family:var(--mono);padding:3px 8px;border-radius:4px;background:var(--bg3);border:1px solid var(--border2);color:var(--text2)}
+.tw-bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.tw-label{font-size:10px;color:var(--text2);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.tw-btn{background:var(--bg2);border:1px solid var(--border2);color:var(--text2);padding:4px 9px;border-radius:5px;cursor:pointer;font-size:11px;transition:all .15s}
+.tw-btn:hover{border-color:var(--blue);color:var(--blue)}
+.tw-btn.on{background:#1f3a6e;border-color:var(--blue);color:var(--blue)}
+.bias-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:10px}
+.section-label{font-size:10px;font-weight:600;color:var(--text2);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.metric-boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+@media(max-width:600px){.metric-boxes{grid-template-columns:1fr}}
+.mbox{background:var(--bg3);border-radius:6px;padding:10px 12px;min-width:0}
+.mbox-lbl{font-size:9px;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.mbox-val{font-size:18px;font-weight:700;font-family:var(--mono);line-height:1.2;word-break:break-word}
+.mbox-sm .mbox-val{font-size:15px}
+.mbox-sub{font-size:9px;color:var(--text2);margin-top:3px;line-height:1.4}
+.bias-word{font-size:28px;font-weight:700;line-height:1;font-family:var(--mono);margin-bottom:6px}
+.bull{color:var(--green)}.bear{color:var(--red)}.sbull{color:#7ed49a}.sbear{color:#ffaa99}.neut{color:var(--yellow)}
+.bias-score-wrap{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.bias-score-bar{flex:1;height:5px;border-radius:3px;background:var(--bg4);overflow:hidden}
+.bias-score-fill{height:100%;border-radius:3px;transition:width .6s,background .6s}
+.bias-score-num{font-size:11px;font-family:var(--mono);color:var(--text2);min-width:52px;text-align:right}
+.scale-row{display:flex;gap:4px;margin-bottom:10px}
+.accordion{border:1px solid var(--border2);border-radius:6px;overflow:hidden;margin-top:2px}
+.accordion-btn{width:100%;background:var(--bg3);border:none;color:var(--text2);padding:8px 12px;font-size:10px;font-family:var(--font);font-weight:600;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .15s}
+.accordion-btn:hover{color:var(--text)}
+.accordion-arrow{font-size:11px;transition:transform .25s;display:inline-block}
+.accordion-body{display:none;padding:10px;background:var(--bg3);border-top:1px solid var(--border2)}
+.score-method{font-size:9px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.score-row{display:flex;align-items:center;margin-bottom:5px;gap:6px}
+.score-row:last-child{margin-bottom:0;padding-top:5px;border-top:1px solid var(--border2)}
+.srl{font-size:10px;color:var(--text2);flex:0 0 180px;white-space:nowrap}
+.srbar{flex:1;height:4px;background:var(--bg4);border-radius:2px;overflow:hidden;min-width:30px}
+.srfill{height:100%;border-radius:2px;transition:width .5s}
+.sranom{font-size:10px;font-family:var(--mono);min-width:52px;text-align:right;color:var(--text3)}
+.sreq{font-size:10px;font-family:var(--mono);min-width:10px;text-align:center;color:var(--text3)}
+.srwt{font-size:10px;color:var(--text3);min-width:28px}
+.srval{font-size:10px;font-family:var(--mono);min-width:52px;text-align:right;font-weight:600}
+.srtl{font-size:10px;font-weight:600;color:var(--text);flex:0 0 180px}
+.srtv{font-size:14px;font-family:var(--mono);font-weight:700;min-width:52px;text-align:right}
+.block{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:10px}
+.bhead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;flex-wrap:wrap;gap:6px}
+.btitle{font-size:11px;font-weight:600;color:var(--text)}
+.bsub{font-size:10px;color:var(--text2);margin-top:2px}
+.bhead-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.li{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2)}
+.ldr{width:16px;height:2.5px;border-radius:2px;flex-shrink:0}
+.ldband{width:14px;height:10px;border-radius:2px;flex-shrink:0;opacity:.7}
+.cw{position:relative;width:100%}
+.spin{text-align:center;padding:40px;color:var(--text2);font-size:12px}
+.sp{display:inline-block;width:14px;height:14px;border:2px solid var(--bg4);border-top-color:var(--blue);border-radius:50%;animation:spinkf .8s linear infinite;margin-right:6px;vertical-align:middle}
+@keyframes spinkf{to{transform:rotate(360deg)}}
+.tbtn{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);padding:3px 9px;border-radius:5px;cursor:pointer;font-size:10px;font-family:var(--font);transition:all .15s}
+.tbtn:hover{border-color:var(--blue);color:var(--blue)}
+.tbtn.on{background:#1f3a6e;border-color:var(--blue);color:var(--blue)}
+.err-block{background:var(--bg2);border:1px solid rgba(255,123,114,.3);border-radius:8px;padding:14px;margin-bottom:10px;display:none}
+.err-detail{background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:10px;margin-top:8px;font-size:11px;font-family:var(--mono);color:var(--text2);white-space:pre-wrap;word-break:break-all;max-height:140px;overflow-y:auto}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-l">
+    <h1>&#128230; NatGas Storage Dashboard</h1>
+    <div class="sub">Natural Gas Storage &middot; Lower 48 &middot; Bcf &middot; EIA Weekly &middot; NG=F Yahoo Finance</div>
+  </div>
+  <div class="hdr-r">
+    <span class="api-counter" id="api-counter">API calls: 0</span>
+    <button class="btn primary" onclick="loadAll()">&#8635; Refresh</button>
+    <span class="badge badge-loading" id="status-badge">Loading...</span>
+    <span class="dot loading" id="sdot"></span>
+    <span class="upd" id="upd-lbl">Connecting...</span>
+  </div>
+</div>
+
+<div class="tw-bar">
+  <span class="tw-label">History:</span>
+  <button class="tw-btn on" id="tw-max" onclick="setWindow('max')">Max</button>
+  <button class="tw-btn"    id="tw-5y"  onclick="setWindow('5y')">5 years</button>
+  <button class="tw-btn"    id="tw-2y"  onclick="setWindow('2y')">2 years</button>
+  <button class="tw-btn"    id="tw-1y"  onclick="setWindow('1y')">1 year</button>
+  <button class="tw-btn"    id="tw-ytd" onclick="setWindow('ytd')">YTD</button>
+  <button class="tw-btn"    id="tw-3m"  onclick="setWindow('3m')">3 months</button>
+  <button class="tw-btn"    id="tw-1m"  onclick="setWindow('1m')">1 month</button>
+</div>
+
+<!-- BIAS CARD -->
+<div class="bias-card">
+  <div class="section-label">Natural Gas Fundamental Bias</div>
+  <div class="metric-boxes">
+    <div class="mbox mbox-sm">
+      <div class="mbox-lbl">Storage Level</div>
+      <div class="mbox-val" id="m-stor-val">--</div>
+      <div class="mbox-sub" id="m-stor-sub">Bcf - latest week</div>
+    </div>
+    <div class="mbox mbox-sm">
+      <div class="mbox-lbl">5-Year Average</div>
+      <div class="mbox-val" id="m-stor-avg">--</div>
+      <div class="mbox-sub" id="m-stor-avg-sub">Bcf - same week avg</div>
+    </div>
+    <div class="mbox">
+      <div class="mbox-lbl">vs 5-Year Average</div>
+      <div class="mbox-val" id="m-stor-dev">--</div>
+      <div class="mbox-sub" id="m-stor-dev-sub">Bcf deviation</div>
+    </div>
+  </div>
+  <div class="bias-word neut" id="bias-word">--</div>
+  <div class="bias-score-wrap">
+    <div class="bias-score-bar"><div class="bias-score-fill" id="bias-fill" style="width:50%"></div></div>
+    <div class="bias-score-num" id="bias-score-num">0.000</div>
+  </div>
+  <div class="scale-row" id="bias-scale"></div>
+  <div class="accordion">
+    <button class="accordion-btn" onclick="toggleAccordion()">
+      <span>Score Breakdown</span>
+      <span class="accordion-arrow" id="acc-arrow">&#9658;</span>
+    </button>
+    <div class="accordion-body" id="acc-body">
+      <div class="score-method">Score = -(storage pct dev / 10) clipped to [-5, +5]</div>
+      <div class="score-row" id="sm-stor"></div>
+      <div class="score-row" id="sm-total"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCORE CHART -->
+<div class="block">
+  <div class="bhead">
+    <div>
+      <div class="btitle">Fundamental Bias Score - History</div>
+      <div class="bsub" id="score-sub">Weekly - Score [-5, +5]</div>
+    </div>
+    <div class="bhead-right">
+      <div class="legend">
+        <span class="li"><span class="ldband" style="background:var(--green)"></span>Bullish</span>
+        <span class="li"><span class="ldband" style="background:var(--yellow)"></span>Neutral</span>
+        <span class="li"><span class="ldband" style="background:var(--red)"></span>Bearish</span>
+      </div>
+      <button class="tbtn" onclick="exportScore()">&#8595; Export</button>
+    </div>
+  </div>
+  <div id="spin-score" class="spin"><span class="sp"></span>Loading...</div>
+  <div class="cw" style="height:240px;display:none" id="wrap-score"><canvas id="c-score"></canvas></div>
+</div>
+
+<!-- NGF CHART -->
+<div class="block">
+  <div class="bhead">
+    <div>
+      <div class="btitle">NG=F - Natural Gas Front Month Futures</div>
+      <div class="bsub" id="ngf-sub">Weekly - $/MMBtu - Yahoo Finance</div>
+    </div>
+    <div class="bhead-right">
+      <button class="tbtn on" id="btn-line"   onclick="setChartType('line')">Line</button>
+      <button class="tbtn"    id="btn-candle" onclick="setChartType('candle')">Candles</button>
+      <button class="tbtn" onclick="exportNgf()">&#8595; Export</button>
+    </div>
+  </div>
+  <div id="spin-ngf" class="spin"><span class="sp"></span>Loading...</div>
+  <div class="cw" style="height:300px;display:none" id="wrap-ngf"><canvas id="c-ngf"></canvas></div>
+</div>
+
+<!-- VOL CHART -->
+<div class="block">
+  <div class="bhead">
+    <div>
+      <div class="btitle">NG=F - Parkinson Volatility (26w Rolling, Annualized)</div>
+      <div class="bsub" id="vol-sub">Weekly - Annualized % - based on High/Low range</div>
+    </div>
+    <div class="bhead-right">
+      <div class="legend">
+        <span class="li"><span class="ldband" style="background:var(--green)"></span>Low &lt;40%</span>
+        <span class="li"><span class="ldband" style="background:var(--yellow)"></span>Elevated 40-80%</span>
+        <span class="li"><span class="ldband" style="background:var(--red)"></span>High &gt;80%</span>
+      </div>
+      <button class="tbtn" onclick="exportVol()">&#8595; Export</button>
+    </div>
+  </div>
+  <div id="spin-vol" class="spin"><span class="sp"></span>Loading...</div>
+  <div class="cw" style="height:220px;display:none" id="wrap-vol"><canvas id="c-vol"></canvas></div>
+</div>
+
+<!-- STORAGE CHART -->
+<div class="block">
+  <div class="bhead">
+    <div>
+      <div class="btitle">Natural Gas Storage - Lower 48</div>
+      <div class="bsub" id="stor-sub">Weekly - Bcf - vs 5-year range</div>
+    </div>
+    <div class="bhead-right">
+      <div class="legend">
+        <span class="li"><span class="ldr" style="background:var(--blue)"></span>Storage</span>
+        <span class="li"><span class="ldr" style="background:var(--blue);opacity:.5"></span>5y Avg</span>
+        <span class="li"><span class="ldband" style="background:rgba(68,147,248,.4)"></span>5y Range</span>
+      </div>
+      <button class="tbtn" onclick="exportStorage()">&#8595; Export</button>
+    </div>
+  </div>
+  <div id="spin-stor" class="spin"><span class="sp"></span>Loading...</div>
+  <div class="cw" style="height:260px;display:none" id="wrap-stor"><canvas id="c-stor"></canvas></div>
+</div>
+
+<!-- DEVIATION CHART -->
+<div class="block">
+  <div class="bhead">
+    <div>
+      <div class="btitle">Storage vs 5-Year Average - Deviation</div>
+      <div class="bsub" id="dev-sub">Weekly - Bcf - surplus / deficit vs 5y avg</div>
+    </div>
+    <div class="bhead-right">
+      <div class="legend">
+        <span class="li"><span class="ldband" style="background:var(--red)"></span>Surplus (above avg)</span>
+        <span class="li"><span class="ldband" style="background:var(--green)"></span>Deficit (below avg)</span>
+      </div>
+      <button class="tbtn" onclick="exportDev()">&#8595; Export</button>
+    </div>
+  </div>
+  <div id="spin-dev" class="spin"><span class="sp"></span>Loading...</div>
+  <div class="cw" style="height:220px;display:none" id="wrap-dev"><canvas id="c-dev"></canvas></div>
+</div>
+
+<div class="err-block" id="err-block">
+  <div class="btitle" style="color:var(--red);margin-bottom:4px">Error</div>
+  <div class="err-detail" id="err-detail"></div>
+</div>
+
+<div style="padding:6px 0 4px;font-size:10px;color:var(--text3);font-family:var(--mono);text-align:right">
+  EIA api.eia.gov/v2 NW2_EPG0_SWO_R48_BCF | Yahoo Finance NG=F via CORS proxy
+</div>
+
+<script>
+"use strict";
+
+var API_KEY = '0a6cBnSfbVdXpRPcDeuQAeTjGXajaK16pPM8sMF6';
+var WINDOWS = { max:99999, '5y':1825, '2y':730, '1y':365, ytd:null, '3m':90, '1m':30 };
+var VOL_WINDOW = 26;
+
+var currentWindow = 'max';
+var ngfChartType  = 'line';
+var apiCallCount  = 0;
+var storageData   = [];
+var ngfData       = [];
+var charts        = { score:null, ngf:null, vol:null, stor:null, dev:null };
+
+// ── UTILS ─────────────────────────────────────────────────────────────────────
+function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+function incAPI() {
+  apiCallCount++;
+  document.getElementById('api-counter').textContent = 'API calls: ' + apiCallCount;
+}
+function setDot(s)  { document.getElementById('sdot').className = 'dot ' + s; }
+function setBadge(cls, txt) {
+  var el = document.getElementById('status-badge');
+  el.textContent = txt;
+  el.className = 'badge badge-' + cls;
+}
+function showErr(msg) {
+  document.getElementById('err-block').style.display = 'block';
+  document.getElementById('err-detail').textContent = msg;
+}
+function hideErr() { document.getElementById('err-block').style.display = 'none'; }
+
+function pd(iso) { return new Date(iso + 'T12:00:00Z'); }
+
+function fmtDate(iso) {
+  return pd(iso).toLocaleDateString('en-GB', {day:'2-digit', month:'short', year:'numeric'});
+}
+function fmtDateTs(ts) {
+  return new Date(ts).toLocaleDateString('en-GB', {day:'2-digit', month:'short', year:'numeric'});
+}
+
+function getHistDays() {
+  if (currentWindow === 'ytd') {
+    var n = new Date();
+    return Math.floor((n - new Date(n.getFullYear(), 0, 1)) / 864e5);
+  }
+  return WINDOWS[currentWindow];
+}
+
+function filterByWindow(series) {
+  var days = getHistDays();
+  if (!days || days >= 99999) { return series.slice(); }
+  var cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - days);
+  var out = [];
+  for (var i = 0; i < series.length; i++) {
+    if (pd(series[i].date) >= cutoff) { out.push(series[i]); }
+  }
+  return out;
+}
+
+function filterNgfByWindow(series) {
+  var days = getHistDays();
+  if (!days || days >= 99999) { return series.slice(); }
+  var cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - days);
+  var out = [];
+  for (var i = 0; i < series.length; i++) {
+    if (new Date(series[i].ts) >= cutoff) { out.push(series[i]); }
+  }
+  return out;
+}
+
+function compute5y(all, dates) {
+  var results = [];
+  for (var di = 0; di < dates.length; di++) {
+    var ref    = pd(dates[di]);
+    var refDOY = ref.getMonth() * 30 + ref.getDate();
+    var peers  = [];
+    for (var ai = 0; ai < all.length; ai++) {
+      var pp   = pd(all[ai].date);
+      var diff = ref.getFullYear() - pp.getFullYear();
+      if (diff < 1 || diff > 5) { continue; }
+      var pdoy = pp.getMonth() * 30 + pp.getDate();
+      if (Math.abs(pdoy - refDOY) <= 7) { peers.push(all[ai].value); }
+    }
+    var valid = [];
+    for (var pi = 0; pi < peers.length; pi++) {
+      if (isFinite(peers[pi])) { valid.push(peers[pi]); }
+    }
+    if (valid.length < 2) {
+      results.push({avg:null, min:null, max:null});
+      continue;
+    }
+    var sum = 0;
+    for (var vi = 0; vi < valid.length; vi++) { sum += valid[vi]; }
+    var avg = sum / valid.length;
+    var mn  = valid[0];
+    var mx  = valid[0];
+    for (var vi2 = 1; vi2 < valid.length; vi2++) {
+      if (valid[vi2] < mn) { mn = valid[vi2]; }
+      if (valid[vi2] > mx) { mx = valid[vi2]; }
+    }
+    results.push({avg:avg, min:mn, max:mx});
+  }
+  return results;
+}
+
+function scoreFromDev(pct) { return clamp(-pct / 10, -5, 5); }
+
+function biasLabel(s) {
+  if (s >  2.5) { return {w:'BULLISH',     cls:'bull'}; }
+  if (s >  0.8) { return {w:'SL. BULLISH', cls:'sbull'}; }
+  if (s < -2.5) { return {w:'BEARISH',     cls:'bear'}; }
+  if (s < -0.8) { return {w:'SL. BEARISH', cls:'sbear'}; }
+  return {w:'NEUTRAL', cls:'neut'};
+}
+
+function computeParkinsonVol(data) {
+  var factor = 1 / (4 * Math.LN2);
+  var result = [];
+  for (var i = 0; i < data.length; i++) {
+    if (i < VOL_WINDOW - 1) {
+      result.push(null);
+      continue;
+    }
+    var sum = 0;
+    for (var j = i - VOL_WINDOW + 1; j <= i; j++) {
+      var hl = Math.log(data[j].high / data[j].low);
+      sum += hl * hl;
+    }
+    var vol = Math.sqrt(factor * sum / VOL_WINDOW) * Math.sqrt(52) * 100;
+    result.push(parseFloat(vol.toFixed(2)));
+  }
+  return result;
+}
+
+// ── EIA FETCH ─────────────────────────────────────────────────────────────────
+async function fetchStorage() {
+  incAPI();
+  var qs = 'api_key=' + API_KEY
+    + '&frequency=weekly'
+    + '&data[0]=value'
+    + '&facets[series][]=NW2_EPG0_SWO_R48_BCF'
+    + '&sort[0][column]=period'
+    + '&sort[0][direction]=asc'
+    + '&length=1000';
+  var url = 'https://api.eia.gov/v2/natural-gas/stor/wkly/data?' + qs;
+  var res, json;
+  try { res  = await fetch(url); }         catch(e) { throw new Error('Network: ' + e.message); }
+  try { json = await res.json(); }         catch(e) { throw new Error('Bad JSON HTTP ' + res.status); }
+  if (!res.ok || (json.response && json.response.error)) {
+    throw new Error('EIA: ' + ((json.response && json.response.error) || ('HTTP ' + res.status)));
+  }
+  var rows = (json.response && json.response.data) || [];
+  if (!rows.length) { throw new Error('No rows from EIA'); }
+  var out = [];
+  for (var i = 0; i < rows.length; i++) {
+    var v = parseFloat(rows[i].value);
+    if (isFinite(v)) { out.push({date: rows[i].period, value: v}); }
+  }
+  out.sort(function(a, b) { return a.date < b.date ? -1 : 1; });
+  return out;
+}
+
+// ── YAHOO FETCH ───────────────────────────────────────────────────────────────
+async function fetchNGF() {
+  incAPI();
+  var period1  = Math.floor(new Date('2010-01-01').getTime() / 1000);
+  var period2  = Math.floor(Date.now() / 1000);
+  var yahooUrl = 'https://query1.finance.yahoo.com/v8/finance/chart/NG%3DF'
+    + '?period1=' + period1
+    + '&period2=' + period2
+    + '&interval=1wk'
+    + '&events=history'
+    + '&lang=en-US'
+    + '&region=US';
+
+  var proxies = [
+    'https://corsproxy.io/?url=' + encodeURIComponent(yahooUrl),
+    'https://api.allorigins.win/raw?url=' + encodeURIComponent(yahooUrl),
+    'https://proxy.cors.sh/' + yahooUrl
+  ];
+
+  var lastErr = null;
+  for (var pi = 0; pi < proxies.length; pi++) {
+    try {
+      var res  = await fetch(proxies[pi]);
+      if (!res.ok) { throw new Error('HTTP ' + res.status); }
+      var text = await res.text();
+      var data;
+      try {
+        data = JSON.parse(text);
+        if (data.contents) { data = JSON.parse(data.contents); }
+      } catch(pe) {
+        throw new Error('JSON parse failed');
+      }
+      var result = data && data.chart && data.chart.result && data.chart.result[0];
+      if (!result) { throw new Error('No result in Yahoo response'); }
+      var timestamps = result.timestamp;
+      var q = result.indicators && result.indicators.quote && result.indicators.quote[0];
+      if (!timestamps || !q) { throw new Error('Missing timestamps or quotes'); }
+      var out = [];
+      for (var i = 0; i < timestamps.length; i++) {
+        var o = parseFloat(q.open  && q.open[i]);
+        var h = parseFloat(q.high  && q.high[i]);
+        var l = parseFloat(q.low   && q.low[i]);
+        var c = parseFloat(q.close && q.close[i]);
+        if (isFinite(o) && isFinite(h) && isFinite(l) && isFinite(c)) {
+          out.push({
+            ts:    timestamps[i] * 1000,
+            date:  new Date(timestamps[i] * 1000).toISOString().slice(0, 10),
+            open:  o, high: h, low: l, close: c
+          });
+        }
+      }
+      out.sort(function(a, b) { return a.ts - b.ts; });
+      return out;
+    } catch(e) {
+      lastErr = e;
+    }
+  }
+  throw new Error('NGF fetch failed (all proxies): ' + (lastErr ? lastErr.message : 'unknown'));
+}
+
+// ── LOAD ──────────────────────────────────────────────────────────────────────
+async function loadAll() {
+  setDot('loading');
+  setBadge('loading', 'Loading...');
+  document.getElementById('upd-lbl').textContent = 'Fetching...';
+  hideErr();
+  resetSpinners();
+  var errors = [];
+  try { storageData = await fetchStorage(); } catch(e) { errors.push('Storage: ' + e.message); }
+  try { ngfData     = await fetchNGF();     } catch(e) { errors.push('NG=F: '    + e.message); }
+  if (errors.length) { showErr(errors.join('\n\n')); }
+  renderAll();
+  if (errors.length) { setDot('err'); setBadge('err', 'Partial error'); }
+  else               { setDot('ok');  setBadge('live', 'Live data'); }
+  document.getElementById('upd-lbl').textContent =
+    new Date().toLocaleString('en-US', {month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'});
+}
+
+function resetSpinners() {
+  var wrapIds = ['wrap-score', 'wrap-ngf', 'wrap-vol', 'wrap-stor', 'wrap-dev'];
+  var spinIds = ['spin-score', 'spin-ngf', 'spin-vol', 'spin-stor', 'spin-dev'];
+  for (var i = 0; i < wrapIds.length; i++) {
+    document.getElementById(wrapIds[i]).style.display = 'none';
+  }
+  for (var i = 0; i < spinIds.length; i++) {
+    document.getElementById(spinIds[i]).style.display = 'block';
+    document.getElementById(spinIds[i]).innerHTML = '<span class="sp"></span>Loading...';
+  }
+}
+
+function renderAll() {
+  computeBias();
+  if (storageData.length) { renderScoreChart(); renderStorChart(); renderDevChart(); }
+  if (ngfData.length)     { renderNgfChart(); renderVolChart(); }
+  updateSubtitles();
+}
+
+// ── BIAS ──────────────────────────────────────────────────────────────────────
+function computeBias() {
+  if (!storageData.length) { return; }
+  var latest  = storageData[storageData.length - 1];
+  var band    = compute5y(storageData, [latest.date]);
+  var avg     = band[0].avg;
+  var devBcf  = avg != null ? latest.value - avg : 0;
+  var devPct  = (avg != null && avg !== 0) ? (devBcf / avg * 100) : 0;
+  var score   = scoreFromDev(devPct);
+  var el;
+
+  el = document.getElementById('m-stor-val');
+  el.textContent = Math.round(latest.value).toLocaleString();
+  el.style.color = 'var(--text)';
+  document.getElementById('m-stor-sub').textContent = 'Bcf - ' + fmtDate(latest.date);
+
+  el = document.getElementById('m-stor-avg');
+  el.textContent = avg != null ? Math.round(avg).toLocaleString() : '--';
+  el.style.color = 'var(--text)';
+  document.getElementById('m-stor-avg-sub').textContent = avg != null ? 'Bcf - same week 5y avg' : 'not enough data';
+
+  var dc = Math.abs(devPct) < 3 ? 'var(--yellow)' : devBcf < 0 ? 'var(--green)' : 'var(--red)';
+  el = document.getElementById('m-stor-dev');
+  el.textContent = (devBcf >= 0 ? '+' : '') + Math.round(devBcf).toLocaleString() + ' Bcf';
+  el.style.color = dc;
+  document.getElementById('m-stor-dev-sub').textContent = (devPct >= 0 ? '+' : '') + devPct.toFixed(1) + '% vs 5y avg';
+
+  var bl = biasLabel(score);
+  var bw = document.getElementById('bias-word');
+  bw.textContent = bl.w;
+  bw.className   = 'bias-word ' + bl.cls;
+
+  document.getElementById('bias-fill').style.width      = ((score + 5) / 10 * 100).toFixed(1) + '%';
+  document.getElementById('bias-fill').style.background = score > 0.8 ? 'var(--green)' : score < -0.8 ? 'var(--red)' : 'var(--yellow)';
+  document.getElementById('bias-score-num').textContent  = (score >= 0 ? '+' : '') + score.toFixed(3);
+
+  var SCALE = [{l:'BEARISH',c:'bear'},{l:'SL. BEARISH',c:'sbear'},{l:'NEUTRAL',c:'neut'},{l:'SL. BULLISH',c:'sbull'},{l:'BULLISH',c:'bull'}];
+  var COLS  = {bull:'var(--green)',sbull:'#7ed49a',neut:'var(--yellow)',sbear:'#ffaa99',bear:'var(--red)'};
+  var ai    = score > 2.5 ? 4 : score > 0.8 ? 3 : score >= -0.8 ? 2 : score >= -2.5 ? 1 : 0;
+  var scaleHtml = '';
+  for (var si = 0; si < SCALE.length; si++) {
+    var a   = si === ai;
+    var col = COLS[SCALE[si].c];
+    scaleHtml += '<div style="flex:1;text-align:center;padding:4px 2px;border-radius:4px;font-size:9px;'
+      + 'font-weight:' + (a ? 700 : 400) + ';font-family:var(--mono);'
+      + 'border:1px solid ' + (a ? col : 'var(--border2)') + ';'
+      + 'background:' + (a ? col + '22' : 'transparent') + ';'
+      + 'color:' + (a ? col : 'var(--text3)') + ';'
+      + 'white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + SCALE[si].l + '</div>';
+  }
+  document.getElementById('bias-scale').innerHTML = scaleHtml;
+
+  var tc = score > 0.8 ? 'var(--green)' : score < -0.8 ? 'var(--red)' : 'var(--yellow)';
+  var ac = score > 0.001 ? 'var(--green)' : score < -0.001 ? 'var(--red)' : 'var(--yellow)';
+  var bp = clamp(((score + 5) / 10) * 100, 0, 100).toFixed(1);
+  document.getElementById('sm-stor').innerHTML =
+    '<span class="srl">Storage vs 5y avg (inverted)</span>'
+    + '<span class="sranom" style="color:' + ac + '">' + (score >= 0 ? '+' : '') + score.toFixed(3) + '</span>'
+    + '<span class="sreq">x</span><span class="srwt">1.00</span><span class="sreq">=</span>'
+    + '<div class="srbar"><div class="srfill" style="width:' + bp + '%;background:' + ac + '"></div></div>'
+    + '<span class="srval" style="color:' + ac + '">' + (score >= 0 ? '+' : '') + score.toFixed(3) + '</span>';
+  document.getElementById('sm-total').innerHTML =
+    '<span class="srtl">Total score (clipped +-5)</span><span style="flex:1"></span>'
+    + '<span class="srtv" style="color:' + tc + '">' + (score >= 0 ? '+' : '') + score.toFixed(3) + '</span>';
+}
+
+// ── CHART HELPERS ─────────────────────────────────────────────────────────────
+function baseTT() {
+  return {
+    backgroundColor:'#1c2128', titleColor:'#e6edf3', bodyColor:'#8b949e',
+    borderColor:'#30363d', borderWidth:1, padding:10,
+    titleFont:{family:'Inter',size:11}, bodyFont:{family:'Inter',size:11}
+  };
+}
+function baseX() {
+  return {
+    grid:{color:'rgba(255,255,255,0.04)'},
+    ticks:{color:'#6e7681', font:{family:'Inter',size:9}, maxRotation:45, autoSkip:true, maxTicksLimit:16}
+  };
+}
+function baseY(cb) {
+  return {
+    grid:{color:'rgba(255,255,255,0.04)'},
+    ticks:{color:'#6e7681', font:{family:'Inter',size:9}, callback: cb || undefined}
+  };
+}
+
+// Band plugin for storage chart
+var bandPlugin = {
+  id: 'bandFill',
+  beforeDatasetsDraw: function(chart) {
+    var cx = chart.ctx;
+    var x  = chart.scales.x;
+    var y  = chart.scales.y;
+    var ca = chart.chartArea;
+    var minDs = null;
+    var maxDs = null;
+    for (var i = 0; i < chart.data.datasets.length; i++) {
+      if (chart.data.datasets[i]._k === 'min') { minDs = chart.data.datasets[i]; }
+      if (chart.data.datasets[i]._k === 'max') { maxDs = chart.data.datasets[i]; }
+    }
+    if (!minDs || !maxDs) { return; }
+    var mn = minDs.data;
+    var mx = maxDs.data;
+    cx.save();
+    cx.beginPath();
+    var go = false;
+    for (var i = 0; i < mx.length; i++) {
+      if (mx[i] == null || !isFinite(mx[i])) { continue; }
+      var px = x.getPixelForValue(i);
+      var py = Math.max(ca.top, Math.min(ca.bottom, y.getPixelForValue(mx[i])));
+      if (!go) { cx.moveTo(px, py); go = true; }
+      else      { cx.lineTo(px, py); }
+    }
+    for (var i = mn.length - 1; i >= 0; i--) {
+      if (mn[i] == null || !isFinite(mn[i])) { continue; }
+      cx.lineTo(x.getPixelForValue(i), Math.max(ca.top, Math.min(ca.bottom, y.getPixelForValue(mn[i]))));
+    }
+    cx.closePath();
+    cx.fillStyle = 'rgba(68,147,248,0.10)';
+    cx.fill();
+    cx.restore();
+  }
+};
+
+// Zone plugin for score chart
+var zonePlugin = {
+  id: 'scoreZones',
+  beforeDatasetsDraw: function(chart) {
+    var cx = chart.ctx;
+    var y  = chart.scales.y;
+    var ca = chart.chartArea;
+    var zones = [
+      {yMin:2.5,  yMax:5,    fill:'rgba(63,185,80,0.14)',   dash:'rgba(63,185,80,0.4)',    lbl:'BULLISH',     lc:'#3fb950'},
+      {yMin:0.8,  yMax:2.5,  fill:'rgba(63,185,80,0.06)',   dash:'rgba(63,185,80,0.25)',   lbl:'SL. BULLISH', lc:'#7ed49a'},
+      {yMin:-0.8, yMax:0.8,  fill:'rgba(227,179,65,0.06)',  dash:'rgba(227,179,65,0.25)',  lbl:'NEUTRAL',     lc:'#e3b341'},
+      {yMin:-2.5, yMax:-0.8, fill:'rgba(255,123,114,0.06)', dash:'rgba(255,123,114,0.25)', lbl:'SL. BEARISH', lc:'#ffaa99'},
+      {yMin:-5,   yMax:-2.5, fill:'rgba(255,123,114,0.14)', dash:'rgba(255,123,114,0.4)',  lbl:'BEARISH',     lc:'#ff7b72'}
+    ];
+    for (var i = 0; i < zones.length; i++) {
+      var z  = zones[i];
+      var y1 = Math.max(ca.top,    y.getPixelForValue(z.yMax));
+      var y2 = Math.min(ca.bottom, y.getPixelForValue(z.yMin));
+      if (y2 <= y1) { continue; }
+      cx.save();
+      cx.fillStyle = z.fill;
+      cx.fillRect(ca.left, y1, ca.right - ca.left, y2 - y1);
+      cx.strokeStyle = z.dash;
+      cx.lineWidth   = 1;
+      cx.setLineDash([5, 4]);
+      cx.beginPath();
+      cx.moveTo(ca.left, y1);
+      cx.lineTo(ca.right, y1);
+      cx.stroke();
+      cx.setLineDash([]);
+      cx.font        = '600 9px Inter,sans-serif';
+      cx.fillStyle   = z.lc;
+      cx.globalAlpha = 0.85;
+      cx.fillText(z.lbl, ca.left + 8, y1 + 12);
+      cx.globalAlpha = 1;
+      cx.restore();
+    }
+  }
+};
+
+// Vol zone plugin
+var volZonePlugin = {
+  id: 'volZones',
+  beforeDatasetsDraw: function(chart) {
+    var cx = chart.ctx;
+    var y  = chart.scales.y;
+    var ca = chart.chartArea;
+    var zones = [
+      {yMin:0,  yMax:40,  fill:'rgba(63,185,80,0.06)'},
+      {yMin:40, yMax:80,  fill:'rgba(227,179,65,0.07)'},
+      {yMin:80, yMax:300, fill:'rgba(255,123,114,0.09)'}
+    ];
+    for (var i = 0; i < zones.length; i++) {
+      var z  = zones[i];
+      var y1 = Math.max(ca.top,    y.getPixelForValue(z.yMax));
+      var y2 = Math.min(ca.bottom, y.getPixelForValue(z.yMin));
+      if (y2 <= y1) { continue; }
+      cx.save();
+      cx.fillStyle = z.fill;
+      cx.fillRect(ca.left, y1, ca.right - ca.left, y2 - y1);
+      cx.restore();
+    }
+  }
+};
+
+// ── SCORE CHART ───────────────────────────────────────────────────────────────
+function renderScoreChart() {
+  var filtered = filterByWindow(storageData);
+  if (!filtered.length) { return; }
+  var dates  = [];
+  var band5y;
+  for (var i = 0; i < filtered.length; i++) { dates.push(filtered[i].date); }
+  band5y = compute5y(storageData, dates);
+  var scores = [];
+  for (var i = 0; i < filtered.length; i++) {
+    var avg = band5y[i].avg;
+    if (avg != null && avg !== 0) {
+      scores.push(scoreFromDev((filtered[i].value - avg) / avg * 100));
+    } else {
+      scores.push(null);
+    }
+  }
+  var labels = [];
+  for (var i = 0; i < dates.length; i++) { labels.push(fmtDate(dates[i])); }
+
+  document.getElementById('spin-score').style.display = 'none';
+  document.getElementById('wrap-score').style.display = 'block';
+  if (charts.score) { charts.score.destroy(); charts.score = null; }
+
+  var tt = baseTT();
+  tt.callbacks = {
+    title: function(items) {
+      var idx = items[0] && items[0].dataIndex;
+      return idx != null ? dates[idx] : '';
+    },
+    label: function(c) {
+      var s = scores[c.dataIndex];
+      if (s == null) { return null; }
+      return [' Score: ' + (s >= 0 ? '+' : '') + s.toFixed(3), ' Bias: ' + biasLabel(s).w];
+    }
+  };
+
+  charts.score = new Chart(document.getElementById('c-score').getContext('2d'), {
+    type: 'line',
+    plugins: [zonePlugin],
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Bias Score', data: scores,
+        borderColor: '#4493f8', borderWidth: 2.5,
+        pointRadius: 0, pointHoverRadius: 6,
+        pointHoverBackgroundColor: '#4493f8', pointHoverBorderColor: '#e6edf3', pointHoverBorderWidth: 2,
+        tension: 0.35, fill: false, spanGaps: true
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: {duration:300},
+      interaction: {mode:'index', intersect:false},
+      plugins: {legend:{display:false}, tooltip: tt},
+      scales: {
+        x: baseX(),
+        y: {
+          min: -5, max: 5,
+          grid: {color:'rgba(255,255,255,0.04)'},
+          ticks: {color:'#6e7681', font:{family:'Inter',size:9}, stepSize:1,
+            callback: function(v) { return (v > 0 ? '+' : '') + v.toFixed(0); }
+          }
+        }
+      }
+    }
+  });
+}
+
+// ── NGF CHART ─────────────────────────────────────────────────────────────────
+function setChartType(type) {
+  ngfChartType = type;
+  document.getElementById('btn-line').classList.toggle('on',   type === 'line');
+  document.getElementById('btn-candle').classList.toggle('on', type === 'candle');
+  if (ngfData.length) { renderNgfChart(); }
+}
+
+function renderNgfChart() {
+  var filtered = filterNgfByWindow(ngfData);
+  if (!filtered.length) { return; }
+  document.getElementById('spin-ngf').style.display = 'none';
+  document.getElementById('wrap-ngf').style.display = 'block';
+  if (charts.ngf) { charts.ngf.destroy(); charts.ngf = null; }
+
+  var labels = [];
+  var closes = [];
+  for (var i = 0; i < filtered.length; i++) {
+    labels.push(fmtDateTs(filtered[i].ts));
+    closes.push(filtered[i].close);
+  }
+  var ctx = document.getElementById('c-ngf').getContext('2d');
+
+  if (ngfChartType === 'candle') {
+    var candlePlugin = {
+      id: 'candles',
+      afterDatasetsDraw: function(chart) {
+        var cx  = chart.ctx;
+        var x   = chart.scales.x;
+        var y   = chart.scales.y;
+        var n   = filtered.length;
+        if (!n) { return; }
+        var rawW = n > 1 ? Math.abs(x.getPixelForValue(1) - x.getPixelForValue(0)) : 8;
+        var barW = Math.max(1.5, Math.min(rawW * 0.65, 14));
+        var half = barW / 2;
+        cx.save();
+        for (var i = 0; i < filtered.length; i++) {
+          var d    = filtered[i];
+          var xc   = x.getPixelForValue(i);
+          var yO   = y.getPixelForValue(d.open);
+          var yC   = y.getPixelForValue(d.close);
+          var yH   = y.getPixelForValue(d.high);
+          var yL   = y.getPixelForValue(d.low);
+          var bull = d.close >= d.open;
+          var col  = bull ? '#3fb950' : '#ff7b72';
+          cx.beginPath();
+          cx.strokeStyle = col;
+          cx.lineWidth   = 1;
+          cx.moveTo(xc, yH);
+          cx.lineTo(xc, yL);
+          cx.stroke();
+          var bodyTop = Math.min(yO, yC);
+          var bodyH   = Math.max(1, Math.abs(yO - yC));
+          cx.fillStyle = col;
+          cx.fillRect(xc - half, bodyTop, barW, bodyH);
+        }
+        cx.restore();
+      }
+    };
+
+    var ttCandle = baseTT();
+    ttCandle.callbacks = {
+      title: function(items) {
+        var idx = items[0] && items[0].dataIndex;
+        return idx != null ? labels[idx] : '';
+      },
+      label: function(c) {
+        var d = filtered[c.dataIndex];
+        if (!d) { return null; }
+        return [
+          ' O: $' + d.open.toFixed(3),
+          ' H: $' + d.high.toFixed(3),
+          ' L: $' + d.low.toFixed(3),
+          ' C: $' + d.close.toFixed(3)
+        ];
+      }
+    };
+
+    charts.ngf = new Chart(ctx, {
+      type: 'line',
+      plugins: [candlePlugin],
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Close', data: closes,
+          borderColor: 'transparent', backgroundColor: 'transparent',
+          pointRadius: 0, pointHoverRadius: 0, fill: false
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, animation: {duration:200},
+        interaction: {mode:'index', intersect:false},
+        plugins: {legend:{display:false}, tooltip: ttCandle},
+        scales: {
+          x: baseX(),
+          y: {
+            grid: {color:'rgba(255,255,255,0.04)'},
+            ticks: {color:'#6e7681', font:{family:'Inter',size:9},
+              callback: function(v) { return '$' + v.toFixed(2); }
+            },
+            afterDataLimits: function(scale) {
+              var hi = -Infinity;
+              var lo =  Infinity;
+              for (var i = 0; i < filtered.length; i++) {
+                if (isFinite(filtered[i].high) && filtered[i].high > hi) { hi = filtered[i].high; }
+                if (isFinite(filtered[i].low)  && filtered[i].low  < lo) { lo = filtered[i].low; }
+              }
+              if (hi > -Infinity) { scale.max = hi * 1.01; }
+              if (lo <  Infinity) { scale.min = lo * 0.99; }
+            }
+          }
+        }
+      }
+    });
+
+  } else {
+    var ttLine = baseTT();
+    ttLine.callbacks = {
+      title: function(items) {
+        var idx = items[0] && items[0].dataIndex;
+        return idx != null ? labels[idx] : '';
+      },
+      label: function(c) { return ' NG=F: $' + c.parsed.y.toFixed(3) + '/MMBtu'; }
+    };
+
+    charts.ngf = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'NG=F Close', data: closes,
+          borderColor: '#e3b341', borderWidth: 2,
+          pointRadius: 0, pointHoverRadius: 6,
+          pointHoverBackgroundColor: '#e3b341', pointHoverBorderColor: '#e6edf3', pointHoverBorderWidth: 2,
+          tension: 0.2, fill: false
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, animation: {duration:300},
+        interaction: {mode:'index', intersect:false},
+        plugins: {legend:{display:false}, tooltip: ttLine},
+        scales: {
+          x: baseX(),
+          y: baseY(function(v) { return '$' + v.toFixed(2); })
+        }
+      }
+    });
+  }
+}
+
+// ── VOL CHART ─────────────────────────────────────────────────────────────────
+function renderVolChart() {
+  var filtered = filterNgfByWindow(ngfData);
+  if (!filtered.length) { return; }
+
+  // Compute on full dataset for correct rolling window, then slice
+  var allVols  = computeParkinsonVol(ngfData);
+  var firstTs  = filtered[0].ts;
+  var startIdx = 0;
+  for (var i = 0; i < ngfData.length; i++) {
+    if (ngfData[i].ts === firstTs) { startIdx = i; break; }
+  }
+  var vols   = allVols.slice(startIdx, startIdx + filtered.length);
+  var labels = [];
+  var dates  = [];
+  for (var i = 0; i < filtered.length; i++) {
+    labels.push(fmtDateTs(filtered[i].ts));
+    dates.push(fmtDateTs(filtered[i].ts));
+  }
+
+  document.getElementById('spin-vol').style.display = 'none';
+  document.getElementById('wrap-vol').style.display = 'block';
+  if (charts.vol) { charts.vol.destroy(); charts.vol = null; }
+
+  var ttVol = baseTT();
+  ttVol.callbacks = {
+    title: function(items) {
+      var idx = items[0] && items[0].dataIndex;
+      return idx != null ? dates[idx] : '';
+    },
+    label: function(c) {
+      var v = vols[c.dataIndex];
+      if (v == null) { return null; }
+      var lvl = v < 40 ? 'Low' : v < 80 ? 'Elevated' : 'High';
+      return [' Vol: ' + v.toFixed(2) + '%', ' Level: ' + lvl];
+    }
+  };
+
+  charts.vol = new Chart(document.getElementById('c-vol').getContext('2d'), {
+    type: 'line',
+    plugins: [volZonePlugin],
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Parkinson Vol', data: vols,
+        borderColor: '#a371f7', borderWidth: 2,
+        pointRadius: 0, pointHoverRadius: 6,
+        pointHoverBackgroundColor: '#a371f7', pointHoverBorderColor: '#e6edf3', pointHoverBorderWidth: 2,
+        tension: 0.3, fill: false, spanGaps: false
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: {duration:300},
+      interaction: {mode:'index', intersect:false},
+      plugins: {legend:{display:false}, tooltip: ttVol},
+      scales: {
+        x: baseX(),
+        y: baseY(function(v) { return v.toFixed(0) + '%'; })
+      }
+    }
+  });
+}
+
+// ── STORAGE CHART ─────────────────────────────────────────────────────────────
+function renderStorChart() {
+  var filtered = filterByWindow(storageData);
+  if (!filtered.length) { return; }
+  var dates  = [];
+  var values = [];
+  for (var i = 0; i < filtered.length; i++) {
+    dates.push(filtered[i].date);
+    values.push(filtered[i].value);
+  }
+  var band5y = compute5y(storageData, dates);
+  var avgs   = [];
+  var mins   = [];
+  var maxs   = [];
+  for (var i = 0; i < band5y.length; i++) {
+    avgs.push(band5y[i].avg);
+    mins.push(band5y[i].min);
+    maxs.push(band5y[i].max);
+  }
+  var labels = [];
+  for (var i = 0; i < dates.length; i++) { labels.push(fmtDate(dates[i])); }
+
+  document.getElementById('spin-stor').style.display = 'none';
+  document.getElementById('wrap-stor').style.display = 'block';
+  if (charts.stor) { charts.stor.destroy(); charts.stor = null; }
+
+  var ttStor = baseTT();
+  ttStor.filter = function(item) { return item.dataset._k !== 'min' && item.dataset._k !== 'max'; };
+  ttStor.callbacks = {
+    title: function(items) {
+      var idx = items[0] && items[0].dataIndex;
+      return idx != null ? dates[idx] : '';
+    },
+    label: function(c) {
+      return ' ' + c.dataset.label + ': ' + Math.round(c.parsed.y).toLocaleString() + ' Bcf';
+    },
+    afterBody: function(items) {
+      var i = items[0] && items[0].dataIndex;
+      if (i == null || mins[i] == null) { return []; }
+      return ['5y range: ' + Math.round(mins[i]).toLocaleString() + ' - ' + Math.round(maxs[i]).toLocaleString() + ' Bcf'];
+    }
+  };
+
+  charts.stor = new Chart(document.getElementById('c-stor').getContext('2d'), {
+    type: 'line',
+    plugins: [bandPlugin],
+    data: {
+      labels: labels,
+      datasets: [
+        {_k:'val', label:'Storage', data:values, borderColor:'#4493f8', borderWidth:2, pointRadius:0, pointHoverRadius:6, pointHoverBackgroundColor:'#4493f8', pointHoverBorderColor:'#e6edf3', pointHoverBorderWidth:2, tension:0.3, fill:false},
+        {_k:'avg', label:'5y Avg',  data:avgs,   borderColor:'#4493f877', borderWidth:1.5, borderDash:[4,3], pointRadius:0, tension:0.3, fill:false},
+        {_k:'min', data:mins, borderColor:'transparent', pointRadius:0, fill:false},
+        {_k:'max', data:maxs, borderColor:'transparent', pointRadius:0, fill:false}
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: {duration:300},
+      interaction: {mode:'index', intersect:false},
+      plugins: {legend:{display:false}, tooltip: ttStor},
+      scales: {
+        x: baseX(),
+        y: baseY(function(v) { return Math.round(v).toLocaleString(); })
+      }
+    }
+  });
+}
+
+// ── DEVIATION CHART ───────────────────────────────────────────────────────────
+function renderDevChart() {
+  var filtered = filterByWindow(storageData);
+  if (!filtered.length) { return; }
+  var dates  = [];
+  for (var i = 0; i < filtered.length; i++) { dates.push(filtered[i].date); }
+  var band5y  = compute5y(storageData, dates);
+  var devs    = [];
+  var surplus = [];
+  var deficit = [];
+  for (var i = 0; i < filtered.length; i++) {
+    var dev = band5y[i].avg != null ? filtered[i].value - band5y[i].avg : null;
+    devs.push(dev);
+    surplus.push(dev != null && dev >= 0 ? dev : 0);
+    deficit.push(dev != null && dev <  0 ? dev : 0);
+  }
+  var labels = [];
+  for (var i = 0; i < dates.length; i++) { labels.push(fmtDate(dates[i])); }
+
+  document.getElementById('spin-dev').style.display = 'none';
+  document.getElementById('wrap-dev').style.display = 'block';
+  if (charts.dev) { charts.dev.destroy(); charts.dev = null; }
+
+  var ttDev = baseTT();
+  ttDev.callbacks = {
+    title: function(items) {
+      var idx = items[0] && items[0].dataIndex;
+      return idx != null ? dates[idx] : '';
+    },
+    label: function(c) {
+      var v = devs[c.dataIndex];
+      if (v == null) { return null; }
+      return ' ' + (v >= 0 ? 'Surplus' : 'Deficit') + ': ' + (v >= 0 ? '+' : '') + Math.round(v).toLocaleString() + ' Bcf';
+    },
+    filter: function(item) {
+      var v = devs[item.dataIndex];
+      return v != null && (item.datasetIndex === 0 ? v >= 0 : v < 0);
+    }
+  };
+
+  charts.dev = new Chart(document.getElementById('c-dev').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        {label:'Surplus', data:surplus, backgroundColor:'rgba(255,123,114,0.75)', borderWidth:0, borderRadius:1},
+        {label:'Deficit', data:deficit, backgroundColor:'rgba(63,185,80,0.75)',   borderWidth:0, borderRadius:1}
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: {duration:300},
+      interaction: {mode:'index', intersect:false},
+      plugins: {legend:{display:false}, tooltip: ttDev},
+      scales: {
+        x: {stacked:true, grid:{color:'rgba(255,255,255,0.04)'}, ticks:{color:'#6e7681', font:{family:'Inter',size:9}, maxRotation:45, autoSkip:true, maxTicksLimit:16}},
+        y: {stacked:true, grid:{color:'rgba(255,255,255,0.04)'}, ticks:{color:'#6e7681', font:{family:'Inter',size:9},
+          callback: function(v) { return (v >= 0 ? '+' : '') + Math.round(v).toLocaleString(); }
+        }}
+      }
+    }
+  });
+}
+
+// ── EXPORT ────────────────────────────────────────────────────────────────────
+function dlTxt(filename, content) {
+  var blob = new Blob([content], {type:'text/plain;charset=utf-8'});
+  var url  = URL.createObjectURL(blob);
+  var a    = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function exportScore() {
+  if (!storageData.length) { alert('No data loaded.'); return; }
+  var dates  = [];
+  for (var i = 0; i < storageData.length; i++) { dates.push(storageData[i].date); }
+  var band5y = compute5y(storageData, dates);
+  var rows   = [];
+  for (var i = 0; i < storageData.length; i++) {
+    var avg   = band5y[i].avg;
+    var score = (avg != null && avg !== 0) ? scoreFromDev((storageData[i].value - avg) / avg * 100) : null;
+    var bias  = score != null ? biasLabel(score).w : 'N/A';
+    var s     = score != null ? (score >= 0 ? '+' : '') + score.toFixed(3) : 'N/A';
+    rows.push(fmtDate(storageData[i].date) + '\t' + s + '\t' + bias);
+  }
+  var hdr = 'NatGas Fundamental Bias Score\nExported: ' + new Date().toLocaleString('en-GB')
+    + '\n\nDate\t\t\tScore\tBias\n' + new Array(50).join('-');
+  dlTxt('natgas_bias_score.txt', hdr + '\n' + rows.join('\n'));
+}
+
+function exportNgf() {
+  if (!ngfData.length) { alert('No NGF data loaded.'); return; }
+  var rows = [];
+  for (var i = 0; i < ngfData.length; i++) {
+    var d = ngfData[i];
+    rows.push(fmtDateTs(d.ts) + '\t' + d.open.toFixed(3) + '\t' + d.high.toFixed(3) + '\t' + d.low.toFixed(3) + '\t' + d.close.toFixed(3));
+  }
+  var hdr = 'NG=F Natural Gas Futures Weekly OHLC\nSource: Yahoo Finance\nExported: ' + new Date().toLocaleString('en-GB')
+    + '\n\nDate\t\t\tOpen\tHigh\tLow\tClose\n' + new Array(60).join('-');
+  dlTxt('ngf_weekly_ohlc.txt', hdr + '\n' + rows.join('\n'));
+}
+
+function exportVol() {
+  if (!ngfData.length) { alert('No NGF data loaded.'); return; }
+  var allVols = computeParkinsonVol(ngfData);
+  var rows    = [];
+  for (var i = 0; i < ngfData.length; i++) {
+    var v = allVols[i];
+    if (v == null) { continue; }
+    var lvl = v < 40 ? 'Low' : v < 80 ? 'Elevated' : 'High';
+    rows.push(fmtDateTs(ngfData[i].ts) + '\t' + v.toFixed(2) + '%\t' + lvl);
+  }
+  var hdr = 'NG=F Parkinson Volatility (26w Rolling, Annualized)\nSource: Yahoo Finance\nExported: ' + new Date().toLocaleString('en-GB')
+    + '\n\nDate\t\t\tVol %\tLevel\n' + new Array(50).join('-');
+  dlTxt('ngf_volatility.txt', hdr + '\n' + rows.join('\n'));
+}
+
+function exportStorage() {
+  if (!storageData.length) { alert('No storage data loaded.'); return; }
+  var dates  = [];
+  for (var i = 0; i < storageData.length; i++) { dates.push(storageData[i].date); }
+  var band5y = compute5y(storageData, dates);
+  var rows   = [];
+  for (var i = 0; i < storageData.length; i++) {
+    var b   = band5y[i];
+    var dev = b.avg != null ? (storageData[i].value - b.avg).toFixed(1) : 'N/A';
+    var pct = (b.avg != null && b.avg !== 0) ? ((storageData[i].value - b.avg) / b.avg * 100).toFixed(2) + '%' : 'N/A';
+    var a   = b.avg != null ? Math.round(b.avg).toString() : 'N/A';
+    var mn  = b.min != null ? Math.round(b.min).toString() : 'N/A';
+    var mx  = b.max != null ? Math.round(b.max).toString() : 'N/A';
+    rows.push(fmtDate(storageData[i].date) + '\t' + Math.round(storageData[i].value) + '\t' + a + '\t' + dev + '\t' + pct + '\t' + mn + '\t' + mx);
+  }
+  var hdr = 'Natural Gas Storage Lower 48\nSource: EIA NW2_EPG0_SWO_R48_BCF\nExported: ' + new Date().toLocaleString('en-GB')
+    + '\n\nDate\t\t\tBcf\t5y Avg\tDev Bcf\tDev %\t5y Min\t5y Max\n' + new Array(75).join('-');
+  dlTxt('natgas_storage.txt', hdr + '\n' + rows.join('\n'));
+}
+
+function exportDev() {
+  if (!storageData.length) { alert('No storage data loaded.'); return; }
+  var dates  = [];
+  for (var i = 0; i < storageData.length; i++) { dates.push(storageData[i].date); }
+  var band5y = compute5y(storageData, dates);
+  var rows   = [];
+  for (var i = 0; i < storageData.length; i++) {
+    var avg = band5y[i].avg;
+    if (avg == null) { continue; }
+    var dev  = storageData[i].value - avg;
+    var type = dev >= 0 ? 'SURPLUS' : 'DEFICIT';
+    rows.push(fmtDate(storageData[i].date) + '\t' + (dev >= 0 ? '+' : '') + Math.round(dev) + '\t' + type);
+  }
+  var hdr = 'Storage vs 5-Year Average Deviation\nSource: EIA NW2_EPG0_SWO_R48_BCF\nExported: ' + new Date().toLocaleString('en-GB')
+    + '\n\nDate\t\t\tDev (Bcf)\tType\n' + new Array(50).join('-');
+  dlTxt('natgas_storage_deviation.txt', hdr + '\n' + rows.join('\n'));
+}
+
+// ── WINDOW / UI ───────────────────────────────────────────────────────────────
+function setWindow(w) {
+  if (currentWindow === w) { return; }
+  currentWindow = w;
+  var keys = Object.keys(WINDOWS);
+  for (var i = 0; i < keys.length; i++) {
+    document.getElementById('tw-' + keys[i]).classList.toggle('on', keys[i] === w);
+  }
+  renderAll();
+}
+
+function updateSubtitles() {
+  var lbl = {max:'full','5y':'5-year','2y':'2-year','1y':'1-year',ytd:'YTD','3m':'3-month','1m':'1-month'};
+  var w   = lbl[currentWindow] || currentWindow;
+  document.getElementById('score-sub').textContent = 'Weekly - Score [-5, +5] - ' + w + ' history';
+  document.getElementById('ngf-sub').textContent   = 'Weekly - $/MMBtu - Yahoo Finance - ' + w + ' history';
+  document.getElementById('vol-sub').textContent   = 'Weekly - Annualized % - Parkinson 26w rolling - ' + w + ' history';
+  document.getElementById('stor-sub').textContent  = 'Weekly - Bcf - ' + w + ' history vs 5-year range';
+  document.getElementById('dev-sub').textContent   = 'Weekly - Bcf - ' + w + ' surplus / deficit vs 5y avg';
+}
+
+function toggleAccordion() {
+  var body  = document.getElementById('acc-body');
+  var arrow = document.getElementById('acc-arrow');
+  var open  = body.style.display === 'none';
+  body.style.display     = open ? 'block' : 'none';
+  arrow.style.transform  = open ? 'rotate(90deg)' : 'rotate(0deg)';
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/Natgas-Supply/sw.js')
+      .catch(function(e) { console.warn('SW registration failed:', e); });
+  });
+}
+
+loadAll();
+</script>
+</body>
+</html>
