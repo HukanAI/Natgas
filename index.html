@@ -1445,17 +1445,25 @@ async function aiSend(){
   var loadBbl=aiAppendBubble('assistant','',true);
   try{
     var sysPrompt='You are an expert natural gas market analyst with deep knowledge of US energy markets, storage dynamics, weather-demand relationships, Henry Hub pricing, and natural gas futures.\n\nAlways base your analysis on the provided live data. Be concise and insightful. Highlight key figures in **bold**. Do not repeat the context back to the user.\n\nCURRENT MARKET DATA:\n'+aiGetContext();
-    var resp=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'anthropic-version':'2023-06-01'
+    // Endpoint:
+    // - V Claude.ai artifacts: přímé volání Anthropic (proxy zajistí Claude)
+    // - Na GitHub Pages: Cloudflare Worker s Groq backendem
+    var isClaudeAi = window.location.hostname === '' || window.location.hostname.indexOf('claude.ai') !== -1;
+    var API_ENDPOINT = isClaudeAi
+      ? 'https://api.anthropic.com/v1/messages'
+      : 'https://natgas-proxy.ondra-peter.workers.dev/';  // <-- ZDE vlož svou Worker URL
+
+    var resp = await fetch(API_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'anthropic-version': '2023-06-01'
       },
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        system:sysPrompt,
-        messages:aiHistory.slice(-10)
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: sysPrompt,
+        messages: aiHistory.slice(-10)
       })
     });
     if(!resp.ok){
