@@ -1447,7 +1447,10 @@ async function aiSend(){
     var sysPrompt='You are an expert natural gas market analyst with deep knowledge of US energy markets, storage dynamics, weather-demand relationships, Henry Hub pricing, and natural gas futures.\n\nAlways base your analysis on the provided live data. Be concise and insightful. Highlight key figures in **bold**. Do not repeat the context back to the user.\n\nCURRENT MARKET DATA:\n'+aiGetContext();
     var resp=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{
+        'Content-Type':'application/json',
+        'anthropic-version':'2023-06-01'
+      },
       body:JSON.stringify({
         model:'claude-sonnet-4-20250514',
         max_tokens:1000,
@@ -1455,7 +1458,12 @@ async function aiSend(){
         messages:aiHistory.slice(-10)
       })
     });
+    if(!resp.ok){
+      var errText=await resp.text();
+      throw new Error('API HTTP '+resp.status+': '+errText.slice(0,200));
+    }
     var data=await resp.json();
+    if(data.error) throw new Error(data.error.message||JSON.stringify(data.error));
     var text=(data.content&&data.content[0]&&data.content[0].text)||'No response received.';
     loadBbl.innerHTML=aiMsgHtml(text);
     aiHistory.push({role:'assistant',content:text});
