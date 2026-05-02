@@ -1451,7 +1451,7 @@ async function aiSend(){
     var isClaudeAi = window.location.hostname === '' || window.location.hostname.indexOf('claude.ai') !== -1;
     var API_ENDPOINT = isClaudeAi
       ? 'https://api.anthropic.com/v1/messages'
-      : 'https://natgas-proxy.ondra-peter.workers.dev/';  // <-- ZDE vlož svou Worker URL
+      : 'https://natgas-proxy.ondra-peter.workers.dev/';
 
     var resp = await fetch(API_ENDPOINT, {
       method: 'POST',
