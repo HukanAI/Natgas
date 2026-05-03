@@ -147,6 +147,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
       <div id="ai-messages" style="flex:1;overflow-y:auto;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:10px;min-height:0">
         <div style="text-align:center;color:var(--text3);font-size:11px;font-family:var(--mono);padding:20px 0">🤖 NatGas AI Analyst — ask anything about current market data</div>
       </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button onclick="aiSendReport()" id="ai-report-btn"
+          style="background:rgba(163,113,247,.15);border:1px solid rgba(163,113,247,.4);color:#a371f7;padding:8px 14px;border-radius:6px;cursor:pointer;font-size:11px;font-family:var(--font);font-weight:600;white-space:nowrap;width:100%"
+          onmouseover="this.style.background='rgba(163,113,247,.28)'"
+          onmouseout="this.style.background='rgba(163,113,247,.15)'">📊 Generovat analytický report</button>
+      </div>
       <div style="display:flex;gap:8px">
         <input id="ai-input" type="text" placeholder="e.g. What does current storage deviation imply for prices?"
           style="flex:1;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:8px 12px;color:var(--text);font-family:var(--font);font-size:12px;outline:none"
