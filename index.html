@@ -127,7 +127,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     <div class="bx"><div class="bx-lbl">Fair Price — Now</div><div class="bx-val" id="b-fp0">—</div><div class="bx-sub" id="b-fp0-range">—</div></div>
     <div class="bx"><div class="bx-lbl">Fair Price — 7D</div><div class="bx-val" id="b-fp7">—</div><div class="bx-sub" id="b-fp7-range">—</div></div>
     <div class="bx"><div class="bx-lbl">Fair Price — 14D</div><div class="bx-val" id="b-fp14">—</div><div class="bx-sub" id="b-fp14-range">—</div></div>
-    <div class="bx"><div class="bx-lbl">Total Supply</div><div class="bx-val" id="b-supply-val">—</div><div class="bx-sub" id="b-supply-sub">—</div><div class="bx-sub2" id="b-supply-date">—</div></div>
   </div>
 </div>
 
@@ -1202,25 +1201,51 @@ async function aiSend(){
   var sysPrompt='You are an expert natural gas market analyst. Always base your analysis on the provided live data. Be concise and insightful. Highlight key figures in **bold**. Do not repeat the context back.\n\nCURRENT MARKET DATA:\n'+aiGetContext();
   dbLog('AI: calling Groq (qwen/qwen3-32b)…','info');
   try{
+    // Build messages: system first, then conversation history
+    var messages=[{role:'system',content:sysPrompt}].concat(aiHistory.slice(-10));
     var resp=await fetch('https://natgas-proxy.ondra-peter.workers.dev/',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         model:'qwen/qwen3-32b',
-        reasoning_effort:'default',
-        max_completion_tokens:1024,
-        messages:[
-          {role:'system', content:sysPrompt}
-        ].concat(aiHistory.slice(-10))
+        max_tokens:1024,
+        messages:messages
       })
     });
-    if(!resp.ok){var et=await resp.text();throw new Error('HTTP '+resp.status+': '+et.slice(0,200));}
+    if(!resp.ok){var et=await resp.text();throw new Error('HTTP '+resp.status+': '+et.slice(0,300));}
     var data=await resp.json();
-    // Groq returns OpenAI-compatible format: choices[0].message.content
-    var text=(data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content)||'No response.';
-    loadBbl.innerHTML=aiMsgHtml(text); aiHistory.push({role:'assistant',content:text}); dbLog('AI: OK ('+text.length+' chars)','ok');
-  }catch(err){ loadBbl.innerHTML='<span style="color:#ff7b72">⚠ Error: '+esc(err.message)+'</span>'; dbLog('AI error: '+err.message,'error'); }
-  btn.disabled=false; document.getElementById('ai-messages').scrollTop=99999;
+    dbLog('AI raw response keys: '+Object.keys(data).join(','),'info');
+
+    // Groq OpenAI-compatible format
+    var text='';
+    if(data.choices&&data.choices[0]){
+      var choice=data.choices[0];
+      // content may be string or array of content blocks
+      if(choice.message&&typeof choice.message.content==='string'&&choice.message.content.trim()){
+        text=choice.message.content.trim();
+      } else if(choice.message&&Array.isArray(choice.message.content)){
+        text=choice.message.content.filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('').trim();
+      } else if(choice.text){
+        text=choice.text.trim();
+      }
+    }
+    // Fallback: Anthropic format (if worker converts)
+    if(!text&&data.content&&data.content[0]&&data.content[0].text){
+      text=data.content[0].text.trim();
+    }
+    if(!text){
+      dbLog('AI: empty response, full data: '+JSON.stringify(data).slice(0,400),'warn');
+      text='⚠ Empty response from model. Check debug log.';
+    }
+    loadBbl.innerHTML=aiMsgHtml(text);
+    aiHistory.push({role:'assistant',content:text});
+    dbLog('AI: OK ('+text.length+' chars)','ok');
+  }catch(err){
+    loadBbl.innerHTML='<span style="color:#ff7b72">⚠ Error: '+esc(err.message)+'</span>';
+    dbLog('AI error: '+err.message,'error');
+  }
+  btn.disabled=false;
+  document.getElementById('ai-messages').scrollTop=99999;
 }
 function aiClear(){ aiHistory=[]; document.getElementById('ai-messages').innerHTML='<div style="text-align:center;color:#6e7681;font-size:11px;font-family:var(--mono);padding:20px 0">🤖 NatGas AI Analyst — ask anything about current market data</div>'; }
 
