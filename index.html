@@ -118,6 +118,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
   <div class="card-header"><span class="card-title">Natural Gas Bias</span></div>
   <div class="bias-grid">
     <div class="bx"><div class="bx-lbl">Season</div><div class="bx-val" id="b-season">—</div><div class="bx-sub" id="b-season-sub">—</div></div>
+    <div class="bx"><div class="bx-lbl">Total Supply</div><div class="bx-val" id="b-supply-val">—</div><div class="bx-sub" id="b-supply-sub">—</div><div class="bx-sub2" id="b-supply-date">—</div></div>
     <div class="bx"><div class="bx-lbl">Storage Level</div><div class="bx-val" id="b-stor-val">—</div><div class="bx-sub" id="b-stor-wkchg">—</div><div class="bx-sub" id="b-stor-dev">—</div><div class="bx-sub2" id="b-stor-date">—</div></div>
     <div class="bx"><div class="bx-lbl">Storage Level — 7D</div><div class="bx-val" id="b-f7-val">—</div><div class="bx-sub" id="b-f7-chg">—</div><div class="bx-sub2" id="b-f7-vs5y">—</div><div class="bx-sub2" id="b-f7-date">—</div></div>
     <div class="bx"><div class="bx-lbl">Storage Level — 14D</div><div class="bx-val" id="b-f14-val">—</div><div class="bx-sub" id="b-f14-chg">—</div><div class="bx-sub2" id="b-f14-vs5y">—</div><div class="bx-sub2" id="b-f14-date">—</div></div>
@@ -161,7 +162,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
           onmouseover="this.style.color='var(--red)';this.style.borderColor='var(--red)'"
           onmouseout="this.style.color='var(--text3)';this.style.borderColor='var(--border2)'">Clear</button>
       </div>
-      <div style="font-size:10px;color:var(--text3);font-family:var(--mono)">Live storage · weather · forecasts · futures data auto-injected · powered by Claude Sonnet</div>
+      <div style="font-size:10px;color:var(--text3);font-family:var(--mono)">Live storage · weather · forecasts · futures data auto-injected · powered by Qwen3-32B via Groq</div>
     </div>
   </div>
 
@@ -1199,11 +1200,24 @@ async function aiSend(){
   aiAppendBubble('user',msg,false); aiHistory.push({role:'user',content:msg});
   var loadBbl=aiAppendBubble('assistant','',true);
   var sysPrompt='You are an expert natural gas market analyst. Always base your analysis on the provided live data. Be concise and insightful. Highlight key figures in **bold**. Do not repeat the context back.\n\nCURRENT MARKET DATA:\n'+aiGetContext();
-  dbLog('AI: calling Anthropic…','info');
+  dbLog('AI: calling Groq (qwen/qwen3-32b)…','info');
   try{
-    var resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','anthropic-version':'2023-06-01'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:sysPrompt,messages:aiHistory.slice(-10)})});
+    var resp=await fetch('https://natgas-proxy.ondra-peter.workers.dev/',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'qwen/qwen3-32b',
+        reasoning_effort:'default',
+        max_completion_tokens:1024,
+        messages:[
+          {role:'system', content:sysPrompt}
+        ].concat(aiHistory.slice(-10))
+      })
+    });
     if(!resp.ok){var et=await resp.text();throw new Error('HTTP '+resp.status+': '+et.slice(0,200));}
-    var data=await resp.json(),text=(data.content&&data.content[0]&&data.content[0].text)||'No response.';
+    var data=await resp.json();
+    // Groq returns OpenAI-compatible format: choices[0].message.content
+    var text=(data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content)||'No response.';
     loadBbl.innerHTML=aiMsgHtml(text); aiHistory.push({role:'assistant',content:text}); dbLog('AI: OK ('+text.length+' chars)','ok');
   }catch(err){ loadBbl.innerHTML='<span style="color:#ff7b72">⚠ Error: '+esc(err.message)+'</span>'; dbLog('AI error: '+err.message,'error'); }
   btn.disabled=false; document.getElementById('ai-messages').scrollTop=99999;
