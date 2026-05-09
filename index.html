@@ -987,7 +987,6 @@ function taRenderTF(tf,candles){
   var bb=taBB(closes,20,2);
   var rsi=taRSI(closes,14);
   var macdObj=taMACD(closes,12,26,9);
-  var srLevels=taSR(candles);
   var patterns=taPatterns(candles);
 
   // Kill old charts safely
@@ -1041,16 +1040,7 @@ function taRenderTF(tf,candles){
     });cx.restore();
   }};
 
-  var srPlugin={id:'sr_'+tf,afterDraw:function(chart){
-    var cx=chart.ctx,ca=chart.chartArea,ySc=chart.scales.y;
-    srLevels.forEach(function(lvl){
-      var py=ySc.getPixelForValue(lvl.price);if(py<ca.top||py>ca.bottom)return;
-      cx.save();cx.strokeStyle=lvl.type==='R'?'rgba(255,123,114,0.65)':'rgba(63,185,80,0.65)';
-      cx.lineWidth=1;cx.setLineDash([4,3]);cx.beginPath();cx.moveTo(ca.left,py);cx.lineTo(ca.right,py);cx.stroke();
-      cx.setLineDash([]);cx.fillStyle=lvl.type==='R'?'#ff7b72':'#3fb950';
-      cx.font='8px Inter,sans-serif';cx.textAlign='right';cx.fillText(lvl.type+' $'+lvl.price.toFixed(3),ca.right-3,py-2);cx.restore();
-    });
-  }};
+  var srPlugin={id:'sr_'+tf,afterDraw:function(){}};  // S/R removed
 
   var patPlugin={id:'pat_'+tf,afterDraw:function(chart){
     var cx=chart.ctx,ca=chart.chartArea,xSc=chart.scales.x,ySc=chart.scales.y;
@@ -1152,6 +1142,23 @@ function taRenderTF(tf,candles){
   // Show wrap
   wrap.style.display='block';
   document.getElementById('ta-spin-'+tf).style.display='none';
+
+  // Zoom to last 50 candles on price chart
+  var ZOOM_BARS=50;
+  if(n>ZOOM_BARS&&taCharts[tf].price){
+    var xScale=taCharts[tf].price.scales.x;
+    xScale.options.min=n-ZOOM_BARS;
+    xScale.options.max=n-1;
+    taCharts[tf].price.update('none');
+  }
+  // Sync RSI and MACD zoom to same range
+  ['rsi','macd'].forEach(function(k){
+    if(!taCharts[tf][k])return;
+    var xSc=taCharts[tf][k].scales.x;
+    xSc.options.min=n>ZOOM_BARS?n-ZOOM_BARS:0;
+    xSc.options.max=n-1;
+    taCharts[tf][k].update('none');
+  });
 }
 
 // ── TA Load all timeframes ────────────────────────────────────
