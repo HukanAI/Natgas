@@ -1081,24 +1081,34 @@ function taRenderTF(tf,candles){
     }
   });
 
-  taResetZoomTF(tf,candles);
+  if(n>ZOOM){
+    var pCh=taCharts[tf].price;
+    pCh.scales.x.options.min=zStart;pCh.scales.x.options.max=n-1+3;
+    pCh.options.scales.y.min=vLo-vPad;pCh.options.scales.y.max=vHi+vPad;
+    pCh.update('none');
+    ['rsi','macd'].forEach(function(k){
+      var ch=taCharts[tf][k];if(!ch) return;
+      ch.scales.x.options.min=zStart;ch.scales.x.options.max=n-1+3;ch.update('none');
+    });
+  }
 }
 
 function taResetZoomTF(tf,candles){
   candles=candles||taData[tf];if(!candles||!candles.length) return;
   var n=candles.length,ZOOM=150,zStart=n>ZOOM?n-ZOOM:0;
+  var zEnd=n-1+3; // 3 empty candles padding on the right
   var vis=candles.slice(zStart),vHi=-Infinity,vLo=Infinity;
   vis.forEach(function(c){if(c.high>vHi)vHi=c.high;if(c.low<vLo)vLo=c.low;});
   var vPad=(vHi-vLo)*0.08||0.1;
   var ch=taCharts[tf];if(!ch) return;
   if(ch.price){
-    ch.price.scales.x.options.min=zStart;ch.price.scales.x.options.max=n-1;
+    ch.price.scales.x.options.min=zStart;ch.price.scales.x.options.max=zEnd;
     ch.price.options.scales.y.min=vLo-vPad;ch.price.options.scales.y.max=vHi+vPad;
     ch.price.update('none');
   }
   ['rsi','macd'].forEach(function(k){
     var c2=ch[k];if(!c2) return;
-    c2.scales.x.options.min=zStart;c2.scales.x.options.max=n-1;c2.update('none');
+    c2.scales.x.options.min=zStart;c2.scales.x.options.max=zEnd;c2.update('none');
   });
 }
 
