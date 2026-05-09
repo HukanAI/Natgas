@@ -120,7 +120,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 
 <main class="main">
 
-<!-- BIAS CARD -->
 <div class="card">
   <div class="card-header"><span class="card-title">Natural Gas Bias</span></div>
   <div class="bias-grid">
@@ -139,7 +138,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
   </div>
 </div>
 
-<!-- TABS -->
 <div class="card">
   <div class="tabs-nav">
     <button class="tab-btn on" data-tab="ai">🤖 AI</button>
@@ -151,7 +149,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     <button class="tab-btn" data-tab="correlation">🔗 Correlation</button>
   </div>
 
-  <!-- AI TAB -->
   <div class="tab-panel on" id="panel-ai">
     <div style="display:flex;flex-direction:column;gap:10px;height:580px">
       <div id="ai-messages" style="flex:1;overflow-y:auto;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:10px;min-height:0">
@@ -159,8 +156,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
       </div>
       <button id="ai-report-btn" style="background:rgba(163,113,247,.15);border:1px solid rgba(163,113,247,.4);color:#a371f7;padding:8px 14px;border-radius:6px;cursor:pointer;font-size:11px;font-family:var(--font);font-weight:600;width:100%">📊 Generate Analytical Report</button>
       <div style="display:flex;gap:8px">
-        <input id="ai-input" type="text" placeholder="e.g. What does current storage deviation imply for prices?"
-          style="flex:1;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:8px 12px;color:var(--text);font-family:var(--font);font-size:12px;outline:none">
+        <input id="ai-input" type="text" placeholder="e.g. What does current storage deviation imply for prices?" style="flex:1;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:8px 12px;color:var(--text);font-family:var(--font);font-size:12px;outline:none">
         <button id="ai-send-btn" style="background:#1f3a6e;border:1px solid var(--blue);color:var(--blue);padding:8px 16px;border-radius:6px;cursor:pointer;font-size:11px;font-family:var(--font);font-weight:600;white-space:nowrap">Send ↗</button>
         <button id="ai-clear-btn" style="background:var(--bg3);border:1px solid var(--border2);color:var(--text3);padding:8px 12px;border-radius:6px;cursor:pointer;font-size:11px;font-family:var(--mono)">Clear</button>
       </div>
@@ -168,7 +164,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     </div>
   </div>
 
-  <!-- TECHNICAL ANALYSIS TAB -->
   <div class="tab-panel" id="panel-ta">
     <div class="ctrl-bar">
       <div class="tw-bar">
@@ -193,10 +188,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
       <div class="ta-panel" id="ta-panel-1h">
         <div class="bhead" style="margin-bottom:6px">
           <div><div class="btitle">NG=F — 1 Hour</div><div class="bsub" id="ta-sub-1h">—</div></div>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div id="ta-pat-1h" style="font-size:10px;font-family:var(--mono)"></div>
-            <button class="zbtn" id="ta-reset-1h">⤢ Reset</button>
-          </div>
+          <div style="display:flex;align-items:center;gap:8px"><div id="ta-pat-1h" style="font-size:10px;font-family:var(--mono)"></div><button class="zbtn" id="ta-reset-1h">⤢ Reset</button></div>
         </div>
         <div id="ta-spin-1h" class="spin-msg"><span class="sp"></span>Click tab to load…</div>
         <div id="ta-wrap-1h" style="display:none">
@@ -208,10 +200,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
       <div class="ta-panel" id="ta-panel-4h">
         <div class="bhead" style="margin-bottom:6px">
           <div><div class="btitle">NG=F — 4 Hour</div><div class="bsub" id="ta-sub-4h">—</div></div>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div id="ta-pat-4h" style="font-size:10px;font-family:var(--mono)"></div>
-            <button class="zbtn" id="ta-reset-4h">⤢ Reset</button>
-          </div>
+          <div style="display:flex;align-items:center;gap:8px"><div id="ta-pat-4h" style="font-size:10px;font-family:var(--mono)"></div><button class="zbtn" id="ta-reset-4h">⤢ Reset</button></div>
         </div>
         <div id="ta-spin-4h" class="spin-msg"><span class="sp"></span>Click tab to load…</div>
         <div id="ta-wrap-4h" style="display:none">
@@ -223,10 +212,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
       <div class="ta-panel" id="ta-panel-1d">
         <div class="bhead" style="margin-bottom:6px">
           <div><div class="btitle">NG=F — 1 Day</div><div class="bsub" id="ta-sub-1d">—</div></div>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div id="ta-pat-1d" style="font-size:10px;font-family:var(--mono)"></div>
-            <button class="zbtn" id="ta-reset-1d">⤢ Reset</button>
-          </div>
+          <div style="display:flex;align-items:center;gap:8px"><div id="ta-pat-1d" style="font-size:10px;font-family:var(--mono)"></div><button class="zbtn" id="ta-reset-1d">⤢ Reset</button></div>
         </div>
         <div id="ta-spin-1d" class="spin-msg"><span class="sp"></span>Click tab to load…</div>
         <div id="ta-wrap-1d" style="display:none">
@@ -238,10 +224,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
       <div class="ta-panel" id="ta-panel-1w">
         <div class="bhead" style="margin-bottom:6px">
           <div><div class="btitle">NG=F — 1 Week</div><div class="bsub" id="ta-sub-1w">—</div></div>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div id="ta-pat-1w" style="font-size:10px;font-family:var(--mono)"></div>
-            <button class="zbtn" id="ta-reset-1w">⤢ Reset</button>
-          </div>
+          <div style="display:flex;align-items:center;gap:8px"><div id="ta-pat-1w" style="font-size:10px;font-family:var(--mono)"></div><button class="zbtn" id="ta-reset-1w">⤢ Reset</button></div>
         </div>
         <div id="ta-spin-1w" class="spin-msg"><span class="sp"></span>Click tab to load…</div>
         <div id="ta-wrap-1w" style="display:none">
@@ -253,7 +236,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     </div>
   </div>
 
-  <!-- FRONT MONTH PRICE TAB -->
   <div class="tab-panel" id="panel-frontmonth">
     <div class="ctrl-bar">
       <div class="tw-bar">
@@ -300,7 +282,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     </div>
   </div>
 
-  <!-- PRODUCTION/EXPORT TAB -->
   <div class="tab-panel" id="panel-prodexp">
     <div class="ctrl-bar">
       <div class="tw-bar">
@@ -315,17 +296,15 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
         <div class="api-ctr"><span class="api-lbl">EIA calls</span><span class="api-val" id="pe-api-count">0</span></div>
         <span class="cbadge" id="pe-badge">—</span>
         <span class="sdot" id="pe-dot"></span>
-        <span style="font-size:10px;color:var(--text3);font-family:var(--mono)">Monthly · ~60 day lag</span>
       </div>
     </div>
-    <div class="block"><div class="bhead"><div><div class="btitle">Total Supply (Prod + Canada − Mexico − LNG)</div><div class="bsub" id="pe-supply-sub">Monthly · Bcf/d</div></div><div style="display:flex;gap:6px"><button class="xbtn" id="btn-export-supply">⬇ Export</button><button class="zbtn" data-zoom="pe-c-supply">⤢ Reset</button></div></div><div id="pe-spin-supply" class="spin-msg"><span class="sp"></span>Loading…</div><div class="cw" style="height:240px;display:none" id="pe-wrap-supply"><canvas id="pe-c-supply"></canvas></div></div>
+    <div class="block"><div class="bhead"><div><div class="btitle">Total Supply</div><div class="bsub" id="pe-supply-sub">Monthly · Bcf/d</div></div><div style="display:flex;gap:6px"><button class="xbtn" id="btn-export-supply">⬇ Export</button><button class="zbtn" data-zoom="pe-c-supply">⤢ Reset</button></div></div><div id="pe-spin-supply" class="spin-msg"><span class="sp"></span>Loading…</div><div class="cw" style="height:240px;display:none" id="pe-wrap-supply"><canvas id="pe-c-supply"></canvas></div></div>
     <div class="block"><div class="bhead"><div><div class="btitle">U.S. Dry Natural Gas Production</div><div class="bsub" id="pe-prod-sub">Monthly · Bcf/d</div></div><div style="display:flex;gap:6px"><button class="xbtn" data-pe-export="prod">⬇ Export</button><button class="zbtn" data-zoom="pe-c-prod">⤢ Reset</button></div></div><div id="pe-spin-prod" class="spin-msg"><span class="sp"></span>Loading…</div><div class="cw" style="height:220px;display:none" id="pe-wrap-prod"><canvas id="pe-c-prod"></canvas></div></div>
     <div class="block"><div class="bhead"><div><div class="btitle">Pipeline Imports from Canada</div><div class="bsub" id="pe-can-sub">Monthly · Bcf/d</div></div><div style="display:flex;gap:6px"><button class="xbtn" data-pe-export="can">⬇ Export</button><button class="zbtn" data-zoom="pe-c-can">⤢ Reset</button></div></div><div id="pe-spin-can" class="spin-msg"><span class="sp"></span>Loading…</div><div class="cw" style="height:220px;display:none" id="pe-wrap-can"><canvas id="pe-c-can"></canvas></div></div>
     <div class="block"><div class="bhead"><div><div class="btitle">Pipeline Exports to Mexico</div><div class="bsub" id="pe-mex-sub">Monthly · Bcf/d</div></div><div style="display:flex;gap:6px"><button class="xbtn" data-pe-export="mex">⬇ Export</button><button class="zbtn" data-zoom="pe-c-mex">⤢ Reset</button></div></div><div id="pe-spin-mex" class="spin-msg"><span class="sp"></span>Loading…</div><div class="cw" style="height:220px;display:none" id="pe-wrap-mex"><canvas id="pe-c-mex"></canvas></div></div>
     <div class="block"><div class="bhead"><div><div class="btitle">LNG Exports</div><div class="bsub" id="pe-lng-sub">Monthly · Bcf/d</div></div><div style="display:flex;gap:6px"><button class="xbtn" data-pe-export="lng">⬇ Export</button><button class="zbtn" data-zoom="pe-c-lng">⤢ Reset</button></div></div><div id="pe-spin-lng" class="spin-msg"><span class="sp"></span>Loading…</div><div class="cw" style="height:220px;display:none" id="pe-wrap-lng"><canvas id="pe-c-lng"></canvas></div></div>
   </div>
 
-  <!-- WEATHER TAB -->
   <div class="tab-panel" id="panel-weather">
     <div class="ctrl-bar">
       <div class="tw-bar">
@@ -404,7 +383,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     </div>
   </div>
 
-  <!-- STORAGE TAB -->
   <div class="tab-panel" id="panel-storage">
     <div class="ctrl-bar">
       <div class="tw-bar">
@@ -423,64 +401,18 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
         <span class="sdot loading" id="st-dot"></span>
       </div>
     </div>
-    <div class="block">
-      <div class="bhead">
-        <div><div class="btitle">Natural Gas Storage — Lower 48</div><div class="bsub" id="st-stor-sub">Weekly · Bcf · vs 5-year range</div></div>
-        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-          <div class="legend">
-            <span class="li"><span class="ldr" style="background:#4493f8"></span>Storage</span>
-            <span class="li"><span class="ldr" style="background:rgba(68,147,248,.5)"></span>5y Avg</span>
-            <span class="li"><span class="ldband" style="background:rgba(68,147,248,.15)"></span>5y Range</span>
-            <span class="li"><span class="ldr" style="background:#a371f7"></span>Forecast</span>
-          </div>
-          <button class="xbtn" id="btn-export-storage">⬇ Export</button>
-          <button class="zbtn" data-zoom="st-c-stor">⤢ Reset</button>
-        </div>
-      </div>
-      <div id="st-spin-stor" class="spin-msg"><span class="sp"></span>Loading…</div>
-      <div class="cw" style="height:260px;display:none" id="st-wrap-stor"><canvas id="st-c-stor"></canvas></div>
-    </div>
-    <div class="block">
-      <div class="bhead">
-        <div><div class="btitle">Storage vs 5-Year Average — Deviation</div><div class="bsub" id="st-dev-sub">Weekly · Bcf · surplus / deficit vs 5y avg</div></div>
-        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-          <div class="legend">
-            <span class="li"><span class="ldband" style="background:#ff7b72"></span>Surplus (bearish)</span>
-            <span class="li"><span class="ldband" style="background:#3fb950"></span>Deficit (bullish)</span>
-          </div>
-          <button class="xbtn" id="btn-export-dev">⬇ Export</button>
-          <button class="zbtn" data-zoom="st-c-dev">⤢ Reset</button>
-        </div>
-      </div>
-      <div id="st-spin-dev" class="spin-msg"><span class="sp"></span>Loading…</div>
-      <div class="cw" style="height:220px;display:none" id="st-wrap-dev"><canvas id="st-c-dev"></canvas></div>
-    </div>
-    <div class="block">
-      <div class="bhead">
-        <div><div class="btitle">Weekly Injection / Withdrawal</div><div class="bsub" id="st-inj-sub">Weekly · Bcf · change vs prior week</div></div>
-        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-          <div class="legend">
-            <span class="li"><span class="ldband" style="background:#ff7b72"></span>Injection (bearish)</span>
-            <span class="li"><span class="ldband" style="background:#3fb950"></span>Withdrawal (bullish)</span>
-          </div>
-          <button class="xbtn" id="btn-export-inj">⬇ Export</button>
-          <button class="zbtn" data-zoom="st-c-inj">⤢ Reset</button>
-        </div>
-      </div>
-      <div id="st-spin-inj" class="spin-msg"><span class="sp"></span>Loading…</div>
-      <div class="cw" style="height:220px;display:none" id="st-wrap-inj"><canvas id="st-c-inj"></canvas></div>
-    </div>
+    <div class="block"><div class="bhead"><div><div class="btitle">Natural Gas Storage — Lower 48</div><div class="bsub" id="st-stor-sub">Weekly · Bcf</div></div><div style="display:flex;align-items:center;gap:6px"><button class="xbtn" id="btn-export-storage">⬇ Export</button><button class="zbtn" data-zoom="st-c-stor">⤢ Reset</button></div></div><div id="st-spin-stor" class="spin-msg"><span class="sp"></span>Loading…</div><div class="cw" style="height:260px;display:none" id="st-wrap-stor"><canvas id="st-c-stor"></canvas></div></div>
+    <div class="block"><div class="bhead"><div><div class="btitle">Storage vs 5-Year Average — Deviation</div><div class="bsub" id="st-dev-sub">Weekly · Bcf</div></div><div style="display:flex;align-items:center;gap:6px"><button class="xbtn" id="btn-export-dev">⬇ Export</button><button class="zbtn" data-zoom="st-c-dev">⤢ Reset</button></div></div><div id="st-spin-dev" class="spin-msg"><span class="sp"></span>Loading…</div><div class="cw" style="height:220px;display:none" id="st-wrap-dev"><canvas id="st-c-dev"></canvas></div></div>
+    <div class="block"><div class="bhead"><div><div class="btitle">Weekly Injection / Withdrawal</div><div class="bsub" id="st-inj-sub">Weekly · Bcf</div></div><div style="display:flex;align-items:center;gap:6px"><button class="xbtn" id="btn-export-inj">⬇ Export</button><button class="zbtn" data-zoom="st-c-inj">⤢ Reset</button></div></div><div id="st-spin-inj" class="spin-msg"><span class="sp"></span>Loading…</div><div class="cw" style="height:220px;display:none" id="st-wrap-inj"><canvas id="st-c-inj"></canvas></div></div>
   </div>
 
-  <!-- CORRELATION TAB -->
   <div class="tab-panel" id="panel-correlation">
     <div style="padding:40px;text-align:center;font-size:11px;color:var(--text3);font-family:var(--mono);border:1px dashed var(--border2);border-radius:6px">
-      <strong style="display:block;font-size:12px;color:var(--text2);margin-bottom:6px">🔗 Correlation</strong>Cross-market correlation analysis — coming soon
+      <strong style="display:block;font-size:12px;color:var(--text2);margin-bottom:6px">🔗 Correlation</strong>Coming soon
     </div>
   </div>
 </div>
 
-<!-- DEBUG -->
 <div class="card">
   <div class="card-header" style="cursor:pointer" id="dbg-header">
     <span class="card-title"><span id="dbg-dot" style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#6e7681;margin-right:7px;vertical-align:middle"></span>Debug Console</span>
@@ -509,12 +441,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 <script>
 "use strict";
 
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // CONSTANTS
-// ═══════════════════════════════════════════════════════════════
-var MONTHS  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-var DAYS    = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-// NGF month codes: index = delivery month (0=Jan … 11=Dec)
+// ═══════════════════════════════════════════════════════
+var MONTHS   = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var DAYS     = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 var NGF_CODES = ['F','G','H','J','K','M','N','Q','U','V','X','Z'];
 
 var SEASON_DEF = [
@@ -530,73 +461,58 @@ var SEASON_TRANS = [
   {month:11,day:1, label:'Heating', icon:'❄️',col:'rgba(68,147,248,.7)'}
 ];
 
-var WX_BASE      = 18;
-var WX_FCST_DAYS = 16;
-var WX_HIST_YRS  = [1,2,3,4,5];
-var WX_REGIONS   = [
+var WX_BASE=18, WX_FCST_DAYS=16, WX_HIST_YRS=[1,2,3,4,5];
+var WX_REGIONS=[
   {name:'Northeast',lat:39.95,lon:-75.17,w:0.35},
   {name:'Midwest',  lat:41.85,lon:-87.65,w:0.32},
   {name:'S.Central',lat:32.78,lon:-96.80,w:0.18},
   {name:'Southeast',lat:33.75,lon:-84.39,w:0.10},
   {name:'West',     lat:39.74,lon:-104.98,w:0.05}
 ];
-var WX_TW        = {ytd:null,'1m':30,'3m':90,'1y':365,'2y':730};
-var WX_LS_CACHE  = 'ng_wx_v2';
-var WX_LS_API    = 'ng_wx_api_v2';
+var WX_TW={ytd:null,'1m':30,'3m':90,'1y':365,'2y':730};
+var WX_LS_CACHE='ng_wx_v2', WX_LS_API='ng_wx_api_v2';
 
-var ST_API_KEY  = '0a6cBnSfbVdXpRPcDeuQAeTjGXajaK16pPM8sMF6';
-var ST_WINDOWS  = {max:99999,'5y':1825,'2y':730,'1y':365,ytd:null,'3m':90,'1m':30};
-var PE_WINDOWS  = {max:99999,'5y':1825,'2y':730,'1y':365,ytd:null};
-var PE_SERIES   = {prod:'NG.N9070US2.M',can:'NG.N9102CN2.M',mex:'NG.N9132MX2.M',lng:'NG.N9133US2.M'};
-var PE_COLORS   = {prod:'#3fb950',can:'#f0883e',mex:'#e3b341',lng:'#a371f7'};
-var PE_LABELS   = {prod:'Production',can:'Imports from Canada',mex:'Exports to Mexico',lng:'LNG Exports'};
-var PE_NAMES    = {prod:'natgas_production',can:'natgas_canada_imports',mex:'natgas_mexico_exports',lng:'natgas_lng_exports'};
-
-var NGF_PROXIES = [
+var ST_API_KEY='0a6cBnSfbVdXpRPcDeuQAeTjGXajaK16pPM8sMF6';
+var ST_WINDOWS={max:99999,'5y':1825,'2y':730,'1y':365,ytd:null,'3m':90,'1m':30};
+var PE_WINDOWS={max:99999,'5y':1825,'2y':730,'1y':365,ytd:null};
+var PE_SERIES={prod:'NG.N9070US2.M',can:'NG.N9102CN2.M',mex:'NG.N9132MX2.M',lng:'NG.N9133US2.M'};
+var PE_COLORS={prod:'#3fb950',can:'#f0883e',mex:'#e3b341',lng:'#a371f7'};
+var PE_LABELS={prod:'Production',can:'Imports from Canada',mex:'Exports to Mexico',lng:'LNG Exports'};
+var PE_NAMES={prod:'natgas_production',can:'natgas_canada_imports',mex:'natgas_mexico_exports',lng:'natgas_lng_exports'};
+var NGF_PROXIES=[
   function(u){return 'https://corsproxy.io/?url='+encodeURIComponent(u);},
   function(u){return 'https://api.allorigins.win/raw?url='+encodeURIComponent(u);},
   function(u){return 'https://proxy.cors.sh/'+u;}
 ];
+var GROQ_URL='https://natgas-proxy.ondra-peter.workers.dev/';
+var GROQ_MODEL='qwen/qwen3-32b';
+var TA_TFS=['1h','4h','1d','1w'];
 
-var GROQ_URL   = 'https://natgas-proxy.ondra-peter.workers.dev/';
-var GROQ_MODEL = 'qwen/qwen3-32b';
-var TA_TFS     = ['1h','4h','1d','1w'];
-
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // STATE
-// ═══════════════════════════════════════════════════════════════
-var wxWindow='2y', wxS=null, wxCh1=null, wxCh3=null, wxChReg=null;
-var stWindow='2y', stApiCount=0, stStorageData=[], stLastF7=null, stLastF14=null, stLastF21=null;
+// ═══════════════════════════════════════════════════════
+var wxWindow='2y',wxS=null,wxCh1=null,wxCh3=null,wxChReg=null;
+var stWindow='2y',stApiCount=0,stStorageData=[],stLastF7=null,stLastF14=null,stLastF21=null;
 var stCharts={stor:null,dev:null,inj:null};
-var ngfWindow='max', ngfApiCount=0, ngfChartType='candle', ngfChart=null, stNgfData=[];
-var peWindow='max', peApiCount=0;
+var ngfWindow='max',ngfApiCount=0,ngfChartType='candle',ngfChart=null,stNgfData=[];
+var peWindow='max',peApiCount=0;
 var peData={prod:null,can:null,mex:null,lng:null};
 var peCharts={prod:null,can:null,mex:null,lng:null,supply:null};
-var fcLoading=false, fcBodyOpen=true;
+var fcLoading=false,fcBodyOpen=true;
 var aiHistory=[];
 var nextContractPrice=null;
-var taType='candle', taApiCount=0, taLoaded=false;
-var taData={}, taCharts={};
+var taType='candle',taApiCount=0,taLoaded=false;
+var taData={},taCharts={};
 
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // UTILITIES
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 function p2(n){return String(n).padStart(2,'0');}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function sgn(v){return v>=0?'+':'';}
 function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}
-
-function isoDate(off,yr){
-  var d=new Date(); yr=yr||0;
-  d.setFullYear(d.getFullYear()-yr);
-  d.setDate(d.getDate()+off);
-  return d.toISOString().slice(0,10);
-}
-function isoAdd(iso,n){
-  var d=new Date(iso+'T12:00:00Z');
-  d.setUTCDate(d.getUTCDate()+n);
-  return d.toISOString().slice(0,10);
-}
+function isoDate(off,yr){var d=new Date();yr=yr||0;d.setFullYear(d.getFullYear()-yr);d.setDate(d.getDate()+off);return d.toISOString().slice(0,10);}
+function isoAdd(iso,n){var d=new Date(iso+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10);}
 function fmtGB(iso){return new Date(iso+'T12:00:00Z').toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});}
 function fmtShort(iso){var d=new Date(iso+'T12:00:00Z');return d.getUTCDate()+' '+MONTHS[d.getUTCMonth()]+' '+d.getUTCFullYear();}
 function fmtTs(ts){return new Date(ts).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});}
@@ -607,43 +523,30 @@ function wAvg(vals){return WX_REGIONS.reduce(function(s,r,i){return s+r.w*(vals[
 function hdd(t){return Math.max(0,WX_BASE-t);}
 function cdd(t){return Math.max(0,t-WX_BASE);}
 function fairPrice(dev){return -0.0013*dev+3.1564;}
+function dlBlob(name,txt){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'text/plain;charset=utf-8'}));a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);}
+function setUpdated(){var n=new Date();document.getElementById('hdr-upd').textContent='Updated '+p2(n.getHours())+':'+p2(n.getMinutes())+':'+p2(n.getSeconds())+' ·';}
+function fmtChg(chg,pct){return{text:sgn(chg)+chg.toFixed(3)+' ('+sgn(pct)+pct.toFixed(1)+'%)',color:chg>=0?'#3fb950':'#ff7b72'};}
 
-function dlBlob(name,txt){
-  var a=document.createElement('a');
-  a.href=URL.createObjectURL(new Blob([txt],{type:'text/plain;charset=utf-8'}));
-  a.download=name; document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  URL.revokeObjectURL(a.href);
-}
-function setUpdated(){
-  var n=new Date();
-  document.getElementById('hdr-upd').textContent='Updated '+p2(n.getHours())+':'+p2(n.getMinutes())+':'+p2(n.getSeconds())+' ·';
-}
-function fmtChg(chg,pct){
-  return{text:sgn(chg)+chg.toFixed(3)+' ('+sgn(pct)+pct.toFixed(1)+'%)',color:chg>=0?'#3fb950':'#ff7b72'};
-}
-
-// Clock
 function tickClock(){
   var n=new Date();
   document.getElementById('hdr-clock').textContent=p2(n.getHours())+':'+p2(n.getMinutes())+':'+p2(n.getSeconds());
   document.getElementById('hdr-date').textContent=DAYS[n.getDay()]+' '+n.getDate()+' '+MONTHS[n.getMonth()]+' '+n.getFullYear()+' ·';
   document.getElementById('ftr-upd').textContent='Last refresh '+p2(n.getHours())+':'+p2(n.getMinutes());
 }
-tickClock(); setInterval(tickClock,1000);
+tickClock();setInterval(tickClock,1000);
 
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // DEBUG
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 var dbgEntries=[];
 var DBG_ST={info:{c:'#4493f8',i:'ℹ'},ok:{c:'#3fb950',i:'✓'},warn:{c:'#e3b341',i:'⚠'},error:{c:'#ff7b72',i:'✖'}};
 function dbLog(msg,lvl){
-  lvl=lvl||'info';
-  var n=new Date();
+  lvl=lvl||'info';var n=new Date();
   dbgEntries.push({ts:p2(n.getHours())+':'+p2(n.getMinutes())+':'+p2(n.getSeconds()),msg:String(msg),lvl:lvl});
   renderDbg();
 }
 function renderDbg(){
-  var n=dbgEntries.length, log=document.getElementById('dbg-log'), dot=document.getElementById('dbg-dot');
+  var n=dbgEntries.length,log=document.getElementById('dbg-log'),dot=document.getElementById('dbg-dot');
   document.getElementById('dbg-count').textContent=n+(n===1?' entry':' entries');
   var hasErr=dbgEntries.some(function(e){return e.lvl==='error';}),hasWrn=dbgEntries.some(function(e){return e.lvl==='warn';});
   dot.style.background=hasErr?'#ff7b72':hasWrn?'#e3b341':n?'#3fb950':'#6e7681';
@@ -656,15 +559,12 @@ function renderDbg(){
   log.scrollTop=log.scrollHeight;
 }
 
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // SEASON
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 function getSeasonInfo(){
   var n=new Date(),m=n.getMonth()+1,d=n.getDate(),yr=n.getFullYear();
-  function inSeg(s){
-    if(s.sm<=s.em) return(m>s.sm||(m===s.sm&&d>=s.sd))&&(m<s.em||(m===s.em&&d<=s.ed));
-    return(m>s.sm||(m===s.sm&&d>=s.sd))||(m<s.em||(m===s.em&&d<=s.ed));
-  }
+  function inSeg(s){if(s.sm<=s.em)return(m>s.sm||(m===s.sm&&d>=s.sd))&&(m<s.em||(m===s.em&&d<=s.ed));return(m>s.sm||(m===s.sm&&d>=s.sd))||(m<s.em||(m===s.em&&d<=s.ed));}
   var cur=SEASON_DEF[1];
   for(var i=0;i<SEASON_DEF.length;i++){if(SEASON_DEF[i].segs.some(inSeg)){cur=SEASON_DEF[i];break;}}
   var cs=cur.segs.find(inSeg)||cur.segs[0];
@@ -682,9 +582,9 @@ function getSeasonTransitions(dates){
   var out=[];
   for(var i=1;i<dates.length;i++){
     var prev=new Date(dates[i-1]+'T12:00:00Z'),curr=new Date(dates[i]+'T12:00:00Z');
-    var pm=prev.getMonth()+1,pd=prev.getDate(),cm=curr.getMonth()+1,cd=curr.getDate();
+    var pm=prev.getMonth()+1,pd2=prev.getDate(),cm=curr.getMonth()+1,cd=curr.getDate();
     SEASON_TRANS.forEach(function(t){
-      if((pm<t.month||(pm===t.month&&pd<t.day))&&(cm>t.month||(cm===t.month&&cd>=t.day)))
+      if((pm<t.month||(pm===t.month&&pd2<t.day))&&(cm>t.month||(cm===t.month&&cd>=t.day)))
         out.push({index:i,label:t.label,icon:t.icon,col:t.col});
     });
   }
@@ -692,195 +592,138 @@ function getSeasonTransitions(dates){
 }
 function stSeasonTrans(dates){return stWindow==='max'?[]:getSeasonTransitions(dates);}
 
-// ═══════════════════════════════════════════════════════════════
-// NGF CONTRACT LOGIC  ← core fix
-// ═══════════════════════════════════════════════════════════════
-// NYMEX NG: contract expires on the 3rd business day before
-// the 1st calendar day of the delivery month
-// (i.e. ~3 bdays before month start, so roughly the 25th-27th
-// of the month PRIOR to delivery).
-// Practical rule: last trading day = last business day - 3 of
-// the month preceding delivery.
-function ngfExpiry(deliveryYr, deliveryM0) {
-  // Month preceding delivery
-  var pm = deliveryM0 - 1;
-  var py = deliveryYr;
-  if (pm < 0) { pm = 11; py--; }
-
-  // Last calendar day of that preceding month
-  var lastDay = new Date(py, pm + 1, 0); // day 0 of next month = last day of pm
-
-  // Walk back to find the last business day of that month
-  var d = new Date(lastDay);
-  while (d.getDay() === 0 || d.getDay() === 6) d.setDate(d.getDate() - 1);
-
-  // Then go back 3 more business days
-  var bdays = 0;
-  while (bdays < 3) {
-    d.setDate(d.getDate() - 1);
-    if (d.getDay() !== 0 && d.getDay() !== 6) bdays++;
-  }
-  return d; // expiry date (last trading day)
+// ═══════════════════════════════════════════════════════
+// NGF CONTRACT LOGIC
+// ═══════════════════════════════════════════════════════
+function ngfExpiry(deliveryYr,deliveryM0){
+  var pm=deliveryM0-1,py=deliveryYr;
+  if(pm<0){pm=11;py--;}
+  var last=new Date(py,pm+1,0);
+  var d=new Date(last);
+  while(d.getDay()===0||d.getDay()===6) d.setDate(d.getDate()-1);
+  var bdays=0;
+  while(bdays<3){d.setDate(d.getDate()-1);if(d.getDay()!==0&&d.getDay()!==6)bdays++;}
+  return d;
 }
-
-function ngfContractObj(m0, yr) {
-  return {
-    m0: m0, yr: yr,
-    label: MONTHS[m0] + ' ' + yr,
-    // Yahoo Finance format: NGF25.NYM  (code + 2-digit year)
-    ticker: 'NG' + NGF_CODES[m0] + String(yr).slice(-2) + '.NYM',
-    isFront: false
-  };
+function ngfContractObj(m0,yr){
+  return{m0:m0,yr:yr,label:MONTHS[m0]+' '+yr,ticker:'NG'+NGF_CODES[m0]+String(yr).slice(-2)+'.NYM',isFront:false};
 }
-
-function ngfCurrent() {
-  var now = new Date();
-  // Strip time — compare date only
-  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  for (var off = 0; off <= 13; off++) {
-    var totalM = now.getMonth() + off;
-    var m0 = totalM % 12;
-    var yr = now.getFullYear() + Math.floor(totalM / 12);
-    var exp = ngfExpiry(yr, m0);
-    var expDay = new Date(exp.getFullYear(), exp.getMonth(), exp.getDate());
-    if (expDay >= today) {
-      var obj = ngfContractObj(m0, yr);
-      obj.isFront = true;
-      return obj;
-    }
+function ngfCurrent(){
+  var now=new Date();
+  var today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  for(var off=0;off<=13;off++){
+    var totalM=now.getMonth()+off;
+    var m0=totalM%12,yr=now.getFullYear()+Math.floor(totalM/12);
+    var exp=ngfExpiry(yr,m0);
+    var expDay=new Date(exp.getFullYear(),exp.getMonth(),exp.getDate());
+    if(expDay>=today){var obj=ngfContractObj(m0,yr);obj.isFront=true;return obj;}
   }
   return null;
 }
-
-function ngfNext(cur) {
-  var m0 = (cur.m0 + 1) % 12;
-  var yr = cur.yr + (cur.m0 === 11 ? 1 : 0);
-  return ngfContractObj(m0, yr);
+function ngfNext(cur){
+  var m0=(cur.m0+1)%12,yr=cur.yr+(cur.m0===11?1:0);
+  return ngfContractObj(m0,yr);
 }
-
-// Log contract schedule to debug console
-function ngfLogContracts() {
-  var now = new Date();
-  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  for (var off = 0; off < 4; off++) {
-    var totalM = now.getMonth() + off;
-    var m0 = totalM % 12;
-    var yr = now.getFullYear() + Math.floor(totalM / 12);
-    var exp = ngfExpiry(yr, m0);
-    var expDay = new Date(exp.getFullYear(), exp.getMonth(), exp.getDate());
-    var active = expDay >= today;
-    dbLog('Contract ' + MONTHS[m0] + ' ' + yr + ' [' + NGF_CODES[m0] + '] exp=' +
-      exp.toDateString() + (active ? ' ← FRONT' : ' (expired)'), active ? 'ok' : 'info');
+function ngfLogContracts(){
+  var now=new Date(),today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  for(var off=0;off<4;off++){
+    var totalM=now.getMonth()+off,m0=totalM%12,yr=now.getFullYear()+Math.floor(totalM/12);
+    var exp=ngfExpiry(yr,m0),expDay=new Date(exp.getFullYear(),exp.getMonth(),exp.getDate());
+    var active=expDay>=today;
+    dbLog('Contract '+MONTHS[m0]+' '+yr+' ['+NGF_CODES[m0]+'] exp='+exp.toDateString()+(active?' FRONT':''),active?'ok':'info');
   }
 }
 
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // YAHOO FINANCE FETCH
-// ═══════════════════════════════════════════════════════════════
-async function yahooFetch(symbol, queryParams) {
-  var baseUrl = 'https://query1.finance.yahoo.com/v8/finance/chart/' +
-    encodeURIComponent(symbol) + '?' + queryParams + '&lang=en-US&region=US';
-  var lastErr = null;
-  for (var pi = 0; pi < NGF_PROXIES.length; pi++) {
-    try {
-      var res = await fetch(NGF_PROXIES[pi](baseUrl));
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      var text = await res.text(), data;
-      try { data = JSON.parse(text); if (data.contents) data = JSON.parse(data.contents); }
-      catch (e) { throw new Error('JSON parse error'); }
-      var result = data && data.chart && data.chart.result && data.chart.result[0];
-      if (!result) throw new Error('no chart result');
-      var ts = result.timestamp, q = result.indicators && result.indicators.quote && result.indicators.quote[0];
-      if (!ts || !q) throw new Error('no quotes in result');
-      var out = [];
-      for (var i = 0; i < ts.length; i++) {
+// ═══════════════════════════════════════════════════════
+async function yahooFetch(symbol,queryParams){
+  var baseUrl='https://query1.finance.yahoo.com/v8/finance/chart/'+encodeURIComponent(symbol)+'?'+queryParams+'&lang=en-US&region=US';
+  var lastErr=null;
+  for(var pi=0;pi<NGF_PROXIES.length;pi++){
+    try{
+      var res=await fetch(NGF_PROXIES[pi](baseUrl));
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      var text=await res.text(),data;
+      try{data=JSON.parse(text);if(data.contents)data=JSON.parse(data.contents);}
+      catch(e){throw new Error('JSON parse error');}
+      var result=data&&data.chart&&data.chart.result&&data.chart.result[0];
+      if(!result) throw new Error('no chart result');
+      var ts=result.timestamp,q=result.indicators&&result.indicators.quote&&result.indicators.quote[0];
+      if(!ts||!q) throw new Error('no quotes');
+      var out=[];
+      for(var i=0;i<ts.length;i++){
         var o=parseFloat(q.open[i]),h=parseFloat(q.high[i]),l=parseFloat(q.low[i]),c=parseFloat(q.close[i]);
-        if (isFinite(o) && isFinite(h) && isFinite(l) && isFinite(c))
-          out.push({ts:ts[i]*1000, open:o, high:h, low:l, close:c});
+        if(isFinite(o)&&isFinite(h)&&isFinite(l)&&isFinite(c)) out.push({ts:ts[i]*1000,open:o,high:h,low:l,close:c});
       }
-      if (!out.length) throw new Error('empty result');
+      if(!out.length) throw new Error('empty result');
       out.sort(function(a,b){return a.ts-b.ts;});
       return out;
-    } catch(e) { lastErr = e; }
+    }catch(e){lastErr=e;}
   }
-  throw new Error('All proxies failed: ' + (lastErr ? lastErr.message : '?'));
+  throw new Error('All proxies failed: '+(lastErr?lastErr.message:'?'));
+}
+async function ngfFetchTwoDays(ticker,isFrontMonth){
+  var p1=Math.floor(new Date(new Date().getFullYear()-1,0,1).getTime()/1000);
+  var p2t=Math.floor(Date.now()/1000);
+  var symbols=isFrontMonth?['NG=F',ticker]:[ticker];
+  var lastErr=null;
+  for(var si=0;si<symbols.length;si++){
+    try{
+      var rows=await yahooFetch(symbols[si],'period1='+p1+'&period2='+p2t+'&interval=1d&events=history');
+      if(!rows||!rows.length) continue;
+      var closes=rows.map(function(r){return r.close;});
+      dbLog('Price '+symbols[si]+': $'+closes[closes.length-1].toFixed(3),'ok');
+      return{last:closes[closes.length-1],prev:closes.length>=2?closes[closes.length-2]:null};
+    }catch(e){lastErr=e;dbLog('Price '+symbols[si]+' fail: '+e.message,'warn');}
+  }
+  throw lastErr||new Error('all symbols failed for '+ticker);
 }
 
-// Fetch last 2 closes for a ticker.
-// For the front month always try NG=F first (most liquid/reliable).
-// For other contracts try the specific ticker, fall back to NG=F only as last resort.
-async function ngfFetchTwoDays(ticker, isFrontMonth) {
-  var p1 = Math.floor(new Date(new Date().getFullYear() - 1, 0, 1).getTime() / 1000);
-  var p2t = Math.floor(Date.now() / 1000);
-  var symbols = isFrontMonth
-    ? ['NG=F', ticker]               // front: prefer NG=F
-    : [ticker];                       // others: specific ticker only (no cross-contamination)
-  var lastErr = null;
-  for (var si = 0; si < symbols.length; si++) {
-    try {
-      var rows = await yahooFetch(symbols[si], 'period1=' + p1 + '&period2=' + p2t + '&interval=1d&events=history');
-      if (!rows || !rows.length) continue;
-      var closes = rows.map(function(r){return r.close;});
-      dbLog('Price ' + symbols[si] + ': $' + closes[closes.length-1].toFixed(3), 'ok');
-      return {last: closes[closes.length-1], prev: closes.length >= 2 ? closes[closes.length-2] : null};
-    } catch(e) { lastErr = e; dbLog('Price ' + symbols[si] + ' fail: ' + e.message, 'warn'); }
-  }
-  throw lastErr || new Error('all symbols failed for ' + ticker);
-}
-
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // STORAGE 5Y AVG
-// ═══════════════════════════════════════════════════════════════
-function st5y(all, dates) {
-  return dates.map(function(date) {
-    var ref = new Date(date + 'T12:00:00Z'), refDOY = ref.getMonth() * 30 + ref.getDate(), peers = [];
-    all.forEach(function(r) {
-      var pp = new Date(r.date + 'T12:00:00Z'), diff = ref.getFullYear() - pp.getFullYear();
-      if (diff < 1 || diff > 5) return;
-      if (Math.abs(pp.getMonth() * 30 + pp.getDate() - refDOY) <= 7) peers.push(r.value);
+// ═══════════════════════════════════════════════════════
+function st5y(all,dates){
+  return dates.map(function(date){
+    var ref=new Date(date+'T12:00:00Z'),refDOY=ref.getMonth()*30+ref.getDate(),peers=[];
+    all.forEach(function(r){
+      var pp=new Date(r.date+'T12:00:00Z'),diff=ref.getFullYear()-pp.getFullYear();
+      if(diff<1||diff>5) return;
+      if(Math.abs(pp.getMonth()*30+pp.getDate()-refDOY)<=7) peers.push(r.value);
     });
-    var valid = peers.filter(function(v){return isFinite(v);});
-    if (valid.length < 2) return {avg:null, min:null, max:null};
-    var avg = valid.reduce(function(a,b){return a+b;}) / valid.length;
-    return {avg:avg, min:Math.min.apply(null,valid), max:Math.max.apply(null,valid)};
+    var valid=peers.filter(function(v){return isFinite(v);});
+    if(valid.length<2) return{avg:null,min:null,max:null};
+    var avg=valid.reduce(function(a,b){return a+b;})/valid.length;
+    return{avg:avg,min:Math.min.apply(null,valid),max:Math.max.apply(null,valid)};
   });
 }
-
-function calcForecast(lastDate, startOff, endOff) {
-  if (!wxS) return null;
-  var s=isoAdd(lastDate,startOff), e=isoAdd(lastDate,endOff), D=0, cnt=0;
-  for (var i=0; i<wxS.allDates.length; i++) {
+function calcForecast(lastDate,startOff,endOff){
+  if(!wxS) return null;
+  var s=isoAdd(lastDate,startOff),e=isoAdd(lastDate,endOff),D=0,cnt=0;
+  for(var i=0;i<wxS.allDates.length;i++){
     var dt=wxS.allDates[i];
-    if (dt>=s && dt<=e && wxS.demAll[i]!=null && !isNaN(wxS.demAll[i])) { D+=wxS.demAll[i]; cnt++; }
+    if(dt>=s&&dt<=e&&wxS.demAll[i]!=null&&!isNaN(wxS.demAll[i])){D+=wxS.demAll[i];cnt++;}
   }
-  if (!cnt) return null;
-  var FA=0.0001607983, FB=-0.0460227485, FC=0.909433429, FD=95.0676254411;
-  return {D:D, dBcf:FA*D*D*D+FB*D*D+FC*D+FD, startDate:s, endDate:e};
+  if(!cnt) return null;
+  var FA=0.0001607983,FB=-0.0460227485,FC=0.909433429,FD=95.0676254411;
+  return{D:D,dBcf:FA*D*D*D+FB*D*D+FC*D+FD,startDate:s,endDate:e};
 }
 
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // CHART HELPERS
-// ═══════════════════════════════════════════════════════════════
-function zoomOpts(onSync) {
-  // onSync: optional callback(chart) called after zoom/pan to sync linked charts
-  var base = {zoom:{wheel:{enabled:true},pinch:{enabled:true},mode:'x'},pan:{enabled:true,mode:'x'}};
-  if (!onSync) return base;
-  return {
-    zoom:{
-      wheel:{enabled:true},pinch:{enabled:true},mode:'x',
-      onZoom:function(ctx){onSync(ctx.chart);},
-      onZoomComplete:function(ctx){onSync(ctx.chart);}
-    },
-    pan:{
-      enabled:true,mode:'x',
-      onPan:function(ctx){onSync(ctx.chart);},
-      onPanComplete:function(ctx){onSync(ctx.chart);}
-    }
+// ═══════════════════════════════════════════════════════
+function zoomOpts(onSync){
+  if(!onSync) return{zoom:{wheel:{enabled:true},pinch:{enabled:true},mode:'x'},pan:{enabled:true,mode:'x'}};
+  return{
+    zoom:{wheel:{enabled:true},pinch:{enabled:true},mode:'x',
+      onZoom:function(ctx){onSync(ctx.chart);},onZoomComplete:function(ctx){onSync(ctx.chart);}},
+    pan:{enabled:true,mode:'x',
+      onPan:function(ctx){onSync(ctx.chart);},onPanComplete:function(ctx){onSync(ctx.chart);}}
   };
 }
-function resetZoom(cid) {
-  var inst = Object.values(Chart.instances).find(function(c){return c.canvas && c.canvas.id === cid;});
-  if (inst) inst.resetZoom();
+function resetZoom(cid){
+  var inst=Object.values(Chart.instances).find(function(c){return c.canvas&&c.canvas.id===cid;});
+  if(inst) inst.resetZoom();
 }
 function killChart(ref){try{if(ref)ref.destroy();}catch(e){}}
 function baseTT(){return{backgroundColor:'#1c2128',titleColor:'#e6edf3',bodyColor:'#8b949e',borderColor:'#30363d',borderWidth:1,padding:10,titleFont:{family:'Inter',size:11},bodyFont:{family:'Inter',size:11}};}
@@ -888,57 +731,57 @@ function baseX(){return{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6e7
 function baseY(cb){return{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6e7681',font:{family:'Inter',size:9},callback:cb||undefined}};}
 function baseOpts(){return{responsive:true,maintainAspectRatio:false,animation:{duration:300},interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:baseTT(),zoom:zoomOpts()},scales:{x:baseX(),y:baseY()}};}
 
-function makeSeasonPlugin(uid, getT) {
-  return {id:'sp_'+uid, afterDraw:function(chart){
-    var t=getT(); if(!t||!t.length) return;
-    var ctx=chart.ctx, ca=chart.chartArea, x=chart.scales.x;
+function makeSeasonPlugin(uid,getT){
+  return{id:'sp_'+uid,afterDraw:function(chart){
+    var t=getT();if(!t||!t.length) return;
+    var ctx=chart.ctx,ca=chart.chartArea,x=chart.scales.x;
     ctx.save();
     t.forEach(function(tr){
       if(tr.index<0||tr.index>=chart.data.labels.length) return;
       var px=x.getPixelForValue(tr.index);
-      ctx.strokeStyle=tr.col; ctx.lineWidth=1.5; ctx.setLineDash([3,3]);
-      ctx.beginPath(); ctx.moveTo(px,ca.top); ctx.lineTo(px,ca.bottom); ctx.stroke();
-      ctx.setLineDash([]); ctx.font='bold 9px Inter,sans-serif'; ctx.textAlign='left'; ctx.fillStyle=tr.col;
-      ctx.fillText(tr.icon+' '+tr.label, px+3, ca.top+12);
+      ctx.strokeStyle=tr.col;ctx.lineWidth=1.5;ctx.setLineDash([3,3]);
+      ctx.beginPath();ctx.moveTo(px,ca.top);ctx.lineTo(px,ca.bottom);ctx.stroke();
+      ctx.setLineDash([]);ctx.font='bold 9px Inter,sans-serif';ctx.textAlign='left';ctx.fillStyle=tr.col;
+      ctx.fillText(tr.icon+' '+tr.label,px+3,ca.top+12);
     });
     ctx.restore();
   }};
 }
-function makeBandPlugin(pid, minK, maxK, color) {
-  return {id:pid, beforeDatasetsDraw:function(chart){
-    var ctx=chart.ctx, x=chart.scales.x, y=chart.scales.y, mn=null, mx=null;
+function makeBandPlugin(pid,minK,maxK,color){
+  return{id:pid,beforeDatasetsDraw:function(chart){
+    var ctx=chart.ctx,x=chart.scales.x,y=chart.scales.y,mn=null,mx=null;
     chart.data.datasets.forEach(function(d){if(d._k===minK)mn=d.data;if(d._k===maxK)mx=d.data;});
     if(!mn||!mx) return;
-    ctx.save(); ctx.beginPath(); var go=false;
+    ctx.save();ctx.beginPath();var go=false;
     mx.forEach(function(v,i){if(v==null||isNaN(v))return;var px=x.getPixelForValue(i),py=y.getPixelForValue(v);if(!go){ctx.moveTo(px,py);go=true;}else ctx.lineTo(px,py);});
     mn.slice().reverse().forEach(function(v,i){var ri=mn.length-1-i;if(v==null||isNaN(v))return;ctx.lineTo(x.getPixelForValue(ri),y.getPixelForValue(v));});
-    ctx.closePath(); ctx.fillStyle=color; ctx.fill(); ctx.restore();
+    ctx.closePath();ctx.fillStyle=color;ctx.fill();ctx.restore();
   }};
 }
-function makeTodayPlugin(uid, getIdx) {
-  return {id:'td_'+uid, afterDraw:function(chart){
-    var ti=getIdx(); if(ti==null) return;
-    var ctx=chart.ctx, ca=chart.chartArea, x=chart.scales.x, px=x.getPixelForValue(ti);
-    ctx.save(); ctx.strokeStyle='rgba(255,255,255,0.18)'; ctx.lineWidth=1; ctx.setLineDash([4,4]);
-    ctx.beginPath(); ctx.moveTo(px,ca.top); ctx.lineTo(px,ca.bottom); ctx.stroke();
-    ctx.setLineDash([]); ctx.fillStyle='rgba(255,255,255,0.3)'; ctx.font='10px Inter,sans-serif';
-    ctx.fillText('today', px+4, ca.top+13); ctx.restore();
+function makeTodayPlugin(uid,getIdx){
+  return{id:'td_'+uid,afterDraw:function(chart){
+    var ti=getIdx();if(ti==null) return;
+    var ctx=chart.ctx,ca=chart.chartArea,x=chart.scales.x,px=x.getPixelForValue(ti);
+    ctx.save();ctx.strokeStyle='rgba(255,255,255,0.18)';ctx.lineWidth=1;ctx.setLineDash([4,4]);
+    ctx.beginPath();ctx.moveTo(px,ca.top);ctx.lineTo(px,ca.bottom);ctx.stroke();
+    ctx.setLineDash([]);ctx.fillStyle='rgba(255,255,255,0.3)';ctx.font='10px Inter,sans-serif';
+    ctx.fillText('today',px+4,ca.top+13);ctx.restore();
   }};
 }
-function makeAnomalyPlugin(getIdx) {
-  return {id:'ashd', beforeDatasetsDraw:function(chart){
-    var ti=getIdx(); if(ti==null) return;
-    var ctx=chart.ctx, x=chart.scales.x, y=chart.scales.y, fDs=null, aDs=null;
+function makeAnomalyPlugin(getIdx){
+  return{id:'ashd',beforeDatasetsDraw:function(chart){
+    var ti=getIdx();if(ti==null) return;
+    var ctx=chart.ctx,x=chart.scales.x,y=chart.scales.y,fDs=null,aDs=null;
     chart.data.datasets.forEach(function(d){if(d._k==='fcst')fDs=d;if(d._k==='avg')aDs=d;});
     if(!fDs||!aDs) return;
     ctx.save();
     fDs.data.forEach(function(v,i){
       if(v==null||aDs.data[i]==null||i>=fDs.data.length-1||i<ti) return;
-      var nv=fDs.data[i+1]!=null?fDs.data[i+1]:v, na=aDs.data[i+1]!=null?aDs.data[i+1]:aDs.data[i];
+      var nv=fDs.data[i+1]!=null?fDs.data[i+1]:v,na=aDs.data[i+1]!=null?aDs.data[i+1]:aDs.data[i];
       var x0=x.getPixelForValue(i),x1=x.getPixelForValue(i+1);
       var ty0=y.getPixelForValue(v),ty1=y.getPixelForValue(nv),ay0=y.getPixelForValue(aDs.data[i]),ay1=y.getPixelForValue(na);
-      ctx.beginPath(); ctx.moveTo(x0,ty0); ctx.lineTo(x1,ty1); ctx.lineTo(x1,ay1); ctx.lineTo(x0,ay0); ctx.closePath();
-      ctx.fillStyle=v>aDs.data[i]?'rgba(255,123,114,0.12)':'rgba(68,147,248,0.15)'; ctx.fill();
+      ctx.beginPath();ctx.moveTo(x0,ty0);ctx.lineTo(x1,ty1);ctx.lineTo(x1,ay1);ctx.lineTo(x0,ay0);ctx.closePath();
+      ctx.fillStyle=v>aDs.data[i]?'rgba(255,123,114,0.12)':'rgba(68,147,248,0.15)';ctx.fill();
     });
     ctx.restore();
   }};
@@ -947,32 +790,32 @@ var stBandPlugin={id:'stBand',beforeDatasetsDraw:function(chart){
   var ctx=chart.ctx,x=chart.scales.x,y=chart.scales.y,ca=chart.chartArea,mn=null,mx=null;
   chart.data.datasets.forEach(function(d){if(d._k==='min')mn=d.data;if(d._k==='max')mx=d.data;});
   if(!mn||!mx) return;
-  ctx.save(); ctx.beginPath(); var go=false;
+  ctx.save();ctx.beginPath();var go=false;
   for(var i=0;i<mx.length;i++){
     if(mx[i]==null||!isFinite(mx[i])) continue;
-    var px=x.getPixelForValue(i), py=Math.max(ca.top,Math.min(ca.bottom,y.getPixelForValue(mx[i])));
+    var px=x.getPixelForValue(i),py=Math.max(ca.top,Math.min(ca.bottom,y.getPixelForValue(mx[i])));
     if(!go){ctx.moveTo(px,py);go=true;}else ctx.lineTo(px,py);
   }
   for(var j=mn.length-1;j>=0;j--){
     if(mn[j]==null||!isFinite(mn[j])) continue;
     ctx.lineTo(x.getPixelForValue(j),Math.max(ca.top,Math.min(ca.bottom,y.getPixelForValue(mn[j]))));
   }
-  ctx.closePath(); ctx.fillStyle='rgba(68,147,248,0.10)'; ctx.fill(); ctx.restore();
+  ctx.closePath();ctx.fillStyle='rgba(68,147,248,0.10)';ctx.fill();ctx.restore();
 }};
 
-function buildFcstExt(histLabels) {
-  var fcstDates=[], fcstVals=[];
+function buildFcstExt(histLabels){
+  var fcstDates=[],fcstVals=[];
   [stLastF7,stLastF14,stLastF21].forEach(function(f){
     if(f&&f.predictedLevel!=null&&f.endDate){fcstDates.push(f.endDate);fcstVals.push(f.predictedLevel);}
   });
   return{allLabels:histLabels.concat(fcstDates.map(fmtGB)),histLen:histLabels.length,fcstDates:fcstDates,fcstVals:fcstVals};
 }
 
-// ═══════════════════════════════════════════════════════════════
-// TA — INDICATORS
-// ═══════════════════════════════════════════════════════════════
-function taEMA(data, period) {
-  var k=2/(period+1), out=new Array(data.length).fill(null), start=-1;
+// ═══════════════════════════════════════════════════════
+// TA INDICATORS
+// ═══════════════════════════════════════════════════════
+function taEMA(data,period){
+  var k=2/(period+1),out=new Array(data.length).fill(null),start=-1;
   for(var i=0;i<data.length;i++){if(data[i]!=null){start=i;break;}}
   if(start<0||start+period>data.length) return out;
   var sum=0;
@@ -984,46 +827,46 @@ function taEMA(data, period) {
   }
   return out;
 }
-function taBB(closes, period, mult) {
-  period=period||20; mult=mult||2;
-  var mid=new Array(closes.length).fill(null), upper=new Array(closes.length).fill(null), lower=new Array(closes.length).fill(null);
+function taBB(closes,period,mult){
+  period=period||20;mult=mult||2;
+  var mid=new Array(closes.length).fill(null),upper=new Array(closes.length).fill(null),lower=new Array(closes.length).fill(null);
   for(var i=period-1;i<closes.length;i++){
     var sl=closes.slice(i-period+1,i+1).filter(function(v){return v!=null;});
     if(sl.length<period) continue;
     var avg=sl.reduce(function(a,b){return a+b;})/sl.length;
     var sd=Math.sqrt(sl.reduce(function(s2,v){return s2+(v-avg)*(v-avg);},0)/sl.length);
-    mid[i]=avg; upper[i]=avg+mult*sd; lower[i]=avg-mult*sd;
+    mid[i]=avg;upper[i]=avg+mult*sd;lower[i]=avg-mult*sd;
   }
   return{mid:mid,upper:upper,lower:lower};
 }
-function taRSI(closes, period) {
-  period=period||14; var out=new Array(closes.length).fill(null);
+function taRSI(closes,period){
+  period=period||14;var out=new Array(closes.length).fill(null);
   if(closes.length<period+1) return out;
-  var gains=0, losses=0;
+  var gains=0,losses=0;
   for(var i=1;i<=period;i++){var d=closes[i]-closes[i-1];if(d>0)gains+=d;else losses-=d;}
-  var avgG=gains/period, avgL=losses/period;
+  var avgG=gains/period,avgL=losses/period;
   out[period]=avgL===0?100:100-100/(1+avgG/avgL);
   for(var i2=period+1;i2<closes.length;i2++){
     if(closes[i2]==null||closes[i2-1]==null){out[i2]=out[i2-1];continue;}
-    var d2=closes[i2]-closes[i2-1], g=d2>0?d2:0, l=d2<0?-d2:0;
-    avgG=(avgG*(period-1)+g)/period; avgL=(avgL*(period-1)+l)/period;
+    var d2=closes[i2]-closes[i2-1],g=d2>0?d2:0,l=d2<0?-d2:0;
+    avgG=(avgG*(period-1)+g)/period;avgL=(avgL*(period-1)+l)/period;
     out[i2]=avgL===0?100:100-100/(1+avgG/avgL);
   }
   return out;
 }
-function taMACD(closes, fast, slow, signal) {
-  fast=fast||12; slow=slow||26; signal=signal||9;
-  var emaF=taEMA(closes,fast), emaS=taEMA(closes,slow);
+function taMACD(closes,fast,slow,signal){
+  fast=fast||12;slow=slow||26;signal=signal||9;
+  var emaF=taEMA(closes,fast),emaS=taEMA(closes,slow);
   var macdLine=closes.map(function(_,i){return(emaF[i]!=null&&emaS[i]!=null)?emaF[i]-emaS[i]:null;});
   var sigLine=taEMA(macdLine,signal);
   var hist=macdLine.map(function(v,i){return(v!=null&&sigLine[i]!=null)?v-sigLine[i]:null;});
   return{macd:macdLine,signal:sigLine,hist:hist};
 }
-function taPatterns(candles) {
-  var found=[], n=candles.length;
+function taPatterns(candles){
+  var found=[],n=candles.length;
   if(n<3) return found;
-  var i=n-1, c=candles[i], p=candles[i-1];
-  var cBody=Math.abs(c.close-c.open), cRange=c.high-c.low;
+  var i=n-1,c=candles[i],p=candles[i-1];
+  var cBody=Math.abs(c.close-c.open),cRange=c.high-c.low;
   if(cRange>0&&cBody<cRange*0.1) found.push({name:'Doji',bull:null,idx:i});
   if(c.close>c.open&&cRange>0&&(c.open-c.low)>(cRange*0.5)&&cBody<cRange*0.4) found.push({name:'Hammer',bull:true,idx:i});
   if(c.close<c.open&&cRange>0&&(c.high-c.open)>(cRange*0.5)&&cBody<cRange*0.4) found.push({name:'ShootingStar',bull:false,idx:i});
@@ -1031,16 +874,14 @@ function taPatterns(candles) {
   if(p.close>p.open&&c.close<c.open&&c.open>=p.close&&c.close<=p.open) found.push({name:'BearEngulf',bull:false,idx:i});
   return found;
 }
-
-// ── TA Fetch ──────────────────────────────
-async function taFetchRaw(interval, rangeStr) {
-  taApiCount++; document.getElementById('ta-api-count').textContent=taApiCount;
-  return await yahooFetch('NG=F', 'interval='+interval+'&range='+rangeStr);
+async function taFetchRaw(interval,rangeStr){
+  taApiCount++;document.getElementById('ta-api-count').textContent=taApiCount;
+  return await yahooFetch('NG=F','interval='+interval+'&range='+rangeStr);
 }
-function taAggregate4h(bars) {
+function taAggregate4h(bars){
   var buckets={};
   bars.forEach(function(c){
-    var d=new Date(c.ts), h=d.getUTCHours(), slot=Math.floor(h/4)*4;
+    var d=new Date(c.ts),h=d.getUTCHours(),slot=Math.floor(h/4)*4;
     var key=Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate(),slot);
     if(!buckets[key]) buckets[key]={ts:key,open:c.open,high:c.high,low:c.low,close:c.close};
     else{buckets[key].high=Math.max(buckets[key].high,c.high);buckets[key].low=Math.min(buckets[key].low,c.low);buckets[key].close=c.close;}
@@ -1048,87 +889,85 @@ function taAggregate4h(bars) {
   return Object.keys(buckets).sort(function(a,b){return a-b;}).map(function(k){return buckets[k];});
 }
 
-// ── TA Render one timeframe ───────────────
-function taRenderTF(tf, candles) {
+// ═══════════════════════════════════════════════════════
+// TA RENDER
+// ═══════════════════════════════════════════════════════
+function taRenderTF(tf,candles){
   var n=candles.length;
   var closes=candles.map(function(c){return c.close;});
-
-  // Labels
   var labels=candles.map(function(c){
     var d=new Date(c.ts);
     if(tf==='1w'||tf==='1d') return d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'2-digit'});
     return p2(d.getUTCDate())+'/'+p2(d.getUTCMonth()+1)+' '+p2(d.getUTCHours())+'h';
   });
 
-  // Indicators
-  var ema50=taEMA(closes,50), ema200=taEMA(closes,200);
+  var ema50=taEMA(closes,50),ema200=taEMA(closes,200);
   var bb=taBB(closes,20,2);
   var rsi=taRSI(closes,14);
   var macdObj=taMACD(closes,12,26,9);
   var patterns=taPatterns(candles);
 
-  // Kill old charts
   if(taCharts[tf]){['price','rsi','macd'].forEach(function(k){killChart(taCharts[tf][k]);});}
   taCharts[tf]={price:null,rsi:null,macd:null};
 
-  // Pattern label
   document.getElementById('ta-pat-'+tf).innerHTML=patterns.length?patterns.map(function(pat){
     var col=pat.bull===null?'#e3b341':pat.bull?'#3fb950':'#ff7b72';
     var sym=pat.bull===null?'◆':pat.bull?'▲':'▼';
     return '<span style="color:'+col+';margin-right:6px">'+sym+' '+esc(pat.name)+'</span>';
   }).join(''):'<span style="color:var(--text3)">No pattern</span>';
 
-  // Subtitle
-  var fd=new Date(candles[0].ts), ld=new Date(candles[n-1].ts);
+  var fd=new Date(candles[0].ts),ld=new Date(candles[n-1].ts);
   function fD(d){return d.getUTCDate()+' '+MONTHS[d.getUTCMonth()]+' '+d.getUTCFullYear();}
   document.getElementById('ta-sub-'+tf).textContent=fD(fd)+' – '+fD(ld)+' · '+n+' bars';
-
   document.getElementById('ta-spin-'+tf).style.display='none';
   document.getElementById('ta-wrap-'+tf).style.display='block';
 
-  // y range
-  var hi=-Infinity, lo=Infinity;
+  var hi=-Infinity,lo=Infinity;
   candles.forEach(function(c){if(c.high>hi)hi=c.high;if(c.low<lo)lo=c.low;});
   var yPad=(hi-lo)*0.05||0.1;
 
-  var axisY={grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6e7681',font:{family:'Inter',size:8}}};
+  // Right-side axis shared by all 3 sub-charts
+  var axisY={
+    position:'right',
+    grid:{color:'rgba(255,255,255,0.04)'},
+    ticks:{color:'#6e7681',font:{family:'JetBrains Mono',size:8},maxTicksLimit:6}
+  };
 
-  // Sync callback: when price chart is zoomed/panned, sync rsi+macd x-axis and recalc y
-  function syncLinked(chart) {
-    var xSc=chart.scales&&chart.scales.x; if(!xSc) return;
-    var mn=xSc.min, mx=xSc.max;
-    // Recalc y from visible candles
-    var vLo=Infinity, vHi=-Infinity;
-    var iMin=Math.max(0,Math.floor(mn)), iMax=Math.min(n-1,Math.ceil(mx));
+  // Sync: when price is zoomed/panned → update rsi+macd x-range and recalc price y
+  function syncLinked(chart){
+    var xSc=chart.scales&&chart.scales.x;if(!xSc) return;
+    var mn=xSc.min,mx=xSc.max;
+    var vLo=Infinity,vHi=-Infinity;
+    var iMin=Math.max(0,Math.floor(mn)),iMax=Math.min(n-1,Math.ceil(mx));
     for(var ci=iMin;ci<=iMax;ci++){var cc=candles[ci];if(cc){if(cc.low<vLo)vLo=cc.low;if(cc.high>vHi)vHi=cc.high;}}
-    if(vLo<Infinity){var p2=(vHi-vLo)*0.08||0.1;chart.options.scales.y.min=vLo-p2;chart.options.scales.y.max=vHi+p2;chart.update('none');}
+    if(vLo<Infinity){var vp=(vHi-vLo)*0.08||0.1;chart.options.scales.y.min=vLo-vp;chart.options.scales.y.max=vHi+vp;chart.update('none');}
     ['rsi','macd'].forEach(function(k){
-      var ch2=taCharts[tf]&&taCharts[tf][k]; if(!ch2) return;
-      ch2.scales.x.options.min=mn; ch2.scales.x.options.max=mx; ch2.update('none');
+      var ch2=taCharts[tf]&&taCharts[tf][k];if(!ch2) return;
+      ch2.scales.x.options.min=mn;ch2.scales.x.options.max=mx;ch2.update('none');
     });
   }
 
   // Candle plugin
-  var candlePlugin={id:'cp_'+tf, afterDatasetsDraw:function(chart){
+  var candlePlugin={id:'cp_'+tf,afterDatasetsDraw:function(chart){
     if(taType!=='candle') return;
-    var cx=chart.ctx, xSc=chart.scales.x, ySc=chart.scales.y;
+    var cx=chart.ctx,xSc=chart.scales.x,ySc=chart.scales.y;
     var rawW=n>1?Math.abs(xSc.getPixelForValue(1)-xSc.getPixelForValue(0)):6;
-    var barW=Math.max(1,Math.min(rawW*0.7,12)), half=barW/2;
+    var barW=Math.max(1,Math.min(rawW*0.7,12)),half=barW/2;
     cx.save();
     candles.forEach(function(c,i){
       var xc=xSc.getPixelForValue(i);
-      var yO=ySc.getPixelForValue(c.open), yC=ySc.getPixelForValue(c.close);
-      var yH=ySc.getPixelForValue(c.high), yL=ySc.getPixelForValue(c.low);
-      var bull=c.close>=c.open, col=bull?'#3fb950':'#ff7b72';
-      cx.strokeStyle=col; cx.lineWidth=1; cx.beginPath(); cx.moveTo(xc,yH); cx.lineTo(xc,yL); cx.stroke();
-      cx.fillStyle=col; cx.fillRect(xc-half, Math.min(yO,yC), barW, Math.max(1,Math.abs(yO-yC)));
+      var yO=ySc.getPixelForValue(c.open),yC=ySc.getPixelForValue(c.close);
+      var yH=ySc.getPixelForValue(c.high),yL=ySc.getPixelForValue(c.low);
+      var bull=c.close>=c.open,col=bull?'#3fb950':'#ff7b72';
+      cx.strokeStyle=col;cx.lineWidth=1;cx.beginPath();cx.moveTo(xc,yH);cx.lineTo(xc,yL);cx.stroke();
+      cx.fillStyle=col;cx.fillRect(xc-half,Math.min(yO,yC),barW,Math.max(1,Math.abs(yO-yC)));
     });
     cx.restore();
   }};
 
   // Pattern plugin
-  var patPlugin={id:'pat_'+tf, afterDraw:function(chart){
-    var cx=chart.ctx, ca=chart.chartArea, xSc=chart.scales.x, ySc=chart.scales.y;
+  var patPlugin={id:'pat_'+tf,afterDraw:function(chart){
+    var cx=chart.ctx,ca=chart.chartArea,xSc=chart.scales.x,ySc=chart.scales.y;
     patterns.forEach(function(pat){
       if(pat.idx<0||pat.idx>=n) return;
       var px=xSc.getPixelForValue(pat.idx);
@@ -1136,22 +975,21 @@ function taRenderTF(tf, candles) {
       var sym=pat.bull===null?'◆':pat.bull?'▲':'▼';
       var yPos=pat.bull===false?ySc.getPixelForValue(candles[pat.idx].high)-10:ySc.getPixelForValue(candles[pat.idx].low)+12;
       yPos=Math.max(ca.top+10,Math.min(ca.bottom-4,yPos));
-      cx.save(); cx.fillStyle=col; cx.font='bold 10px Arial'; cx.textAlign='center'; cx.fillText(sym,px,yPos); cx.restore();
+      cx.save();cx.fillStyle=col;cx.font='bold 10px Arial';cx.textAlign='center';cx.fillText(sym,px,yPos);cx.restore();
     });
   }};
 
-  // Price chart tooltip
   var priceTT=Object.assign({},baseTT(),{callbacks:{
     title:function(items){return items[0]?labels[items[0].dataIndex]:'';},
     label:function(c){
       var lk=c.dataset._k;
-      if(lk==='e50')  return ' EMA50: $'+c.parsed.y.toFixed(3);
+      if(lk==='e50') return ' EMA50: $'+c.parsed.y.toFixed(3);
       if(lk==='e200') return ' EMA200: $'+c.parsed.y.toFixed(3);
-      if(lk==='bbu')  return ' BB Upper: $'+c.parsed.y.toFixed(3);
-      if(lk==='bbm')  return ' BB Mid: $'+c.parsed.y.toFixed(3);
-      if(lk==='bbl')  return ' BB Lower: $'+c.parsed.y.toFixed(3);
+      if(lk==='bbu') return ' BB Upper: $'+c.parsed.y.toFixed(3);
+      if(lk==='bbm') return ' BB Mid: $'+c.parsed.y.toFixed(3);
+      if(lk==='bbl') return ' BB Lower: $'+c.parsed.y.toFixed(3);
       if(lk==='price'&&taType==='line') return ' Close: $'+c.parsed.y.toFixed(3);
-      var cd=candles[c.dataIndex]; if(!cd||lk!=='price') return null;
+      var cd=candles[c.dataIndex];if(!cd||lk!=='price') return null;
       return[' O:$'+cd.open.toFixed(3),' H:$'+cd.high.toFixed(3),' L:$'+cd.low.toFixed(3),' C:$'+cd.close.toFixed(3)];
     },
     filter:function(item){return item.parsed.y!=null;}
@@ -1163,31 +1001,33 @@ function taRenderTF(tf, candles) {
     {_k:'bbm',label:'BB Mid',  data:bb.mid,  borderColor:'rgba(68,147,248,0.25)',borderWidth:1,borderDash:[3,3],pointRadius:0,fill:false,tension:0}
   ];
 
-  // ── Price chart ──
+  // Price chart
   taCharts[tf].price=new Chart(document.getElementById('ta-c-price-'+tf).getContext('2d'),{
-    type:'line', plugins:[candlePlugin,patPlugin],
+    type:'line',
+    plugins:[candlePlugin,patPlugin],
     data:{labels:labels,datasets:[
       {_k:'price',label:'Price',data:taType==='line'?closes:closes.map(function(){return null;}),borderColor:'#e3b341',borderWidth:1.5,pointRadius:0,tension:0.2,fill:false},
       {_k:'e50', label:'EMA50', data:ema50, borderColor:'#e3b341',borderWidth:1.5,pointRadius:0,tension:0,fill:false},
       {_k:'e200',label:'EMA200',data:ema200,borderColor:'#ff7b72',borderWidth:1.5,pointRadius:0,tension:0,fill:false}
     ].concat(bbDs)},
     options:{
-      responsive:true, maintainAspectRatio:false, animation:{duration:0},
+      responsive:true,maintainAspectRatio:false,animation:{duration:0},
+      layout:{padding:{left:4,right:4,top:4,bottom:0}},
       interaction:{mode:'index',intersect:false},
-      plugins:{legend:{display:false}, tooltip:priceTT, zoom:zoomOpts(syncLinked)},
+      plugins:{legend:{display:false},tooltip:priceTT,zoom:zoomOpts(syncLinked)},
       scales:{
-        x:{display:false, grid:{display:false}},
-        y:Object.assign({},axisY,{min:lo-yPad, max:hi+yPad, ticks:Object.assign({},axisY.ticks,{callback:function(v){return'$'+v.toFixed(2);}})})
+        x:{display:false,grid:{display:false}},
+        y:Object.assign({},axisY,{min:lo-yPad,max:hi+yPad,ticks:Object.assign({},axisY.ticks,{callback:function(v){return '$'+v.toFixed(2);}})})
       }
     }
   });
 
-  // ── RSI chart ──
-  var rsiZonePlugin={id:'rsiz_'+tf, beforeDatasetsDraw:function(chart){
-    var cx=chart.ctx, ca=chart.chartArea, ySc=chart.scales.y;
+  // RSI chart
+  var rsiZonePlugin={id:'rsiz_'+tf,beforeDatasetsDraw:function(chart){
+    var cx=chart.ctx,ca=chart.chartArea,ySc=chart.scales.y;
     cx.save();
-    cx.fillStyle='rgba(255,123,114,0.07)'; cx.fillRect(ca.left,ySc.getPixelForValue(100),ca.right-ca.left,ySc.getPixelForValue(70)-ySc.getPixelForValue(100));
-    cx.fillStyle='rgba(63,185,80,0.07)';   cx.fillRect(ca.left,ySc.getPixelForValue(30), ca.right-ca.left,ySc.getPixelForValue(0) -ySc.getPixelForValue(30));
+    cx.fillStyle='rgba(255,123,114,0.07)';cx.fillRect(ca.left,ySc.getPixelForValue(100),ca.right-ca.left,ySc.getPixelForValue(70)-ySc.getPixelForValue(100));
+    cx.fillStyle='rgba(63,185,80,0.07)';cx.fillRect(ca.left,ySc.getPixelForValue(30),ca.right-ca.left,ySc.getPixelForValue(0)-ySc.getPixelForValue(30));
     cx.restore();
   }};
   var rsiTT=Object.assign({},baseTT(),{callbacks:{
@@ -1197,7 +1037,7 @@ function taRenderTF(tf, candles) {
   }});
   var refLine=function(v){return new Array(n).fill(v);};
   taCharts[tf].rsi=new Chart(document.getElementById('ta-c-rsi-'+tf).getContext('2d'),{
-    type:'line', plugins:[rsiZonePlugin],
+    type:'line',plugins:[rsiZonePlugin],
     data:{labels:labels,datasets:[
       {data:rsi,borderColor:'#4493f8',borderWidth:1.5,pointRadius:0,tension:0.3,fill:false},
       {data:refLine(70),borderColor:'rgba(255,123,114,0.4)',borderWidth:1,borderDash:[3,3],pointRadius:0,fill:false},
@@ -1205,21 +1045,22 @@ function taRenderTF(tf, candles) {
       {data:refLine(50),borderColor:'rgba(255,255,255,0.08)',borderWidth:1,pointRadius:0,fill:false}
     ]},
     options:{
-      responsive:true, maintainAspectRatio:false, animation:{duration:0},
+      responsive:true,maintainAspectRatio:false,animation:{duration:0},
+      layout:{padding:{left:4,right:4,top:2,bottom:0}},
       interaction:{mode:'index',intersect:false},
-      plugins:{legend:{display:false}, tooltip:rsiTT, zoom:false},  // no independent zoom on RSI
+      plugins:{legend:{display:false},tooltip:rsiTT,zoom:false},
       scales:{
-        x:{display:false, grid:{display:false}},
-        y:Object.assign({},axisY,{min:0, max:100, ticks:Object.assign({},axisY.ticks,{callback:function(v){return(v===0||v===50||v===100)?v:'';}})})
+        x:{display:false,grid:{display:false}},
+        y:Object.assign({},axisY,{min:0,max:100,ticks:Object.assign({},axisY.ticks,{callback:function(v){return (v===0||v===50||v===100)?v:'';}})})
       }
     }
   });
 
-  // ── MACD chart ──
+  // MACD chart
   var histColors=macdObj.hist.map(function(v){return v==null?'transparent':v>=0?'rgba(63,185,80,0.75)':'rgba(255,123,114,0.75)';});
   var macdTT=Object.assign({},baseTT(),{callbacks:{
     title:function(items){return items[0]?labels[items[0].dataIndex]:'';},
-    label:function(c){var v=c.parsed.y;if(v==null)return null;return' '+['Hist','MACD','Signal'][c.datasetIndex]+': '+v.toFixed(4);}
+    label:function(c){var v=c.parsed.y;if(v==null) return null;return ' '+['Hist','MACD','Signal'][c.datasetIndex]+': '+v.toFixed(4);}
   }});
   taCharts[tf].macd=new Chart(document.getElementById('ta-c-macd-'+tf).getContext('2d'),{
     type:'bar',
@@ -1229,41 +1070,40 @@ function taRenderTF(tf, candles) {
       {type:'line',data:macdObj.signal, borderColor:'#f0883e',borderWidth:1.5,pointRadius:0,tension:0.3,fill:false,order:1}
     ]},
     options:{
-      responsive:true, maintainAspectRatio:false, animation:{duration:0},
+      responsive:true,maintainAspectRatio:false,animation:{duration:0},
+      layout:{padding:{left:4,right:4,top:2,bottom:0}},
       interaction:{mode:'index',intersect:false},
-      plugins:{legend:{display:false}, tooltip:macdTT, zoom:false},  // no independent zoom on MACD
+      plugins:{legend:{display:false},tooltip:macdTT,zoom:false},
       scales:{
-        x:{display:false, grid:{display:false}},
+        x:{display:false,grid:{display:false}},
         y:Object.assign({},axisY,{ticks:Object.assign({},axisY.ticks,{maxTicksLimit:4,callback:function(v){return v.toFixed(2);}})})
       }
     }
   });
 
-  // Initial zoom to last 50 bars
-  taResetZoomTF(tf, candles);
+  taResetZoomTF(tf,candles);
 }
 
-// Reset zoom for one timeframe to last 50 bars
-function taResetZoomTF(tf, candles) {
-  candles = candles || taData[tf]; if(!candles||!candles.length) return;
-  var n=candles.length, ZOOM=50, zStart=n>ZOOM?n-ZOOM:0;
-  var vis=candles.slice(zStart), vHi=-Infinity, vLo=Infinity;
+function taResetZoomTF(tf,candles){
+  candles=candles||taData[tf];if(!candles||!candles.length) return;
+  var n=candles.length,ZOOM=50,zStart=n>ZOOM?n-ZOOM:0;
+  var vis=candles.slice(zStart),vHi=-Infinity,vLo=Infinity;
   vis.forEach(function(c){if(c.high>vHi)vHi=c.high;if(c.low<vLo)vLo=c.low;});
   var vPad=(vHi-vLo)*0.08||0.1;
-  var ch=taCharts[tf]; if(!ch) return;
+  var ch=taCharts[tf];if(!ch) return;
   if(ch.price){
-    ch.price.scales.x.options.min=zStart; ch.price.scales.x.options.max=n-1;
-    ch.price.options.scales.y.min=vLo-vPad; ch.price.options.scales.y.max=vHi+vPad;
+    ch.price.scales.x.options.min=zStart;ch.price.scales.x.options.max=n-1;
+    ch.price.options.scales.y.min=vLo-vPad;ch.price.options.scales.y.max=vHi+vPad;
     ch.price.update('none');
   }
   ['rsi','macd'].forEach(function(k){
-    var c2=ch[k]; if(!c2) return;
-    c2.scales.x.options.min=zStart; c2.scales.x.options.max=n-1; c2.update('none');
+    var c2=ch[k];if(!c2) return;
+    c2.scales.x.options.min=zStart;c2.scales.x.options.max=n-1;c2.update('none');
   });
 }
 
-async function taLoadAll() {
-  document.getElementById('ta-badge').textContent='Loading…'; document.getElementById('ta-badge').className='cbadge loading';
+async function taLoadAll(){
+  document.getElementById('ta-badge').textContent='Loading…';document.getElementById('ta-badge').className='cbadge loading';
   document.getElementById('ta-dot').className='sdot loading';
   TA_TFS.forEach(function(tf){
     document.getElementById('ta-spin-'+tf).style.display='block';
@@ -1271,68 +1111,68 @@ async function taLoadAll() {
     document.getElementById('ta-wrap-'+tf).style.display='none';
   });
   var errs=0;
-  async function loadTF(tf, fn) {
-    try{var c=await fn(); taData[tf]=c; taRenderTF(tf,c); dbLog('TA '+tf+': OK ('+c.length+' bars)','ok');}
-    catch(e){errs++; document.getElementById('ta-spin-'+tf).innerHTML='⚠ '+esc(e.message); dbLog('TA '+tf+': '+e.message,'error');}
+  async function loadTF(tf,fn){
+    try{var c=await fn();taData[tf]=c;taRenderTF(tf,c);dbLog('TA '+tf+': OK ('+c.length+' bars)','ok');}
+    catch(e){errs++;document.getElementById('ta-spin-'+tf).innerHTML='⚠ '+esc(e.message);dbLog('TA '+tf+': '+e.message,'error');}
   }
-  await loadTF('1h', async function(){return await taFetchRaw('1h','60d');});
-  await loadTF('4h', async function(){
+  await loadTF('1h',async function(){return await taFetchRaw('1h','60d');});
+  await loadTF('4h',async function(){
     if(taData['1h']&&taData['1h'].length) return taAggregate4h(taData['1h']);
     throw new Error('1h data unavailable');
   });
-  await loadTF('1d', async function(){return await taFetchRaw('1d','500d');});
-  await loadTF('1w', async function(){
+  await loadTF('1d',async function(){return await taFetchRaw('1d','500d');});
+  await loadTF('1w',async function(){
     if(stNgfData.length>=200) return stNgfData.map(function(d){return{ts:d.ts,open:d.open,high:d.high,low:d.low,close:d.close};});
     return await taFetchRaw('1wk','10y');
   });
-  if(errs===0){document.getElementById('ta-badge').textContent='Live data'; document.getElementById('ta-badge').className='cbadge live'; document.getElementById('ta-dot').className='sdot ok';}
-  else{document.getElementById('ta-badge').textContent=errs+' error(s)'; document.getElementById('ta-badge').className='cbadge err'; document.getElementById('ta-dot').className='sdot err';}
+  if(errs===0){document.getElementById('ta-badge').textContent='Live data';document.getElementById('ta-badge').className='cbadge live';document.getElementById('ta-dot').className='sdot ok';}
+  else{document.getElementById('ta-badge').textContent=errs+' error(s)';document.getElementById('ta-badge').className='cbadge err';document.getElementById('ta-dot').className='sdot err';}
 }
-function taSetType(type) {
+function taSetType(type){
   taType=type;
   document.getElementById('ta-btn-candle').className='tbtn'+(type==='candle'?' on':'');
   document.getElementById('ta-btn-line').className='tbtn'+(type==='line'?' on':'');
   TA_TFS.forEach(function(tf){if(taData[tf]&&taData[tf].length) taRenderTF(tf,taData[tf]);});
 }
-function taRefresh() {
+function taRefresh(){
   TA_TFS.forEach(function(tf){if(taCharts[tf]){['price','rsi','macd'].forEach(function(k){killChart(taCharts[tf][k]);});}taData[tf]=null;taCharts[tf]=null;});
   taLoadAll();
 }
 
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // BIAS CARD
-// ═══════════════════════════════════════════════════════════════
-function renderFairBox(vid, rid, devBcf, isH) {
-  var fp=fairPrice(devBcf), mn=fp-0.5, mx=isH?fp+1.9:fp+0.5;
-  document.getElementById(vid).textContent='$'+fp.toFixed(3); document.getElementById(vid).style.color='#e6edf3';
+// ═══════════════════════════════════════════════════════
+function renderFairBox(vid,rid,devBcf,isH){
+  var fp=fairPrice(devBcf),mn=fp-0.5,mx=isH?fp+1.9:fp+0.5;
+  document.getElementById(vid).textContent='$'+fp.toFixed(3);document.getElementById(vid).style.color='#e6edf3';
   document.getElementById(rid).textContent='Min $'+mn.toFixed(3)+' · Max $'+mx.toFixed(3);
 }
-function renderBiasCard() {
+function renderBiasCard(){
   var si=getSeasonInfo();
-  var elS=document.getElementById('b-season'); elS.textContent=si.icon+' '+si.name; elS.style.color=si.col;
+  var elS=document.getElementById('b-season');elS.textContent=si.icon+' '+si.name;elS.style.color=si.col;
   document.getElementById('b-season-sub').innerHTML='Day '+si.daysIn+'/'+si.sTotal+' · '+si.daysLeft+'d left<br><span style="color:#6e7681">Next: '+si.nxtIcon+' '+esc(si.nxtName)+'</span>';
   if(!stStorageData.length) return;
-  var lat=stStorageData[stStorageData.length-1], prev=stStorageData.length>1?stStorageData[stStorageData.length-2]:null;
-  var band=st5y(stStorageData,[lat.date])[0], avg5=band.avg;
-  var devBcf=avg5!=null?lat.value-avg5:null, devPct=(avg5&&avg5!==0&&devBcf!=null)?devBcf/avg5*100:null;
-  document.getElementById('b-stor-val').textContent=Math.round(lat.value).toLocaleString()+' Bcf'; document.getElementById('b-stor-val').style.color='#e6edf3';
+  var lat=stStorageData[stStorageData.length-1],prev=stStorageData.length>1?stStorageData[stStorageData.length-2]:null;
+  var band=st5y(stStorageData,[lat.date])[0],avg5=band.avg;
+  var devBcf=avg5!=null?lat.value-avg5:null,devPct=(avg5&&avg5!==0&&devBcf!=null)?devBcf/avg5*100:null;
+  document.getElementById('b-stor-val').textContent=Math.round(lat.value).toLocaleString()+' Bcf';document.getElementById('b-stor-val').style.color='#e6edf3';
   if(prev){var wk=lat.value-prev.value;document.getElementById('b-stor-wkchg').innerHTML='<span style="color:'+(wk>=0?'#ff7b72':'#3fb950')+'">'+sgn(wk)+Math.round(wk)+' Bcf vs last week</span>';}
   document.getElementById('b-stor-dev').innerHTML=devBcf!=null?'<span style="color:'+(devBcf>=0?'#ff7b72':'#3fb950')+'">'+sgn(devBcf)+Math.round(devBcf).toLocaleString()+' Bcf ('+sgn(devPct)+devPct.toFixed(1)+'%) vs 5y</span>':'5y avg N/A';
   document.getElementById('b-stor-date').textContent='Report: '+fmtShort(isoAdd(lat.date,6));
   if(devBcf!=null) renderFairBox('b-fp0','b-fp0-range',devBcf,si.isHeating);
   if(!wxS){renderBiasNGF();return;}
-  var f7=calcForecast(lat.date,1,7), f14=calcForecast(lat.date,8,14), f21=calcForecast(lat.date,15,21);
+  var f7=calcForecast(lat.date,1,7),f14=calcForecast(lat.date,8,14),f21=calcForecast(lat.date,15,21);
   var lv7=f7?lat.value+f7.dBcf:null;
   var lv14=f14?(lv7!=null?lv7:lat.value)+f14.dBcf:null;
   var lv21=f21?(lv14!=null?lv14:lv7!=null?lv7:lat.value)+f21.dBcf:null;
-  stLastF7  = f7  ?{D:f7.D,  dBcf:f7.dBcf,  startDate:f7.startDate,  endDate:f7.endDate,  predictedLevel:lv7}  :null;
-  stLastF14 = f14 ?{D:f14.D, dBcf:f14.dBcf, startDate:f14.startDate, endDate:f14.endDate, predictedLevel:lv14} :null;
-  stLastF21 = f21 ?{D:f21.D, dBcf:f21.dBcf, startDate:f21.startDate, endDate:f21.endDate, predictedLevel:lv21} :null;
+  stLastF7  =f7  ?{D:f7.D,  dBcf:f7.dBcf,  startDate:f7.startDate,  endDate:f7.endDate,  predictedLevel:lv7}  :null;
+  stLastF14 =f14 ?{D:f14.D, dBcf:f14.dBcf, startDate:f14.startDate, endDate:f14.endDate, predictedLevel:lv14} :null;
+  stLastF21 =f21 ?{D:f21.D, dBcf:f21.dBcf, startDate:f21.startDate, endDate:f21.endDate, predictedLevel:lv21} :null;
   if(stStorageData.length){stRenderStorChart();stRenderDevChart();stRenderInjChart();}
   function fillF(vid,cid,vsid,dateid,fcst,base,vsLbl){
     if(!fcst||fcst.predictedLevel==null){[vid,cid,vsid,dateid].forEach(function(id){document.getElementById(id).textContent='N/A';});return;}
-    var lv=fcst.predictedLevel, chg=lv-base, cc=chg>=0?'#ff7b72':'#3fb950';
-    document.getElementById(vid).textContent=Math.round(lv).toLocaleString()+' Bcf'; document.getElementById(vid).style.color='#e6edf3';
+    var lv=fcst.predictedLevel,chg=lv-base,cc=chg>=0?'#ff7b72':'#3fb950';
+    document.getElementById(vid).textContent=Math.round(lv).toLocaleString()+' Bcf';document.getElementById(vid).style.color='#e6edf3';
     document.getElementById(cid).innerHTML='<span style="color:'+cc+'">'+sgn(chg)+Math.round(chg)+' Bcf '+esc(vsLbl)+' ('+fcst.D.toFixed(1)+'D)</span>';
     var b5r=st5y(stStorageData,[fcst.endDate])[0].avg;
     if(b5r!=null){var dv=lv-b5r,pv=b5r!==0?dv/b5r*100:0;document.getElementById(vsid).innerHTML='<span style="color:'+(dv>=0?'#ff7b72':'#3fb950')+'">'+sgn(dv)+Math.round(dv)+' Bcf ('+sgn(pv)+pv.toFixed(1)+'%) vs 5y</span>';}
@@ -1348,31 +1188,31 @@ function renderBiasCard() {
   if(stLastF21&&stLastF21.predictedLevel!=null){var b21x=st5y(stStorageData,[stLastF21.endDate])[0].avg;if(b21x!=null)renderFairBox('b-fp21','b-fp21-range',stLastF21.predictedLevel-b21x,isH);}
   renderBiasNGF();
 }
-function renderBiasNGF() {
+function renderBiasNGF(){
   if(!stNgfData.length) return;
-  var lngf=stNgfData[stNgfData.length-1], lngfPrev=stNgfData.length>1?stNgfData[stNgfData.length-2]:null;
-  var curC=ngfCurrent(), nxtC=curC?ngfNext(curC):null;
-  document.getElementById('b-ngf-cur').textContent='$'+lngf.close.toFixed(3); document.getElementById('b-ngf-cur').style.color='#e6edf3';
+  var lngf=stNgfData[stNgfData.length-1],lngfPrev=stNgfData.length>1?stNgfData[stNgfData.length-2]:null;
+  var curC=ngfCurrent(),nxtC=curC?ngfNext(curC):null;
+  document.getElementById('b-ngf-cur').textContent='$'+lngf.close.toFixed(3);document.getElementById('b-ngf-cur').style.color='#e6edf3';
   document.getElementById('b-ngf-cur-lbl').textContent=curC?curC.label:'—';
   if(lngfPrev){var cChg=lngf.close-lngfPrev.close,cPct=lngfPrev.close!==0?cChg/lngfPrev.close*100:0;var cf=fmtChg(cChg,cPct);document.getElementById('b-ngf-cur-chg').innerHTML='<span style="color:'+cf.color+'">'+esc(cf.text)+'</span>';}
   else document.getElementById('b-ngf-cur-chg').textContent='—';
-  document.getElementById('b-ngf-nxt').textContent='…'; document.getElementById('b-ngf-nxt').style.color='#6e7681';
+  document.getElementById('b-ngf-nxt').textContent='…';document.getElementById('b-ngf-nxt').style.color='#6e7681';
   document.getElementById('b-ngf-nxt-lbl').textContent=nxtC?nxtC.label:'—';
-  document.getElementById('b-ngf-nxt-chg').textContent='—'; document.getElementById('b-ngf-nxt-spread').textContent='—';
+  document.getElementById('b-ngf-nxt-chg').textContent='—';document.getElementById('b-ngf-nxt-spread').textContent='—';
   if(nxtC){
-    ngfFetchTwoDays(nxtC.ticker, false).then(function(pd){
+    ngfFetchTwoDays(nxtC.ticker,false).then(function(pd){
       nextContractPrice=pd.last;
-      document.getElementById('b-ngf-nxt').textContent='$'+pd.last.toFixed(3); document.getElementById('b-ngf-nxt').style.color='#e6edf3';
+      document.getElementById('b-ngf-nxt').textContent='$'+pd.last.toFixed(3);document.getElementById('b-ngf-nxt').style.color='#e6edf3';
       if(pd.prev!=null){var nChg=pd.last-pd.prev,nPct=pd.prev!==0?nChg/pd.prev*100:0;var nf=fmtChg(nChg,nPct);document.getElementById('b-ngf-nxt-chg').innerHTML='<span style="color:'+nf.color+'">'+esc(nf.text)+'</span>';}
-      var spread=pd.last-lngf.close, sCol=spread>=0?'#ff7b72':'#3fb950';
+      var spread=pd.last-lngf.close,sCol=spread>=0?'#ff7b72':'#3fb950';
       document.getElementById('b-ngf-nxt-spread').innerHTML='<span style="color:'+sCol+'">'+(spread>=0?'+':'')+spread.toFixed(3)+' vs front · '+(spread>=0?'Contango':'Backwardation')+'</span>';
     }).catch(function(e){nextContractPrice=null;document.getElementById('b-ngf-nxt').textContent='N/A';dbLog('Next contract: '+e.message,'warn');});
   }
 }
 
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // WEATHER
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 function wxTodayKey(){var d=new Date();return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());}
 function wxGetApiCount(){try{var r=localStorage.getItem(WX_LS_API);if(!r)return{date:wxTodayKey(),count:0};var o=JSON.parse(r);return o.date!==wxTodayKey()?{date:wxTodayKey(),count:0}:o;}catch(e){return{date:wxTodayKey(),count:0};}}
 function wxIncrApi(){try{var o=wxGetApiCount();o.count++;localStorage.setItem(WX_LS_API,JSON.stringify(o));document.getElementById('wx-api-count').textContent=o.count;}catch(e){}}
@@ -1384,23 +1224,22 @@ function wxCachedAt(w){try{var r=localStorage.getItem(wxCacheKey(w));return r?JS
 function wxNextHour(){var d=new Date();d.setHours(d.getHours()+1,0,0,0);return p2(d.getHours())+':00:00';}
 function wxSetBadge(t,txt){var el=document.getElementById('wx-badge');el.textContent=txt;el.className='cbadge '+t;}
 function wxSetDot(s){document.getElementById('wx-dot').className='sdot '+s;}
-
 async function wxFetchRetry(url,tries,delay){
-  tries=tries||4; delay=delay||1500;
+  tries=tries||4;delay=delay||1500;
   for(var i=0;i<=tries;i++){
     try{
       var r=await fetch(url);
       if(r.status===429){if(i===tries)throw new Error('Rate limit');await sleep(delay*Math.pow(2,i));continue;}
       if(!r.ok) throw new Error('HTTP '+r.status);
-      wxIncrApi(); return await r.json();
+      wxIncrApi();return await r.json();
     }catch(e){if(i===tries)throw e;await sleep(delay*Math.pow(2,i));}
   }
 }
 async function wxBatch(tasks,bs,delay){
-  bs=bs||5; delay=delay||400; var out=[];
+  bs=bs||5;delay=delay||400;var out=[];
   for(var i=0;i<tasks.length;i+=bs){
     var br=await Promise.all(tasks.slice(i,i+bs).map(function(t){return t();}));
-    out=out.concat(br); if(i+bs<tasks.length) await sleep(delay);
+    out=out.concat(br);if(i+bs<tasks.length) await sleep(delay);
   }
   return out;
 }
@@ -1417,19 +1256,19 @@ async function wxFetchHist(lat,lon,s,e){
 function wxProcess(raw){
   var hD=raw.hDates,fD=raw.fDates,byY=raw.byYear,HD=raw.HD;
   var hTR=raw.hTempsByRegion,fTR=raw.fTempsByRegion,byYR=raw.byYearByRegion;
-  var total=HD+WX_FCST_DAYS, h5avg=[],h5min=[],h5max=[];
+  var total=HD+WX_FCST_DAYS,h5avg=[],h5min=[],h5max=[];
   for(var d=0;d<total;d++){
     var v=byY.map(function(yr){return yr[d];}).filter(function(x){return x!=null&&!isNaN(x);});
     if(!v.length){h5avg.push(null);h5min.push(null);h5max.push(null);continue;}
     var av=v.reduce(function(a,b){return a+b;})/v.length;
-    h5avg.push(av); h5min.push(Math.min.apply(null,v)); h5max.push(Math.max.apply(null,v));
+    h5avg.push(av);h5min.push(Math.min.apply(null,v));h5max.push(Math.max.apply(null,v));
   }
-  var allDates=hD.concat(fD), allTemps=raw.hTemps.concat(raw.fTemps), todayIdx=HD;
+  var allDates=hD.concat(fD),allTemps=raw.hTemps.concat(raw.fTemps),todayIdx=HD;
   function weightedDemand(rt){
     var hW=0,cW=0,wSum=0;
     WX_REGIONS.forEach(function(r,ri){var t=rt[ri];if(t==null||isNaN(t))return;hW+=r.w*hdd(t);cW+=r.w*cdd(t);wSum+=r.w;});
     if(wSum<0.01) return{hdd:null,cdd:null,dem:null};
-    var sc=1/wSum; return{hdd:hW*sc,cdd:cW*sc,dem:(hW+cW)*sc};
+    var sc=1/wSum;return{hdd:hW*sc,cdd:cW*sc,dem:(hW+cW)*sc};
   }
   var allRT=[];
   for(var d2=0;d2<HD;d2++) allRT.push(WX_REGIONS.map(function(_,ri){return hTR[ri]?hTR[ri][d2]:null;}));
@@ -1444,7 +1283,7 @@ function wxProcess(raw){
     }).filter(function(x){return x!=null&&!isNaN(x);});
     if(!yds.length){dem5avg.push(null);dem5min.push(null);dem5max.push(null);continue;}
     var av2=yds.reduce(function(a,b){return a+b;})/yds.length;
-    dem5avg.push(av2); dem5min.push(Math.min.apply(null,yds)); dem5max.push(Math.max.apply(null,yds));
+    dem5avg.push(av2);dem5min.push(Math.min.apply(null,yds));dem5max.push(Math.max.apply(null,yds));
   }
   return{labels:allDates.map(shortDate),allDates:allDates,allTemps:allTemps,todayIdx:todayIdx,
     h5avg:h5avg,h5min:h5min,h5max:h5max,hddAll:hddAll,cddAll:cddAll,demAll:demAll,
@@ -1452,7 +1291,7 @@ function wxProcess(raw){
     seasonTransitions:getSeasonTransitions(allDates),regionTemps:allRT};
 }
 async function wxLoadAll(force){
-  force=force||false; wxSetDot('loading'); wxSetBadge('loading','Checking cache…');
+  force=force||false;wxSetDot('loading');wxSetBadge('loading','Checking cache…');
   document.getElementById('wx-api-count').textContent=wxGetApiCount().count;
   if(!force){
     var cached=wxLoadCache(wxWindow);
@@ -1460,22 +1299,22 @@ async function wxLoadAll(force){
       wxS=cached;
       var ct=wxCachedAt(wxWindow),cs=ct?new Date(ct).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}):'—';
       document.getElementById('wx-upd').textContent='Cached '+cs+' · next at '+wxNextHour();
-      wxSetBadge('cached','Cached '+cs); wxSetDot('ok'); wxRenderAll(); renderBiasCard();
-      dbLog('Weather: from cache ('+wxWindow+')','info'); return;
+      wxSetBadge('cached','Cached '+cs);wxSetDot('ok');wxRenderAll();renderBiasCard();
+      dbLog('Weather: from cache ('+wxWindow+')','info');return;
     }
   }
-  wxSetBadge('loading','Fetching…'); dbLog('Weather: fetching ('+wxWindow+')…','info');
+  wxSetBadge('loading','Fetching…');dbLog('Weather: fetching ('+wxWindow+')…','info');
   ['wx-spin1','wx-spin3','wx-spin-reg'].forEach(function(id){var el=document.getElementById(id);el.style.display='block';el.innerHTML='<span class="sp"></span>Fetching data…';});
   ['wx-wrap1','wx-wrap3','wx-wrap-reg'].forEach(function(id){document.getElementById(id).style.display='none';});
   try{
     var HD=(function(){if(wxWindow==='ytd'){var n=new Date();return Math.max(1,Math.floor((n-new Date(n.getFullYear(),0,1))/864e5));}return WX_TW[wxWindow]||365;})();
-    var hS=isoDate(-HD), hE=isoDate(-1);
+    var hS=isoDate(-HD),hE=isoDate(-1);
     var hPR=await wxBatch(WX_REGIONS.map(function(r){return function(){return wxFetchHist(r.lat,r.lon,hS,hE);};}),5,200);
     var hDates=hPR[0].map(function(d){return d.date;});
     var hTemps=hDates.map(function(_,di){return wAvg(hPR.map(function(rh){return rh[di]?rh[di].avg:null;}));});
     var hTempsByRegion=hPR.map(function(rh){return rh.map(function(d){return d.avg;});});
     var fPR=await wxBatch(WX_REGIONS.map(function(r){return function(){return wxFetchFcst(r.lat,r.lon);};}),5,200);
-    var fDates=[]; for(var ii=0;ii<WX_FCST_DAYS;ii++) fDates.push(isoDate(ii));
+    var fDates=[];for(var ii=0;ii<WX_FCST_DAYS;ii++) fDates.push(isoDate(ii));
     var fTemps=fDates.map(function(_,di){return wAvg(fPR.map(function(rf){return rf[di]!=null?rf[di]:null;}));});
     var fTempsByRegion=fPR.map(function(rf){return rf.slice();});
     var flat=await wxBatch(WX_HIST_YRS.reduce(function(acc,yr){
@@ -1483,7 +1322,7 @@ async function wxLoadAll(force){
     },[]),5,200);
     var byYear=WX_HIST_YRS.map(function(_,yi){
       var pr=flat.slice(yi*WX_REGIONS.length,(yi+1)*WX_REGIONS.length);
-      var nd=pr[0].length, arr=[];
+      var nd=pr[0].length,arr=[];
       for(var d=0;d<nd;d++) arr.push(wAvg(pr.map(function(rh){return rh[d]?rh[d].avg:null;})));
       return arr;
     });
@@ -1494,16 +1333,16 @@ async function wxLoadAll(force){
     wxS=wxProcess({hDates:hDates,hTemps:hTemps,fDates:fDates,fTemps:fTemps,byYear:byYear,HD:HD,hTempsByRegion:hTempsByRegion,fTempsByRegion:fTempsByRegion,byYearByRegion:byYearByRegion});
     wxSaveCache(wxWindow,wxS);
     document.getElementById('wx-upd').textContent='Live · next at '+wxNextHour();
-    wxSetBadge('live','Live data'); wxSetDot('ok'); setUpdated(); wxRenderAll(); renderBiasCard();
+    wxSetBadge('live','Live data');wxSetDot('ok');setUpdated();wxRenderAll();renderBiasCard();
     dbLog('Weather: OK ('+HD+'d+'+WX_FCST_DAYS+'d fcst)','ok');
   }catch(err){
-    wxSetDot('err'); wxSetBadge('err','Error'); document.getElementById('wx-upd').textContent='Error: '+err.message;
+    wxSetDot('err');wxSetBadge('err','Error');document.getElementById('wx-upd').textContent='Error: '+err.message;
     ['wx-spin1','wx-spin3','wx-spin-reg'].forEach(function(id){var el=document.getElementById(id);el.style.display='block';el.innerHTML='⚠ '+esc(err.message);});
     dbLog('Weather error: '+err.message,'error');
   }
 }
 function wxForceRefresh(){
-  wxS=null; killChart(wxCh1); killChart(wxCh3); killChart(wxChReg); wxCh1=wxCh3=wxChReg=null;
+  wxS=null;killChart(wxCh1);killChart(wxCh3);killChart(wxChReg);wxCh1=wxCh3=wxChReg=null;
   ['wx-wrap1','wx-wrap3','wx-wrap-reg'].forEach(function(id){document.getElementById(id).style.display='none';});
   ['wx-spin1','wx-spin3','wx-spin-reg'].forEach(function(id){var el=document.getElementById(id);el.style.display='block';el.innerHTML='<span class="sp"></span>Fetching data…';});
   wxLoadAll(true);
@@ -1513,18 +1352,18 @@ function wxGetHistDays(){if(wxWindow==='ytd'){var n=new Date();return Math.max(1
 function wxPointR(){var hd=wxGetHistDays();return hd>=365?0:hd>=90?1:hd>=30?2:3;}
 function wxRenderAll(){if(!wxS)return;wxRenderMetrics();wxRenderRegionalChart();wxRenderTempChart();wxRenderDemandChart();wxUpdateSubs();}
 function wxUpdateSubs(){
-  var lbl={ytd:'YTD','1m':'1-month','3m':'3-month','1y':'1-year','2y':'2-year'}, w=lbl[wxWindow]||wxWindow;
-  document.getElementById('wx-reg-sub').textContent=w+' history + 16-day forecast · °C · all 5 regions';
+  var lbl={ytd:'YTD','1m':'1-month','3m':'3-month','1y':'1-year','2y':'2-year'},w=lbl[wxWindow]||wxWindow;
+  document.getElementById('wx-reg-sub').textContent=w+' history + 16-day forecast · °C';
   document.getElementById('wx-temp-sub').textContent=w+' history + 16-day GFS forecast vs 5-year range';
   document.getElementById('wx-dem-sub').textContent=w+' history + 16-day forecast vs 5-year average';
 }
 var REG_COLORS=['#4493f8','#3fb950','#e3b341','#f0883e','#a371f7'];
 function wxRenderRegionalChart(){
-  document.getElementById('wx-spin-reg').style.display='none'; document.getElementById('wx-wrap-reg').style.display='block';
-  killChart(wxChReg); wxChReg=null;
-  var labels=wxS.labels, pr=wxPointR(), sTrans=wxS.seasonTransitions.slice();
-  var tt=Object.assign({},baseTT(),{callbacks:{title:function(items){var i=items[0]&&items[0].dataIndex;return i!=null?wxS.allDates[i]:'';},label:function(c){return' '+c.dataset.label+': '+c.parsed.y.toFixed(1)+'°C';}}});
-  var opts=baseOpts(); opts.scales.y.ticks.callback=function(v){return v.toFixed(0)+'°';}; opts.plugins.tooltip=tt;
+  document.getElementById('wx-spin-reg').style.display='none';document.getElementById('wx-wrap-reg').style.display='block';
+  killChart(wxChReg);wxChReg=null;
+  var labels=wxS.labels,pr=wxPointR(),sTrans=wxS.seasonTransitions.slice();
+  var tt=Object.assign({},baseTT(),{callbacks:{title:function(items){var i=items[0]&&items[0].dataIndex;return i!=null?wxS.allDates[i]:'';},label:function(c){return ' '+c.dataset.label+': '+c.parsed.y.toFixed(1)+'°C';}}});
+  var opts=baseOpts();opts.scales.y.ticks.callback=function(v){return v.toFixed(0)+'°';};opts.plugins.tooltip=tt;
   wxChReg=new Chart(document.getElementById('wx-c-reg').getContext('2d'),{
     type:'line',plugins:[makeTodayPlugin('reg',function(){return wxS?wxS.todayIdx:null;}),makeSeasonPlugin('reg',function(){return sTrans;})],
     data:{labels:labels,datasets:WX_REGIONS.map(function(r,ri){
@@ -1534,7 +1373,7 @@ function wxRenderRegionalChart(){
   });
 }
 function wxRenderMetrics(){
-  var si=getSeasonInfo(), ti=wxS.todayIdx;
+  var si=getSeasonInfo(),ti=wxS.todayIdx;
   function demSum(days){var s=0,lim=Math.min(ti+days,wxS.demAll.length);for(var j=ti;j<lim;j++)s+=wxS.demAll[j]||0;return s;}
   function dem5Sum(days){var s=0,lim=Math.min(ti+days,wxS.dem5avg.length);for(var j=ti;j<lim;j++)s+=wxS.dem5avg[j]||0;return s;}
   function fillDemBox(valId,vs5yId,avgId,days){
@@ -1555,9 +1394,9 @@ function wxRenderMetrics(){
   else{dEl.textContent='❄️ CDD';dEl.style.color='#ff7b72';dSub.textContent=Math.round(cddFwd/totFwd*100)+'% of demand';}
 }
 function wxRenderTempChart(){
-  document.getElementById('wx-spin1').style.display='none'; document.getElementById('wx-wrap1').style.display='block'; killChart(wxCh1);
+  document.getElementById('wx-spin1').style.display='none';document.getElementById('wx-wrap1').style.display='block';killChart(wxCh1);
   var labels=wxS.labels,allTemps=wxS.allTemps,h5avg=wxS.h5avg,h5min=wxS.h5min,h5max=wxS.h5max,pr=wxPointR(),sTrans=wxS.seasonTransitions.slice();
-  var opts=baseOpts(); opts.scales.y.ticks.callback=function(v){return v.toFixed(0)+'°';};
+  var opts=baseOpts();opts.scales.y.ticks.callback=function(v){return v.toFixed(0)+'°';};
   opts.plugins.tooltip=Object.assign({},baseTT(),{
     filter:function(item){return item.dataset._k!=='min'&&item.dataset._k!=='max';},
     callbacks:{label:function(c){return c.dataset.label+': '+c.parsed.y.toFixed(1)+'°C';},afterBody:function(items){var i=items[0]&&items[0].dataIndex;if(i==null)return[];var mn=wxS.h5min[i],mx=wxS.h5max[i];return(mn!=null&&mx!=null)?['5y range: '+mn.toFixed(1)+'–'+mx.toFixed(1)+'°C']:[];}}
@@ -1573,7 +1412,7 @@ function wxRenderTempChart(){
   });
 }
 function wxRenderDemandChart(){
-  document.getElementById('wx-spin3').style.display='none'; document.getElementById('wx-wrap3').style.display='block'; killChart(wxCh3);
+  document.getElementById('wx-spin3').style.display='none';document.getElementById('wx-wrap3').style.display='block';killChart(wxCh3);
   var labels=wxS.labels,demAll=wxS.demAll,dem5avg=wxS.dem5avg,dem5min=wxS.dem5min,dem5max=wxS.dem5max,sTrans=wxS.seasonTransitions.slice();
   var barColors=demAll.map(function(v,i){if(v==null||dem5avg[i]==null)return 'rgba(163,113,247,.4)';return v>=dem5avg[i]?'rgba(163,113,247,.8)':'rgba(163,113,247,.3)';});
   var opts=baseOpts();
@@ -1591,24 +1430,22 @@ function wxRenderDemandChart(){
     ]},options:opts
   });
 }
-
-// Historical weekly export
 var EXP_MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
 function wxFmtExp(iso){var d=new Date(iso+'T12:00:00Z');return p2(d.getUTCDate())+' '+EXP_MON[d.getUTCMonth()]+' '+d.getUTCFullYear();}
 function getFriday(iso){var d=new Date(iso+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+(5-d.getUTCDay()+7)%7);return d.toISOString().slice(0,10);}
 async function exportHistoricalWeekly(){
-  var btn=document.getElementById('wx-hist-btn'); btn.disabled=true;
-  var today=new Date(), todayISO=today.toISOString().slice(0,10);
+  var btn=document.getElementById('wx-hist-btn');btn.disabled=true;
+  var today=new Date(),todayISO=today.toISOString().slice(0,10);
   dbLog('Historical weekly export started…','info');
   try{
     var allReg=[];
     for(var ri=0;ri<WX_REGIONS.length;ri++){
-      var r=WX_REGIONS[ri]; btn.textContent='⏳ '+r.name+' ('+(ri+1)+'/'+WX_REGIONS.length+')…';
+      var r=WX_REGIONS[ri];btn.textContent='⏳ '+r.name+' ('+(ri+1)+'/'+WX_REGIONS.length+')…';
       var dd=await wxFetchRetry('https://archive-api.open-meteo.com/v1/archive?latitude='+r.lat+'&longitude='+r.lon+'&daily=temperature_2m_max,temperature_2m_min&start_date=2010-01-01&end_date='+todayISO+'&timezone=UTC');
       if(!dd||!dd.daily||!dd.daily.time) throw new Error('No data for '+r.name);
-      allReg.push(dd.daily); if(ri<WX_REGIONS.length-1) await sleep(600);
+      allReg.push(dd.daily);if(ri<WX_REGIONS.length-1) await sleep(600);
     }
-    btn.textContent='⚙️ Processing…'; await sleep(10);
+    btn.textContent='⚙️ Processing…';await sleep(10);
     var baseDates=allReg[0].time;
     var daily=baseDates.map(function(dt,di){
       var regTemps=WX_REGIONS.map(function(rg,ri2){var mx=allReg[ri2].temperature_2m_max[di],mn=allReg[ri2].temperature_2m_min[di];return(mx!=null&&mn!=null)?(mx+mn)/2:null;});
@@ -1621,58 +1458,60 @@ async function exportHistoricalWeekly(){
     });
     var wkMap={};
     baseDates.forEach(function(dt,di){
-      var dy=daily[di]; if(!dy||dy.avgTemp==null) return;
-      var fri=getFriday(dt); if(fri>todayISO) fri=todayISO;
+      var dy=daily[di];if(!dy||dy.avgTemp==null) return;
+      var fri=getFriday(dt);if(fri>todayISO) fri=todayISO;
       if(!wkMap[fri]) wkMap[fri]={sTemp:0,hdd:0,cdd:0,dem:0,n:0,regS:WX_REGIONS.map(function(){return 0;}),regN:WX_REGIONS.map(function(){return 0;})};
-      var wk=wkMap[fri]; wk.sTemp+=dy.avgTemp;wk.hdd+=dy.hdd;wk.cdd+=dy.cdd;wk.dem+=dy.dem;wk.n++;
+      var wk=wkMap[fri];wk.sTemp+=dy.avgTemp;wk.hdd+=dy.hdd;wk.cdd+=dy.cdd;wk.dem+=dy.dem;wk.n++;
       dy.regTemps.forEach(function(t,ri2){if(t!=null){wk.regS[ri2]+=t;wk.regN[ri2]++;}});
     });
     var keys=Object.keys(wkMap).sort();
     function pad(str,w){str=String(str==null?'':str);return str.length>=w?str.slice(0,w-1)+' ':str+' '.repeat(w-str.length);}
     var regHdr=WX_REGIONS.map(function(rg){return pad(rg.name+'°C',12);}).join('');
     var lines=['NatGas Weather — Weekly Temperature & Demand','Source: Open-Meteo Archive API','Exported: '+wxFmtExp(todayISO)+', '+today.toLocaleTimeString(),'',
-      pad('Date',16)+pad('WgtAvg°C',12)+pad('HDD',8)+pad('CDD',8)+pad('Demand',10)+regHdr,'-'.repeat(16+12+8+8+10+WX_REGIONS.length*12)];
-    keys.forEach(function(fri){var wk=wkMap[fri];if(!wk.n)return;var avg=wk.sTemp/wk.n,h=wk.hdd/wk.n,c=wk.cdd/wk.n,dem=wk.dem/wk.n;
+      pad('Date',16)+pad('WgtAvg°C',12)+pad('HDD',8)+pad('CDD',8)+pad('Demand',10)+regHdr,
+      '-'.repeat(16+12+8+8+10+WX_REGIONS.length*12)];
+    keys.forEach(function(fri){
+      var wk=wkMap[fri];if(!wk.n) return;
+      var avg=wk.sTemp/wk.n,h=wk.hdd/wk.n,c=wk.cdd/wk.n,dem=wk.dem/wk.n;
       var regCols=WX_REGIONS.map(function(_,ri2){return pad(wk.regN[ri2]>0?(wk.regS[ri2]/wk.regN[ri2]).toFixed(2):'N/A',12);}).join('');
       lines.push(pad(wxFmtExp(fri),16)+pad(avg.toFixed(2),12)+pad(h.toFixed(2),8)+pad(c.toFixed(2),8)+pad(dem.toFixed(2),10)+regCols);
     });
     lines.push('','Total weeks: '+keys.length,'Period: 01 Jan 2010 – '+wxFmtExp(todayISO));
     dlBlob('natgas_weekly_temp_demand_2010_today.txt',lines.join('\n'));
-    btn.textContent='✅ Done! ('+keys.length+' weeks)'; dbLog('Historical export: '+keys.length+' weeks','ok');
+    btn.textContent='✅ Done! ('+keys.length+' weeks)';dbLog('Historical export: '+keys.length+' weeks','ok');
     setTimeout(function(){btn.textContent='📥 Weekly Temp 2010–today';btn.disabled=false;},3000);
   }catch(err){btn.textContent='⚠ Error';btn.disabled=false;dbLog('Historical export error: '+err.message,'error');}
 }
 
-// ═══════════════════════════════════════════════════════════════
-// STORAGE FETCH & CHARTS
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+// STORAGE
+// ═══════════════════════════════════════════════════════
 function stSetDot(s){document.getElementById('st-dot').className='sdot '+s;}
 function stSetBadge(t,txt){var el=document.getElementById('st-badge');el.textContent=txt;el.className='cbadge '+t;}
 async function stFetchStorage(){
-  stApiCount++; document.getElementById('st-api-count').textContent=stApiCount;
+  stApiCount++;document.getElementById('st-api-count').textContent=stApiCount;
   var qs='api_key='+ST_API_KEY+'&frequency=weekly&data[0]=value&facets[series][]=NW2_EPG0_SWO_R48_BCF&sort[0][column]=period&sort[0][direction]=asc&length=1000';
   var res=await fetch('https://api.eia.gov/v2/natural-gas/stor/wkly/data?'+qs);
   if(!res.ok) throw new Error('EIA HTTP '+res.status);
-  var json=await res.json(); if(json.response&&json.response.error) throw new Error('EIA: '+json.response.error);
-  var rows=(json.response&&json.response.data)||[]; if(!rows.length) throw new Error('No rows from EIA');
+  var json=await res.json();if(json.response&&json.response.error) throw new Error('EIA: '+json.response.error);
+  var rows=(json.response&&json.response.data)||[];if(!rows.length) throw new Error('No rows from EIA');
   var out=rows.map(function(r){var v=parseFloat(r.value);return isFinite(v)?{date:r.period,value:v}:null;}).filter(Boolean);
-  out.sort(function(a,b){return a.date<b.date?-1:1;}); return out;
+  out.sort(function(a,b){return a.date<b.date?-1:1;});return out;
 }
 async function stFetchNGF(){
-  ngfApiCount++; document.getElementById('ngf-api-count').textContent=ngfApiCount;
-  var p1=Math.floor(new Date('2010-01-01').getTime()/1000), p2t=Math.floor(Date.now()/1000);
+  ngfApiCount++;document.getElementById('ngf-api-count').textContent=ngfApiCount;
+  var p1=Math.floor(new Date('2010-01-01').getTime()/1000),p2t=Math.floor(Date.now()/1000);
   return await yahooFetch('NG=F','period1='+p1+'&period2='+p2t+'&interval=1wk&events=history');
 }
 async function stLoadAll(){
-  stSetDot('loading'); stSetBadge('loading','Loading…');
+  stSetDot('loading');stSetBadge('loading','Loading…');
   ['st-wrap-stor','st-wrap-dev','st-wrap-inj'].forEach(function(id){document.getElementById(id).style.display='none';});
   ['st-spin-stor','st-spin-dev','st-spin-inj'].forEach(function(id){var el=document.getElementById(id);el.style.display='block';el.innerHTML='<span class="sp"></span>Loading…';});
-  dbLog('Storage: fetching EIA…','info'); var errs=[];
+  dbLog('Storage: fetching EIA…','info');var errs=[];
   try{stStorageData=await stFetchStorage();dbLog('EIA storage: OK ('+stStorageData.length+' rows)','ok');}
   catch(e){errs.push('EIA: '+e.message);dbLog('EIA error: '+e.message,'error');}
   var ngfDot=document.getElementById('ngf-dot'),ngfBadge=document.getElementById('ngf-badge');
   ngfDot.className='sdot loading';ngfBadge.textContent='Loading…';ngfBadge.className='cbadge loading';
-  dbLog('NGF: fetching NG=F…','info');
   try{
     stNgfData=await stFetchNGF();
     ngfDot.className='sdot ok';ngfBadge.textContent='Live data';ngfBadge.className='cbadge live';
@@ -1696,25 +1535,25 @@ function stFilterByWindow(){
   return stStorageData.filter(function(d){return new Date(d.date+'T12:00:00Z')>=cut;});
 }
 function stRenderStorChart(){
-  var filtered=stFilterByWindow(); if(!filtered.length) return;
-  var dates=filtered.map(function(d){return d.date;}), values=filtered.map(function(d){return d.value;});
-  var b5=st5y(stStorageData,dates), histLabels=dates.map(fmtGB), trans=stSeasonTrans(dates);
+  var filtered=stFilterByWindow();if(!filtered.length) return;
+  var dates=filtered.map(function(d){return d.date;}),values=filtered.map(function(d){return d.value;});
+  var b5=st5y(stStorageData,dates),histLabels=dates.map(fmtGB),trans=stSeasonTrans(dates);
   var ext=buildFcstExt(histLabels);
-  var allLabels=ext.allLabels, histLen=ext.histLen, fcstVals=ext.fcstVals, fcstDates=ext.fcstDates;
+  var allLabels=ext.allLabels,histLen=ext.histLen,fcstVals=ext.fcstVals,fcstDates=ext.fcstDates;
   var fcst5y=st5y(stStorageData,fcstDates);
   var avgsExt=b5.map(function(b){return b.avg;}).concat(fcst5y.map(function(b){return b.avg;}));
   var minsExt=b5.map(function(b){return b.min;}).concat(fcst5y.map(function(b){return b.min;}));
   var maxsExt=b5.map(function(b){return b.max;}).concat(fcst5y.map(function(b){return b.max;}));
-  var fcstLine=values.map(function(){return null;}); fcstLine[histLen-1]=values[histLen-1];
+  var fcstLine=values.map(function(){return null;});fcstLine[histLen-1]=values[histLen-1];
   fcstVals.forEach(function(v){fcstLine.push(v);});
   var fcstRadii=fcstLine.map(function(v,i){return(i>=histLen&&v!=null)?3:0;});
-  document.getElementById('st-spin-stor').style.display='none'; document.getElementById('st-wrap-stor').style.display='block';
-  killChart(stCharts.stor); stCharts.stor=null;
+  document.getElementById('st-spin-stor').style.display='none';document.getElementById('st-wrap-stor').style.display='block';
+  killChart(stCharts.stor);stCharts.stor=null;
   var tt=Object.assign({},baseTT(),{
     filter:function(item){return item.dataset._k!=='min'&&item.dataset._k!=='max';},
     callbacks:{
       title:function(items){var i=items[0]&&items[0].dataIndex;return i!=null?allLabels[i]:'';},
-      label:function(c){if(c.parsed.y==null)return null;return' '+c.dataset.label+': '+Math.round(c.parsed.y).toLocaleString()+' Bcf';},
+      label:function(c){if(c.parsed.y==null)return null;return ' '+c.dataset.label+': '+Math.round(c.parsed.y).toLocaleString()+' Bcf';},
       afterBody:function(items){var i=items[0]&&items[0].dataIndex;if(i==null||minsExt[i]==null)return[];return['5y range: '+Math.round(minsExt[i]).toLocaleString()+' – '+Math.round(maxsExt[i]).toLocaleString()+' Bcf'];}
     }
   });
@@ -1731,13 +1570,13 @@ function stRenderStorChart(){
   });
 }
 function stRenderDevChart(){
-  var filtered=stFilterByWindow(); if(!filtered.length) return;
-  var dates=filtered.map(function(d){return d.date;}), b5=st5y(stStorageData,dates);
+  var filtered=stFilterByWindow();if(!filtered.length) return;
+  var dates=filtered.map(function(d){return d.date;}),b5=st5y(stStorageData,dates);
   var devs=[],surplus=[],deficit=[];
   filtered.forEach(function(d,i){var dv=b5[i].avg!=null?d.value-b5[i].avg:null;devs.push(dv);surplus.push(dv!=null&&dv>=0?dv:0);deficit.push(dv!=null&&dv<0?dv:0);});
-  var histLabels=dates.map(fmtGB), trans=stSeasonTrans(dates);
+  var histLabels=dates.map(fmtGB),trans=stSeasonTrans(dates);
   var ext=buildFcstExt(histLabels);
-  var allLabels=ext.allLabels, histLen=ext.histLen, fcstDates=ext.fcstDates;
+  var allLabels=ext.allLabels,histLen=ext.histLen,fcstDates=ext.fcstDates;
   var fcstDevs=fcstDates.map(function(d){
     var b=st5y(stStorageData,[d])[0].avg;
     var f=[stLastF7,stLastF14,stLastF21].find(function(x){return x&&x.endDate===d;});
@@ -1746,143 +1585,159 @@ function stRenderDevChart(){
   });
   var allDevs=devs.concat(fcstDevs);
   function zero(arr){return arr.map(function(){return 0;});}
-  var fcstSur=fcstDevs.map(function(v){return v!=null&&v>=0?v:0;});
-  var fcstDef=fcstDevs.map(function(v){return v!=null&&v<0?v:0;});
-  document.getElementById('st-spin-dev').style.display='none'; document.getElementById('st-wrap-dev').style.display='block';
-  killChart(stCharts.dev); stCharts.dev=null;
+  document.getElementById('st-spin-dev').style.display='none';document.getElementById('st-wrap-dev').style.display='block';
+  killChart(stCharts.dev);stCharts.dev=null;
   var tt=Object.assign({},baseTT(),{callbacks:{
     title:function(items){var i=items[0]&&items[0].dataIndex;return i!=null?allLabels[i]:'';},
-    label:function(c){var v=allDevs[c.dataIndex];if(v==null)return null;return' '+(v>=0?'Surplus':'Deficit')+': '+sgn(v)+Math.round(v).toLocaleString()+' Bcf'+(c.dataIndex>=histLen?' (forecast)':'');},
+    label:function(c){var v=allDevs[c.dataIndex];if(v==null)return null;return ' '+(v>=0?'Surplus':'Deficit')+': '+sgn(v)+Math.round(v).toLocaleString()+' Bcf'+(c.dataIndex>=histLen?' (forecast)':'');},
     filter:function(item){var v=allDevs[item.dataIndex];if(v==null)return false;var fc=item.dataIndex>=histLen;if(fc)return(item.dataset._k==='fcst-sur'&&v>=0)||(item.dataset._k==='fcst-def'&&v<0);return(item.dataset._k==='sur'&&v>=0)||(item.dataset._k==='def'&&v<0);}
   }});
   stCharts.dev=new Chart(document.getElementById('st-c-dev').getContext('2d'),{
     type:'bar',plugins:[makeSeasonPlugin('dev',function(){return trans;}),makeTodayPlugin('dev',function(){return histLen-1;})],
     data:{labels:allLabels,datasets:[
-      {_k:'sur',     label:'Surplus',      data:surplus.concat(zero(fcstDevs)),backgroundColor:'rgba(255,123,114,0.75)',borderWidth:0,borderRadius:1},
-      {_k:'def',     label:'Deficit',      data:deficit.concat(zero(fcstDevs)),backgroundColor:'rgba(63,185,80,0.75)',borderWidth:0,borderRadius:1},
-      {_k:'fcst-sur',label:'Fcst Surplus', data:zero(devs).concat(fcstSur),backgroundColor:'rgba(255,123,114,0.35)',borderColor:'rgba(255,123,114,0.8)',borderWidth:1,borderRadius:2},
-      {_k:'fcst-def',label:'Fcst Deficit', data:zero(devs).concat(fcstDef),backgroundColor:'rgba(63,185,80,0.35)',borderColor:'rgba(63,185,80,0.8)',borderWidth:1,borderRadius:2}
+      {_k:'sur',     label:'Surplus',     data:surplus.concat(zero(fcstDevs)),backgroundColor:'rgba(255,123,114,0.75)',borderWidth:0,borderRadius:1},
+      {_k:'def',     label:'Deficit',     data:deficit.concat(zero(fcstDevs)),backgroundColor:'rgba(63,185,80,0.75)',borderWidth:0,borderRadius:1},
+      {_k:'fcst-sur',label:'Fcst Surplus',data:zero(devs).concat(fcstDevs.map(function(v){return v!=null&&v>=0?v:0;})),backgroundColor:'rgba(255,123,114,0.35)',borderColor:'rgba(255,123,114,0.8)',borderWidth:1,borderRadius:2},
+      {_k:'fcst-def',label:'Fcst Deficit',data:zero(devs).concat(fcstDevs.map(function(v){return v!=null&&v<0?v:0;})),backgroundColor:'rgba(63,185,80,0.35)',borderColor:'rgba(63,185,80,0.8)',borderWidth:1,borderRadius:2}
     ]},
     options:{responsive:true,maintainAspectRatio:false,animation:{duration:300},interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:tt,zoom:zoomOpts()},scales:{x:{stacked:true,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6e7681',font:{family:'Inter',size:9},maxRotation:45,autoSkip:true,maxTicksLimit:16}},y:{stacked:true,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6e7681',font:{family:'Inter',size:9},callback:function(v){return sgn(v)+Math.round(v).toLocaleString();}}}}}
   });
 }
 function stRenderInjChart(){
-  var filtered=stFilterByWindow(); if(filtered.length<2) return;
+  var filtered=stFilterByWindow();if(filtered.length<2) return;
   var dates=[],changes=[],injections=[],withdrawals=[];
   for(var i=1;i<filtered.length;i++){var chg=filtered[i].value-filtered[i-1].value;dates.push(filtered[i].date);changes.push(chg);injections.push(chg>0?chg:0);withdrawals.push(chg<0?chg:0);}
-  var histLabels=dates.map(fmtGB), trans=stSeasonTrans(dates);
+  var histLabels=dates.map(fmtGB),trans=stSeasonTrans(dates);
   var ext=buildFcstExt(histLabels);
-  var allLabels=ext.allLabels, histLen=ext.histLen, fcstDates=ext.fcstDates;
+  var allLabels=ext.allLabels,histLen=ext.histLen,fcstDates=ext.fcstDates;
   var prevLevel=filtered[filtered.length-1].value;
   var fcstChanges=fcstDates.map(function(d){
     var f=[stLastF7,stLastF14,stLastF21].find(function(x){return x&&x.endDate===d;});
     if(!f||f.predictedLevel==null) return null;
-    var chg=f.predictedLevel-prevLevel; prevLevel=f.predictedLevel; return chg;
+    var chg=f.predictedLevel-prevLevel;prevLevel=f.predictedLevel;return chg;
   });
   var allChanges=changes.concat(fcstChanges);
   function zero(arr){return arr.map(function(){return 0;});}
-  document.getElementById('st-spin-inj').style.display='none'; document.getElementById('st-wrap-inj').style.display='block';
-  killChart(stCharts.inj); stCharts.inj=null;
+  document.getElementById('st-spin-inj').style.display='none';document.getElementById('st-wrap-inj').style.display='block';
+  killChart(stCharts.inj);stCharts.inj=null;
   var tt=Object.assign({},baseTT(),{callbacks:{
     title:function(items){var i=items[0]&&items[0].dataIndex;return i!=null?allLabels[i]:'';},
-    label:function(c){var v=allChanges[c.dataIndex];if(v==null)return null;return' '+(v>=0?'Injection':'Withdrawal')+': '+sgn(v)+Math.round(v).toLocaleString()+' Bcf'+(c.dataIndex>=histLen?' (forecast)':'');},
+    label:function(c){var v=allChanges[c.dataIndex];if(v==null)return null;return ' '+(v>=0?'Injection':'Withdrawal')+': '+sgn(v)+Math.round(v).toLocaleString()+' Bcf'+(c.dataIndex>=histLen?' (forecast)':'');},
     filter:function(item){var v=allChanges[item.dataIndex];if(v==null)return false;var fc=item.dataIndex>=histLen;if(fc)return(item.dataset._k==='fcst-inj'&&v>=0)||(item.dataset._k==='fcst-wdr'&&v<0);return(item.dataset._k==='inj'&&v>0)||(item.dataset._k==='wdr'&&v<0);}
   }});
   stCharts.inj=new Chart(document.getElementById('st-c-inj').getContext('2d'),{
     type:'bar',plugins:[makeSeasonPlugin('inj',function(){return trans;}),makeTodayPlugin('inj',function(){return histLen-1;})],
     data:{labels:allLabels,datasets:[
-      {_k:'inj',     label:'Injection',   data:injections.concat(zero(fcstChanges)),backgroundColor:'rgba(255,123,114,0.75)',borderWidth:0,borderRadius:1},
-      {_k:'wdr',     label:'Withdrawal',  data:withdrawals.concat(zero(fcstChanges)),backgroundColor:'rgba(63,185,80,0.75)',borderWidth:0,borderRadius:1},
-      {_k:'fcst-inj',label:'Fcst Inj',   data:zero(changes).concat(fcstChanges.map(function(v){return v!=null&&v>=0?v:0;})),backgroundColor:'rgba(255,123,114,0.35)',borderColor:'rgba(255,123,114,0.8)',borderWidth:1,borderRadius:2},
-      {_k:'fcst-wdr',label:'Fcst Wdr',   data:zero(changes).concat(fcstChanges.map(function(v){return v!=null&&v<0?v:0;})),backgroundColor:'rgba(63,185,80,0.35)',borderColor:'rgba(63,185,80,0.8)',borderWidth:1,borderRadius:2}
+      {_k:'inj',     label:'Injection',  data:injections.concat(zero(fcstChanges)),backgroundColor:'rgba(255,123,114,0.75)',borderWidth:0,borderRadius:1},
+      {_k:'wdr',     label:'Withdrawal', data:withdrawals.concat(zero(fcstChanges)),backgroundColor:'rgba(63,185,80,0.75)',borderWidth:0,borderRadius:1},
+      {_k:'fcst-inj',label:'Fcst Inj',  data:zero(changes).concat(fcstChanges.map(function(v){return v!=null&&v>=0?v:0;})),backgroundColor:'rgba(255,123,114,0.35)',borderColor:'rgba(255,123,114,0.8)',borderWidth:1,borderRadius:2},
+      {_k:'fcst-wdr',label:'Fcst Wdr',  data:zero(changes).concat(fcstChanges.map(function(v){return v!=null&&v<0?v:0;})),backgroundColor:'rgba(63,185,80,0.35)',borderColor:'rgba(63,185,80,0.8)',borderWidth:1,borderRadius:2}
     ]},
     options:{responsive:true,maintainAspectRatio:false,animation:{duration:300},interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:tt,zoom:zoomOpts()},scales:{x:{stacked:true,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6e7681',font:{family:'Inter',size:9},maxRotation:45,autoSkip:true,maxTicksLimit:16}},y:{stacked:true,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6e7681',font:{family:'Inter',size:9},callback:function(v){return sgn(v)+Math.round(v).toLocaleString();}}}}}
   });
 }
 function stSetWindow(w){
-  if(stWindow===w) return; stWindow=w;
+  if(stWindow===w) return;stWindow=w;
   document.querySelectorAll('[data-st-w]').forEach(function(b){b.classList.toggle('on',b.dataset.stW===w);});
   ['stor','dev','inj'].forEach(function(k){killChart(stCharts[k]);stCharts[k]=null;});
   if(stStorageData.length){stRenderStorChart();stRenderDevChart();stRenderInjChart();}
   stUpdateSubtitles();
 }
 function stUpdateSubtitles(){
-  var lbl={max:'full','5y':'5-year','2y':'2-year','1y':'1-year',ytd:'YTD','3m':'3-month','1m':'1-month'}, w=lbl[stWindow]||stWindow;
+  var lbl={max:'full','5y':'5-year','2y':'2-year','1y':'1-year',ytd:'YTD','3m':'3-month','1m':'1-month'},w=lbl[stWindow]||stWindow;
   document.getElementById('st-stor-sub').textContent='Weekly · Bcf · '+w+' history vs 5-year range';
   document.getElementById('st-dev-sub').textContent='Weekly · Bcf · '+w+' surplus / deficit vs 5y avg';
   document.getElementById('st-inj-sub').textContent='Weekly · Bcf · '+w+' history · injection / withdrawal';
 }
 
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // NGF CHART
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 function ngfSetWindow(w){if(ngfWindow===w)return;ngfWindow=w;document.querySelectorAll('[data-ngf-w]').forEach(function(b){b.classList.toggle('on',b.dataset.ngfW===w);});if(stNgfData.length)ngfRenderChart();ngfUpdateSubtitle();}
 function ngfUpdateSubtitle(){
   var lbl={max:'full','5y':'5-year','2y':'2-year','1y':'1-year',ytd:'YTD','3m':'3-month','1m':'1-month'};
-  var el=document.getElementById('ngf-chart-sub'); if(el) el.textContent='Weekly · $/MMBtu · Yahoo Finance · '+(lbl[ngfWindow]||ngfWindow)+' history';
+  var el=document.getElementById('ngf-chart-sub');if(el) el.textContent='Weekly · $/MMBtu · Yahoo Finance · '+(lbl[ngfWindow]||ngfWindow)+' history';
 }
 function ngfSetChartType(type){ngfChartType=type;document.getElementById('ngf-btn-line').className='tbtn'+(type==='line'?' on':'');document.getElementById('ngf-btn-candle').className='tbtn'+(type==='candle'?' on':'');if(stNgfData.length)ngfRenderChart();}
 function ngfFilterData(){
   var days=ngfWindow==='ytd'?Math.floor((new Date()-new Date(new Date().getFullYear(),0,1))/864e5):ST_WINDOWS[ngfWindow];
   if(!days||days>=99999) return stNgfData.slice();
-  var cut=new Date(); cut.setDate(cut.getDate()-days);
+  var cut=new Date();cut.setDate(cut.getDate()-days);
   return stNgfData.filter(function(d){return new Date(d.ts)>=cut;});
 }
 function ngfRenderChart(){
-  var filtered=ngfFilterData(); if(!filtered.length) return;
-  document.getElementById('ngf-spin').style.display='none'; document.getElementById('ngf-wrap').style.display='block';
-  killChart(ngfChart); ngfChart=null;
-  var labels=filtered.map(function(d){return fmtTs(d.ts);}), closes=filtered.map(function(d){return d.close;});
-  var isoDates=filtered.map(function(d){var dt=new Date(d.ts);return dt.toISOString().slice(0,10);});
+  var filtered=ngfFilterData();if(!filtered.length) return;
+  document.getElementById('ngf-spin').style.display='none';document.getElementById('ngf-wrap').style.display='block';
+  killChart(ngfChart);ngfChart=null;
+  var labels=filtered.map(function(d){return fmtTs(d.ts);}),closes=filtered.map(function(d){return d.close;});
+  var isoDates=filtered.map(function(d){return new Date(d.ts).toISOString().slice(0,10);});
   var trans=ngfWindow==='max'?[]:getSeasonTransitions(isoDates);
-  var ctx=document.getElementById('ngf-canvas').getContext('2d'), tt=Object.assign({},baseTT());
+  var ctx=document.getElementById('ngf-canvas').getContext('2d'),tt=Object.assign({},baseTT());
   if(ngfChartType==='candle'){
     var hi=-Infinity,lo=Infinity;filtered.forEach(function(d){if(d.high>hi)hi=d.high;if(d.low<lo)lo=d.low;});
     var cPlug={id:'cPlug',afterDatasetsDraw:function(chart){
-      var cx=chart.ctx,x=chart.scales.x,y=chart.scales.y,nf=filtered.length; if(!nf) return;
+      var cx=chart.ctx,x=chart.scales.x,y=chart.scales.y,nf=filtered.length;if(!nf) return;
       var rawW=nf>1?Math.abs(x.getPixelForValue(1)-x.getPixelForValue(0)):8,barW=Math.max(1.5,Math.min(rawW*0.65,14)),half=barW/2;
-      cx.save(); filtered.forEach(function(d,i){var xc=x.getPixelForValue(i),yO=y.getPixelForValue(d.open),yC=y.getPixelForValue(d.close),yH=y.getPixelForValue(d.high),yL=y.getPixelForValue(d.low),bull=d.close>=d.open,col=bull?'#3fb950':'#ff7b72';cx.strokeStyle=col;cx.lineWidth=1;cx.beginPath();cx.moveTo(xc,yH);cx.lineTo(xc,yL);cx.stroke();cx.fillStyle=col;cx.fillRect(xc-half,Math.min(yO,yC),barW,Math.max(1,Math.abs(yO-yC)));});cx.restore();
+      cx.save();
+      filtered.forEach(function(d,i){
+        var xc=x.getPixelForValue(i),yO=y.getPixelForValue(d.open),yC=y.getPixelForValue(d.close),yH=y.getPixelForValue(d.high),yL=y.getPixelForValue(d.low),bull=d.close>=d.open,col=bull?'#3fb950':'#ff7b72';
+        cx.strokeStyle=col;cx.lineWidth=1;cx.beginPath();cx.moveTo(xc,yH);cx.lineTo(xc,yL);cx.stroke();
+        cx.fillStyle=col;cx.fillRect(xc-half,Math.min(yO,yC),barW,Math.max(1,Math.abs(yO-yC)));
+      });
+      cx.restore();
     }};
-    tt.callbacks={title:function(items){var i=items[0]&&items[0].dataIndex;return i!=null?labels[i]:'';},label:function(c){var d=filtered[c.dataIndex];if(!d)return null;return[' O: $'+d.open.toFixed(3),' H: $'+d.high.toFixed(3),' L: $'+d.low.toFixed(3),' C: $'+d.close.toFixed(3)];}};
-    ngfChart=new Chart(ctx,{type:'line',plugins:[cPlug,makeSeasonPlugin('ngf',function(){return trans;})],data:{labels:labels,datasets:[{data:closes,borderColor:'transparent',pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:200},interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:tt,zoom:zoomOpts()},scales:{x:baseX(),y:{min:lo*0.99,max:hi*1.01,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6e7681',font:{family:'Inter',size:9},callback:function(v){return'$'+v.toFixed(2);}}}}}});
-  }else{
-    tt.callbacks={title:function(items){var i=items[0]&&items[0].dataIndex;return i!=null?labels[i]:'';},label:function(c){return' NG=F: $'+c.parsed.y.toFixed(3)+'/MMBtu';}};
-    ngfChart=new Chart(ctx,{type:'line',plugins:[makeSeasonPlugin('ngf',function(){return trans;})],data:{labels:labels,datasets:[{label:'NG=F',data:closes,borderColor:'#e3b341',borderWidth:2,pointRadius:0,pointHoverRadius:6,tension:0.2,fill:false}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:300},interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:tt,zoom:zoomOpts()},scales:{x:baseX(),y:baseY(function(v){return'$'+v.toFixed(2);})}}}); 
+    tt.callbacks={
+      title:function(items){var i=items[0]&&items[0].dataIndex;return i!=null?labels[i]:'';},
+      label:function(c){var d=filtered[c.dataIndex];if(!d)return null;return[' O: $'+d.open.toFixed(3),' H: $'+d.high.toFixed(3),' L: $'+d.low.toFixed(3),' C: $'+d.close.toFixed(3)];}
+    };
+    ngfChart=new Chart(ctx,{
+      type:'line',plugins:[cPlug,makeSeasonPlugin('ngf',function(){return trans;})],
+      data:{labels:labels,datasets:[{data:closes,borderColor:'transparent',pointRadius:0,fill:false}]},
+      options:{responsive:true,maintainAspectRatio:false,animation:{duration:200},interaction:{mode:'index',intersect:false},
+        plugins:{legend:{display:false},tooltip:tt,zoom:zoomOpts()},
+        scales:{x:baseX(),y:{min:lo*0.99,max:hi*1.01,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6e7681',font:{family:'Inter',size:9},callback:function(v){return '$'+v.toFixed(2);}}}}}
+    });
+  } else {
+    tt.callbacks={
+      title:function(items){var i=items[0]&&items[0].dataIndex;return i!=null?labels[i]:'';},
+      label:function(c){return ' NG=F: $'+c.parsed.y.toFixed(3)+'/MMBtu';}
+    };
+    ngfChart=new Chart(ctx,{
+      type:'line',plugins:[makeSeasonPlugin('ngf',function(){return trans;})],
+      data:{labels:labels,datasets:[{label:'NG=F',data:closes,borderColor:'#e3b341',borderWidth:2,pointRadius:0,pointHoverRadius:6,tension:0.2,fill:false}]},
+      options:{responsive:true,maintainAspectRatio:false,animation:{duration:300},interaction:{mode:'index',intersect:false},
+        plugins:{legend:{display:false},tooltip:tt,zoom:zoomOpts()},
+        scales:{x:baseX(),y:baseY(function(v){return '$'+v.toFixed(2);})}}
+    });
   }
 }
 
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // FUTURE CONTRACTS
-// ═══════════════════════════════════════════════════════════════
-function fcBuildContractList(count) {
-  var cur=ngfCurrent(); if(!cur) return [];
-  var list=[cur], prev=cur;
+// ═══════════════════════════════════════════════════════
+function fcBuildContractList(count){
+  var cur=ngfCurrent();if(!cur) return [];
+  var list=[cur],prev=cur;
   for(var i=1;i<count;i++){prev=ngfNext(prev);list.push(prev);}
   return list;
 }
-async function fcLoad() {
-  if(fcLoading) return; fcLoading=true;
-  var spin=document.getElementById('fc-spin'), grid=document.getElementById('fc-grid'), status=document.getElementById('fc-status');
-  spin.style.display='block'; grid.style.display='none'; status.textContent='Loading…';
-
-  var contracts=fcBuildContractList(12);
-  var cur=ngfCurrent(), nxt=cur?ngfNext(cur):null;
-
-  // Update subtitle with current front month label
+async function fcLoad(){
+  if(fcLoading) return;fcLoading=true;
+  var spin=document.getElementById('fc-spin'),grid=document.getElementById('fc-grid'),status=document.getElementById('fc-status');
+  spin.style.display='block';grid.style.display='none';status.textContent='Loading…';
+  var contracts=fcBuildContractList(12),cur=ngfCurrent(),nxt=cur?ngfNext(cur):null;
   var sub=document.getElementById('fc-subtitle');
   if(sub&&cur) sub.textContent='Front: '+cur.label+' · D/D change · spread vs front';
-
-  dbLog('FC: front='+( cur?cur.label:'?')+' ticker='+(cur?cur.ticker:'?'), 'info');
-
-  var results=await Promise.allSettled(contracts.map(function(c){return ngfFetchTwoDays(c.ticker, c.isFront);}));
+  dbLog('FC: front='+(cur?cur.label:'?')+' ticker='+(cur?cur.ticker:'?'),'info');
+  var results=await Promise.allSettled(contracts.map(function(c){return ngfFetchTwoDays(c.ticker,c.isFront);}));
   var frontPrice=(results[0]&&results[0].status==='fulfilled')?results[0].value.last:null;
-  var loaded=0, html='<div class="fc-grid-wrap">';
+  var loaded=0,html='<div class="fc-grid-wrap">';
   results.forEach(function(r,i){
-    var c=contracts[i], isFront=cur&&c.ticker===cur.ticker, isNext=nxt&&c.ticker===nxt.ticker;
-    var pd=(r.status==='fulfilled')?r.value:null, price=pd?pd.last:null, prevP=pd?pd.prev:null;
+    var c=contracts[i],isFront=cur&&c.ticker===cur.ticker,isNext=nxt&&c.ticker===nxt.ticker;
+    var pd=(r.status==='fulfilled')?r.value:null,price=pd?pd.last:null,prevP=pd?pd.prev:null;
     if(price!=null) loaded++;
     var spread=(price!=null&&frontPrice!=null&&i>0)?price-frontPrice:null;
-    var dayChg=(price!=null&&prevP!=null)?price-prevP:null, dayPct=(dayChg!=null&&prevP!=null&&prevP!==0)?dayChg/prevP*100:null;
+    var dayChg=(price!=null&&prevP!=null)?price-prevP:null,dayPct=(dayChg!=null&&prevP!=null&&prevP!==0)?dayChg/prevP*100:null;
     html+='<div class="fc-card"><div class="fc-lbl"><span>'+esc(c.label)+'</span>';
     if(isFront) html+='<span class="fc-badge front">Front</span>';
     else if(isNext) html+='<span class="fc-badge next">Next</span>';
@@ -1891,106 +1746,105 @@ async function fcLoad() {
       html+='<div class="fc-price">$'+price.toFixed(3)+'</div>';
       if(dayChg!=null&&dayPct!=null){var cf=fmtChg(dayChg,dayPct);html+='<div class="fc-row" style="color:'+cf.color+'">'+esc(cf.text)+' D/D</div>';}
       if(spread!=null){var sc=spread>=0?'#ff7b72':'#3fb950';html+='<div class="fc-row" style="color:'+sc+'">'+esc(sgn(spread)+spread.toFixed(3))+' vs front</div>';}
-    }else{
+    } else {
       html+='<div class="fc-price" style="color:#6e7681;font-size:13px">N/A</div><div class="fc-row" style="color:#6e7681">'+esc(r.reason?r.reason.message:'unavailable')+'</div>';
     }
     html+='</div>';
   });
-  html+='</div>'; grid.innerHTML=html; spin.style.display='none'; grid.style.display='block';
+  html+='</div>';grid.innerHTML=html;spin.style.display='none';grid.style.display='block';
   status.textContent=loaded+'/'+contracts.length+' loaded';
-  dbLog('FC: '+loaded+'/'+contracts.length+' fetched', loaded>0?'ok':'warn');
+  dbLog('FC: '+loaded+'/'+contracts.length+' fetched',loaded>0?'ok':'warn');
   fcLoading=false;
 }
 function fcToggle(){fcBodyOpen=!fcBodyOpen;var body=document.getElementById('fc-body'),arrow=document.getElementById('fc-arrow');body.style.display=fcBodyOpen?'block':'none';arrow.style.transform=fcBodyOpen?'rotate(90deg)':'';}
 
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // PRODUCTION / EXPORT
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 function peSetDot(s){document.getElementById('pe-dot').className='sdot '+s;}
 function peSetBadge(t,txt){var el=document.getElementById('pe-badge');el.textContent=txt;el.className='cbadge '+t;}
 async function peFetchOne(key){
-  peApiCount++; document.getElementById('pe-api-count').textContent=peApiCount;
+  peApiCount++;document.getElementById('pe-api-count').textContent=peApiCount;
   var url='https://api.eia.gov/v2/seriesid/'+PE_SERIES[key]+'?api_key='+ST_API_KEY+'&frequency=monthly&data[0]=value&sort[0][column]=period&sort[0][direction]=asc&length=600';
-  var res=await fetch(url); if(!res.ok) throw new Error('HTTP '+res.status+' ('+PE_SERIES[key]+')');
-  var json=await res.json(); if(json.response&&json.response.error) throw new Error(json.response.error);
-  var rows=(json.response&&json.response.data)||[]; if(!rows.length) throw new Error('empty ('+PE_SERIES[key]+')');
+  var res=await fetch(url);if(!res.ok) throw new Error('HTTP '+res.status+' ('+PE_SERIES[key]+')');
+  var json=await res.json();if(json.response&&json.response.error) throw new Error(json.response.error);
+  var rows=(json.response&&json.response.data)||[];if(!rows.length) throw new Error('empty ('+PE_SERIES[key]+')');
   var out=rows.map(function(r){var v=parseFloat(r.value);if(!isFinite(v))return null;return{period:r.period,value:parseFloat((v/1000/daysInMonth(r.period)).toFixed(4))};}).filter(Boolean);
-  out.sort(function(a,b){return a.period<b.period?-1:1;}); return out;
+  out.sort(function(a,b){return a.period<b.period?-1:1;});return out;
 }
 async function peLoadAll(){
-  peSetDot('loading'); peSetBadge('loading','Loading…');
+  peSetDot('loading');peSetBadge('loading','Loading…');
   ['prod','can','mex','lng','supply'].forEach(function(k){document.getElementById('pe-wrap-'+k).style.display='none';var sp=document.getElementById('pe-spin-'+k);sp.style.display='block';sp.innerHTML='<span class="sp"></span>Loading…';});
-  dbLog('PE: fetching 4 EIA series…','info');
-  var keys=['prod','can','mex','lng'], results=await Promise.allSettled(keys.map(function(k){return peFetchOne(k);})), errs=[];
-  results.forEach(function(r,i){var k=keys[i];if(r.status==='fulfilled'){peData[k]=r.value;dbLog('PE '+k+': OK ('+r.value.length+' months)','ok');}else{errs.push(k);dbLog('PE '+k+' error: '+r.reason.message,'error');peData[k]=null;}});
-  keys.forEach(function(k){peRenderOne(k);}); peRenderSupply();
+  var keys=['prod','can','mex','lng'],results=await Promise.allSettled(keys.map(function(k){return peFetchOne(k);})),errs=[];
+  results.forEach(function(r,i){var k=keys[i];if(r.status==='fulfilled'){peData[k]=r.value;}else{errs.push(k);dbLog('PE '+k+' error: '+r.reason.message,'error');peData[k]=null;}});
+  keys.forEach(function(k){peRenderOne(k);});peRenderSupply();
   if(errs.length){peSetDot('err');peSetBadge('err','Partial error');}else{peSetDot('ok');peSetBadge('live','Live data');}
 }
 function peFilterByWindow(series){
   if(!series||!series.length) return [];
   if(peWindow==='ytd'){var yr=String(new Date().getFullYear());return series.filter(function(d){return d.period.startsWith(yr);});}
-  var days=PE_WINDOWS[peWindow]; if(!days||days>=99999) return series.slice();
-  var cut=new Date(); cut.setDate(cut.getDate()-days); var cutStr=cut.toISOString().slice(0,7);
+  var days=PE_WINDOWS[peWindow];if(!days||days>=99999) return series.slice();
+  var cut=new Date();cut.setDate(cut.getDate()-days);var cutStr=cut.toISOString().slice(0,7);
   return series.filter(function(d){return d.period>=cutStr;});
 }
 function peRenderOne(key){
-  var spinEl=document.getElementById('pe-spin-'+key), wrapEl=document.getElementById('pe-wrap-'+key);
-  var allData=peData[key]; if(!allData||!allData.length){spinEl.innerHTML='⚠ No data';return;}
+  var spinEl=document.getElementById('pe-spin-'+key),wrapEl=document.getElementById('pe-wrap-'+key);
+  var allData=peData[key];if(!allData||!allData.length){spinEl.innerHTML='⚠ No data';return;}
   var filtered=peFilterByWindow(allData).slice().sort(function(a,b){return a.period<b.period?-1:1;});
   if(!filtered.length){spinEl.innerHTML='⚠ No data for window';return;}
-  spinEl.style.display='none'; wrapEl.style.display='block'; killChart(peCharts[key]); peCharts[key]=null;
-  var color=PE_COLORS[key], label=PE_LABELS[key];
-  var labels=filtered.map(function(d){return fmtPeriod(d.period);}), values=filtered.map(function(d){return d.value;});
-  var tt=Object.assign({},baseTT(),{callbacks:{title:function(items){var i=items[0]&&items[0].dataIndex;return i!=null?filtered[i].period:'';},label:function(c){return' '+label+': '+c.parsed.y.toFixed(2)+' Bcf/d';}}});
-  var opts=baseOpts(); opts.scales.y.ticks.callback=function(v){return v.toFixed(1);}; opts.plugins.tooltip=tt;
+  spinEl.style.display='none';wrapEl.style.display='block';killChart(peCharts[key]);peCharts[key]=null;
+  var color=PE_COLORS[key],label=PE_LABELS[key];
+  var labels=filtered.map(function(d){return fmtPeriod(d.period);}),values=filtered.map(function(d){return d.value;});
+  var tt=Object.assign({},baseTT(),{callbacks:{title:function(items){var i=items[0]&&items[0].dataIndex;return i!=null?filtered[i].period:'';},label:function(c){return ' '+label+': '+c.parsed.y.toFixed(2)+' Bcf/d';}}});
+  var opts=baseOpts();opts.scales.y.ticks.callback=function(v){return v.toFixed(1);};opts.plugins.tooltip=tt;
   peCharts[key]=new Chart(document.getElementById('pe-c-'+key).getContext('2d'),{type:'line',data:{labels:labels,datasets:[{label:label,data:values,borderColor:color,borderWidth:2,pointRadius:filtered.length>60?0:2,pointHoverRadius:5,tension:0.3,fill:false}]},options:opts});
 }
 function peCalcSupply(){
   if(!peData.prod||!peData.can||!peData.mex||!peData.lng) return null;
-  var maps={}; ['prod','can','mex','lng'].forEach(function(k){maps[k]={};peData[k].forEach(function(r){maps[k][r.period]=r.value;});});
+  var maps={};['prod','can','mex','lng'].forEach(function(k){maps[k]={};peData[k].forEach(function(r){maps[k][r.period]=r.value;});});
   var periods=Object.keys(maps.prod).filter(function(p){return maps.can[p]!=null&&maps.mex[p]!=null&&maps.lng[p]!=null;}).sort();
   if(!periods.length) return null;
   return periods.map(function(p){return{period:p,value:parseFloat((maps.prod[p]+maps.can[p]-maps.mex[p]-maps.lng[p]).toFixed(4))};});
 }
 function peRenderSupply(){
-  var spinEl=document.getElementById('pe-spin-supply'), wrapEl=document.getElementById('pe-wrap-supply');
-  spinEl.style.display='block'; wrapEl.style.display='none';
-  var supply=peCalcSupply(); if(!supply||!supply.length){spinEl.innerHTML='⚠ Need all 4 series';return;}
+  var spinEl=document.getElementById('pe-spin-supply'),wrapEl=document.getElementById('pe-wrap-supply');
+  spinEl.style.display='block';wrapEl.style.display='none';
+  var supply=peCalcSupply();if(!supply||!supply.length){spinEl.innerHTML='⚠ Need all 4 series';return;}
   var filtered=peFilterByWindow(supply).slice().sort(function(a,b){return a.period<b.period?-1:1;});
   if(!filtered.length){spinEl.innerHTML='⚠ No data for window';return;}
-  var latest=filtered[filtered.length-1], prev2=filtered.length>1?filtered[filtered.length-2]:null;
-  var bVal=document.getElementById('b-supply-val'); bVal.textContent=latest.value.toFixed(2)+' Bcf/d'; bVal.style.color='#e6edf3';
+  var latest=filtered[filtered.length-1],prev2=filtered.length>1?filtered[filtered.length-2]:null;
+  var bVal=document.getElementById('b-supply-val');bVal.textContent=latest.value.toFixed(2)+' Bcf/d';bVal.style.color='#e6edf3';
   document.getElementById('b-supply-date').textContent=fmtPeriod(latest.period);
   if(prev2){var chg=latest.value-prev2.value;document.getElementById('b-supply-sub').innerHTML='<span style="color:'+(chg>=0?'#3fb950':'#ff7b72')+'">'+esc(sgn(chg)+chg.toFixed(2)+' Bcf/d vs prev mo')+'</span>';}
-  spinEl.style.display='none'; wrapEl.style.display='block'; killChart(peCharts.supply); peCharts.supply=null;
-  var labels=filtered.map(function(d){return fmtPeriod(d.period);}), values=filtered.map(function(d){return d.value;});
-  var tt=Object.assign({},baseTT(),{callbacks:{title:function(items){var i=items[0]&&items[0].dataIndex;return i!=null?filtered[i].period:'';},label:function(c){return' Total Supply: '+c.parsed.y.toFixed(2)+' Bcf/d';}}});
-  var opts=baseOpts(); opts.scales.y.ticks.callback=function(v){return v.toFixed(1);}; opts.plugins.tooltip=tt;
+  spinEl.style.display='none';wrapEl.style.display='block';killChart(peCharts.supply);peCharts.supply=null;
+  var labels=filtered.map(function(d){return fmtPeriod(d.period);}),values=filtered.map(function(d){return d.value;});
+  var tt=Object.assign({},baseTT(),{callbacks:{title:function(items){var i=items[0]&&items[0].dataIndex;return i!=null?filtered[i].period:'';},label:function(c){return ' Total Supply: '+c.parsed.y.toFixed(2)+' Bcf/d';}}});
+  var opts=baseOpts();opts.scales.y.ticks.callback=function(v){return v.toFixed(1);};opts.plugins.tooltip=tt;
   peCharts.supply=new Chart(document.getElementById('pe-c-supply').getContext('2d'),{type:'line',data:{labels:labels,datasets:[{label:'Total Supply',data:values,borderColor:'#58a6ff',borderWidth:2.5,pointRadius:filtered.length>60?0:2,pointHoverRadius:5,tension:0.3,fill:false}]},options:opts});
   document.getElementById('pe-supply-sub').textContent='Monthly · Bcf/d · '+({max:'full','5y':'5-year','2y':'2-year','1y':'1-year',ytd:'YTD'}[peWindow]||peWindow)+' history';
 }
 function peSetWindow(w){
-  if(peWindow===w) return; peWindow=w;
+  if(peWindow===w) return;peWindow=w;
   document.querySelectorAll('[data-pe-w]').forEach(function(b){b.classList.toggle('on',b.dataset.peW===w);});
   Object.keys(peCharts).forEach(function(k){killChart(peCharts[k]);peCharts[k]=null;});
   ['prod','can','mex','lng','supply'].forEach(function(k){document.getElementById('pe-wrap-'+k).style.display='none';document.getElementById('pe-spin-'+k).style.display='none';});
-  ['prod','can','mex','lng'].forEach(function(k){peRenderOne(k);}); peRenderSupply();
-  var lbl={max:'full','5y':'5-year','2y':'2-year','1y':'1-year',ytd:'YTD'}, w2=lbl[w]||w;
+  ['prod','can','mex','lng'].forEach(function(k){peRenderOne(k);});peRenderSupply();
+  var lbl={max:'full','5y':'5-year','2y':'2-year','1y':'1-year',ytd:'YTD'},w2=lbl[w]||w;
   ['prod','can','mex','lng'].forEach(function(k){document.getElementById('pe-'+k+'-sub').textContent='Monthly · Bcf/d · '+w2+' history';});
 }
 
-// ═══════════════════════════════════════════════════════════════
-// DATA EXPORTS
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+// EXPORTS
+// ═══════════════════════════════════════════════════════
 function stExportStorage(){
   if(!stStorageData.length){alert('No storage data.');return;}
-  var dates=stStorageData.map(function(d){return d.date;}), b5=st5y(stStorageData,dates), rows=[];
+  var dates=stStorageData.map(function(d){return d.date;}),b5=st5y(stStorageData,dates),rows=[];
   stStorageData.forEach(function(d,i){var b=b5[i],dv=b.avg!=null?(d.value-b.avg).toFixed(1):'N/A',pct=(b.avg!=null&&b.avg!==0)?((d.value-b.avg)/b.avg*100).toFixed(2)+'%':'N/A';rows.push(fmtGB(d.date)+'\t'+Math.round(d.value)+'\t'+(b.avg!=null?Math.round(b.avg):'N/A')+'\t'+dv+'\t'+pct+'\t'+(b.min!=null?Math.round(b.min):'N/A')+'\t'+(b.max!=null?Math.round(b.max):'N/A'));});
   dlBlob('natgas_storage.txt','Natural Gas Storage\nSource: EIA\nExported: '+new Date().toLocaleString('en-GB')+'\n\nDate\t\t\tBcf\t5yAvg\tDev\tDev%\t5yMin\t5yMax\n'+Array(70).join('-')+'\n'+rows.join('\n'));
 }
 function stExportDev(){
   if(!stStorageData.length){alert('No data.');return;}
-  var dates=stStorageData.map(function(d){return d.date;}), b5=st5y(stStorageData,dates), rows=[];
+  var dates=stStorageData.map(function(d){return d.date;}),b5=st5y(stStorageData,dates),rows=[];
   stStorageData.forEach(function(d,i){var avg=b5[i].avg;if(avg==null)return;var dv=d.value-avg;rows.push(fmtGB(d.date)+'\t'+sgn(dv)+Math.round(dv)+'\t'+(dv>=0?'SURPLUS':'DEFICIT'));});
   dlBlob('natgas_deviation.txt','Storage Deviation\nSource: EIA\nExported: '+new Date().toLocaleString('en-GB')+'\n\nDate\t\t\tDev(Bcf)\tType\n'+Array(50).join('-')+'\n'+rows.join('\n'));
 }
@@ -2006,32 +1860,32 @@ function stExportInj(){
   dlBlob('natgas_injection_withdrawal.txt','Natural Gas Weekly Injection / Withdrawal\nSource: EIA\nExported: '+new Date().toLocaleString('en-GB')+'\n\n'+rows.join('\n'));
 }
 function peExport(key){
-  var d=peData[key]; if(!d||!d.length){alert('No data.');return;}
+  var d=peData[key];if(!d||!d.length){alert('No data.');return;}
   function pad(s,w){s=String(s==null?'':s);return s.length>=w?s.slice(0,w-1)+' ':s+' '.repeat(w-s.length);}
   var lines=[PE_LABELS[key]+' · Bcf/d','Source: EIA API v2 ('+PE_SERIES[key]+')','Exported: '+new Date().toLocaleString('en-GB'),'',pad('Period',10)+pad('Bcf/d',10),'-'.repeat(22)];
   d.forEach(function(r){lines.push(pad(r.period,10)+r.value.toFixed(4));});
   dlBlob(PE_NAMES[key]+'.txt',lines.join('\n'));
 }
 function peExportSupply(){
-  var s=peCalcSupply(); if(!s||!s.length){alert('No data.');return;}
+  var s=peCalcSupply();if(!s||!s.length){alert('No data.');return;}
   function pad(x,w){x=String(x==null?'':x);return x.length>=w?x.slice(0,w-1)+' ':x+' '.repeat(w-x.length);}
   var lines=['Total Supply (Prod+Canada-Mexico-LNG) · Bcf/d','Source: EIA API v2','Exported: '+new Date().toLocaleString('en-GB'),'',pad('Period',10)+pad('Bcf/d',10),'-'.repeat(22)];
   s.forEach(function(r){lines.push(pad(r.period,10)+r.value.toFixed(4));});
   dlBlob('natgas_total_supply.txt',lines.join('\n'));
 }
 
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // AI
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 function aiMsgHtml(text){
   return esc(text).replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/`([^`]+)`/g,'<code style="background:#1c2128;padding:1px 4px;border-radius:3px;font-family:var(--mono);font-size:11px">$1</code>').replace(/#{1,6} (.+)/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
 }
 function aiAppendBubble(role,text,isLoading){
-  var msgs=document.getElementById('ai-messages'), wrap=document.createElement('div');
+  var msgs=document.getElementById('ai-messages'),wrap=document.createElement('div');
   wrap.style.cssText='display:flex;flex-direction:column;align-items:'+(role==='user'?'flex-end':'flex-start');
-  var bbl=document.createElement('div'); bbl.className=role==='user'?'ai-bubble-user':'ai-bubble-bot';
+  var bbl=document.createElement('div');bbl.className=role==='user'?'ai-bubble-user':'ai-bubble-bot';
   bbl.innerHTML=isLoading?'<span class="sp"></span><span style="color:#8b949e">Thinking…</span>':aiMsgHtml(text);
-  wrap.appendChild(bbl); msgs.appendChild(wrap); msgs.scrollTop=msgs.scrollHeight; return bbl;
+  wrap.appendChild(bbl);msgs.appendChild(wrap);msgs.scrollTop=msgs.scrollHeight;return bbl;
 }
 async function aiCallGroq(messages,maxTokens){
   var resp=await fetch(GROQ_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:GROQ_MODEL,max_tokens:maxTokens||1024,messages:messages})});
@@ -2040,17 +1894,17 @@ async function aiCallGroq(messages,maxTokens){
   var text='';
   if(data.choices&&data.choices[0]){var c=data.choices[0].message;if(c&&typeof c.content==='string')text=c.content.trim();else if(c&&Array.isArray(c.content))text=c.content.filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('').trim();}
   if(!text&&data.content&&data.content[0]) text=(data.content[0].text||'').trim();
-  if(!text) dbLog('Groq: empty response body','warn');
+  if(!text) dbLog('Groq: empty response','warn');
   return text;
 }
 function aiGetContext(){
-  var lines=[], si=getSeasonInfo();
-  lines.push('=== NATGAS DASHBOARD LIVE DATA ===');
+  var lines=[],si=getSeasonInfo();
+  lines.push('=== NATGAS LIVE DATA ===');
   lines.push('Date: '+new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}));
   lines.push('Season: '+si.icon+' '+si.name+' (day '+si.daysIn+'/'+si.sTotal+', '+si.daysLeft+'d left, next: '+si.nxtIcon+' '+si.nxtName+')');
   if(stStorageData.length){
-    var lat=stStorageData[stStorageData.length-1], prev=stStorageData.length>1?stStorageData[stStorageData.length-2]:null;
-    var band=st5y(stStorageData,[lat.date])[0], avg5=band.avg, devBcf=avg5!=null?lat.value-avg5:null, devPct=(avg5&&avg5!==0&&devBcf!=null)?devBcf/avg5*100:null;
+    var lat=stStorageData[stStorageData.length-1],prev=stStorageData.length>1?stStorageData[stStorageData.length-2]:null;
+    var band=st5y(stStorageData,[lat.date])[0],avg5=band.avg,devBcf=avg5!=null?lat.value-avg5:null,devPct=(avg5&&avg5!==0&&devBcf!=null)?devBcf/avg5*100:null;
     lines.push('\n--- STORAGE ---');
     lines.push('Latest: '+Math.round(lat.value).toLocaleString()+' Bcf | Report: '+fmtShort(isoAdd(lat.date,6)));
     if(prev) lines.push('W/W: '+sgn(lat.value-prev.value)+Math.round(lat.value-prev.value)+' Bcf');
@@ -2058,35 +1912,37 @@ function aiGetContext(){
     if(devBcf!=null){var fp=fairPrice(devBcf);lines.push('Fair price: $'+fp.toFixed(3)+' [Min $'+(fp-0.5).toFixed(3)+' / Max $'+(si.isHeating?fp+1.9:fp+0.5).toFixed(3)+']');}
     [stLastF7,stLastF14,stLastF21].forEach(function(f,fi){
       if(!f||f.predictedLevel==null) return;
-      var lbl=['7D','14D','21D'][fi], b=st5y(stStorageData,[f.endDate])[0].avg;
+      var lbl=['7D','14D','21D'][fi],b=st5y(stStorageData,[f.endDate])[0].avg;
       lines.push(lbl+' fcst: '+Math.round(f.predictedLevel)+' Bcf');
       if(b!=null){var dv=f.predictedLevel-b;lines.push('  vs 5y: '+sgn(dv)+Math.round(dv)+' Bcf | Fair: $'+fairPrice(dv).toFixed(3));}
     });
-  }else lines.push('Storage: not loaded');
+  }
   if(stNgfData.length){
-    var lngf=stNgfData[stNgfData.length-1], curC=ngfCurrent(), nxtC=curC?ngfNext(curC):null, l52=stNgfData.slice(-52);
+    var lngf=stNgfData[stNgfData.length-1],curC=ngfCurrent(),nxtC=curC?ngfNext(curC):null,l52=stNgfData.slice(-52);
     lines.push('\n--- FUTURES ---');
     lines.push('Front ('+(curC?curC.label:'?')+'): $'+lngf.close.toFixed(3)+'/MMBtu');
-    if(nxtC&&nextContractPrice!=null){var sp=nextContractPrice-lngf.close;lines.push('Next ('+nxtC.label+'): $'+nextContractPrice.toFixed(3)+' | Spread: '+sgn(sp)+sp.toFixed(3)+' → '+(sp>=0?'Contango (bearish)':'Backwardation (bullish)'));}
+    if(nxtC&&nextContractPrice!=null){var sp=nextContractPrice-lngf.close;lines.push('Next ('+nxtC.label+'): $'+nextContractPrice.toFixed(3)+' | Spread: '+sgn(sp)+sp.toFixed(3)+' → '+(sp>=0?'Contango':'Backwardation'));}
     lines.push('52w H: $'+Math.max.apply(null,l52.map(function(d){return d.high;})).toFixed(3)+' / 52w L: $'+Math.min.apply(null,l52.map(function(d){return d.low;})).toFixed(3));
-  }else lines.push('NG=F: not loaded');
-  var supply=peCalcSupply(); if(supply&&supply.length){var sl=supply[supply.length-1];lines.push('\n--- SUPPLY ---');lines.push('Total Supply ('+sl.period+'): '+sl.value.toFixed(2)+' Bcf/d');}
+  }
+  var supply=peCalcSupply();if(supply&&supply.length){var sl=supply[supply.length-1];lines.push('\n--- SUPPLY ---');lines.push('Total Supply ('+sl.period+'): '+sl.value.toFixed(2)+' Bcf/d');}
   if(wxS){
     var ti=wxS.todayIdx;
     function wxDs(days){var s=0,lim=Math.min(ti+days,wxS.demAll.length);for(var j=ti;j<lim;j++)s+=wxS.demAll[j]||0;return s;}
     function wx5s(days){var s=0,lim=Math.min(ti+days,wxS.dem5avg.length);for(var j=ti;j<lim;j++)s+=wxS.dem5avg[j]||0;return s;}
-    lines.push('\n--- WEATHER (GFS) ---');
+    lines.push('\n--- WEATHER ---');
     [4,7,10,13,16].forEach(function(d){var dem=wxDs(d),dem5=wx5s(d),dev=dem-dem5,pct=dem5>0.5?dev/dem5*100:0;lines.push(d+'D: '+dem.toFixed(0)+' | '+(dem5>0.5?sgn(dev)+dev.toFixed(0)+' ('+sgn(pct)+pct.toFixed(1)+'%) vs 5y':'N/A')+' | Ø '+(dem/d).toFixed(1)+'/d');});
     var hF=0,cF=0,l16=Math.min(ti+16,wxS.hddAll.length);for(var wj=ti;wj<l16;wj++){hF+=wxS.hddAll[wj]||0;cF+=wxS.cddAll[wj]||0;}
     lines.push('HDD 16D: '+hF.toFixed(1)+' | CDD 16D: '+cF.toFixed(1));
-  }else lines.push('Weather: not loaded');
-  lines.push('=== END ==='); return lines.join('\n');
+  }
+  lines.push('=== END ===');return lines.join('\n');
 }
 function aiGetReportPrompt(){
   var si=getSeasonInfo();
-  var storNow='N/A',devNow='N/A',fairNow='N/A',stor7d='N/A',dev7d='N/A',fair7d='N/A',stor14d='N/A',dev14d='N/A',fair14d='N/A',stor21d='N/A',dev21d='N/A',fair21d='N/A';
-  var actualPrice='N/A',frontLabel='?',nextLabel='?',nxtPrice='N/A',spreadVal='N/A',curveShape='N/A',supplyNow='N/A',supplyMoM='N/A',wxLines='N/A';
-  function fmtDev(dBcf,dPct){if(dBcf==null||dPct==null)return'N/A';return sgn(dBcf)+Math.round(dBcf).toLocaleString()+' Bcf ('+sgn(dPct)+dPct.toFixed(1)+'%) → '+(dBcf>=0?'SURPLUS (bearish)':'DEFICIT (bullish)');}
+  var storNow='N/A',devNow='N/A',fairNow='N/A',stor7d='N/A',dev7d='N/A',fair7d='N/A';
+  var stor14d='N/A',dev14d='N/A',fair14d='N/A',stor21d='N/A',dev21d='N/A',fair21d='N/A';
+  var actualPrice='N/A',frontLabel='?',nextLabel='?',nxtPrice='N/A',spreadVal='N/A',curveShape='N/A';
+  var supplyNow='N/A',supplyMoM='N/A',wxLines='N/A';
+  function fmtDev(dBcf,dPct){if(dBcf==null||dPct==null)return 'N/A';return sgn(dBcf)+Math.round(dBcf).toLocaleString()+' Bcf ('+sgn(dPct)+dPct.toFixed(1)+'%) → '+(dBcf>=0?'SURPLUS (bearish)':'DEFICIT (bullish)');}
   function fmtFcst(f){
     if(!f||f.predictedLevel==null) return{stor:'N/A',dev:'N/A',fair:'N/A'};
     var b=st5y(stStorageData,[f.endDate])[0].avg;
@@ -2108,83 +1964,73 @@ function aiGetReportPrompt(){
   if(stNgfData.length){
     var lngf2=stNgfData[stNgfData.length-1],lngfPrev2=stNgfData.length>1?stNgfData[stNgfData.length-2]:null;
     var curC2=ngfCurrent(),nxtC2=curC2?ngfNext(curC2):null;
-    frontLabel=curC2?curC2.label:'?'; nextLabel=nxtC2?nxtC2.label:'?';
+    frontLabel=curC2?curC2.label:'?';nextLabel=nxtC2?nxtC2.label:'?';
     var l52=stNgfData.slice(-52);
     actualPrice='$'+lngf2.close.toFixed(3)+'/MMBtu'+(lngfPrev2?' (W/W: '+sgn(lngf2.close-lngfPrev2.close)+(lngf2.close-lngfPrev2.close).toFixed(3)+')':'');
     actualPrice+=' | 52w H: $'+Math.max.apply(null,l52.map(function(d){return d.high;})).toFixed(3)+' / 52w L: $'+Math.min.apply(null,l52.map(function(d){return d.low;})).toFixed(3);
     if(nextContractPrice!=null){nxtPrice='$'+nextContractPrice.toFixed(3)+'/MMBtu';var sp2=nextContractPrice-lngf2.close;spreadVal=sgn(sp2)+sp2.toFixed(3)+' → '+(sp2>=0?'Contango (bearish)':'Backwardation (bullish)');curveShape=sp2>=0?'Contango':'Backwardation';}
   }
-  var supply2=peCalcSupply(); if(supply2&&supply2.length>=2){var sl2=supply2[supply2.length-1],sl3=supply2[supply2.length-2],sMoM=sl2.value-sl3.value;supplyNow=sl2.value.toFixed(2)+' Bcf/d ('+fmtPeriod(sl2.period)+')';supplyMoM=sgn(sMoM)+sMoM.toFixed(2)+' Bcf/d vs prev → '+(sMoM<0?'falling (bullish)':'rising (bearish)');}
+  var supply2=peCalcSupply();if(supply2&&supply2.length>=2){var sl2=supply2[supply2.length-1],sl3=supply2[supply2.length-2],sMoM=sl2.value-sl3.value;supplyNow=sl2.value.toFixed(2)+' Bcf/d ('+fmtPeriod(sl2.period)+')';supplyMoM=sgn(sMoM)+sMoM.toFixed(2)+' Bcf/d vs prev → '+(sMoM<0?'falling (bullish)':'rising (bearish)');}
   if(wxS){
     var ti2=wxS.todayIdx;
     function wxDs2(d){var s=0,lim=Math.min(ti2+d,wxS.demAll.length);for(var j=ti2;j<lim;j++)s+=wxS.demAll[j]||0;return s;}
     function wx5s2(d){var s=0,lim=Math.min(ti2+d,wxS.dem5avg.length);for(var j=ti2;j<lim;j++)s+=wxS.dem5avg[j]||0;return s;}
     var hF2=0,cF2=0,l162=Math.min(ti2+16,wxS.hddAll.length);for(var wk2=ti2;wk2<l162;wk2++){hF2+=wxS.hddAll[wk2]||0;cF2+=wxS.cddAll[wk2]||0;}
     var totF2=hF2+cF2,drv2=totF2<0.5?'No demand':(hF2>=cF2?'HDD '+Math.round(hF2/totF2*100)+'%':'CDD '+Math.round(cF2/totF2*100)+'%');
-    wxLines=[4,7,10,13,16].map(function(d){var dem=wxDs2(d),dem5=wx5s2(d),dev=dem-dem5,pct=dem5>0.5?dev/dem5*100:0;return d+'D: '+dem.toFixed(0)+' HDD+CDD | '+(dem5>0.5?sgn(dev)+dev.toFixed(0)+' ('+sgn(pct)+pct.toFixed(1)+'%) vs 5y':'N/A')+' | Ø '+(dem/d).toFixed(1)+'/d';}).join('\n  ');
-    wxLines+='\n  Driver (16D): '+drv2+' | HDD: '+hF2.toFixed(1)+' | CDD: '+cF2.toFixed(1);
+    wxLines=[4,7,10,13,16].map(function(d){var dem=wxDs2(d),dem5=wx5s2(d),dev=dem-dem5,pct=dem5>0.5?dev/dem5*100:0;return d+'D: '+dem.toFixed(0)+' | '+(dem5>0.5?sgn(dev)+dev.toFixed(0)+' ('+sgn(pct)+pct.toFixed(1)+'%) vs 5y':'N/A')+' | Ø '+(dem/d).toFixed(1)+'/d';}).join('\n  ');
+    wxLines+='\n  Driver(16D): '+drv2+' | HDD: '+hF2.toFixed(1)+' | CDD: '+cF2.toFixed(1);
   }
-  return 'Jsi seniorní komoditní analytik hedge fondu se specializací na trh se zemním plynem (Henry Hub). Vytvoř precizní, rozhodovací analytický report.\n\n### VSTUPNÍ DATA\n\n**SEZÓNA:** '+si.icon+' '+si.name+' (den '+si.daysIn+'/'+si.sTotal+', zbývá '+si.daysLeft+'d) → příští: '+si.nxtIcon+' '+si.nxtName+'\n\n**STORAGE**\n- Aktuální: '+storNow+'\n- Deviation: '+devNow+'\n- 7D fcst: '+stor7d+' | Dev: '+dev7d+'\n- 14D fcst: '+stor14d+' | Dev: '+dev14d+'\n- 21D fcst: '+stor21d+' | Dev: '+dev21d+'\n\n**FAIR VALUE (−0.0013×devBcf + 3.1564)**\n- Now: '+fairNow+' | 7D: '+fair7d+' | 14D: '+fair14d+' | 21D: '+fair21d+'\n\n**FUTURES**\n- Front ('+frontLabel+'): '+actualPrice+'\n- Next ('+nextLabel+'): '+nxtPrice+'\n- Spread: '+spreadVal+' · Curve: '+curveShape+'\n\n**SUPPLY:** '+supplyNow+' | MoM: '+supplyMoM+'\n\n**WEATHER (GFS fcst):**\n  '+wxLines+'\n\n### PRAVIDLA\n1. Storage deficit→bullish | surplus→bearish; 21D>14D>7D>now\n2. Actual < fair value→bullish | > fair→bearish\n3. Contango→bearish | Backwardation→bullish\n4. Klesající supply→bullish | rostoucí→bearish\n5. Vyšší weather demand vs 5y→bullish\n\n### STRUKTURA\n1) Executive Summary (3–5 vět)\n2) Storage analýza (now/7D/14D/21D)\n3) Price vs Fair Value\n4) Futures křivka & spread\n5) Supply\n6) Weather & Demand\n7) Sentiment: BULLISH / BEARISH / NEUTRAL s čísly\n\nČesky. Hedge fund styl. Konkrétní čísla. Prioritizuj 21D>14D>7D>now.';
+  return 'Jsi seniorní komoditní analytik hedge fondu — Henry Hub Natural Gas. Vytvoř precizní analytický report.\n\n### DATA\n\n**SEZÓNA:** '+si.icon+' '+si.name+' (den '+si.daysIn+'/'+si.sTotal+', zbývá '+si.daysLeft+'d) → '+si.nxtIcon+' '+si.nxtName+'\n\n**STORAGE**\n- Aktuální: '+storNow+'\n- Deviation: '+devNow+'\n- 7D: '+stor7d+' | Dev: '+dev7d+'\n- 14D: '+stor14d+' | Dev: '+dev14d+'\n- 21D: '+stor21d+' | Dev: '+dev21d+'\n\n**FAIR VALUE**\n- Now: '+fairNow+' | 7D: '+fair7d+' | 14D: '+fair14d+' | 21D: '+fair21d+'\n\n**FUTURES**\n- Front ('+frontLabel+'): '+actualPrice+'\n- Next ('+nextLabel+'): '+nxtPrice+'\n- Spread: '+spreadVal+' · '+curveShape+'\n\n**SUPPLY:** '+supplyNow+' | MoM: '+supplyMoM+'\n\n**WEATHER:**\n  '+wxLines+'\n\n### PRAVIDLA\n1. Deficit→bullish | surplus→bearish; 21D>14D>7D>now\n2. Actual < fair→bullish | > fair→bearish\n3. Contango→bearish | Backwardation→bullish\n4. Klesající supply→bullish\n5. Vyšší demand vs 5y→bullish\n\n### VÝSTUP\n1) Executive Summary\n2) Storage (now/7D/14D/21D)\n3) Price vs Fair Value\n4) Futures křivka\n5) Supply\n6) Weather & Demand\n7) Sentiment: BULLISH/BEARISH/NEUTRAL s čísly\n\nČesky. Hedge fund styl. Čísla všude. Prioritizuj 21D>14D>7D>now.';
 }
 async function aiSend(){
-  var input=document.getElementById('ai-input'), msg=input.value.trim(); if(!msg) return;
-  input.value=''; var btn=document.getElementById('ai-send-btn'); btn.disabled=true;
-  aiAppendBubble('user',msg,false); aiHistory.push({role:'user',content:msg});
+  var input=document.getElementById('ai-input'),msg=input.value.trim();if(!msg) return;
+  input.value='';var btn=document.getElementById('ai-send-btn');btn.disabled=true;
+  aiAppendBubble('user',msg,false);aiHistory.push({role:'user',content:msg});
   var loadBbl=aiAppendBubble('assistant','',true);
   var sys='You are an expert natural gas market analyst. Base analysis on the provided live data. Be concise. Highlight key figures in **bold**.\n\nCURRENT DATA:\n'+aiGetContext();
   try{
     var text=await aiCallGroq([{role:'system',content:sys}].concat(aiHistory.slice(-10)),1024);
     if(!text) text='⚠ Empty response.';
-    loadBbl.innerHTML=aiMsgHtml(text); aiHistory.push({role:'assistant',content:text});
+    loadBbl.innerHTML=aiMsgHtml(text);aiHistory.push({role:'assistant',content:text});
     dbLog('AI: OK ('+text.length+' chars)','ok');
   }catch(err){loadBbl.innerHTML='<span style="color:#ff7b72">⚠ Error: '+esc(err.message)+'</span>';dbLog('AI error: '+err.message,'error');}
-  btn.disabled=false; document.getElementById('ai-messages').scrollTop=99999;
+  btn.disabled=false;document.getElementById('ai-messages').scrollTop=99999;
 }
 async function aiSendReport(){
   if(!stStorageData.length){alert('Storage data not loaded yet.');return;}
-  var btn=document.getElementById('ai-report-btn'); btn.disabled=true; btn.textContent='⏳ Generating…';
-  aiAppendBubble('user','📊 Generate Analytical Report',false); aiHistory.push({role:'user',content:aiGetReportPrompt()});
+  var btn=document.getElementById('ai-report-btn');btn.disabled=true;btn.textContent='⏳ Generating…';
+  aiAppendBubble('user','📊 Generate Analytical Report',false);aiHistory.push({role:'user',content:aiGetReportPrompt()});
   var loadBbl=aiAppendBubble('assistant','',true);
   try{
-    var sys='You are a senior commodity analyst at a hedge fund specializing in natural gas. Respond in Czech with a professional hedge fund report style.';
+    var sys='You are a senior commodity analyst at a hedge fund. Respond in Czech with a professional hedge fund report style.';
     var text=await aiCallGroq([{role:'system',content:sys}].concat(aiHistory.slice(-12)),2048);
     if(!text) text='⚠ Empty response.';
-    loadBbl.innerHTML=aiMsgHtml(text); aiHistory.push({role:'assistant',content:text});
+    loadBbl.innerHTML=aiMsgHtml(text);aiHistory.push({role:'assistant',content:text});
     dbLog('AI report: OK ('+text.length+' chars)','ok');
   }catch(err){loadBbl.innerHTML='<span style="color:#ff7b72">⚠ Error: '+esc(err.message)+'</span>';dbLog('AI report error: '+err.message,'error');}
-  btn.disabled=false; btn.textContent='📊 Generate Analytical Report'; document.getElementById('ai-messages').scrollTop=99999;
+  btn.disabled=false;btn.textContent='📊 Generate Analytical Report';document.getElementById('ai-messages').scrollTop=99999;
 }
 function aiClear(){aiHistory=[];document.getElementById('ai-messages').innerHTML='<div style="text-align:center;color:#6e7681;font-size:11px;font-family:var(--mono);padding:20px 0">🤖 NatGas AI Analyst — ask anything about current market data</div>';}
 
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // EVENT WIRING
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded',function(){
-  // Global refresh
-  document.getElementById('btn-refresh').addEventListener('click',function(){
-    dbLog('Global refresh','info');
-    wxForceRefresh(); stLoadAll(); peLoadAll(); fcLoad();
-  });
+  document.getElementById('btn-refresh').addEventListener('click',function(){dbLog('Global refresh','info');wxForceRefresh();stLoadAll();peLoadAll();fcLoad();});
 
-  // Tabs
   document.querySelectorAll('.tab-btn[data-tab]').forEach(function(btn){
     btn.addEventListener('click',function(){
       var id=this.dataset.tab;
       document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('on');});
       document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('on');});
-      this.classList.add('on'); document.getElementById('panel-'+id).classList.add('on');
+      this.classList.add('on');document.getElementById('panel-'+id).classList.add('on');
       if(id==='ta'&&!taLoaded){taLoaded=true;taLoadAll();}
     });
   });
 
-  // Debug
-  document.getElementById('dbg-header').addEventListener('click',function(){
-    var b=document.getElementById('dbg-body'),a=document.getElementById('dbg-arrow'),o=b.style.display==='none';
-    b.style.display=o?'block':'none'; a.style.transform=o?'rotate(90deg)':'';
-  });
+  document.getElementById('dbg-header').addEventListener('click',function(){var b=document.getElementById('dbg-body'),a=document.getElementById('dbg-arrow'),o=b.style.display==='none';b.style.display=o?'block':'none';a.style.transform=o?'rotate(90deg)':'';});
   document.getElementById('dbg-clear-btn').addEventListener('click',function(e){e.stopPropagation();dbgEntries=[];renderDbg();});
 
-  // AI
   document.getElementById('ai-send-btn').addEventListener('click',aiSend);
   document.getElementById('ai-clear-btn').addEventListener('click',aiClear);
   document.getElementById('ai-report-btn').addEventListener('click',aiSendReport);
@@ -2192,30 +2038,23 @@ document.addEventListener('DOMContentLoaded',function(){
   document.getElementById('ai-input').addEventListener('focus',function(){this.style.borderColor='#4493f8';});
   document.getElementById('ai-input').addEventListener('blur',function(){this.style.borderColor='#30363d';});
 
-  // TA
   document.getElementById('ta-btn-candle').addEventListener('click',function(){taSetType('candle');});
   document.getElementById('ta-btn-line').addEventListener('click',function(){taSetType('line');});
   document.getElementById('ta-refresh-btn').addEventListener('click',taRefresh);
-  TA_TFS.forEach(function(tf){
-    document.getElementById('ta-reset-'+tf).addEventListener('click',function(){taResetZoomTF(tf);});
-  });
+  TA_TFS.forEach(function(tf){document.getElementById('ta-reset-'+tf).addEventListener('click',function(){taResetZoomTF(tf);});});
 
-  // Front month tab
   document.getElementById('fc-header').addEventListener('click',fcToggle);
   document.getElementById('ngf-btn-line').addEventListener('click',function(){ngfSetChartType('line');});
   document.getElementById('ngf-btn-candle').addEventListener('click',function(){ngfSetChartType('candle');});
   document.querySelectorAll('[data-ngf-w]').forEach(function(b){b.addEventListener('click',function(){ngfSetWindow(this.dataset.ngfW);});});
 
-  // Storage / PE / Weather windows
   document.querySelectorAll('[data-st-w]').forEach(function(b){b.addEventListener('click',function(){stSetWindow(this.dataset.stW);});});
   document.querySelectorAll('[data-pe-w]').forEach(function(b){b.addEventListener('click',function(){peSetWindow(this.dataset.peW);});});
   document.querySelectorAll('[data-wx-w]').forEach(function(b){b.addEventListener('click',function(){wxSetWindow(this.dataset.wxW);});});
   document.getElementById('wx-hist-btn').addEventListener('click',exportHistoricalWeekly);
 
-  // Zoom resets
   document.querySelectorAll('[data-zoom]').forEach(function(b){b.addEventListener('click',function(){resetZoom(this.dataset.zoom);});});
 
-  // Exports
   document.getElementById('btn-export-ngf').addEventListener('click',stExportNgf);
   document.getElementById('btn-export-storage').addEventListener('click',stExportStorage);
   document.getElementById('btn-export-dev').addEventListener('click',stExportDev);
@@ -2239,7 +2078,7 @@ document.addEventListener('DOMContentLoaded',function(){
     var rows=['Date\tDemand\t5y Avg\t5y Min\t5y Max\tHDD_wtd\tCDD_wtd\t'+regHdrs,Array(80).join('-')];
     wxS.allDates.forEach(function(dt,i){
       var d=wxS.demAll[i],a=wxS.dem5avg[i],mn=wxS.dem5min[i],mx=wxS.dem5max[i],h=wxS.hddAll[i],c=wxS.cddAll[i];
-      var regCols=wxS.regionTemps&&wxS.regionTemps[i]?WX_REGIONS.map(function(_,ri){var t=wxS.regionTemps[i][ri];return t!=null?(Math.max(0,WX_BASE-t).toFixed(2)+'\t'+Math.max(0,t-WX_BASE).toFixed(2)):'N/A\tN/A';}).join('\t'):WX_REGIONS.map(function(){return'N/A\tN/A';}).join('\t');
+      var regCols=wxS.regionTemps&&wxS.regionTemps[i]?WX_REGIONS.map(function(_,ri){var t=wxS.regionTemps[i][ri];return t!=null?(Math.max(0,WX_BASE-t).toFixed(2)+'\t'+Math.max(0,t-WX_BASE).toFixed(2)):'N/A\tN/A';}).join('\t'):WX_REGIONS.map(function(){return 'N/A\tN/A';}).join('\t');
       rows.push(fmtGB(dt)+'\t'+(d!=null?d.toFixed(2):'N/A')+'\t'+(a!=null?a.toFixed(2):'N/A')+'\t'+(mn!=null?mn.toFixed(2):'N/A')+'\t'+(mx!=null?mx.toFixed(2):'N/A')+'\t'+(h!=null?h.toFixed(2):'N/A')+'\t'+(c!=null?c.toFixed(2):'N/A')+'\t'+regCols);
     });
     dlBlob('natgas_wx_demand.txt','NatGas Weather — Total Demand Index\nSource: Open-Meteo\nExported: '+new Date().toLocaleString('en-GB')+'\n\n'+rows.join('\n'));
@@ -2247,14 +2086,13 @@ document.addEventListener('DOMContentLoaded',function(){
   document.querySelectorAll('[data-pe-export]').forEach(function(b){b.addEventListener('click',function(){peExport(this.dataset.peExport);});});
 });
 
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // INIT
-// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 dbLog('NatGas Dashboard v14 — init','info');
 ngfLogContracts();
 var _initCur=ngfCurrent();
-dbLog('Front month: '+(_initCur?_initCur.label+' ['+_initCur.ticker+']':'NULL — check expiry logic!'), _initCur?'ok':'error');
-
+dbLog('Front month: '+(_initCur?_initCur.label+' ['+_initCur.ticker+']':'NULL'),_initCur?'ok':'error');
 renderBiasCard();
 ngfUpdateSubtitle();
 wxLoadAll(false);
@@ -2262,7 +2100,6 @@ stLoadAll();
 peLoadAll();
 fcLoad();
 
-// Hourly weather refresh
 var _lastWxSlot=wxSlot();
 setInterval(function(){
   var cur=wxSlot();
