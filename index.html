@@ -1081,16 +1081,8 @@ function taRenderTF(tf,candles){
     }
   });
 
-  if(n>ZOOM){
-    var pCh=taCharts[tf].price;
-    pCh.scales.x.options.min=zStart;pCh.scales.x.options.max=n-1+3;
-    pCh.options.scales.y.min=vLo-vPad;pCh.options.scales.y.max=vHi+vPad;
-    pCh.update('none');
-    ['rsi','macd'].forEach(function(k){
-      var ch=taCharts[tf][k];if(!ch) return;
-      ch.scales.x.options.min=zStart;ch.scales.x.options.max=n-1+3;ch.update('none');
-    });
-  }
+  // Initial zoom — defer by one frame so Chart.js finishes layout first
+  requestAnimationFrame(function(){taResetZoomTF(tf,candles);});
 }
 
 function taResetZoomTF(tf,candles){
