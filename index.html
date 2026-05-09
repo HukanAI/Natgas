@@ -1086,7 +1086,7 @@ function taRenderTF(tf,candles){
 
 function taResetZoomTF(tf,candles){
   candles=candles||taData[tf];if(!candles||!candles.length) return;
-  var n=candles.length,ZOOM=50,zStart=n>ZOOM?n-ZOOM:0;
+  var n=candles.length,ZOOM=100,zStart=n>ZOOM?n-ZOOM:0;
   var vis=candles.slice(zStart),vHi=-Infinity,vLo=Infinity;
   vis.forEach(function(c){if(c.high>vHi)vHi=c.high;if(c.low<vLo)vLo=c.low;});
   var vPad=(vHi-vLo)*0.08||0.1;
