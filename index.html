@@ -1143,20 +1143,26 @@ function taRenderTF(tf,candles){
   wrap.style.display='block';
   document.getElementById('ta-spin-'+tf).style.display='none';
 
-  // Zoom to last 50 candles on price chart
+  // Zoom to last 50 candles — recalculate y range from visible bars only
   var ZOOM_BARS=50;
+  var zStart=n>ZOOM_BARS?n-ZOOM_BARS:0;
+  var visCandles=candles.slice(zStart);
+  var vHi=-Infinity,vLo=Infinity;
+  visCandles.forEach(function(c){if(c.high>vHi)vHi=c.high;if(c.low<vLo)vLo=c.low;});
+  var vPad=(vHi-vLo)*0.08||0.1;
+
   if(n>ZOOM_BARS&&taCharts[tf].price){
-    var xScale=taCharts[tf].price.scales.x;
-    xScale.options.min=n-ZOOM_BARS;
-    xScale.options.max=n-1;
+    var xSc=taCharts[tf].price.scales.x;
+    xSc.options.min=zStart;xSc.options.max=n-1;
+    taCharts[tf].price.options.scales.y.min=vLo-vPad;
+    taCharts[tf].price.options.scales.y.max=vHi+vPad;
     taCharts[tf].price.update('none');
   }
-  // Sync RSI and MACD zoom to same range
+  // Sync RSI and MACD x-zoom
   ['rsi','macd'].forEach(function(k){
     if(!taCharts[tf][k])return;
-    var xSc=taCharts[tf][k].scales.x;
-    xSc.options.min=n>ZOOM_BARS?n-ZOOM_BARS:0;
-    xSc.options.max=n-1;
+    var xs=taCharts[tf][k].scales.x;
+    xs.options.min=zStart;xs.options.max=n-1;
     taCharts[tf][k].update('none');
   });
 }
