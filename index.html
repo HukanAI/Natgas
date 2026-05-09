@@ -154,13 +154,13 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
       <div id="ai-messages" style="flex:1;overflow-y:auto;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:10px;min-height:0">
         <div style="text-align:center;color:var(--text3);font-size:11px;font-family:var(--mono);padding:20px 0">🤖 NatGas AI Analyst — ask anything about current market data</div>
       </div>
-      <button id="ai-report-btn" style="background:rgba(163,113,247,.15);border:1px solid rgba(163,113,247,.4);color:#a371f7;padding:8px 14px;border-radius:6px;cursor:pointer;font-size:11px;font-family:var(--font);font-weight:600;width:100%">📊 Generate Analytical Report</button>
+      <button id="ai-report-btn" style="background:rgba(163,113,247,.15);border:1px solid rgba(163,113,247,.4);color:#a371f7;padding:8px 14px;border-radius:6px;cursor:pointer;font-size:11px;font-family:var(--font);font-weight:600;width:100%">📊 Generate Full Market Report</button>
       <div style="display:flex;gap:8px">
         <input id="ai-input" type="text" placeholder="e.g. What does current storage deviation imply for prices?" style="flex:1;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:8px 12px;color:var(--text);font-family:var(--font);font-size:12px;outline:none">
         <button id="ai-send-btn" style="background:#1f3a6e;border:1px solid var(--blue);color:var(--blue);padding:8px 16px;border-radius:6px;cursor:pointer;font-size:11px;font-family:var(--font);font-weight:600;white-space:nowrap">Send ↗</button>
         <button id="ai-clear-btn" style="background:var(--bg3);border:1px solid var(--border2);color:var(--text3);padding:8px 12px;border-radius:6px;cursor:pointer;font-size:11px;font-family:var(--mono)">Clear</button>
       </div>
-      <div style="font-size:10px;color:var(--text3);font-family:var(--mono)">Live storage · weather · forecasts · futures data auto-injected · powered by Qwen3-32B via Groq</div>
+      <div style="font-size:10px;color:var(--text3);font-family:var(--mono)">Live storage · weather · forecasts · futures · TA data auto-injected · powered by Qwen3-32B via Groq</div>
     </div>
   </div>
 
@@ -900,7 +900,6 @@ function taRenderTF(tf,candles){
     if(tf==='1w'||tf==='1d') return d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'2-digit'});
     return p2(d.getUTCDate())+'/'+p2(d.getUTCMonth()+1)+' '+p2(d.getUTCHours())+'h';
   });
-
   var ema50=taEMA(closes,50),ema200=taEMA(closes,200);
   var bb=taBB(closes,20,2);
   var rsi=taRSI(closes,14);
@@ -926,14 +925,12 @@ function taRenderTF(tf,candles){
   candles.forEach(function(c){if(c.high>hi)hi=c.high;if(c.low<lo)lo=c.low;});
   var yPad=(hi-lo)*0.05||0.1;
 
-  // Right-side axis shared by all 3 sub-charts
   var axisY={
     position:'right',
     grid:{color:'rgba(255,255,255,0.04)'},
     ticks:{color:'#6e7681',font:{family:'JetBrains Mono',size:8},maxTicksLimit:6}
   };
 
-  // Sync: when price is zoomed/panned → update rsi+macd x-range and recalc price y
   function syncLinked(chart){
     var xSc=chart.scales&&chart.scales.x;if(!xSc) return;
     var mn=xSc.min,mx=xSc.max;
@@ -947,7 +944,6 @@ function taRenderTF(tf,candles){
     });
   }
 
-  // Candle plugin
   var candlePlugin={id:'cp_'+tf,afterDatasetsDraw:function(chart){
     if(taType!=='candle') return;
     var cx=chart.ctx,xSc=chart.scales.x,ySc=chart.scales.y;
@@ -965,7 +961,6 @@ function taRenderTF(tf,candles){
     cx.restore();
   }};
 
-  // Pattern plugin
   var patPlugin={id:'pat_'+tf,afterDraw:function(chart){
     var cx=chart.ctx,ca=chart.chartArea,xSc=chart.scales.x,ySc=chart.scales.y;
     patterns.forEach(function(pat){
@@ -1001,7 +996,6 @@ function taRenderTF(tf,candles){
     {_k:'bbm',label:'BB Mid',  data:bb.mid,  borderColor:'rgba(68,147,248,0.25)',borderWidth:1,borderDash:[3,3],pointRadius:0,fill:false,tension:0}
   ];
 
-  // Price chart
   taCharts[tf].price=new Chart(document.getElementById('ta-c-price-'+tf).getContext('2d'),{
     type:'line',
     plugins:[candlePlugin,patPlugin],
@@ -1022,7 +1016,6 @@ function taRenderTF(tf,candles){
     }
   });
 
-  // RSI chart
   var rsiZonePlugin={id:'rsiz_'+tf,beforeDatasetsDraw:function(chart){
     var cx=chart.ctx,ca=chart.chartArea,ySc=chart.scales.y;
     cx.save();
@@ -1056,7 +1049,6 @@ function taRenderTF(tf,candles){
     }
   });
 
-  // MACD chart
   var histColors=macdObj.hist.map(function(v){return v==null?'transparent':v>=0?'rgba(63,185,80,0.75)':'rgba(255,123,114,0.75)';});
   var macdTT=Object.assign({},baseTT(),{callbacks:{
     title:function(items){return items[0]?labels[items[0].dataIndex]:'';},
@@ -1081,14 +1073,12 @@ function taRenderTF(tf,candles){
     }
   });
 
-  // Initial zoom — defer by one frame so Chart.js finishes layout first
   requestAnimationFrame(function(){taResetZoomTF(tf,candles);});
 }
 
 function taResetZoomTF(tf,candles){
   candles=candles||taData[tf];if(!candles||!candles.length) return;
-  var n=candles.length,ZOOM=150,zStart=n>ZOOM?n-ZOOM:0;
-  var zEnd=n-1+3; // 3 empty candles padding on the right
+  var n=candles.length,ZOOM=150,zStart=n>ZOOM?n-ZOOM:0,zEnd=n-1+3;
   var vis=candles.slice(zStart),vHi=-Infinity,vLo=Infinity;
   vis.forEach(function(c){if(c.high>vHi)vHi=c.high;if(c.low<vLo)vLo=c.low;});
   var vPad=(vHi-vLo)*0.08||0.1;
@@ -1375,7 +1365,7 @@ function wxRenderRegionalChart(){
   });
 }
 function wxRenderMetrics(){
-  var si=getSeasonInfo(),ti=wxS.todayIdx;
+  var ti=wxS.todayIdx;
   function demSum(days){var s=0,lim=Math.min(ti+days,wxS.demAll.length);for(var j=ti;j<lim;j++)s+=wxS.demAll[j]||0;return s;}
   function dem5Sum(days){var s=0,lim=Math.min(ti+days,wxS.dem5avg.length);for(var j=ti;j<lim;j++)s+=wxS.dem5avg[j]||0;return s;}
   function fillDemBox(valId,vs5yId,avgId,days){
@@ -1387,6 +1377,7 @@ function wxRenderMetrics(){
     document.getElementById(avgId).innerHTML='Ø '+dAvg.toFixed(1)+'/d · <span style="color:'+ac+'">5y: '+d5Avg.toFixed(1)+'</span>';
   }
   [4,7,10,13,16].forEach(function(d){fillDemBox('wx-dem'+d,'wx-dem'+d+'-vs5y','wx-dem'+d+'-avg',d);});
+  var si=getSeasonInfo();
   var hddFwd=0,cddFwd=0,lim16=Math.min(ti+16,wxS.hddAll.length);
   for(var k=ti;k<lim16;k++){hddFwd+=wxS.hddAll[k]||0;cddFwd+=wxS.cddAll[k]||0;}
   var totFwd=hddFwd+cddFwd,dEl=document.getElementById('wx-driver'),dSub=document.getElementById('wx-driver-sub');
@@ -1486,7 +1477,7 @@ async function exportHistoricalWeekly(){
 }
 
 // ═══════════════════════════════════════════════════════
-// STORAGE
+// STORAGE RENDER
 // ═══════════════════════════════════════════════════════
 function stSetDot(s){document.getElementById('st-dot').className='sdot '+s;}
 function stSetBadge(t,txt){var el=document.getElementById('st-badge');el.textContent=txt;el.className='cbadge '+t;}
@@ -1877,237 +1868,186 @@ function peExportSupply(){
 }
 
 // ═══════════════════════════════════════════════════════
-// AI
+// AI — FIXED & IMPROVED
 // ═══════════════════════════════════════════════════════
-function aiMsgHtml(text){
-  return esc(text).replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/`([^`]+)`/g,'<code style="background:#1c2128;padding:1px 4px;border-radius:3px;font-family:var(--mono);font-size:11px">$1</code>').replace(/#{1,6} (.+)/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+
+// --- TA context builder (CLEAN, standalone, no duplicates) ---
+function aiGetTAContext(){
+  var lines=['\n--- TECHNICAL ANALYSIS ---'];
+  var tfLabels={'1h':'1 Hour','4h':'4 Hour','1d':'1 Day','1w':'1 Week'};
+  var hasAny=false;
+
+  TA_TFS.forEach(function(tf){
+    var candles=taData[tf];
+    if(!candles||!candles.length) return;
+    hasAny=true;
+
+    var closes=candles.map(function(c){return c.close;});
+    var n=candles.length,last=candles[n-1];
+
+    var ema50=taEMA(closes,50),ema200=taEMA(closes,200);
+    var e50=ema50[n-1],e200=ema200[n-1];
+
+    var bb=taBB(closes,20,2);
+    var bbU=bb.upper[n-1],bbM=bb.mid[n-1],bbL=bb.lower[n-1];
+
+    var rsi=taRSI(closes,14);
+    var rsiVal=rsi[n-1];
+
+    var macdObj=taMACD(closes,12,26,9);
+    var macdVal=macdObj.macd[n-1],sigVal=macdObj.signal[n-1],histVal=macdObj.hist[n-1];
+    // Detect MACD hist direction (last 3 bars)
+    var histDir='flat';
+    if(n>=3){
+      var h1=macdObj.hist[n-1],h2=macdObj.hist[n-2];
+      if(h1!=null&&h2!=null) histDir=h1>h2?'rising':'h1<h2'?'falling':'flat';
+      if(h1!=null&&h2!=null) histDir=(h1>h2)?'rising':(h1<h2)?'falling':'flat';
+    }
+
+    var patterns=taPatterns(candles);
+
+    // Build signal summary
+    var signals=[];
+    if(e50!=null&&e200!=null){
+      signals.push(last.close>e50?'Price>EMA50[bull]':'Price<EMA50[bear]');
+      signals.push(e50>e200?'GoldenCross[bull]':'DeathCross[bear]');
+    }
+    if(bbU!=null&&bbL!=null&&bbM!=null){
+      var bbRange=bbU-bbL;
+      var bbPos=bbRange>0?Math.round((last.close-bbL)/bbRange*100):50;
+      signals.push('BB:'+bbPos+'% (0=lower,100=upper)');
+      if(last.close>bbU) signals.push('Above BB upper[bear/reversal]');
+      else if(last.close<bbL) signals.push('Below BB lower[bull/reversal]');
+    }
+    if(rsiVal!=null){
+      var rsiTxt=rsiVal>70?'OVERBOUGHT':rsiVal<30?'OVERSOLD':rsiVal>55?'bullish-zone':rsiVal<45?'bearish-zone':'neutral';
+      signals.push('RSI:'+rsiVal.toFixed(1)+'['+rsiTxt+']');
+    }
+    if(histVal!=null){
+      signals.push('MACD hist:'+histVal.toFixed(4)+'['+histDir+','+(histVal>0?'bull':'bear')+']');
+    }
+    if(patterns.length){
+      signals.push('Patterns:'+patterns.map(function(p){return p.name+(p.bull===true?'↑':p.bull===false?'↓':'~');}).join(','));
+    }
+
+    lines.push('\n['+tfLabels[tf]+'] Close:$'+last.close.toFixed(3));
+    if(e50!=null)  lines.push('  EMA50:$'+e50.toFixed(3)+' EMA200:'+(e200!=null?'$'+e200.toFixed(3):'N/A'));
+    if(bbU!=null)  lines.push('  BB: U$'+bbU.toFixed(3)+' M$'+bbM.toFixed(3)+' L$'+bbL.toFixed(3));
+    if(rsiVal!=null) lines.push('  RSI(14):'+rsiVal.toFixed(1));
+    if(macdVal!=null) lines.push('  MACD:'+macdVal.toFixed(4)+' Sig:'+(sigVal!=null?sigVal.toFixed(4):'N/A')+' Hist:'+(histVal!=null?histVal.toFixed(4):'N/A')+' Dir:'+histDir);
+    if(signals.length) lines.push('  → '+signals.join(' | '));
+  });
+
+  if(!hasAny) return '\n--- TECHNICAL ANALYSIS ---\n[Not loaded — open TA tab first]';
+  return lines.join('\n');
 }
-function aiAppendBubble(role,text,isLoading){
-  var msgs=document.getElementById('ai-messages'),wrap=document.createElement('div');
-  wrap.style.cssText='display:flex;flex-direction:column;align-items:'+(role==='user'?'flex-end':'flex-start');
-  var bbl=document.createElement('div');bbl.className=role==='user'?'ai-bubble-user':'ai-bubble-bot';
-  bbl.innerHTML=isLoading?'<span class="sp"></span><span style="color:#8b949e">Thinking…</span>':aiMsgHtml(text);
-  wrap.appendChild(bbl);msgs.appendChild(wrap);msgs.scrollTop=msgs.scrollHeight;return bbl;
-}
-async function aiCallGroq(messages,maxTokens){
-  var resp=await fetch(GROQ_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:GROQ_MODEL,max_tokens:maxTokens||1024,messages:messages})});
-  if(!resp.ok){var et=await resp.text();throw new Error('HTTP '+resp.status+': '+et.slice(0,300));}
-  var data=await resp.json();
-  var text='';
-  if(data.choices&&data.choices[0]){var c=data.choices[0].message;if(c&&typeof c.content==='string')text=c.content.trim();else if(c&&Array.isArray(c.content))text=c.content.filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('').trim();}
-  if(!text&&data.content&&data.content[0]) text=(data.content[0].text||'').trim();
-  if(!text) dbLog('Groq: empty response','warn');
-  return text;
-}
+
+// --- Context snapshot for AI chat ---
 function aiGetContext(){
-  var lines=[],si=getSeasonInfo();
+  var si=getSeasonInfo(),lines=[];
   lines.push('=== NATGAS LIVE DATA ===');
   lines.push('Date: '+new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}));
-  lines.push('Season: '+si.icon+' '+si.name+' (day '+si.daysIn+'/'+si.sTotal+', '+si.daysLeft+'d left, next: '+si.nxtIcon+' '+si.nxtName+')');
+  lines.push('Season: '+si.icon+' '+si.name+' (day '+si.daysIn+'/'+si.sTotal+', '+si.daysLeft+'d left → '+si.nxtIcon+' '+si.nxtName+')');
+
   if(stStorageData.length){
     var lat=stStorageData[stStorageData.length-1],prev=stStorageData.length>1?stStorageData[stStorageData.length-2]:null;
-    var band=st5y(stStorageData,[lat.date])[0],avg5=band.avg,devBcf=avg5!=null?lat.value-avg5:null,devPct=(avg5&&avg5!==0&&devBcf!=null)?devBcf/avg5*100:null;
+    var band=st5y(stStorageData,[lat.date])[0],avg5=band.avg;
+    var devBcf=avg5!=null?lat.value-avg5:null,devPct=(avg5&&avg5!==0&&devBcf!=null)?devBcf/avg5*100:null;
     lines.push('\n--- STORAGE ---');
-    lines.push('Latest: '+Math.round(lat.value).toLocaleString()+' Bcf | Report: '+fmtShort(isoAdd(lat.date,6)));
-    if(prev) lines.push('W/W: '+sgn(lat.value-prev.value)+Math.round(lat.value-prev.value)+' Bcf');
-    if(avg5!=null) lines.push('5y avg: '+Math.round(avg5).toLocaleString()+' Bcf | vs 5y: '+sgn(devBcf)+Math.round(devBcf)+' Bcf ('+sgn(devPct)+devPct.toFixed(1)+'%)');
-    if(devBcf!=null){var fp=fairPrice(devBcf);lines.push('Fair price: $'+fp.toFixed(3)+' [Min $'+(fp-0.5).toFixed(3)+' / Max $'+(si.isHeating?fp+1.9:fp+0.5).toFixed(3)+']');}
+    lines.push('Current: '+Math.round(lat.value).toLocaleString()+' Bcf | Report date: '+fmtShort(isoAdd(lat.date,6)));
+    if(prev) lines.push('W/W change: '+sgn(lat.value-prev.value)+Math.round(lat.value-prev.value)+' Bcf');
+    if(avg5!=null) lines.push('5y avg: '+Math.round(avg5).toLocaleString()+' Bcf | Dev vs 5y: '+sgn(devBcf)+Math.round(devBcf)+' Bcf ('+sgn(devPct)+devPct.toFixed(1)+'%) → '+(devBcf>=0?'SURPLUS (bearish)':'DEFICIT (bullish)'));
+    if(devBcf!=null){var fp0=fairPrice(devBcf);lines.push('Fair price now: $'+fp0.toFixed(3)+' [range $'+(fp0-0.5).toFixed(3)+' – $'+(si.isHeating?fp0+1.9:fp0+0.5).toFixed(3)+']');}
     [stLastF7,stLastF14,stLastF21].forEach(function(f,fi){
       if(!f||f.predictedLevel==null) return;
       var lbl=['7D','14D','21D'][fi],b=st5y(stStorageData,[f.endDate])[0].avg;
-      lines.push(lbl+' fcst: '+Math.round(f.predictedLevel)+' Bcf');
-      if(b!=null){var dv=f.predictedLevel-b;lines.push('  vs 5y: '+sgn(dv)+Math.round(dv)+' Bcf | Fair: $'+fairPrice(dv).toFixed(3));}
+      var lineStr=lbl+' forecast: '+Math.round(f.predictedLevel).toLocaleString()+' Bcf (demand index: '+f.D.toFixed(1)+')';
+      if(b!=null){var dv=f.predictedLevel-b,pv=b!==0?dv/b*100:0,fv=fairPrice(dv);lineStr+=' | Dev: '+sgn(dv)+Math.round(dv)+' Bcf ('+sgn(pv)+pv.toFixed(1)+'%) | Fair: $'+fv.toFixed(3);}
+      lines.push(lineStr);
     });
   }
+
   if(stNgfData.length){
-    var lngf=stNgfData[stNgfData.length-1],curC=ngfCurrent(),nxtC=curC?ngfNext(curC):null,l52=stNgfData.slice(-52);
+    var lngf=stNgfData[stNgfData.length-1],lngfPrev=stNgfData.length>1?stNgfData[stNgfData.length-2]:null;
+    var curC=ngfCurrent(),nxtC=curC?ngfNext(curC):null;
+    var l52=stNgfData.slice(-52);
     lines.push('\n--- FUTURES ---');
-    lines.push('Front ('+(curC?curC.label:'?')+'): $'+lngf.close.toFixed(3)+'/MMBtu');
-    if(nxtC&&nextContractPrice!=null){var sp=nextContractPrice-lngf.close;lines.push('Next ('+nxtC.label+'): $'+nextContractPrice.toFixed(3)+' | Spread: '+sgn(sp)+sp.toFixed(3)+' → '+(sp>=0?'Contango':'Backwardation'));}
-    lines.push('52w H: $'+Math.max.apply(null,l52.map(function(d){return d.high;})).toFixed(3)+' / 52w L: $'+Math.min.apply(null,l52.map(function(d){return d.low;})).toFixed(3));
+    lines.push('Front month ('+( curC?curC.label:'?')+'): $'+lngf.close.toFixed(3)+'/MMBtu');
+    if(lngfPrev){var wc=lngf.close-lngfPrev.close;lines.push('W/W: '+sgn(wc)+wc.toFixed(3)+' ('+sgn(wc/lngfPrev.close*100)+(wc/lngfPrev.close*100).toFixed(1)+'%)');}
+    if(nxtC&&nextContractPrice!=null){var sp=nextContractPrice-lngf.close;lines.push('Next ('+nxtC.label+'): $'+nextContractPrice.toFixed(3)+' | Spread: '+sgn(sp)+sp.toFixed(3)+' → '+(sp>=0?'CONTANGO (bearish)':'BACKWARDATION (bullish)'));}
+    lines.push('52w High: $'+Math.max.apply(null,l52.map(function(d){return d.high;})).toFixed(3)+' | 52w Low: $'+Math.min.apply(null,l52.map(function(d){return d.low;})).toFixed(3));
   }
-  var supply=peCalcSupply();if(supply&&supply.length){var sl=supply[supply.length-1];lines.push('\n--- SUPPLY ---');lines.push('Total Supply ('+sl.period+'): '+sl.value.toFixed(2)+' Bcf/d');}
+
+  var supply=peCalcSupply();
+  if(supply&&supply.length>=2){
+    var sl=supply[supply.length-1],sl2=supply[supply.length-2],sMoM=sl.value-sl2.value;
+    lines.push('\n--- SUPPLY ---');
+    lines.push('Total Supply ('+sl.period+'): '+sl.value.toFixed(2)+' Bcf/d | MoM: '+sgn(sMoM)+sMoM.toFixed(2)+' Bcf/d → '+(sMoM<0?'falling (bullish)':'rising (bearish)'));
+  }
+
   if(wxS){
     var ti=wxS.todayIdx;
-    function wxDs(days){var s=0,lim=Math.min(ti+days,wxS.demAll.length);for(var j=ti;j<lim;j++)s+=wxS.demAll[j]||0;return s;}
-    function wx5s(days){var s=0,lim=Math.min(ti+days,wxS.dem5avg.length);for(var j=ti;j<lim;j++)s+=wxS.dem5avg[j]||0;return s;}
-    lines.push('\n--- WEATHER ---');
-    [4,7,10,13,16].forEach(function(d){var dem=wxDs(d),dem5=wx5s(d),dev=dem-dem5,pct=dem5>0.5?dev/dem5*100:0;lines.push(d+'D: '+dem.toFixed(0)+' | '+(dem5>0.5?sgn(dev)+dev.toFixed(0)+' ('+sgn(pct)+pct.toFixed(1)+'%) vs 5y':'N/A')+' | Ø '+(dem/d).toFixed(1)+'/d');});
-    var hF=0,cF=0,l16=Math.min(ti+16,wxS.hddAll.length);for(var wj=ti;wj<l16;wj++){hF+=wxS.hddAll[wj]||0;cF+=wxS.cddAll[wj]||0;}
-    lines.push('HDD 16D: '+hF.toFixed(1)+' | CDD 16D: '+cF.toFixed(1));
+    function wxDs(d){var s=0,lim=Math.min(ti+d,wxS.demAll.length);for(var j=ti;j<lim;j++)s+=wxS.demAll[j]||0;return s;}
+    function wx5s(d){var s=0,lim=Math.min(ti+d,wxS.dem5avg.length);for(var j=ti;j<lim;j++)s+=wxS.dem5avg[j]||0;return s;}
+    lines.push('\n--- WEATHER & DEMAND ---');
+    [4,7,10,13,16].forEach(function(d){
+      var dem=wxDs(d),dem5=wx5s(d),dev=dem-dem5,pct=dem5>0.5?dev/dem5*100:0;
+      lines.push(d+'D: '+dem.toFixed(0)+' demand'+(dem5>0.5?' | '+sgn(dev)+dev.toFixed(0)+' ('+sgn(pct)+pct.toFixed(1)+'%) vs 5y → '+(dev>0?'above 5y (bullish)':'below 5y (bearish)'):''));
+    });
+    var hF=0,cF=0,l16=Math.min(ti+16,wxS.hddAll.length);
+    for(var wj=ti;wj<l16;wj++){hF+=wxS.hddAll[wj]||0;cF+=wxS.cddAll[wj]||0;}
+    lines.push('HDD 16D: '+hF.toFixed(1)+' | CDD 16D: '+cF.toFixed(1)+' | Driver: '+(hF>cF?'Heating (HDD)':'Cooling (CDD)'));
   }
-  lines.push('=== END ===');return lines.join('\n');
+
+  // Append TA data (available after TA tab is opened)
+  lines.push(aiGetTAContext());
+  lines.push('\n=== END ===');
+  return lines.join('\n');
 }
+
+// --- Improved structured report prompt with 5-level sentiment scoring ---
 function aiGetReportPrompt(){
   var si=getSeasonInfo();
-  var storNow='N/A',devNow='N/A',fairNow='N/A',stor7d='N/A',dev7d='N/A',fair7d='N/A';
-  var stor14d='N/A',dev14d='N/A',fair14d='N/A',stor21d='N/A',dev21d='N/A',fair21d='N/A';
-  var actualPrice='N/A',frontLabel='?',nextLabel='?',nxtPrice='N/A',spreadVal='N/A',curveShape='N/A';
-  var supplyNow='N/A',supplyMoM='N/A',wxLines='N/A';
-  function fmtDev(dBcf,dPct){if(dBcf==null||dPct==null)return 'N/A';return sgn(dBcf)+Math.round(dBcf).toLocaleString()+' Bcf ('+sgn(dPct)+dPct.toFixed(1)+'%) → '+(dBcf>=0?'SURPLUS (bearish)':'DEFICIT (bullish)');}
+
+  // Storage data
+  var storNow='N/A',devNow='N/A',fairNow='N/A';
+  var stor7='N/A',dev7='N/A',fair7='N/A';
+  var stor14='N/A',dev14='N/A',fair14='N/A';
+  var stor21='N/A',dev21='N/A',fair21='N/A';
+  var wkChg='N/A';
+
+  function fmtDev(dBcf,dPct){
+    if(dBcf==null||dPct==null) return 'N/A';
+    return sgn(dBcf)+Math.round(dBcf).toLocaleString()+' Bcf ('+sgn(dPct)+dPct.toFixed(1)+'%) → '+(dBcf>=0?'SURPLUS':' DEFICIT');
+  }
   function fmtFcst(f){
-    if(!f||f.predictedLevel==null) return{stor:'N/A',dev:'N/A',fair:'N/A'};
+    if(!f||f.predictedLevel==null) return{stor:'N/A',dev:'N/A',fair:'N/A',devBcf:null,devPct:null};
     var b=st5y(stStorageData,[f.endDate])[0].avg;
-    var storStr=Math.round(f.predictedLevel).toLocaleString()+' Bcf ('+fmtShort(f.startDate)+' – '+fmtShort(f.endDate)+')';
-    var devStr='N/A',fairStr='N/A';
-    if(b!=null){var dv=f.predictedLevel-b,pv=b!==0?dv/b*100:0;devStr=fmtDev(dv,pv);fairStr='$'+fairPrice(dv).toFixed(3)+'/MMBtu';}
-    return{stor:storStr,dev:devStr,fair:fairStr};
+    var storStr=Math.round(f.predictedLevel).toLocaleString()+' Bcf | Period: '+fmtShort(f.startDate)+' – '+fmtShort(f.endDate)+' | DemIdx: '+f.D.toFixed(1);
+    var devStr='N/A',fairStr='N/A',dv=null,pv=null;
+    if(b!=null){dv=f.predictedLevel-b;pv=b!==0?dv/b*100:0;devStr=fmtDev(dv,pv);fairStr='$'+fairPrice(dv).toFixed(3)+'/MMBtu';}
+    return{stor:storStr,dev:devStr,fair:fairStr,devBcf:dv,devPct:pv};
   }
+
   if(stStorageData.length){
-    var lat2=stStorageData[stStorageData.length-1],prev2=stStorageData.length>1?stStorageData[stStorageData.length-2]:null;
-    var band2=st5y(stStorageData,[lat2.date])[0],avg52=band2.avg,devBcf2=avg52!=null?lat2.value-avg52:null,devPct2=(avg52&&avg52!==0&&devBcf2!=null)?devBcf2/avg52*100:null;
-    storNow=Math.round(lat2.value).toLocaleString()+' Bcf | Report: '+fmtShort(isoAdd(lat2.date,6))+(prev2?' | W/W: '+sgn(lat2.value-prev2.value)+Math.round(lat2.value-prev2.value)+' Bcf':'')+(avg52!=null?' | 5y avg: '+Math.round(avg52).toLocaleString()+' Bcf':'');
-    devNow=fmtDev(devBcf2,devPct2);
-    if(devBcf2!=null){var fp02=fairPrice(devBcf2);fairNow='$'+fp02.toFixed(3)+'/MMBtu (±0.5 / +'+(si.isHeating?'1.9':'0.5')+')';}
-    var r7=fmtFcst(stLastF7);stor7d=r7.stor;dev7d=r7.dev;fair7d=r7.fair;
-    var r14=fmtFcst(stLastF14);stor14d=r14.stor;dev14d=r14.dev;fair14d=r14.fair;
-    var r21=fmtFcst(stLastF21);stor21d=r21.stor;dev21d=r21.dev;fair21d=r21.fair;
+    var lat=stStorageData[stStorageData.length-1],prev=stStorageData.length>1?stStorageData[stStorageData.length-2]:null;
+    var band=st5y(stStorageData,[lat.date])[0],avg5=band.avg;
+    var devBcf=avg5!=null?lat.value-avg5:null,devPct=(avg5&&avg5!==0&&devBcf!=null)?devBcf/avg5*100:null;
+    storNow=Math.round(lat.value).toLocaleString()+' Bcf | Report: '+fmtShort(isoAdd(lat.date,6))+(avg5!=null?' | 5y avg: '+Math.round(avg5).toLocaleString()+' Bcf':'');
+    devNow=fmtDev(devBcf,devPct);
+    if(devBcf!=null){var fp0=fairPrice(devBcf);fairNow='$'+fp0.toFixed(3)+'/MMBtu [Min $'+(fp0-0.5).toFixed(3)+' / Max $'+(si.isHeating?fp0+1.9:fp0+0.5).toFixed(3)+']';}
+    if(prev){var wk=lat.value-prev.value;wkChg=sgn(wk)+Math.round(wk)+' Bcf W/W';}
+    var r7=fmtFcst(stLastF7);stor7=r7.stor;dev7=r7.dev;fair7=r7.fair;
+    var r14=fmtFcst(stLastF14);stor14=r14.stor;dev14=r14.dev;fair14=r14.fair;
+    var r21=fmtFcst(stLastF21);stor21=r21.stor;dev21=r21.dev;fair21=r21.fair;
   }
+
+  // Futures data
+  var actualPrice='N/A',frontLabel='?',nextLabel='?',nxtPrice='N/A',spreadVal='N/A',range52='N/A';
   if(stNgfData.length){
-    var lngf2=stNgfData[stNgfData.length-1],lngfPrev2=stNgfData.length>1?stNgfData[stNgfData.length-2]:null;
-    var curC2=ngfCurrent(),nxtC2=curC2?ngfNext(curC2):null;
-    frontLabel=curC2?curC2.label:'?';nextLabel=nxtC2?nxtC2.label:'?';
+    var lngf=stNgfData[stNgfData.length-1],lngfPrev=stNgfData.length>1?stNgfData[stNgfData.length-2]:null;
+    var curC=ngfCurrent(),nxtC=curC?ngfNext(curC):null;
+    frontLabel=curC?curC.label:'?';nextLabel=nxtC?nxtC.label:'?';
     var l52=stNgfData.slice(-52);
-    actualPrice='$'+lngf2.close.toFixed(3)+'/MMBtu'+(lngfPrev2?' (W/W: '+sgn(lngf2.close-lngfPrev2.close)+(lngf2.close-lngfPrev2.close).toFixed(3)+')':'');
-    actualPrice+=' | 52w H: $'+Math.max.apply(null,l52.map(function(d){return d.high;})).toFixed(3)+' / 52w L: $'+Math.min.apply(null,l52.map(function(d){return d.low;})).toFixed(3);
-    if(nextContractPrice!=null){nxtPrice='$'+nextContractPrice.toFixed(3)+'/MMBtu';var sp2=nextContractPrice-lngf2.close;spreadVal=sgn(sp2)+sp2.toFixed(3)+' → '+(sp2>=0?'Contango (bearish)':'Backwardation (bullish)');curveShape=sp2>=0?'Contango':'Backwardation';}
-  }
-  var supply2=peCalcSupply();if(supply2&&supply2.length>=2){var sl2=supply2[supply2.length-1],sl3=supply2[supply2.length-2],sMoM=sl2.value-sl3.value;supplyNow=sl2.value.toFixed(2)+' Bcf/d ('+fmtPeriod(sl2.period)+')';supplyMoM=sgn(sMoM)+sMoM.toFixed(2)+' Bcf/d vs prev → '+(sMoM<0?'falling (bullish)':'rising (bearish)');}
-  if(wxS){
-    var ti2=wxS.todayIdx;
-    function wxDs2(d){var s=0,lim=Math.min(ti2+d,wxS.demAll.length);for(var j=ti2;j<lim;j++)s+=wxS.demAll[j]||0;return s;}
-    function wx5s2(d){var s=0,lim=Math.min(ti2+d,wxS.dem5avg.length);for(var j=ti2;j<lim;j++)s+=wxS.dem5avg[j]||0;return s;}
-    var hF2=0,cF2=0,l162=Math.min(ti2+16,wxS.hddAll.length);for(var wk2=ti2;wk2<l162;wk2++){hF2+=wxS.hddAll[wk2]||0;cF2+=wxS.cddAll[wk2]||0;}
-    var totF2=hF2+cF2,drv2=totF2<0.5?'No demand':(hF2>=cF2?'HDD '+Math.round(hF2/totF2*100)+'%':'CDD '+Math.round(cF2/totF2*100)+'%');
-    wxLines=[4,7,10,13,16].map(function(d){var dem=wxDs2(d),dem5=wx5s2(d),dev=dem-dem5,pct=dem5>0.5?dev/dem5*100:0;return d+'D: '+dem.toFixed(0)+' | '+(dem5>0.5?sgn(dev)+dev.toFixed(0)+' ('+sgn(pct)+pct.toFixed(1)+'%) vs 5y':'N/A')+' | Ø '+(dem/d).toFixed(1)+'/d';}).join('\n  ');
-    wxLines+='\n  Driver(16D): '+drv2+' | HDD: '+hF2.toFixed(1)+' | CDD: '+cF2.toFixed(1);
-  }
-  return 'Jsi seniorní komoditní analytik hedge fondu — Henry Hub Natural Gas. Vytvoř precizní analytický report.\n\n### DATA\n\n**SEZÓNA:** '+si.icon+' '+si.name+' (den '+si.daysIn+'/'+si.sTotal+', zbývá '+si.daysLeft+'d) → '+si.nxtIcon+' '+si.nxtName+'\n\n**STORAGE**\n- Aktuální: '+storNow+'\n- Deviation: '+devNow+'\n- 7D: '+stor7d+' | Dev: '+dev7d+'\n- 14D: '+stor14d+' | Dev: '+dev14d+'\n- 21D: '+stor21d+' | Dev: '+dev21d+'\n\n**FAIR VALUE**\n- Now: '+fairNow+' | 7D: '+fair7d+' | 14D: '+fair14d+' | 21D: '+fair21d+'\n\n**FUTURES**\n- Front ('+frontLabel+'): '+actualPrice+'\n- Next ('+nextLabel+'): '+nxtPrice+'\n- Spread: '+spreadVal+' · '+curveShape+'\n\n**SUPPLY:** '+supplyNow+' | MoM: '+supplyMoM+'\n\n**WEATHER:**\n  '+wxLines+'\n\n### PRAVIDLA\n1. Deficit→bullish | surplus→bearish; 21D>14D>7D>now\n2. Actual < fair→bullish | > fair→bearish\n3. Contango→bearish | Backwardation→bullish\n4. Klesající supply→bullish\n5. Vyšší demand vs 5y→bullish\n\n### VÝSTUP\n1) Executive Summary\n2) Storage (now/7D/14D/21D)\n3) Price vs Fair Value\n4) Futures křivka\n5) Supply\n6) Weather & Demand\n7) Sentiment: BULLISH/BEARISH/NEUTRAL s čísly\n\nČesky. Hedge fund styl. Čísla všude. Prioritizuj 21D>14D>7D>now.';
-}
-async function aiSend(){
-  var input=document.getElementById('ai-input'),msg=input.value.trim();if(!msg) return;
-  input.value='';var btn=document.getElementById('ai-send-btn');btn.disabled=true;
-  aiAppendBubble('user',msg,false);aiHistory.push({role:'user',content:msg});
-  var loadBbl=aiAppendBubble('assistant','',true);
-  var sys='You are an expert natural gas market analyst. Base analysis on the provided live data. Be concise. Highlight key figures in **bold**.\n\nCURRENT DATA:\n'+aiGetContext();
-  try{
-    var text=await aiCallGroq([{role:'system',content:sys}].concat(aiHistory.slice(-10)),1024);
-    if(!text) text='⚠ Empty response.';
-    loadBbl.innerHTML=aiMsgHtml(text);aiHistory.push({role:'assistant',content:text});
-    dbLog('AI: OK ('+text.length+' chars)','ok');
-  }catch(err){loadBbl.innerHTML='<span style="color:#ff7b72">⚠ Error: '+esc(err.message)+'</span>';dbLog('AI error: '+err.message,'error');}
-  btn.disabled=false;document.getElementById('ai-messages').scrollTop=99999;
-}
-async function aiSendReport(){
-  if(!stStorageData.length){alert('Storage data not loaded yet.');return;}
-  var btn=document.getElementById('ai-report-btn');btn.disabled=true;btn.textContent='⏳ Generating…';
-  aiAppendBubble('user','📊 Generate Analytical Report',false);aiHistory.push({role:'user',content:aiGetReportPrompt()});
-  var loadBbl=aiAppendBubble('assistant','',true);
-  try{
-    var sys='You are a senior commodity analyst at a hedge fund. Respond in Czech with a professional hedge fund report style.';
-    var text=await aiCallGroq([{role:'system',content:sys}].concat(aiHistory.slice(-12)),2048);
-    if(!text) text='⚠ Empty response.';
-    loadBbl.innerHTML=aiMsgHtml(text);aiHistory.push({role:'assistant',content:text});
-    dbLog('AI report: OK ('+text.length+' chars)','ok');
-  }catch(err){loadBbl.innerHTML='<span style="color:#ff7b72">⚠ Error: '+esc(err.message)+'</span>';dbLog('AI report error: '+err.message,'error');}
-  btn.disabled=false;btn.textContent='📊 Generate Analytical Report';document.getElementById('ai-messages').scrollTop=99999;
-}
-function aiClear(){aiHistory=[];document.getElementById('ai-messages').innerHTML='<div style="text-align:center;color:#6e7681;font-size:11px;font-family:var(--mono);padding:20px 0">🤖 NatGas AI Analyst — ask anything about current market data</div>';}
-
-// ═══════════════════════════════════════════════════════
-// EVENT WIRING
-// ═══════════════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded',function(){
-  document.getElementById('btn-refresh').addEventListener('click',function(){dbLog('Global refresh','info');wxForceRefresh();stLoadAll();peLoadAll();fcLoad();});
-
-  document.querySelectorAll('.tab-btn[data-tab]').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      var id=this.dataset.tab;
-      document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('on');});
-      document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('on');});
-      this.classList.add('on');document.getElementById('panel-'+id).classList.add('on');
-      if(id==='ta'&&!taLoaded){taLoaded=true;taLoadAll();}
-    });
-  });
-
-  document.getElementById('dbg-header').addEventListener('click',function(){var b=document.getElementById('dbg-body'),a=document.getElementById('dbg-arrow'),o=b.style.display==='none';b.style.display=o?'block':'none';a.style.transform=o?'rotate(90deg)':'';});
-  document.getElementById('dbg-clear-btn').addEventListener('click',function(e){e.stopPropagation();dbgEntries=[];renderDbg();});
-
-  document.getElementById('ai-send-btn').addEventListener('click',aiSend);
-  document.getElementById('ai-clear-btn').addEventListener('click',aiClear);
-  document.getElementById('ai-report-btn').addEventListener('click',aiSendReport);
-  document.getElementById('ai-input').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();aiSend();}});
-  document.getElementById('ai-input').addEventListener('focus',function(){this.style.borderColor='#4493f8';});
-  document.getElementById('ai-input').addEventListener('blur',function(){this.style.borderColor='#30363d';});
-
-  document.getElementById('ta-btn-candle').addEventListener('click',function(){taSetType('candle');});
-  document.getElementById('ta-btn-line').addEventListener('click',function(){taSetType('line');});
-  document.getElementById('ta-refresh-btn').addEventListener('click',taRefresh);
-  TA_TFS.forEach(function(tf){document.getElementById('ta-reset-'+tf).addEventListener('click',function(){taResetZoomTF(tf);});});
-
-  document.getElementById('fc-header').addEventListener('click',fcToggle);
-  document.getElementById('ngf-btn-line').addEventListener('click',function(){ngfSetChartType('line');});
-  document.getElementById('ngf-btn-candle').addEventListener('click',function(){ngfSetChartType('candle');});
-  document.querySelectorAll('[data-ngf-w]').forEach(function(b){b.addEventListener('click',function(){ngfSetWindow(this.dataset.ngfW);});});
-
-  document.querySelectorAll('[data-st-w]').forEach(function(b){b.addEventListener('click',function(){stSetWindow(this.dataset.stW);});});
-  document.querySelectorAll('[data-pe-w]').forEach(function(b){b.addEventListener('click',function(){peSetWindow(this.dataset.peW);});});
-  document.querySelectorAll('[data-wx-w]').forEach(function(b){b.addEventListener('click',function(){wxSetWindow(this.dataset.wxW);});});
-  document.getElementById('wx-hist-btn').addEventListener('click',exportHistoricalWeekly);
-
-  document.querySelectorAll('[data-zoom]').forEach(function(b){b.addEventListener('click',function(){resetZoom(this.dataset.zoom);});});
-
-  document.getElementById('btn-export-ngf').addEventListener('click',stExportNgf);
-  document.getElementById('btn-export-storage').addEventListener('click',stExportStorage);
-  document.getElementById('btn-export-dev').addEventListener('click',stExportDev);
-  document.getElementById('btn-export-inj').addEventListener('click',stExportInj);
-  document.getElementById('btn-export-supply').addEventListener('click',peExportSupply);
-  document.getElementById('btn-export-wx-reg').addEventListener('click',function(){
-    if(!wxS) return;
-    var rows=['Date\t'+WX_REGIONS.map(function(r){return r.name+' °C';}).join('\t'),Array(70).join('-')];
-    wxS.allDates.forEach(function(dt,i){var cols=WX_REGIONS.map(function(_,ri){var t=wxS.regionTemps[i][ri];return t!=null?t.toFixed(2):'N/A';});rows.push(fmtGB(dt)+'\t'+cols.join('\t'));});
-    dlBlob('natgas_wx_regional_temp.txt','NatGas Weather — Regional Temperatures\nSource: Open-Meteo\nExported: '+new Date().toLocaleString('en-GB')+'\n\n'+rows.join('\n'));
-  });
-  document.getElementById('btn-export-wx-temp').addEventListener('click',function(){
-    if(!wxS) return;
-    var rows=['Date\tTemp °C\t5y Avg °C\t5y Min °C\t5y Max °C',Array(50).join('-')];
-    wxS.allDates.forEach(function(dt,i){var t=wxS.allTemps[i],a=wxS.h5avg[i],mn=wxS.h5min[i],mx=wxS.h5max[i];rows.push(fmtGB(dt)+'\t'+(t!=null?t.toFixed(2):'N/A')+'\t'+(a!=null?a.toFixed(2):'N/A')+'\t'+(mn!=null?mn.toFixed(2):'N/A')+'\t'+(mx!=null?mx.toFixed(2):'N/A'));});
-    dlBlob('natgas_wx_temp.txt','NatGas Weather — Weighted Average Temperature\nSource: Open-Meteo\nExported: '+new Date().toLocaleString('en-GB')+'\n\n'+rows.join('\n'));
-  });
-  document.getElementById('btn-export-wx-dem').addEventListener('click',function(){
-    if(!wxS) return;
-    var regHdrs=WX_REGIONS.map(function(r){return r.name+'_HDD\t'+r.name+'_CDD';}).join('\t');
-    var rows=['Date\tDemand\t5y Avg\t5y Min\t5y Max\tHDD_wtd\tCDD_wtd\t'+regHdrs,Array(80).join('-')];
-    wxS.allDates.forEach(function(dt,i){
-      var d=wxS.demAll[i],a=wxS.dem5avg[i],mn=wxS.dem5min[i],mx=wxS.dem5max[i],h=wxS.hddAll[i],c=wxS.cddAll[i];
-      var regCols=wxS.regionTemps&&wxS.regionTemps[i]?WX_REGIONS.map(function(_,ri){var t=wxS.regionTemps[i][ri];return t!=null?(Math.max(0,WX_BASE-t).toFixed(2)+'\t'+Math.max(0,t-WX_BASE).toFixed(2)):'N/A\tN/A';}).join('\t'):WX_REGIONS.map(function(){return 'N/A\tN/A';}).join('\t');
-      rows.push(fmtGB(dt)+'\t'+(d!=null?d.toFixed(2):'N/A')+'\t'+(a!=null?a.toFixed(2):'N/A')+'\t'+(mn!=null?mn.toFixed(2):'N/A')+'\t'+(mx!=null?mx.toFixed(2):'N/A')+'\t'+(h!=null?h.toFixed(2):'N/A')+'\t'+(c!=null?c.toFixed(2):'N/A')+'\t'+regCols);
-    });
-    dlBlob('natgas_wx_demand.txt','NatGas Weather — Total Demand Index\nSource: Open-Meteo\nExported: '+new Date().toLocaleString('en-GB')+'\n\n'+rows.join('\n'));
-  });
-  document.querySelectorAll('[data-pe-export]').forEach(function(b){b.addEventListener('click',function(){peExport(this.dataset.peExport);});});
-});
-
-// ═══════════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════════
-dbLog('NatGas Dashboard v14 — init','info');
-ngfLogContracts();
-var _initCur=ngfCurrent();
-dbLog('Front month: '+(_initCur?_initCur.label+' ['+_initCur.ticker+']':'NULL'),_initCur?'ok':'error');
-renderBiasCard();
-ngfUpdateSubtitle();
-wxLoadAll(false);
-stLoadAll();
-peLoadAll();
-fcLoad();
-
-var _lastWxSlot=wxSlot();
-setInterval(function(){
-  var cur=wxSlot();
-  if(cur!==_lastWxSlot){_lastWxSlot=cur;dbLog('New hour — refreshing weather…','info');wxForceRefresh();}
-  document.getElementById('wx-api-count').textContent=wxGetApiCount().count;
-},60000);
-</script>
-</body>
-</html>
+    actualPrice='$'+lngf.close.toFixed(3)+'/MMBtu';
+    if(lngfPrev){var wc=lng
