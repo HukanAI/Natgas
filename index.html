@@ -135,6 +135,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     <div class="bx"><div class="bx-lbl">Fair Price — 7D</div><div class="bx-val" id="b-fp7">—</div><div class="bx-sub" id="b-fp7-range">—</div></div>
     <div class="bx"><div class="bx-lbl">Fair Price — 14D</div><div class="bx-val" id="b-fp14">—</div><div class="bx-sub" id="b-fp14-range">—</div></div>
     <div class="bx"><div class="bx-lbl">Fair Price — 21D</div><div class="bx-val" id="b-fp21">—</div><div class="bx-sub" id="b-fp21-range">—</div></div>
+    <div class="bx"><div class="bx-lbl">COT MM Net</div><div class="bx-val" id="b-cot-net">—</div><div class="bx-sub" id="b-cot-net-chg">—</div><div class="bx-sub2" id="b-cot-net-date">—</div></div>
+    <div class="bx"><div class="bx-lbl">COT MM L/S Ratio</div><div class="bx-val" id="b-cot-ratio">—</div><div class="bx-sub" id="b-cot-ratio-sub">—</div></div>
   </div>
 </div>
 
@@ -146,7 +148,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     <button class="tab-btn" data-tab="prodexp">🏗 Production/Export</button>
     <button class="tab-btn" data-tab="weather">🌤 Weather</button>
     <button class="tab-btn" data-tab="storage">🏭 Storage</button>
-    <button class="tab-btn" data-tab="correlation">🔗 Correlation</button>
+    <button class="tab-btn" data-tab="correlation">📋 Commitment of Traders</button>
   </div>
 
   <div class="tab-panel on" id="panel-ai">
@@ -363,8 +365,102 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
   </div>
 
   <div class="tab-panel" id="panel-correlation">
-    <div style="padding:40px;text-align:center;font-size:11px;color:var(--text3);font-family:var(--mono);border:1px dashed var(--border2);border-radius:6px">
-      <strong style="display:block;font-size:12px;color:var(--text2);margin-bottom:6px">🔗 Correlation</strong>Coming soon
+    <div class="ctrl-bar">
+      <div class="tw-bar">
+        <span class="tw-lbl">History:</span>
+        <button class="tw-btn on" data-cot-w="2y">2 years</button>
+        <button class="tw-btn" data-cot-w="1y">1 year</button>
+        <button class="tw-btn" data-cot-w="ytd">YTD</button>
+        <button class="tw-btn" data-cot-w="6m">6 months</button>
+        <button class="tw-btn" data-cot-w="3m">3 months</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <div class="api-ctr"><span class="api-lbl">COT calls</span><span class="api-val" id="cot-api-count">0</span></div>
+        <span class="cbadge loading" id="cot-badge">Loading…</span>
+        <span class="sdot loading" id="cot-dot"></span>
+        <button class="xbtn" id="cot-refresh-btn">↺ Refresh</button>
+      </div>
+    </div>
+
+    <!-- Summary boxes -->
+    <div class="dem-grid" id="cot-boxes">
+      <div class="mbox"><div class="mbox-lbl">MM Net Position</div><div class="mbox-val" id="cot-mm-net">—</div><div class="mbox-sub" id="cot-mm-net-chg">—</div><div class="mbox-sub" id="cot-mm-net-date">—</div></div>
+      <div class="mbox"><div class="mbox-lbl">MM Long</div><div class="mbox-val" id="cot-mm-long">—</div><div class="mbox-sub" id="cot-mm-long-chg">—</div></div>
+      <div class="mbox"><div class="mbox-lbl">MM Short</div><div class="mbox-val" id="cot-mm-short">—</div><div class="mbox-sub" id="cot-mm-short-chg">—</div></div>
+      <div class="mbox"><div class="mbox-lbl">MM L/S Ratio</div><div class="mbox-val" id="cot-mm-ratio">—</div><div class="mbox-sub" id="cot-mm-ratio-sub">—</div></div>
+      <div class="mbox"><div class="mbox-lbl">Producer Net</div><div class="mbox-val" id="cot-prod-net">—</div><div class="mbox-sub" id="cot-prod-net-chg">—</div></div>
+      <div class="mbox"><div class="mbox-lbl">Swap Dealer Net</div><div class="mbox-val" id="cot-swap-net">—</div><div class="mbox-sub" id="cot-swap-net-chg">—</div></div>
+    </div>
+
+    <!-- Net Position Chart -->
+    <div class="block">
+      <div class="bhead">
+        <div><div class="btitle">Managed Money — Net Position (Long − Short)</div><div class="bsub" id="cot-net-sub">Weekly · contracts · CFTC Disaggregated</div></div>
+        <div style="display:flex;gap:6px">
+          <button class="xbtn" id="btn-export-cot-net">⬇ Export</button>
+          <button class="zbtn" data-zoom="cot-c-net">⤢ Reset</button>
+        </div>
+      </div>
+      <div id="cot-spin-net" class="spin-msg"><span class="sp"></span>Loading…</div>
+      <div class="cw" style="height:240px;display:none" id="cot-wrap-net"><canvas id="cot-c-net"></canvas></div>
+    </div>
+
+    <!-- Long/Short Stacked Bar -->
+    <div class="block">
+      <div class="bhead">
+        <div><div class="btitle">Managed Money — Long vs Short (stacked)</div><div class="bsub">Weekly · contracts</div></div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div class="legend">
+            <span class="li"><span class="ldb" style="background:#3fb950"></span>Long</span>
+            <span class="li"><span class="ldb" style="background:#ff7b72"></span>Short</span>
+          </div>
+          <button class="zbtn" data-zoom="cot-c-ls">⤢ Reset</button>
+        </div>
+      </div>
+      <div id="cot-spin-ls" class="spin-msg"><span class="sp"></span>Loading…</div>
+      <div class="cw" style="height:220px;display:none" id="cot-wrap-ls"><canvas id="cot-c-ls"></canvas></div>
+    </div>
+
+    <!-- Producer Hedging -->
+    <div class="block">
+      <div class="bhead">
+        <div><div class="btitle">Producer / Merchant — Long vs Short</div><div class="bsub">Weekly · contracts · hedging activity</div></div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div class="legend">
+            <span class="li"><span class="ldb" style="background:#4493f8"></span>Long</span>
+            <span class="li"><span class="ldb" style="background:#e3b341"></span>Short</span>
+          </div>
+          <button class="zbtn" data-zoom="cot-c-prod">⤢ Reset</button>
+        </div>
+      </div>
+      <div id="cot-spin-prod" class="spin-msg"><span class="sp"></span>Loading…</div>
+      <div class="cw" style="height:220px;display:none" id="cot-wrap-prod"><canvas id="cot-c-prod"></canvas></div>
+    </div>
+
+    <!-- Swap Dealer -->
+    <div class="block">
+      <div class="bhead">
+        <div><div class="btitle">Swap Dealer — Long vs Short</div><div class="bsub">Weekly · contracts</div></div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div class="legend">
+            <span class="li"><span class="ldb" style="background:#a371f7"></span>Long</span>
+            <span class="li"><span class="ldb" style="background:#f0883e"></span>Short</span>
+          </div>
+          <button class="zbtn" data-zoom="cot-c-swap">⤢ Reset</button>
+        </div>
+      </div>
+      <div id="cot-spin-swap" class="spin-msg"><span class="sp"></span>Loading…</div>
+      <div class="cw" style="height:220px;display:none" id="cot-wrap-swap"><canvas id="cot-c-swap"></canvas></div>
+    </div>
+
+    <!-- W/W Change -->
+    <div class="block">
+      <div class="bhead">
+        <div><div class="btitle">Managed Money — Weekly Change in Net Position</div><div class="bsub">Bars = W/W change in net contracts</div></div>
+        <button class="zbtn" data-zoom="cot-c-chg">⤢ Reset</button>
+      </div>
+      <div id="cot-spin-chg" class="spin-msg"><span class="sp"></span>Loading…</div>
+      <div class="cw" style="height:180px;display:none" id="cot-wrap-chg"><canvas id="cot-c-chg"></canvas></div>
     </div>
   </div>
 </div>
@@ -461,6 +557,10 @@ var aiHistory = [];
 var nextContractPrice = null;
 var taType = 'candle', taApiCount = 0;
 var taData = {}, taCharts = {};
+// COT state
+var cotWindow = '2y', cotData = [], cotApiCount = 0;
+var cotCharts = {net:null,ls:null,prod:null,swap:null,chg:null};
+var COT_WINDOWS = {'2y':730,'1y':365,'ytd':null,'6m':180,'3m':90};
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // UTILITIES
@@ -1782,7 +1882,244 @@ function peSetWindow(w){
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// EXPORTS
+// COT — COMMITMENT OF TRADERS
+// ═══════════════════════════════════════════════════════════════════════════════
+function cotSetDot(s){document.getElementById('cot-dot').className='sdot '+s;}
+function cotSetBadge(t,txt){var el=document.getElementById('cot-badge');el.textContent=txt;el.className='cbadge '+t;}
+
+async function cotFetch(){
+  cotApiCount++;document.getElementById('cot-api-count').textContent=cotApiCount;
+  // CFTC Disaggregated COT, Natural Gas (Henry Hub) = commodity code 023651
+  // Futures only, sorted descending by date, last 3 years worth
+  var url='https://publicreporting.cftc.gov/api/explore/dataset/com_disagg_fut_only_txt_2006_to_present/records?'
+    +'where=cftc_commodity_code%3D%22023651%22'
+    +'&order_by=report_date_as_yyyy_mm_dd%20DESC'
+    +'&limit=156';  // ~3 years of weekly data
+  var res=await fetch(url,{headers:{'Accept':'application/json'}});
+  if(!res.ok) throw new Error('CFTC HTTP '+res.status);
+  var json=await res.json();
+  var records=(json.results||json.records||[]);
+  if(!records.length) throw new Error('No COT records returned');
+  var out=records.map(function(r){
+    var f=r.fields||r;
+    return{
+      date:f.report_date_as_yyyy_mm_dd||f.report_date,
+      mmLong:parseInt(f.m_money_positions_long_all||0),
+      mmShort:parseInt(f.m_money_positions_short_all||0),
+      mmSpread:parseInt(f.m_money_positions_spread_all||0),
+      prodLong:parseInt(f.prod_merc_positions_long_all||0),
+      prodShort:parseInt(f.prod_merc_positions_short_all||0),
+      swapLong:parseInt(f.swap_positions_long_all||0),
+      swapShort:parseInt(f.swap__positions_short_all||f.swap_positions_short_all||0),
+      otherLong:parseInt(f.other_rept_positions_long_all||0),
+      otherShort:parseInt(f.other_rept_positions_short_all||0),
+      openInterest:parseInt(f.open_interest_all||0)
+    };
+  }).filter(function(r){return r.date;});
+  out.sort(function(a,b){return a.date<b.date?-1:1;});
+  // Compute derived fields
+  out.forEach(function(r){
+    r.mmNet=r.mmLong-r.mmShort;
+    r.prodNet=r.prodLong-r.prodShort;
+    r.swapNet=r.swapLong-r.swapShort;
+    r.mmRatio=r.mmShort>0?(r.mmLong/r.mmShort):null;
+  });
+  return out;
+}
+
+function cotFilterByWindow(data){
+  if(!data||!data.length) return [];
+  if(cotWindow==='ytd'){var yr=String(new Date().getFullYear());return data.filter(function(d){return d.date.startsWith(yr);});}
+  var days=COT_WINDOWS[cotWindow];if(!days) return data.slice();
+  var cut=new Date();cut.setDate(cut.getDate()-days);var cutStr=cut.toISOString().slice(0,10);
+  return data.filter(function(d){return d.date>=cutStr;});
+}
+
+function cotUpdateBias(){
+  if(!cotData.length) return;
+  var lat=cotData[cotData.length-1],prev=cotData.length>1?cotData[cotData.length-2]:null;
+  // Bias card
+  var netEl=document.getElementById('b-cot-net');
+  netEl.textContent=(lat.mmNet>=0?'+':'')+lat.mmNet.toLocaleString();
+  netEl.style.color=lat.mmNet>=0?'#3fb950':'#ff7b72';
+  if(prev){var chg=lat.mmNet-prev.mmNet;document.getElementById('b-cot-net-chg').innerHTML='<span style="color:'+(chg>=0?'#3fb950':'#ff7b72')+'">'+(chg>=0?'+':'')+chg.toLocaleString()+' W/W</span>';}
+  document.getElementById('b-cot-net-date').textContent=fmtShort(lat.date);
+  var ratioEl=document.getElementById('b-cot-ratio');
+  if(lat.mmRatio!=null){
+    ratioEl.textContent=lat.mmRatio.toFixed(2)+'x';
+    ratioEl.style.color=lat.mmRatio>=1.5?'#3fb950':lat.mmRatio<=0.7?'#ff7b72':'#e3b341';
+    document.getElementById('b-cot-ratio-sub').textContent=lat.mmRatio>=1.5?'Bullish positioning':lat.mmRatio<=0.7?'Bearish positioning':'Neutral positioning';
+  }
+  // COT tab summary boxes
+  document.getElementById('cot-mm-net').textContent=(lat.mmNet>=0?'+':'')+lat.mmNet.toLocaleString();
+  document.getElementById('cot-mm-net').style.color=lat.mmNet>=0?'#3fb950':'#ff7b72';
+  if(prev){
+    var nc=lat.mmNet-prev.mmNet;
+    document.getElementById('cot-mm-net-chg').innerHTML='<span style="color:'+(nc>=0?'#3fb950':'#ff7b72')+'">'+(nc>=0?'+':'')+nc.toLocaleString()+' W/W</span>';
+    var lc=lat.mmLong-prev.mmLong,sc=lat.mmShort-prev.mmShort;
+    document.getElementById('cot-mm-long-chg').innerHTML='<span style="color:'+(lc>=0?'#3fb950':'#ff7b72')+'">'+(lc>=0?'+':'')+lc.toLocaleString()+' W/W</span>';
+    document.getElementById('cot-mm-short-chg').innerHTML='<span style="color:'+(sc<=0?'#3fb950':'#ff7b72')+'">'+(sc>=0?'+':'')+sc.toLocaleString()+' W/W</span>';
+    var pnc=lat.prodNet-prev.prodNet,snc=lat.swapNet-prev.swapNet;
+    document.getElementById('cot-prod-net-chg').innerHTML='<span style="color:'+(pnc>=0?'#3fb950':'#ff7b72')+'">'+(pnc>=0?'+':'')+pnc.toLocaleString()+' W/W</span>';
+    document.getElementById('cot-swap-net-chg').innerHTML='<span style="color:'+(snc>=0?'#3fb950':'#ff7b72')+'">'+(snc>=0?'+':'')+snc.toLocaleString()+' W/W</span>';
+  }
+  document.getElementById('cot-mm-net-date').textContent=fmtShort(lat.date);
+  document.getElementById('cot-mm-long').textContent=lat.mmLong.toLocaleString();document.getElementById('cot-mm-long').style.color='#3fb950';
+  document.getElementById('cot-mm-short').textContent=lat.mmShort.toLocaleString();document.getElementById('cot-mm-short').style.color='#ff7b72';
+  document.getElementById('cot-prod-net').textContent=(lat.prodNet>=0?'+':'')+lat.prodNet.toLocaleString();document.getElementById('cot-prod-net').style.color=lat.prodNet>=0?'#3fb950':'#ff7b72';
+  document.getElementById('cot-swap-net').textContent=(lat.swapNet>=0?'+':'')+lat.swapNet.toLocaleString();document.getElementById('cot-swap-net').style.color=lat.swapNet>=0?'#3fb950':'#ff7b72';
+  if(lat.mmRatio!=null){
+    document.getElementById('cot-mm-ratio').textContent=lat.mmRatio.toFixed(2)+'x';
+    document.getElementById('cot-mm-ratio').style.color=lat.mmRatio>=1.5?'#3fb950':lat.mmRatio<=0.7?'#ff7b72':'#e3b341';
+    document.getElementById('cot-mm-ratio-sub').textContent='Long / Short ratio';
+  }
+}
+
+function cotRenderAll(){
+  var filtered=cotFilterByWindow(cotData);if(!filtered.length) return;
+  var labels=filtered.map(function(d){return fmtGB(d.date);});
+
+  function showChart(spinId,wrapId){
+    document.getElementById(spinId).style.display='none';
+    document.getElementById(wrapId).style.display='block';
+  }
+
+  // 1. Net position line chart
+  killChart(cotCharts.net);cotCharts.net=null;
+  showChart('cot-spin-net','cot-wrap-net');
+  var netData=filtered.map(function(d){return d.mmNet;});
+  var netColors=netData.map(function(v){return v>=0?'rgba(63,185,80,0.75)':'rgba(255,123,114,0.75)';});
+  var netTT=Object.assign({},baseTT(),{callbacks:{
+    title:function(items){return items[0]?labels[items[0].dataIndex]:'';},
+    label:function(c){return ' MM Net: '+(c.parsed.y>=0?'+':'')+Math.round(c.parsed.y).toLocaleString()+' contracts';}
+  }});
+  cotCharts.net=new Chart(document.getElementById('cot-c-net').getContext('2d'),{
+    type:'bar',
+    data:{labels:labels,datasets:[
+      {label:'MM Net',data:netData,backgroundColor:netColors,borderWidth:0,borderRadius:1,order:2},
+      {label:'Zero',data:filtered.map(function(){return 0;}),type:'line',borderColor:'rgba(255,255,255,0.15)',borderWidth:1,pointRadius:0,fill:false,order:1}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:300},interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:false},tooltip:netTT,zoom:zoomOpts()},
+      scales:{x:baseX(),y:baseY(function(v){return(v>=0?'+':'')+Math.round(v/1000)+'k';})}}
+  });
+
+  // 2. MM Long/Short stacked bar
+  killChart(cotCharts.ls);cotCharts.ls=null;
+  showChart('cot-spin-ls','cot-wrap-ls');
+  var lsTT=Object.assign({},baseTT(),{callbacks:{
+    title:function(items){return items[0]?labels[items[0].dataIndex]:'';},
+    label:function(c){return ' '+c.dataset.label+': '+Math.round(c.parsed.y).toLocaleString()+' contracts';}
+  }});
+  cotCharts.ls=new Chart(document.getElementById('cot-c-ls').getContext('2d'),{
+    type:'bar',
+    data:{labels:labels,datasets:[
+      {label:'MM Long', data:filtered.map(function(d){return d.mmLong;}), backgroundColor:'rgba(63,185,80,0.7)',borderWidth:0,borderRadius:1},
+      {label:'MM Short',data:filtered.map(function(d){return -d.mmShort;}),backgroundColor:'rgba(255,123,114,0.7)',borderWidth:0,borderRadius:1}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:300},interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:false},tooltip:lsTT,zoom:zoomOpts()},
+      scales:{x:baseX(),y:baseY(function(v){return Math.round(Math.abs(v)/1000)+'k';})}}
+  });
+
+  // 3. Producer long/short
+  killChart(cotCharts.prod);cotCharts.prod=null;
+  showChart('cot-spin-prod','cot-wrap-prod');
+  var prodTT=Object.assign({},baseTT(),{callbacks:{
+    title:function(items){return items[0]?labels[items[0].dataIndex]:'';},
+    label:function(c){return ' '+c.dataset.label+': '+Math.round(c.parsed.y).toLocaleString()+' contracts';}
+  }});
+  cotCharts.prod=new Chart(document.getElementById('cot-c-prod').getContext('2d'),{
+    type:'line',
+    data:{labels:labels,datasets:[
+      {label:'Prod Long', data:filtered.map(function(d){return d.prodLong;}), borderColor:'#4493f8',borderWidth:2,pointRadius:0,tension:0.3,fill:false},
+      {label:'Prod Short',data:filtered.map(function(d){return d.prodShort;}),borderColor:'#e3b341',borderWidth:2,pointRadius:0,tension:0.3,fill:false}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:300},interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:false},tooltip:prodTT,zoom:zoomOpts()},
+      scales:{x:baseX(),y:baseY(function(v){return Math.round(v/1000)+'k';})}}
+  });
+
+  // 4. Swap dealer long/short
+  killChart(cotCharts.swap);cotCharts.swap=null;
+  showChart('cot-spin-swap','cot-wrap-swap');
+  var swapTT=Object.assign({},baseTT(),{callbacks:{
+    title:function(items){return items[0]?labels[items[0].dataIndex]:'';},
+    label:function(c){return ' '+c.dataset.label+': '+Math.round(c.parsed.y).toLocaleString()+' contracts';}
+  }});
+  cotCharts.swap=new Chart(document.getElementById('cot-c-swap').getContext('2d'),{
+    type:'line',
+    data:{labels:labels,datasets:[
+      {label:'Swap Long', data:filtered.map(function(d){return d.swapLong;}), borderColor:'#a371f7',borderWidth:2,pointRadius:0,tension:0.3,fill:false},
+      {label:'Swap Short',data:filtered.map(function(d){return d.swapShort;}),borderColor:'#f0883e',borderWidth:2,pointRadius:0,tension:0.3,fill:false}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:300},interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:false},tooltip:swapTT,zoom:zoomOpts()},
+      scales:{x:baseX(),y:baseY(function(v){return Math.round(v/1000)+'k';})}}
+  });
+
+  // 5. W/W change in net
+  killChart(cotCharts.chg);cotCharts.chg=null;
+  showChart('cot-spin-chg','cot-wrap-chg');
+  var chgData=filtered.map(function(d,i){return i===0?0:d.mmNet-filtered[i-1].mmNet;});
+  var chgColors=chgData.map(function(v){return v>=0?'rgba(63,185,80,0.75)':'rgba(255,123,114,0.75)';});
+  var chgTT=Object.assign({},baseTT(),{callbacks:{
+    title:function(items){return items[0]?labels[items[0].dataIndex]:'';},
+    label:function(c){return ' W/W change: '+(c.parsed.y>=0?'+':'')+Math.round(c.parsed.y).toLocaleString()+' contracts';}
+  }});
+  cotCharts.chg=new Chart(document.getElementById('cot-c-chg').getContext('2d'),{
+    type:'bar',
+    data:{labels:labels,datasets:[{label:'W/W Change',data:chgData,backgroundColor:chgColors,borderWidth:0,borderRadius:1}]},
+    options:{responsive:true,maintainAspectRatio:false,animation:{duration:300},interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:false},tooltip:chgTT,zoom:zoomOpts()},
+      scales:{x:baseX(),y:baseY(function(v){return(v>=0?'+':'')+Math.round(v/1000)+'k';})}}
+  });
+
+  // Update subtitle
+  var lbl={'2y':'2-year','1y':'1-year','ytd':'YTD','6m':'6-month','3m':'3-month'};
+  document.getElementById('cot-net-sub').textContent='Weekly · contracts · CFTC Disaggregated · '+(lbl[cotWindow]||cotWindow)+' history';
+}
+
+async function cotLoadAll(){
+  cotSetDot('loading');cotSetBadge('loading','Loading…');
+  ['net','ls','prod','swap','chg'].forEach(function(k){
+    document.getElementById('cot-spin-'+k).style.display='block';
+    document.getElementById('cot-spin-'+k).innerHTML='<span class="sp"></span>Loading…';
+    document.getElementById('cot-wrap-'+k).style.display='none';
+  });
+  dbLog('COT: fetching CFTC…','info');
+  try{
+    cotData=await cotFetch();
+    dbLog('COT: OK ('+cotData.length+' weeks)','ok');
+    cotSetDot('ok');cotSetBadge('live','Live data');
+    cotUpdateBias();
+    cotRenderAll();
+  }catch(e){
+    cotSetDot('err');cotSetBadge('err','Error');
+    ['net','ls','prod','swap','chg'].forEach(function(k){
+      document.getElementById('cot-spin-'+k).innerHTML='⚠ '+esc(e.message);
+    });
+    dbLog('COT error: '+e.message,'error');
+  }
+}
+
+function cotSetWindow(w){
+  if(cotWindow===w) return;cotWindow=w;
+  document.querySelectorAll('[data-cot-w]').forEach(function(b){b.classList.toggle('on',b.dataset.cotW===w);});
+  Object.keys(cotCharts).forEach(function(k){killChart(cotCharts[k]);cotCharts[k]=null;});
+  if(cotData.length) cotRenderAll();
+}
+
+function cotExportNet(){
+  if(!cotData.length){alert('No COT data.');return;}
+  function pad(s,w){s=String(s==null?'':s);return s.length>=w?s.slice(0,w-1)+' ':s+' '.repeat(w-s.length);}
+  var lines=['COT Natural Gas (Henry Hub) — Managed Money Net Position','Source: CFTC Disaggregated COT','Exported: '+new Date().toLocaleString('en-GB'),'',
+    pad('Date',14)+pad('MM Long',12)+pad('MM Short',12)+pad('MM Net',12)+pad('MM Ratio',10)+pad('Prod Net',12)+pad('Swap Net',12),'-'.repeat(80)];
+  cotData.forEach(function(r){
+    lines.push(pad(r.date,14)+pad(r.mmLong.toLocaleString(),12)+pad(r.mmShort.toLocaleString(),12)+pad((r.mmNet>=0?'+':'')+r.mmNet.toLocaleString(),12)+pad(r.mmRatio!=null?r.mmRatio.toFixed(2):'N/A',10)+pad((r.prodNet>=0?'+':'')+r.prodNet.toLocaleString(),12)+pad((r.swapNet>=0?'+':'')+r.swapNet.toLocaleString(),12));
+  });
+  dlBlob('natgas_cot.txt',lines.join('\n'));
+}
 // ═══════════════════════════════════════════════════════════════════════════════
 function stExportStorage(){
   if(!stStorageData.length){alert('No storage data.');return;}
@@ -2395,6 +2732,10 @@ document.addEventListener('DOMContentLoaded',function(){
     });
     dlBlob('natgas_wx_demand.txt','NatGas Weather — Total Demand Index\nSource: Open-Meteo\nExported: '+new Date().toLocaleString('en-GB')+'\n\n'+rows.join('\n'));
   });
+  document.querySelectorAll('[data-cot-w]').forEach(function(b){b.addEventListener('click',function(){cotSetWindow(this.dataset.cotW);});});
+  document.getElementById('cot-refresh-btn').addEventListener('click',function(){cotData=[];cotLoadAll();});
+  document.getElementById('btn-export-cot-net').addEventListener('click',cotExportNet);
+
   document.querySelectorAll('[data-pe-export]').forEach(function(b){b.addEventListener('click',function(){peExport(this.dataset.peExport);});});
 });
 
@@ -2413,6 +2754,7 @@ stLoadAll();
 peLoadAll();
 fcLoad();
 taLoadAll();
+cotLoadAll();
 
 var _lastWxSlot=wxSlot();
 setInterval(function(){
