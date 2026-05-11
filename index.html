@@ -102,8 +102,21 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 .fc-badge{font-size:8px;padding:1px 5px;border-radius:3px;font-family:var(--mono);font-weight:600}
 .fc-badge.front{background:rgba(68,147,248,.15);color:var(--blue);border:1px solid rgba(68,147,248,.3)}
 .fc-badge.next{background:rgba(227,179,65,.1);color:var(--yellow);border:1px solid rgba(227,179,65,.25)}
-.ta-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.ta-panel{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:10px;min-width:0}
+/* COT tooltip popup */
+.cot-help-btn{background:none;border:1px solid var(--border2);color:var(--text3);width:18px;height:18px;border-radius:50%;cursor:pointer;font-size:10px;font-family:var(--mono);font-weight:700;line-height:1;display:inline-flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+.cot-help-btn:hover{border-color:var(--blue);color:var(--blue)}
+.cot-popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;align-items:center;justify-content:center}
+.cot-popup-overlay.on{display:flex}
+.cot-popup{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:20px 24px;max-width:520px;width:90%;max-height:80vh;overflow-y:auto;position:relative;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.cot-popup h3{font-size:13px;font-weight:700;color:var(--blue);margin-bottom:10px}
+.cot-popup p{font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:8px}
+.cot-popup strong{color:var(--text)}
+.cot-popup .tag{display:inline-block;font-size:10px;font-family:var(--mono);padding:2px 7px;border-radius:4px;margin-right:4px;margin-bottom:4px}
+.cot-popup .tag.bull{background:rgba(63,185,80,.15);color:var(--green);border:1px solid rgba(63,185,80,.3)}
+.cot-popup .tag.bear{background:rgba(255,123,114,.15);color:var(--red);border:1px solid rgba(255,123,114,.3)}
+.cot-popup .tag.neu{background:rgba(68,147,248,.15);color:var(--blue);border:1px solid rgba(68,147,248,.3)}
+.cot-popup-close{position:absolute;top:12px;right:14px;background:none;border:none;color:var(--text3);font-size:16px;cursor:pointer;line-height:1;padding:2px 6px}
+.cot-popup-close:hover{color:var(--text)}
 </style>
 </head>
 <body>
@@ -150,6 +163,22 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     <button class="tab-btn" data-tab="storage">🏭 Storage</button>
     <button class="tab-btn" data-tab="correlation">📋 Commitment of Traders</button>
   </div>
+
+<div class="cot-popup-overlay" id="cot-popup-overlay">
+  <div class="cot-popup">
+    <button class="cot-popup-close" id="cot-popup-close">X</button>
+    <h3 id="cot-popup-title" ></h3>
+    <div id="cot-popup-body" ></div>
+  </div>
+</div>
+
+<div class="cot-popup-overlay" id="cot-popup-overlay">
+  <div class="cot-popup">
+    <button class="cot-popup-close" id="cot-popup-close">✕</button>
+    <h3 id="cot-popup-title"></h3>
+    <div id="cot-popup-body"></div>
+  </div>
+</div>
 
   <div class="tab-panel on" id="panel-ai">
     <div style="display:flex;flex-direction:column;gap:10px;height:580px">
@@ -397,6 +426,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
       <div class="bhead">
         <div><div class="btitle">Managed Money — Net Position (Long − Short)</div><div class="bsub" id="cot-net-sub">Weekly · contracts · CFTC Disaggregated</div></div>
         <div style="display:flex;gap:6px">
+          <button class="cot-help-btn" data-cot-help="net">?</button>
           <button class="xbtn" id="btn-export-cot-net">⬇ Export</button>
           <button class="zbtn" data-zoom="cot-c-net">⤢ Reset</button>
         </div>
@@ -414,6 +444,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
             <span class="li"><span class="ldb" style="background:#3fb950"></span>Long</span>
             <span class="li"><span class="ldb" style="background:#ff7b72"></span>Short</span>
           </div>
+          <button class="cot-help-btn" data-cot-help="ls">?</button>
           <button class="zbtn" data-zoom="cot-c-ls">⤢ Reset</button>
         </div>
       </div>
@@ -430,6 +461,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
             <span class="li"><span class="ldb" style="background:#4493f8"></span>Long</span>
             <span class="li"><span class="ldb" style="background:#e3b341"></span>Short</span>
           </div>
+          <button class="cot-help-btn" data-cot-help="prod">?</button>
           <button class="zbtn" data-zoom="cot-c-prod">⤢ Reset</button>
         </div>
       </div>
@@ -446,6 +478,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
             <span class="li"><span class="ldb" style="background:#a371f7"></span>Long</span>
             <span class="li"><span class="ldb" style="background:#f0883e"></span>Short</span>
           </div>
+          <button class="cot-help-btn" data-cot-help="swap">?</button>
           <button class="zbtn" data-zoom="cot-c-swap">⤢ Reset</button>
         </div>
       </div>
@@ -457,7 +490,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     <div class="block">
       <div class="bhead">
         <div><div class="btitle">Managed Money — Weekly Change in Net Position</div><div class="bsub">Bars = W/W change in net contracts</div></div>
-        <button class="zbtn" data-zoom="cot-c-chg">⤢ Reset</button>
+        <div style="display:flex;gap:6px;align-items:center">
+          <button class="cot-help-btn" data-cot-help="chg">?</button>
+          <button class="zbtn" data-zoom="cot-c-chg">⤢ Reset</button>
+        </div>
       </div>
       <div id="cot-spin-chg" class="spin-msg"><span class="sp"></span>Loading…</div>
       <div class="cw" style="height:180px;display:none" id="cot-wrap-chg"><canvas id="cot-c-chg"></canvas></div>
@@ -1882,48 +1918,135 @@ function peSetWindow(w){
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// COT — COMMITMENT OF TRADERS
+// COT HELP POPUP
+// ═══════════════════════════════════════════════════════════════════════════════
+var COT_HELP = {
+  net: {
+    title: '📊 Managed Money — Net Position (Long − Short)',
+    body: [
+      '<p><strong>Co je Net Position?</strong><br>Net pozice = počet long kontraktů minus short kontraktů, které drží kategorie <strong>Managed Money</strong> (hedgeové fondy, CTA, CPO). Ukazuje čistý spekulativní sentiment trhu.</p>',
+      '<p><strong>Jak číst graf:</strong></p>',
+      '<p>🟢 <strong>Zelené sloupce (kladné)</strong> — fondy drží více longů než shortů → <em>bullish positioning</em><br>🔴 <strong>Červené sloupce (záporné)</strong> — fondy drží více shortů než longů → <em>bearish positioning</em></p>',
+      '<p><strong>Signály pro trading:</strong></p>',
+      '<span class="tag bull">Extrémní net long = contrarian bearish</span><span class="tag bear">Extrémní net short = contrarian bullish</span><span class="tag neu">Rychlý obrat net = momentum signal</span>',
+      '<p style="margin-top:10px"><strong>Proč je to důležité?</strong><br>Managed Money je dominantní spekulativní síla v NG futures. Extrémní pozice (historická maxima/minima) bývají předzvěstí cenových obratů — trh je "přeplněn" na jedné straně a i malý katalyzátor spustí short-covering nebo long-liquidation.</p>',
+      '<p><strong>Zdroj:</strong> CFTC Disaggregated COT Report — Futures Only (dataset 72hh-3qpy), publikován každý pátek za předchozí úterý.</p>'
+    ]
+  },
+  ls: {
+    title: '📊 Managed Money — Long vs Short (stacked)',
+    body: [
+      '<p><strong>Co zobrazuje tento graf?</strong><br>Absolutní počty <strong>long</strong> a <strong>short</strong> kontraktů kategorie Managed Money zobrazené zrcadlově — longy nad nulou (zelené), shorty pod nulou (červené).</p>',
+      '<p><strong>Rozdíl oproti Net Position:</strong><br>Net Position skryje detail — např. net = 0 může znamenat malé longy a malé shorty (nízká angažovanost) nebo obrovské longy i shorty současně (hedgování). Tento graf ukáže obě složky zvlášť.</p>',
+      '<p><strong>Klíčové vzory:</strong></p>',
+      '<p>📈 <strong>Rostoucí longy + klesající shorty</strong> → agresivní bullish positioning<br>📉 <strong>Klesající longy + rostoucí shorty</strong> → agresivní bearish positioning<br>↔️ <strong>Oba rostou</strong> → vyšší open interest, větší angažovanost obou stran</p>',
+      '<span class="tag bull">Longy na historickém maximu = overextended long = riziko sell-off</span>',
+      '<span class="tag bear">Shorty na historickém maximu = short squeeze potential</span>',
+      '<p style="margin-top:10px"><strong>Zdroj:</strong> CFTC Disaggregated COT — pole <code>m_money_positions_long_all</code> a <code>m_money_positions_short_all</code></p>'
+    ]
+  },
+  prod: {
+    title: '🏭 Producer / Merchant / Processor / User — Long vs Short',
+    body: [
+      '<p><strong>Kdo jsou Producenti?</strong><br>Tato kategorie zahrnuje firmy, které <strong>fyzicky obchodují</strong> se zemním plynem — producenti (E&P firmy), utility, pipeline operátoři, LNG exportéři. Používají futures primárně k <strong>hedgování</strong> fyzických pozic, ne ke spekulaci.</p>',
+      '<p><strong>Jak číst graf:</strong></p>',
+      '<p>🔵 <strong>Long (modrá)</strong> — producenti kupují futures → hedgují budoucí odběr nebo chrání marži<br>🟡 <strong>Short (žlutá)</strong> — producenti prodávají futures → hedgují budoucí produkci (nejčastější pozice)</p>',
+      '<p><strong>Proč je short strana producentů strukturálně dominantní?</strong><br>E&P firmy přirozeně prodávají futures dopředu, aby zajistily cenu své produkce. Čím více shortují, tím více fyzické produkce hedgují → indikátor úrovně hedgeování v odvětví.</p>',
+      '<p><strong>Signály:</strong></p>',
+      '<span class="tag bear">Rekordní short producentů = masivní hedging = bearish pro cenu</span>',
+      '<span class="tag bull">Pokles shortu producentů = redukce hedgingu = bullish signal</span>',
+      '<span class="tag neu">Rostoucí long producentů = utility nakupují = vyšší demand expectation</span>',
+      '<p style="margin-top:10px"><strong>Zdroj:</strong> CFTC — pole <code>prod_merc_positions_long_all</code> a <code>prod_merc_positions_short_all</code></p>'
+    ]
+  },
+  swap: {
+    title: '🔄 Swap Dealer — Long vs Short',
+    body: [
+      '<p><strong>Kdo jsou Swap Dealers?</strong><br>Banky a finanční instituce, které uzavírají <strong>OTC swapové kontrakty</strong> se svými klienty (hedgeové fondy, korporace) a hedgují tato OTC rizika v burzovních futures. Jsou "prostředníkem" mezi fyzickým trhem a spekulanty.</p>',
+      '<p><strong>Jak číst graf:</strong></p>',
+      '<p>🟣 <strong>Long (fialová)</strong> — dealers jsou long v futures → jejich OTC klienti jsou short (zajišťují se proti poklesu ceny)<br>🟠 <strong>Short (oranžová)</strong> — dealers jsou short v futures → jejich OTC klienti jsou long (zajišťují se proti růstu ceny)</p>',
+      '<p><strong>Proč sledovat Swap Dealers?</strong><br>Jejich pozice odráží agregátní OTC hedging korporátních klientů. Velký nárůst dealer shorts = korporace masivně nakupují OTC protection = bullish tržní sentiment korporací (ale může být contrarian).</p>',
+      '<p><strong>Signály:</strong></p>',
+      '<span class="tag neu">Swap Dealers jsou typicky protistrana Managed Money</span>',
+      '<span class="tag bull">Dealer net short + MM net short = extrémní bearish crowding = contrarian bullish</span>',
+      '<span class="tag bear">Dealer net long + MM net long = extrémní bullish crowding = contrarian bearish</span>',
+      '<p style="margin-top:10px"><strong>Zdroj:</strong> CFTC — pole <code>swap_positions_long_all</code> a <code>swap__positions_short_all</code></p>'
+    ]
+  },
+  chg: {
+    title: '📈 Managed Money — Týdenní změna Net Position (W/W Change)',
+    body: [
+      '<p><strong>Co zobrazuje tento graf?</strong><br>Týdenní změna čisté pozice Managed Money — o kolik kontraktů se net position zvýšila nebo snížila oproti předchozímu týdnu.</p>',
+      '<p><strong>Jak číst graf:</strong></p>',
+      '<p>🟢 <strong>Zelené sloupce</strong> — net position se zlepšila (fondy přidávaly longy nebo zavíraly shorty) → <em>bullish flow</em><br>🔴 <strong>Červené sloupce</strong> — net position se zhoršila (fondy přidávaly shorty nebo zavíraly longy) → <em>bearish flow</em></p>',
+      '<p><strong>Proč sledovat týdenní změnu?</strong><br>Absolutní úroveň net pozice říká "kde jsou fondy". Změna říká "kam směřují". Rychlé velké pohyby (spike) signalizují silný momentum nebo panikový obrat.</p>',
+      '<p><strong>Klíčové vzory:</strong></p>',
+      '<span class="tag bull">Velký zelený spike po dlouhém poklesu = bottom formation, short-covering rally</span>',
+      '<span class="tag bear">Velký červený spike po růstu = top formation, long liquidation</span>',
+      '<span class="tag neu">Konzistentní malé zelené sloupce = steady accumulation</span>',
+      '<p style="margin-top:10px"><strong>Praktické použití:</strong><br>Kombinuj W/W změnu s absolutní úrovní. Pokud jsou fondy na extrémním shortu a začnou rychle zavírat → silný contrarian bullish signal. Pokud jsou na extrémním longu a začnou prodávat → varovný signal pro long holders.</p>',
+      '<p><strong>Zdroj:</strong> Vypočítáno jako rozdíl týdenních net pozic z CFTC Disaggregated COT reportu.</p>'
+    ]
+  }
+};
+
+function cotShowHelp(key){
+  var data=COT_HELP[key];if(!data) return;
+  document.getElementById('cot-popup-title').textContent=data.title;
+  document.getElementById('cot-popup-body').innerHTML=data.body.join('');
+  document.getElementById('cot-popup-overlay').classList.add('on');
+}
+function cotHideHelp(){
+  document.getElementById('cot-popup-overlay').classList.remove('on');
+}
 // ═══════════════════════════════════════════════════════════════════════════════
 function cotSetDot(s){document.getElementById('cot-dot').className='sdot '+s;}
 function cotSetBadge(t,txt){var el=document.getElementById('cot-badge');el.textContent=txt;el.className='cbadge '+t;}
 
 async function cotFetch(){
   cotApiCount++;document.getElementById('cot-api-count').textContent=cotApiCount;
-  // CFTC Disaggregated COT, Natural Gas (Henry Hub) = commodity code 023651
-  // Futures only, sorted descending by date, last 3 years worth
-  var url='https://publicreporting.cftc.gov/api/explore/dataset/com_disagg_fut_only_txt_2006_to_present/records?'
-    +'where=cftc_commodity_code%3D%22023651%22'
+  // CFTC Disaggregated COT — correct v2 endpoint
+  // Natural Gas (Henry Hub) CFTC code = 023651
+  var url='https://publicreporting.cftc.gov/api/explore/v2.1/catalog/datasets/com_disagg_fut_only_txt_2006_to_present/records'
+    +'?where=cftc_commodity_code%3D%22023651%22'
     +'&order_by=report_date_as_yyyy_mm_dd%20DESC'
-    +'&limit=156';  // ~3 years of weekly data
+    +'&limit=156';
   var res=await fetch(url,{headers:{'Accept':'application/json'}});
-  if(!res.ok) throw new Error('CFTC HTTP '+res.status);
+  if(!res.ok){
+    // Fallback: try without v2.1 path
+    var url2='https://publicreporting.cftc.gov/api/explore/dataset/com_disagg_fut_only_txt_2006_to_present/records'
+      +'?where=cftc_commodity_code%3D%22023651%22'
+      +'&order_by=report_date_as_yyyy_mm_dd%20DESC'
+      +'&limit=156';
+    res=await fetch(url2,{headers:{'Accept':'application/json'}});
+    if(!res.ok) throw new Error('CFTC HTTP '+res.status+' (both endpoints failed)');
+  }
   var json=await res.json();
-  var records=(json.results||json.records||[]);
+  var records=json.results||json.records||[];
   if(!records.length) throw new Error('No COT records returned');
+  dbLog('COT: raw fields sample: '+Object.keys(records[0].fields||records[0]).slice(0,8).join(', '),'info');
   var out=records.map(function(r){
     var f=r.fields||r;
     return{
-      date:f.report_date_as_yyyy_mm_dd||f.report_date,
-      mmLong:parseInt(f.m_money_positions_long_all||0),
-      mmShort:parseInt(f.m_money_positions_short_all||0),
+      date:f.report_date_as_yyyy_mm_dd||f.report_date||'',
+      mmLong:  parseInt(f.m_money_positions_long_all||f.money_manager_longs||0),
+      mmShort: parseInt(f.m_money_positions_short_all||f.money_manager_shorts||0),
       mmSpread:parseInt(f.m_money_positions_spread_all||0),
-      prodLong:parseInt(f.prod_merc_positions_long_all||0),
-      prodShort:parseInt(f.prod_merc_positions_short_all||0),
-      swapLong:parseInt(f.swap_positions_long_all||0),
-      swapShort:parseInt(f.swap__positions_short_all||f.swap_positions_short_all||0),
-      otherLong:parseInt(f.other_rept_positions_long_all||0),
-      otherShort:parseInt(f.other_rept_positions_short_all||0),
-      openInterest:parseInt(f.open_interest_all||0)
+      prodLong: parseInt(f.prod_merc_positions_long_all||f.producer_merchant_processor_user_longs||0),
+      prodShort:parseInt(f.prod_merc_positions_short_all||f.producer_merchant_processor_user_shorts||0),
+      swapLong: parseInt(f.swap_positions_long_all||f.swap_dealer_longs||0),
+      swapShort:parseInt(f.swap__positions_short_all||f.swap_positions_short_all||f.swap_dealer_shorts||0),
+      openInterest:parseInt(f.open_interest_all||f.open_interest||0)
     };
   }).filter(function(r){return r.date;});
   out.sort(function(a,b){return a.date<b.date?-1:1;});
-  // Compute derived fields
   out.forEach(function(r){
     r.mmNet=r.mmLong-r.mmShort;
     r.prodNet=r.prodLong-r.prodShort;
     r.swapNet=r.swapLong-r.swapShort;
     r.mmRatio=r.mmShort>0?(r.mmLong/r.mmShort):null;
   });
+  if(!out.length) throw new Error('COT data parsed to 0 rows — check field names in debug log');
   return out;
 }
 
@@ -2090,17 +2213,77 @@ async function cotLoadAll(){
   dbLog('COT: fetching CFTC…','info');
   try{
     cotData=await cotFetch();
-    dbLog('COT: OK ('+cotData.length+' weeks)','ok');
+    dbLog('COT: OK ('+cotData.length+' weeks, latest: '+cotData[cotData.length-1].date+')','ok');
     cotSetDot('ok');cotSetBadge('live','Live data');
     cotUpdateBias();
     cotRenderAll();
   }catch(e){
-    cotSetDot('err');cotSetBadge('err','Error');
-    ['net','ls','prod','swap','chg'].forEach(function(k){
-      document.getElementById('cot-spin-'+k).innerHTML='⚠ '+esc(e.message);
-    });
-    dbLog('COT error: '+e.message,'error');
+    dbLog('COT primary fetch failed: '+e.message+' — trying CSV fallback…','warn');
+    try{
+      cotData=await cotFetchCSV();
+      dbLog('COT CSV fallback: OK ('+cotData.length+' weeks)','ok');
+      cotSetDot('ok');cotSetBadge('cached','CSV fallback');
+      cotUpdateBias();
+      cotRenderAll();
+    }catch(e2){
+      cotSetDot('err');cotSetBadge('err','Error');
+      ['net','ls','prod','swap','chg'].forEach(function(k){
+        document.getElementById('cot-spin-'+k).innerHTML='⚠ '+esc(e2.message);
+      });
+      dbLog('COT CSV fallback also failed: '+e2.message,'error');
+    }
   }
+}
+
+async function cotFetchCSV(){
+  // CFTC publishes annual CSV files — fetch current year + previous year
+  var year=new Date().getFullYear();
+  var rows=[];
+  for(var y=year-1;y<=year;y++){
+    var url='https://corsproxy.io/?url='+encodeURIComponent('https://www.cftc.gov/files/dea/history/fut_disagg_txt_'+y+'.zip');
+    // ZIP is complex — use the plain TXT instead
+    var txtUrl='https://corsproxy.io/?url='+encodeURIComponent('https://www.cftc.gov/dea/newcot/f_disagg.txt');
+    var res=await fetch(txtUrl);
+    if(!res.ok) throw new Error('CFTC CSV HTTP '+res.status);
+    var text=await res.text();
+    var lines=text.split('\n');
+    var header=lines[0].split(',').map(function(h){return h.trim().replace(/"/g,'').toLowerCase();});
+    var idxDate=header.indexOf('report_date_as_yyyy_mm_dd');
+    var idxCode=header.findIndex(function(h){return h.includes('cftc_commodity_code');});
+    var idxMML=header.findIndex(function(h){return h.includes('m_money_positions_long');});
+    var idxMMS=header.findIndex(function(h){return h.includes('m_money_positions_short');});
+    var idxPL=header.findIndex(function(h){return h.includes('prod_merc_positions_long');});
+    var idxPS=header.findIndex(function(h){return h.includes('prod_merc_positions_short');});
+    var idxSL=header.findIndex(function(h){return h.includes('swap_positions_long');});
+    var idxSS=header.findIndex(function(h){return h.includes('swap__positions_short')||h.includes('swap_positions_short');});
+    var idxOI=header.findIndex(function(h){return h.includes('open_interest');});
+    for(var i=1;i<lines.length;i++){
+      var cols=lines[i].split(',');
+      if(!cols[idxCode]) continue;
+      var code=cols[idxCode].replace(/"/g,'').trim();
+      if(code!=='023651') continue;
+      rows.push({
+        date:(cols[idxDate]||'').replace(/"/g,'').trim(),
+        mmLong:parseInt(cols[idxMML])||0,
+        mmShort:parseInt(cols[idxMMS])||0,
+        prodLong:parseInt(cols[idxPL])||0,
+        prodShort:parseInt(cols[idxPS])||0,
+        swapLong:parseInt(cols[idxSL])||0,
+        swapShort:parseInt(cols[idxSS])||0,
+        openInterest:parseInt(cols[idxOI])||0
+      });
+    }
+    break; // f_disagg.txt has current data — one fetch is enough
+  }
+  if(!rows.length) throw new Error('No NG rows found in CFTC CSV');
+  rows.sort(function(a,b){return a.date<b.date?-1:1;});
+  rows.forEach(function(r){
+    r.mmNet=r.mmLong-r.mmShort;
+    r.prodNet=r.prodLong-r.prodShort;
+    r.swapNet=r.swapLong-r.swapShort;
+    r.mmRatio=r.mmShort>0?(r.mmLong/r.mmShort):null;
+  });
+  return rows;
 }
 
 function cotSetWindow(w){
@@ -2732,6 +2915,13 @@ document.addEventListener('DOMContentLoaded',function(){
     });
     dlBlob('natgas_wx_demand.txt','NatGas Weather — Total Demand Index\nSource: Open-Meteo\nExported: '+new Date().toLocaleString('en-GB')+'\n\n'+rows.join('\n'));
   });
+  document.getElementById('cot-popup-close').addEventListener('click',cotHideHelp);
+  document.getElementById('cot-popup-overlay').addEventListener('click',function(e){if(e.target===this)cotHideHelp();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')cotHideHelp();});
+  document.querySelectorAll('[data-cot-help]').forEach(function(btn){
+    btn.addEventListener('click',function(){cotShowHelp(this.dataset.cotHelp);});
+  });
+
   document.querySelectorAll('[data-cot-w]').forEach(function(b){b.addEventListener('click',function(){cotSetWindow(this.dataset.cotW);});});
   document.getElementById('cot-refresh-btn').addEventListener('click',function(){cotData=[];cotLoadAll();});
   document.getElementById('btn-export-cot-net').addEventListener('click',cotExportNet);
