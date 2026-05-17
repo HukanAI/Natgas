@@ -200,7 +200,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 .metric-sub{font-size:9.5px;color:var(--text3);margin-top:3px;font-family:var(--mono);line-height:1.4}
 .metric-sub2{font-size:9px;color:var(--text4);font-family:var(--mono);line-height:1.4}
 
-/* ═══ Market Overview panel ═══ */
+/* ═══ Market Overview history sparkline ═══ */
+.ov-history{margin-top:10px;padding-top:10px;border-top:1px solid var(--border2);flex-shrink:0}
+.ov-history-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.ov-history-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);font-weight:700}
+.ov-history-canvas{width:100%;height:48px;display:block}
+
+/* ═══ Signal trend arrows ═══ */
+.ov-trend{font-size:10px;margin-left:4px;flex-shrink:0}
+.ov-trend.up{color:#3fb950}.ov-trend.dn{color:#ff7b72}.ov-trend.eq{color:var(--text4)}
+
 .ov-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;flex-shrink:0}
 .ov-title{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--text3);font-weight:700;flex-shrink:0}
 .ov-total-wrap{display:flex;align-items:baseline;gap:6px;margin-left:auto}
@@ -531,6 +540,13 @@ details[open] .details-arrow{transform:rotate(90deg)}
         <div class="ov-grid" id="market-overview-grid">
           <div class="ov-row"><div class="ov-row-top"><div class="ov-name">Loading signals…</div><div class="ov-signal" style="color:var(--text3)">—</div></div><div class="ov-detail"></div></div>
         </div>
+        <div class="ov-history">
+          <div class="ov-history-head">
+            <span class="ov-history-lbl">30-day score history</span>
+            <span style="font-size:9px;color:var(--text4);font-family:var(--mono)" id="ov-history-range">—</span>
+          </div>
+          <canvas class="ov-history-canvas" id="ov-history-canvas" role="img" aria-label="Market overview score history"></canvas>
+        </div>
       </div>
 
       <!-- RIGHT: stacked cards -->
@@ -617,6 +633,10 @@ details[open] .details-arrow{transform:rotate(90deg)}
                 <div class="st-cell-delta" id="b-stor-wkchg">—</div>
                 <div class="st-cell-vs" id="b-stor-dev">—</div>
                 <div class="st-cell-vs" style="color:var(--text4)" id="b-stor-date">—</div>
+                <div style="margin-top:6px;padding-top:6px;border-top:1px solid var(--border2)">
+                  <div class="st-cell-vs" id="b-stor-fcst">—</div>
+                  <div class="st-cell-vs" id="b-stor-surprise">—</div>
+                </div>
               </div>
               <div class="st-cell">
                 <div class="st-cell-lbl">+7 Days</div>
@@ -687,16 +707,12 @@ details[open] .details-arrow{transform:rotate(90deg)}
                   Fcst below avg
                 </span>
                 <span style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);font-family:var(--mono)">
-                  <svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="rgba(163,113,247,0.85)" stroke-width="1.5" stroke-dasharray="4,3" stroke-linecap="round"/></svg>
+                  <svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="rgba(230,237,243,0.7)" stroke-width="2" stroke-dasharray="4,3" stroke-linecap="round"/></svg>
                   5y avg
                 </span>
                 <span style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);font-family:var(--mono)">
-                  <svg width="22" height="10" aria-hidden="true"><rect x="0" y="1" width="22" height="8" rx="2" fill="rgba(163,113,247,0.12)" stroke="rgba(163,113,247,0.3)" stroke-width="1"/></svg>
+                  <svg width="22" height="10" aria-hidden="true"><rect x="0" y="1" width="22" height="8" rx="2" fill="rgba(200,200,200,0.15)" stroke="rgba(200,200,200,0.3)" stroke-width="1"/></svg>
                   5y range
-                </span>
-                <span style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);font-family:var(--mono)">
-                  <svg width="22" height="10" aria-hidden="true"><line x1="11" y1="0" x2="11" y2="10" stroke="#e3b341" stroke-width="1.5" stroke-dasharray="3,2"/></svg>
-                  Today
                 </span>
               </div>
             </div>

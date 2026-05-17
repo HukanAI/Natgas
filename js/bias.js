@@ -60,8 +60,8 @@ function renderFairPriceChart() {
   const next  = state.nextContractPrice;
 
   const allVals = [...fair, ...mins, ...maxs, front, next].filter(v => v != null);
-  const yMin = Math.floor((Math.min(...allVals) - 0.15) * 20) / 20;
-  const yMax = Math.ceil((Math.max(...allVals) + 0.15) * 20) / 20;
+  const yMin = Math.floor((Math.min(...allVals) - 0.10) * 10) / 10;
+  const yMax = Math.ceil((Math.max(...allVals) + 0.10) * 10) / 10;
 
   const textCol = getComputedStyle(document.documentElement).getPropertyValue('--text3').trim() || '#6e7681';
   const gridCol = getComputedStyle(document.documentElement).getPropertyValue('--border').trim() || '#1f242c';
@@ -101,11 +101,18 @@ function renderFairPriceChart() {
         }
       },
       scales: {
-        x: { grid: { color: gridCol }, ticks: { color: textCol, font: { size: 11 } } },
+        x: { grid: { color: gridCol }, ticks: { color: textCol, font: { size: 10, family: 'var(--mono, monospace)' } } },
         y: {
           min: yMin, max: yMax,
           grid: { color: gridCol },
-          ticks: { color: textCol, font: { size: 11, family: 'var(--mono, monospace)' }, callback: v => '$' + v.toFixed(2) }
+          afterBuildTicks: axis => {
+            const step = 0.10;
+            const start = Math.ceil(yMin / step) * step;
+            const ticks = [];
+            for (let v = start; v <= yMax + 0.001; v += step) ticks.push({ value: Math.round(v * 100) / 100 });
+            axis.ticks = ticks;
+          },
+          ticks: { color: textCol, font: { size: 10, family: 'var(--mono, monospace)' }, callback: v => '$' + v.toFixed(2) }
         }
       }
     }
@@ -175,10 +182,10 @@ function renderStorageChart() {
         }
       },
       scales: {
-        x: { grid: { color: gridCol }, ticks: { color: textCol, font: { size: 11 } } },
+        x: { grid: { color: gridCol }, ticks: { color: textCol, font: { size: 10, family: 'var(--mono, monospace)' } } },
         y: {
           grid: { color: gridCol },
-          ticks: { color: textCol, font: { size: 11, family: 'var(--mono, monospace)' },
+          ticks: { color: textCol, font: { size: 10, family: 'var(--mono, monospace)' },
             callback: v => (v >= 0 ? '+' : '') + Math.round(v).toLocaleString()
           }
         }

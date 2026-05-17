@@ -14,7 +14,7 @@ import { cotLoadAll, cotSetWindow, cotShowHelp, cotHideHelp, cotExportNet, cotEx
 import { renderBiasCard } from './bias.js';
 import { stExportStorage, stExportDev, stExportNgf, stExportInj, peExport, peExportSupply, exportWxReg, exportWxTemp, exportWxDem } from './exports.js';
 import { startTopbarTicker, updateTopbar } from './topbar.js';
-import { startWidgetTicker, initOverviewEvents, updateAllWidgets } from './widgets.js';
+import { startWidgetTicker, initOverviewEvents, updateAllWidgets, updateFuturesTimestamp } from './widgets.js';
 
 // ── Clock ─────────────────────────────────────────────────────────────────────
 tickClock();

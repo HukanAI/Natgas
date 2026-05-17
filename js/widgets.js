@@ -253,13 +253,12 @@ export function renderFuturesCurve() {
         noteEl.style.color = shapeCol;
     }
 
-    const yMin = Math.floor((Math.min(...prices) - 0.1) * 20) / 20;
-    const yMax = Math.ceil((Math.max(...prices) + 0.1) * 20) / 20;
+    const yMin = Math.floor((Math.min(...prices) - 0.1) * 10) / 10;
+    const yMax = Math.ceil((Math.max(...prices) + 0.1) * 10) / 10;
 
     if (_fwChart) { _fwChart.destroy(); _fwChart = null; }
 
-    _fwChart = new Chart(canvas, {
-        type: 'line',
+    _fwChart = new Chart(canvas, {        type: 'line',
         data: { labels: valid.map(c => c.label), datasets: [{
             label: 'Price', data: prices,
             borderColor: '#4493f8', backgroundColor: 'transparent', borderWidth: 2,
@@ -284,13 +283,22 @@ export function renderFuturesCurve() {
                 }
             },
             scales: {
-                x: { grid: { color: gridCol }, ticks: { color: textCol, font: { size: 10 }, maxRotation: 45, autoSkip: false } },
+                x: { grid: { color: gridCol }, ticks: { color: textCol, font: { size: 10, family: 'var(--mono, monospace)' }, maxRotation: 0, autoSkip: true } },
                 y: { min: yMin, max: yMax, grid: { color: gridCol },
-                    ticks: { color: textCol, font: { size: 11, family: 'var(--mono, monospace)' }, callback: v => '$' + v.toFixed(2) }
+                    afterBuildTicks: axis => {
+                        const range = yMax - yMin;
+                        const step = range > 1.5 ? 0.25 : range > 0.8 ? 0.20 : 0.10;
+                        const start = Math.ceil(yMin / step) * step;
+                        const ticks = [];
+                        for (let v = start; v <= yMax + 0.001; v += step) ticks.push({ value: Math.round(v * 100) / 100 });
+                        axis.ticks = ticks;
+                    },
+                    ticks: { color: textCol, font: { size: 10, family: 'var(--mono, monospace)' }, callback: v => '$' + v.toFixed(2) }
                 }
             }
         }
     });
+    try { updateFuturesTimestamp(); } catch(e) {}
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -365,7 +373,7 @@ export function renderWeatherHeatmap() {
             const minData = chart.data.datasets[minDs].data;
             const maxData = chart.data.datasets[maxDs].data;
             ctx.save();
-            ctx.fillStyle = 'rgba(163,113,247,0.08)';
+            ctx.fillStyle = 'rgba(200,200,200,0.12)';
             ctx.beginPath();
             minData.forEach((v, i) => {
                 if (v == null) return;
@@ -445,7 +453,7 @@ export function renderWeatherHeatmap() {
                   }),
                   borderWidth: 1, order: 2, borderRadius: 2 },
                 { _k: 'd5a',  label: '5y avg',  data: sliceAvg, type: 'line',
-                  borderColor: 'rgba(163,113,247,0.85)', borderWidth: 1.5,
+                  borderColor: 'rgba(230,237,243,0.7)', borderWidth: 2,
                   borderDash: [4, 3], pointRadius: 0, fill: false, order: 1 },
                 { _k: 'dmin', label: '5y min',  data: sliceMin, type: 'line', borderColor: 'transparent', pointRadius: 0, fill: false, order: 3 },
                 { _k: 'dmax', label: '5y max',  data: sliceMax, type: 'line', borderColor: 'transparent', pointRadius: 0, fill: false, order: 3 },
@@ -485,7 +493,7 @@ export function renderWeatherHeatmap() {
                     grid: { color: gridCol },
                     ticks: {
                         color: (ctx) => ctx.index === localToday ? '#e3b341' : textCol,
-                        font: { size: 9, family: 'var(--mono, monospace)' },
+                        font: { size: 10, family: 'var(--mono, monospace)' },
                         maxRotation: 0,
                         autoSkip: true,
                         maxTicksLimit: 12,
@@ -496,7 +504,7 @@ export function renderWeatherHeatmap() {
                     grid: { color: gridCol },
                     ticks: {
                         color: textCol,
-                        font: { size: 9, family: 'var(--mono, monospace)' },
+                        font: { size: 10, family: 'var(--mono, monospace)' },
                         maxTicksLimit: 5,
                         callback: v => v.toFixed(0)
                     }
@@ -1049,20 +1057,29 @@ function renderOverview() {
         totalLbl.style.color = overall.col;
     }
 
-    // Signal rows
+    // Signal rows with trend arrows
     let html = '';
     for (const [key, sig] of Object.entries(signals)) {
+        const trend = getSignalTrend(key, sig.score);
         const dot = `<span class="ov-dot" style="background:${sig.col}"></span>`;
         html += `
           <div class="ov-row" data-key="${key}">
             <div class="ov-row-top">
               <div class="ov-name">${sig.name}</div>
-              <div class="ov-signal" style="color:${sig.col}">${dot}${sig.label}</div>
+              <div class="ov-signal" style="color:${sig.col}">${dot}${sig.label}${trend}</div>
             </div>
             <div class="ov-detail">${sig.detail || ''}</div>
           </div>`;
     }
     container.innerHTML = html;
+
+    // Save previous scores for next render's trend arrows
+    for (const [key, sig] of Object.entries(signals)) {
+        _prevSignalScores[key] = sig.score;
+    }
+
+    // Render history sparkline
+    try { renderScoreHistory(total); } catch(e) { dbLog('Score history: ' + e.message, 'warn'); }
 }
 
 // Popup explanation
@@ -1169,6 +1186,203 @@ export function updateAllWidgets() {
     try { renderFuturesCurve(); }    catch(e) { dbLog('Futures curve: '   + e.message, 'warn'); }
     try { renderWeatherHeatmap(); }  catch(e) { dbLog('Heatmap: '         + e.message, 'warn'); }
     try { renderOverview(); }        catch(e) { dbLog('Overview: '        + e.message, 'warn'); }
+    try { updateEIATracker(); }      catch(e) { dbLog('EIA tracker: '     + e.message, 'warn'); }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// FEATURE 1: HISTORICAL SCORE — localStorage sparkline
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const OV_HISTORY_KEY = 'ng_ov_score_history_v1';
+let _histChart = null;
+
+function saveScoreHistory(total) {
+    const today = new Date().toISOString().slice(0, 10);
+    let hist = [];
+    try { hist = JSON.parse(localStorage.getItem(OV_HISTORY_KEY) || '[]'); } catch(e) {}
+    // Remove old entry for today if exists, add new
+    hist = hist.filter(h => h.d !== today);
+    hist.push({ d: today, s: Math.round(total * 10) / 10 });
+    // Keep last 30 days
+    hist = hist.slice(-30);
+    try { localStorage.setItem(OV_HISTORY_KEY, JSON.stringify(hist)); } catch(e) {}
+    return hist;
+}
+
+function renderScoreHistory(total) {
+    const canvas = $('ov-history-canvas');
+    if (!canvas) return;
+    const hist = saveScoreHistory(total);
+    if (hist.length < 2) return;
+
+    const rangeEl = $('ov-history-range');
+    if (rangeEl) rangeEl.textContent = hist[0].d + ' – ' + hist[hist.length-1].d;
+
+    const dpr = window.devicePixelRatio || 1;
+    const W = canvas.offsetWidth || 200;
+    const H = 48;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, W, H);
+
+    const scores = hist.map(h => h.s);
+    const PAD = 4;
+    const gW = W - PAD * 2;
+    const gH = H - PAD * 2;
+    const MAX = 6.5;
+
+    function toX(i) { return PAD + (i / (hist.length - 1)) * gW; }
+    function toY(s) { return PAD + gH * (1 - (s + MAX) / (MAX * 2)); }
+
+    // Zero line
+    const z = toY(0);
+    ctx.strokeStyle = 'rgba(110,118,129,0.2)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([2, 3]);
+    ctx.beginPath(); ctx.moveTo(PAD, z); ctx.lineTo(W - PAD, z); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Gradient fill
+    const grad = ctx.createLinearGradient(0, PAD, 0, H - PAD);
+    grad.addColorStop(0, 'rgba(63,185,80,0.25)');
+    grad.addColorStop(0.5, 'rgba(110,118,129,0.05)');
+    grad.addColorStop(1, 'rgba(255,123,114,0.25)');
+
+    ctx.beginPath();
+    ctx.moveTo(toX(0), toY(scores[0]));
+    scores.forEach((s, i) => { if (i > 0) ctx.lineTo(toX(i), toY(s)); });
+    ctx.lineTo(toX(scores.length - 1), z);
+    ctx.lineTo(toX(0), z);
+    ctx.closePath();
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // Line
+    ctx.beginPath();
+    ctx.moveTo(toX(0), toY(scores[0]));
+    scores.forEach((s, i) => { if (i > 0) ctx.lineTo(toX(i), toY(s)); });
+    ctx.strokeStyle = '#4493f8';
+    ctx.lineWidth = 1.5;
+    ctx.lineJoin = 'round';
+    ctx.stroke();
+
+    // Today dot
+    const last = scores[scores.length - 1];
+    const ov = overallSentiment(last);
+    ctx.fillStyle = ov.col;
+    ctx.beginPath();
+    ctx.arc(toX(scores.length - 1), toY(last), 3.5, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// FEATURE 2: EIA SURPRISE TRACKER
+// After each EIA report, compare actual storage vs previous week's +7D forecast
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const EIA_SURP_KEY = 'ng_eia_surprises_v1';
+
+export function updateEIATracker() {
+    const fcstEl     = $('b-stor-fcst');
+    const surpriseEl = $('b-stor-surprise');
+    if (!fcstEl || !surpriseEl) return;
+
+    const sd = state.stStorageData;
+    if (!sd || sd.length < 2) return;
+
+    // ── Helpers ───────────────────────────────────────────────────────────────
+    function isoAdd(iso, days) {
+        const d = new Date(iso + 'T12:00:00Z');
+        d.setUTCDate(d.getUTCDate() + days);
+        return d.toISOString().slice(0, 10);
+    }
+
+    // Same cubic formula as bias.js::calcForecast
+    function calcForecastBcf(startDate, endDate) {
+        if (!state.wxS?.allDates || !state.wxS.demAll) return null;
+        let D = 0, cnt = 0;
+        for (let i = 0; i < state.wxS.allDates.length; i++) {
+            const dt = state.wxS.allDates[i];
+            if (dt >= startDate && dt <= endDate && state.wxS.demAll[i] != null && !isNaN(state.wxS.demAll[i])) {
+                D += state.wxS.demAll[i]; cnt++;
+            }
+        }
+        if (!cnt) return null;
+        const FA = 0.0001607983, FB = -0.0460227485, FC = 0.909433429, FD = 95.0676254411;
+        return FA * D * D * D + FB * D * D + FC * D + FD;
+    }
+
+    // ── Compute historical surprise (back-calculate) ─────────────────────────
+    // Latest EIA report covers period [prev.date+1, lat.date]
+    // Forecast from prev.date predicting that same period uses demand from weather data
+    const lat  = sd[sd.length - 1];
+    const prev = sd[sd.length - 2];
+    const fcstStart = isoAdd(prev.date, 1);
+    const fcstEnd   = lat.date;
+    const predictedChange = calcForecastBcf(fcstStart, fcstEnd);
+
+    let forecastLine, surpriseLine;
+    if (predictedChange != null) {
+        const actualChange = lat.value - prev.value;
+        const surprise = actualChange - predictedChange;
+        const col = surprise > 5 ? '#ff7b72' : surprise < -5 ? '#3fb950' : '#9ba3ad';
+        const sign = surprise >= 0 ? '+' : '';
+        const label = surprise > 5 ? 'Bearish' : surprise < -5 ? 'Bullish' : 'In line';
+        const fcstSign = predictedChange >= 0 ? '+' : '';
+        forecastLine = 'Forecast: ' + fcstSign + Math.round(predictedChange) + ' Bcf';
+        surpriseLine = 'Surprise: <span style="color:' + col + ';font-weight:700">' + sign + Math.round(surprise) + ' Bcf</span><br><span style="color:' + col + '">' + label + '</span>';
+    } else {
+        forecastLine = 'Forecast: weather data unavailable';
+        surpriseLine = 'Surprise: —';
+    }
+
+    fcstEl.textContent = forecastLine;
+    surpriseEl.innerHTML = surpriseLine;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// FEATURE 3: SIGNAL TREND ARROWS
+// Compare current signal scores to previous render
+// ═══════════════════════════════════════════════════════════════════════════════
+
+let _prevSignalScores = {};
+
+function getSignalTrend(key, currentScore) {
+    const prev = _prevSignalScores[key];
+    if (prev === undefined) return '';
+    if (currentScore > prev) return '<span class="ov-trend up">↑</span>';
+    if (currentScore < prev) return '<span class="ov-trend dn">↓</span>';
+    return '<span class="ov-trend eq">→</span>';
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// FEATURE 4: FUTURES CURVE TIMESTAMP
+// ═══════════════════════════════════════════════════════════════════════════════
+
+let _fcLastUpdated = null;
+
+export function updateFuturesTimestamp() {
+    _fcLastUpdated = new Date();
+    const el = $('fw-note');
+    if (!el) return;
+    const t = _fcLastUpdated;
+    const hh = String(t.getHours()).padStart(2, '0');
+    const mm = String(t.getMinutes()).padStart(2, '0');
+    // Keep contango/backwardation text if present, add timestamp
+    const existing = el.textContent;
+    const base = existing.includes('Contango') || existing.includes('Backwardation') || existing.includes('Flat')
+        ? existing.split('·')[0].trim()
+        : '';
+    // Render contango part normally, timestamp in grey
+    if (base) {
+        el.innerHTML = base + ' · <span style="color:var(--text4)">Updated ' + hh + ':' + mm + '</span>';
+    } else {
+        el.innerHTML = '<span style="color:var(--text4)">Updated ' + hh + ':' + mm + '</span>';
+    }
 }
 
 export function startWidgetTicker() {
