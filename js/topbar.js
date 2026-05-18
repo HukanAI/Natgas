@@ -71,6 +71,11 @@ function colorizeFromText(id) {
     else el.classList.add('neu');
 }
 
+// Track last fetched prices in memory — used by updatePrices as source of truth
+// Also exposed as window._topbarLastPrice for Market Overview fair price signals
+const _lastPrice = { front: null, next: null };
+window._topbarLastPrice = _lastPrice;
+
 function mirrorOne(srcId, dstId, colorize) {
     const s = $(srcId), d = $(dstId);
     if (!s || !d) return;
@@ -79,10 +84,14 @@ function mirrorOne(srcId, dstId, colorize) {
 }
 
 function updatePrices() {
-    mirrorOne('b-ngf-cur',    'kpi-ngf-cur');
-    mirrorOne('b-ngf-cur-chg','kpi-ngf-cur-chg', true);
-    mirrorOne('b-ngf-nxt',    'kpi-ngf-nxt');
-    mirrorOne('b-ngf-nxt-chg','kpi-ngf-nxt-chg', true);
+    // Always use _lastPrice as source of truth once set — never let mirrorOne overwrite with stale DOM value
+    const elFront = $('kpi-ngf-cur');
+    if (elFront) elFront.textContent = _lastPrice.front != null ? '$' + _lastPrice.front.toFixed(3) : $('b-ngf-cur')?.textContent || '—';
+    mirrorOne('b-ngf-cur-chg', 'kpi-ngf-cur-chg', true);
+
+    const elNext = $('kpi-ngf-nxt');
+    if (elNext) elNext.textContent = _lastPrice.next != null ? '$' + _lastPrice.next.toFixed(3) : $('b-ngf-nxt')?.textContent || '—';
+    mirrorOne('b-ngf-nxt-chg', 'kpi-ngf-nxt-chg', true);
 }
 
 // ── KPI: Total Supply (latest Bcf/d + M/M + Y/Y) ─────────────────────────────
@@ -136,9 +145,6 @@ export function updateTopbar() {
     try { updateSidebarCounters(); }  catch(_) {}
 }
 
-// Track last known prices to detect direction correctly
-const _lastPrice = { front: null, next: null };
-
 function flashLine(lineId, oldVal, newVal) {
     const el = document.getElementById(lineId);
     if (!el) return;
@@ -156,25 +162,50 @@ function flashLine(lineId, oldVal, newVal) {
 // Live NGF price refresh — update KPI strip immediately when quote arrives
 document.addEventListener('ngf:price:refresh', function(e) {
     if (!e.detail) return;
-    const { last, isNext } = e.detail;
+    const { last, prev, isNext } = e.detail;
     if (last == null) return;
+
+    // Format change string from prev close
+    function fmtChange(cur, prv) {
+        if (prv == null || prv === 0) return null;
+        const chg = cur - prv;
+        const pct = chg / prv * 100;
+        const sign = chg >= 0 ? '+' : '';
+        return sign + chg.toFixed(3) + ' (' + sign + pct.toFixed(2) + '%)';
+    }
 
     if (!isNext) {
         const oldVal = _lastPrice.front;
         _lastPrice.front = last;
         const elVal = document.getElementById('kpi-ngf-cur');
+        const elB   = document.getElementById('b-ngf-cur');
         if (elVal) elVal.textContent = '$' + last.toFixed(3);
+        if (elB)   elB.textContent   = '$' + last.toFixed(3);
         flashLine('kpi-ngf-cur-flash', oldVal, last);
-        const elB = document.getElementById('b-ngf-cur');
-        if (elB) elB.textContent = '$' + last.toFixed(3);
+        // Update chg
+        const chgStr = fmtChange(last, prev);
+        if (chgStr) {
+            const elChg = document.getElementById('kpi-ngf-cur-chg');
+            if (elChg) { elChg.textContent = chgStr; colorizeFromText('kpi-ngf-cur-chg'); }
+            const elBChg = document.getElementById('b-ngf-cur-chg');
+            if (elBChg) elBChg.innerHTML = '<span style="color:' + (last >= prev ? '#3fb950' : '#ff7b72') + '">' + chgStr + '</span>';
+        }
     } else {
         const oldVal = _lastPrice.next;
         _lastPrice.next = last;
         const elVal = document.getElementById('kpi-ngf-nxt');
+        const elB   = document.getElementById('b-ngf-nxt');
         if (elVal) elVal.textContent = '$' + last.toFixed(3);
+        if (elB)   elB.textContent   = '$' + last.toFixed(3);
         flashLine('kpi-ngf-nxt-flash', oldVal, last);
-        const elB = document.getElementById('b-ngf-nxt');
-        if (elB) elB.textContent = '$' + last.toFixed(3);
+        // Update chg
+        const chgStr = fmtChange(last, prev);
+        if (chgStr) {
+            const elChg = document.getElementById('kpi-ngf-nxt-chg');
+            if (elChg) { elChg.textContent = chgStr; colorizeFromText('kpi-ngf-nxt-chg'); }
+            const elBChg = document.getElementById('b-ngf-nxt-chg');
+            if (elBChg) elBChg.innerHTML = '<span style="color:' + (last >= prev ? '#3fb950' : '#ff7b72') + '">' + chgStr + '</span>';
+        }
     }
 });
 

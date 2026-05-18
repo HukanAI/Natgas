@@ -2,7 +2,7 @@
 import { state } from './state.js';
 import { tickClock, setUpdated } from './utils.js';
 import { dbLog, renderDbg } from './debug.js';
-import { ngfCurrent, ngfLogContracts, ngfFetchQuote, ngfNext } from './contracts.js';
+import { ngfCurrent, ngfLogContracts, ngfFetchQuote, ngfNext, ngfFetchTwoDays } from './contracts.js';
 import { resetZoom } from './charts.js';
 
 import { wxLoadAll, wxForceRefresh, wxSetWindow, exportHistoricalWeekly } from './weather.js';
@@ -35,19 +35,21 @@ async function refreshNGFPrice() {
   const nxt = cur ? ngfNext(cur) : null;
   if (!cur) return;
   try {
-    // Fetch front and next in parallel — 2 lightweight requests
     const [qFront, qNext] = await Promise.all([
-      ngfFetchQuote(cur.ticker, true).catch(e => { dbLog('NGF front fail: ' + e.message, 'warn'); return null; }),
-      nxt ? ngfFetchQuote(nxt.ticker, false).catch(e => { dbLog('NGF next fail: ' + e.message, 'warn'); return null; }) : Promise.resolve(null),
+      ngfFetchTwoDays(cur.ticker, true).catch(e => { dbLog('NGF front fail: ' + e.message, 'warn'); return null; }),
+      nxt ? ngfFetchTwoDays(nxt.ticker, false).catch(e => { dbLog('NGF next fail: ' + e.message, 'warn'); return null; }) : Promise.resolve(null),
     ]);
+    if (qFront && qNext) {
+      dbLog('NGF refresh: front $' + qFront.last.toFixed(3) + ' · next $' + qNext.last.toFixed(3), 'ok');
+    } else if (qFront) {
+      dbLog('NGF refresh: front $' + qFront.last.toFixed(3), 'ok');
+    }
     if (qFront) {
-      document.dispatchEvent(new CustomEvent('ngf:price:refresh', { detail: { ...qFront, isNext: false } }));
-      dbLog('NGF front: $' + qFront.last.toFixed(3), 'ok');
+      document.dispatchEvent(new CustomEvent('ngf:price:refresh', { detail: { last: qFront.last, prev: qFront.prev, isNext: false } }));
     }
     if (qNext) {
       state.nextContractPrice = qNext.last;
-      document.dispatchEvent(new CustomEvent('ngf:price:refresh', { detail: { ...qNext, isNext: true } }));
-      dbLog('NGF next: $' + qNext.last.toFixed(3), 'ok');
+      document.dispatchEvent(new CustomEvent('ngf:price:refresh', { detail: { last: qNext.last, prev: qNext.prev, isNext: true } }));
     }
   } catch(e) {
     dbLog('NGF auto-refresh failed: ' + e.message, 'warn');
@@ -195,14 +197,13 @@ document.addEventListener('DOMContentLoaded', function() {
   function refreshOverview() {
     try { updateAllWidgets(); } catch(e) { dbLog('overview refresh: ' + e.message, 'warn'); }
   }
-  document.addEventListener('storage:loaded',  refreshOverview);
-  document.addEventListener('weather:loaded',  refreshOverview);
-  document.addEventListener('ngf:loaded',      refreshOverview);
-  document.addEventListener('cot:loaded',      refreshOverview);
-  document.addEventListener('pe:loaded',       refreshOverview);
-  document.addEventListener('futures:loaded',  refreshOverview);
-  // Also re-render when next contract price arrives (async inside bias.js)
-  document.addEventListener('nextcontract:loaded', refreshOverview);
+  document.addEventListener('storage:loaded',       refreshOverview);
+  document.addEventListener('weather:loaded',       refreshOverview);
+  document.addEventListener('ngf:loaded',           refreshOverview);
+  document.addEventListener('cot:loaded',           refreshOverview);
+  document.addEventListener('pe:loaded',            refreshOverview);
+  document.addEventListener('futures:loaded',       refreshOverview);
+  document.addEventListener('nextcontract:loaded',  refreshOverview);
 
   // ── Auto weather refresh on new hour ────────────────────────────────────────
   let lastWxSlot = (function() {

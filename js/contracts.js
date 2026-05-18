@@ -48,23 +48,22 @@ export function ngfLogContracts() {
 // Much smaller payload than the full year history used by ngfFetchTwoDays.
 
 export async function ngfFetchQuote(ticker, isFront) {
-  // Front month: try NG=F first, fall back to specific ticker
-  // Next contract: specific ticker only to avoid returning front price
   const symbols = isFront ? ['NG=F', ticker] : [ticker];
-  // 1m data only available during market hours — fall back to 1h for weekends
-  const ranges = ['range=1d&interval=1m&events=', 'range=5d&interval=1h&events='];
+  const now = Math.floor(Date.now() / 1000);
+  const p1  = now - 7 * 86400;
+  const params = 'period1=' + p1 + '&period2=' + now + '&interval=1d&events=history';
   for (const sym of symbols) {
-    for (const range of ranges) {
-      try {
-        const rows = await yahooFetch(sym, range);
-        if (!rows?.length) continue;
-        const last = rows[rows.length - 1].close;
-        if (last == null || !isFinite(last)) continue;
-        return { sym, last };
-      } catch(e) { /* try next range/symbol silently */ }
-    }
+    try {
+      const rows = await yahooFetch(sym, params);
+      if (!rows?.length) continue;
+      // Walk backwards to find last non-null close
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const last = rows[i].close;
+        if (last != null && isFinite(last) && last > 0) return { sym, last };
+      }
+    } catch(e) { /* try next symbol silently */ }
   }
-  dbLog('Quote ' + symbols.join('/') + ': all ranges failed', 'warn');
+  dbLog('Quote ' + symbols.join('/') + ': all failed', 'warn');
   return null;
 }
 
@@ -88,7 +87,7 @@ export async function yahooFetch(symbol, queryParams) {
     const baseUrl = base + encodeURIComponent(symbol) + '?' + queryParams + '&lang=en-US&region=US';
     for (const proxy of CORS_PROXIES) {
       try {
-        const res = await fetch(proxy(baseUrl), { signal: AbortSignal.timeout(8000) });
+        const res = await fetch(proxy(baseUrl), { signal: AbortSignal.timeout(8000), cache: 'no-store' });
         if (!res.ok) throw new Error('HTTP ' + res.status);
         let text = await res.text(), data;
         try { data = JSON.parse(text); if (data.contents) data = JSON.parse(data.contents); }
@@ -123,7 +122,6 @@ export async function ngfFetchTwoDays(ticker, isFrontMonth) {
       const rows = await yahooFetch(sym, 'period1='+p1t+'&period2='+p2t+'&interval=1d&events=history');
       if (!rows?.length) continue;
       const closes = rows.map(r => r.close);
-      dbLog('Price '+sym+': $'+closes[closes.length-1].toFixed(3), 'ok');
       return {last:closes[closes.length-1], prev:closes.length>=2?closes[closes.length-2]:null};
     } catch(e) { lastErr=e; dbLog('Price '+sym+' fail: '+e.message, 'warn'); }
   }

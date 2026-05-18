@@ -952,65 +952,89 @@ function signalSeason() {
     };
 }
 
+// ── Shared fair price scoring helper ─────────────────────────────────────────
+// Band: fairMin = fp - 0.50, fairMax = fp + 0.50 (shoulder/cooling)
+//                              fp + 1.90 (heating)
+// Prahy jsou 1/3 downside bandu a 1/3 upside bandu
+function scoreFairVsPrice(fp, price, isHeating) {
+    const downBand = 0.50;                        // same both seasons
+    const upBand   = isHeating ? 1.90 : 0.50;
+    const fairMin  = fp - downBand;
+    const fairMax  = fp + upBand;
+    const diff     = fp - price; // positive = underpriced (bullish)
+
+    let score;
+    if (price < fairMin)                    score = 1;    // below entire band
+    else if (diff > downBand / 3)           score = 0.5;  // lower third of downside
+    else if (diff >= -(upBand / 3))         score = 0;    // middle
+    else if (price < fairMax)               score = -0.5; // upper third of upside
+    else                                    score = -1;   // above entire band
+
+    return { score, diff, fp, fairMin, fairMax, downBand, upBand };
+}
+
 function signalFairPriceFront() {
     const sd = state.stStorageData;
-    if (!sd || !sd.length) return { score: 0, label: 'Neutral', detail: 'No data', explanation: '' };
-    const lat = sd[sd.length - 1];
+    if (!sd || !sd.length) return { score: 0, label: 'Neutral', detail: 'No data', explanation: '', fullMethodology: [] };
+    const lat  = sd[sd.length - 1];
     const band = st5y(sd, [lat.date])[0];
-    if (!band || band.avg == null) return { score: 0, label: 'Neutral', detail: 'No fair price', explanation: '' };
-    const fp = fairPrice(lat.value - band.avg);
-    const front = state.stNgfData.length ? state.stNgfData[state.stNgfData.length - 1].close : null;
-    if (front == null) return { score: 0, label: 'Neutral', detail: 'No front price', explanation: '' };
+    if (!band || band.avg == null) return { score: 0, label: 'Neutral', detail: 'No fair price', explanation: '', fullMethodology: [] };
+    const fp    = fairPrice(lat.value - band.avg);
+    // Use _lastPrice.front from topbar if available (live), else fall back to state
+    const front = (window._topbarLastPrice?.front)
+        ?? (state.stNgfData.length ? state.stNgfData[state.stNgfData.length - 1].close : null)
+        ?? (() => { const el = document.getElementById('b-ngf-cur'); const v = parseFloat((el?.textContent||'').replace('$','')); return isFinite(v) ? v : null; })();
+    if (front == null) return { score: 0, label: 'Neutral', detail: 'No front price', explanation: '', fullMethodology: [] };
 
-    const diff = fp - front; // positive = fair > front = market underpriced = bullish
-    let score;
-    if (diff > 0.3)             score = 1;
-    else if (diff > 0.15)       score = 0.5;
-    else if (diff >= -0.15)     score = 0;
-    else if (diff >= -0.3)      score = -0.5;
-    else                        score = -1;
-
+    const si = getSeasonInfo();
+    const { score, diff, fairMin, fairMax, downBand, upBand } = scoreFairVsPrice(fp, front, si.isHeating);
     const s = sentiment(score);
+
+    const bandDesc = si.isHeating
+        ? `band $${fairMin.toFixed(2)}–$${fairMax.toFixed(2)} (heating: −$${downBand.toFixed(2)}/+$${upBand.toFixed(2)})`
+        : `band $${fairMin.toFixed(2)}–$${fairMax.toFixed(2)} (±$${downBand.toFixed(2)})`;
+
     return { score, label: s.label, col: s.col,
-        detail: `Fair $${fp.toFixed(3)} vs Front $${front.toFixed(3)} → diff ${diff >= 0 ? '+' : ''}${diff.toFixed(3)}`,
-        explanation: 'Compares the storage-based fair price to the current front month price. If fair > front by >$0.30, market is underpriced = Bullish. If front > fair by >$0.30, market is overpriced = Bearish. Thresholds: $0.15/$0.30.',
+        detail: `Fair $${fp.toFixed(3)} · Front $${front.toFixed(3)} · diff ${diff >= 0 ? '+' : ''}${diff.toFixed(3)}`,
+        explanation: `Fair price $${fp.toFixed(3)}, ${bandDesc}. Front $${front.toFixed(3)} is ${front < fairMin ? 'BELOW band — underpriced' : front > fairMax ? 'ABOVE band — overpriced' : 'inside band'}. Thresholds adapt to season.`,
         fullMethodology: [
-            { state: 'Bullish',          col: '#3fb950', cond: 'Fair price > Front month by > $0.30',   note: 'Market significantly underpriced vs storage fundamentals — strong buy signal' },
-            { state: 'Slightly Bullish', col: '#7ec97f', cond: 'Fair price > Front month by $0.15–$0.30', note: 'Market moderately underpriced — mild buy signal' },
-            { state: 'Neutral',          col: '#9ba3ad', cond: 'Difference within ±$0.15',              note: 'Front month fairly valued relative to storage fundamentals' },
-            { state: 'Slightly Bearish', col: '#ffb085', cond: 'Front month > Fair price by $0.15–$0.30', note: 'Market moderately overpriced — mild sell signal' },
-            { state: 'Bearish',          col: '#ff7b72', cond: 'Front month > Fair price by > $0.30',  note: 'Market significantly overpriced vs storage fundamentals — strong sell signal' },
+            { state: 'Bullish +1',            col: '#3fb950', cond: `Front below fairMin ($${fairMin.toFixed(2)})`,             note: 'Market below entire fair price band — strongly underpriced' },
+            { state: 'Slightly Bullish +0.5', col: '#7ec97f', cond: `Front in lower 1/3 of band (diff > +$${(downBand/3).toFixed(2)})`, note: 'Market in lower part of fair value range' },
+            { state: 'Neutral 0',             col: '#9ba3ad', cond: 'Front in middle of band',                                  note: 'Market fairly valued within the band' },
+            { state: 'Slightly Bearish −0.5', col: '#ffb085', cond: `Front in upper 1/3 of band (diff < −$${(upBand/3).toFixed(2)})`, note: 'Market in upper part of fair value range' },
+            { state: 'Bearish −1',            col: '#ff7b72', cond: `Front above fairMax ($${fairMax.toFixed(2)})`,             note: 'Market above entire fair price band — strongly overpriced' },
         ] };
 }
 
 function signalFairPriceNext() {
     const sd = state.stStorageData;
-    if (!sd || !sd.length) return { score: 0, label: 'Neutral', detail: 'No data', explanation: '' };
-    const lat = sd[sd.length - 1];
+    if (!sd || !sd.length) return { score: 0, label: 'Neutral', detail: 'No data', explanation: '', fullMethodology: [] };
+    const lat  = sd[sd.length - 1];
     const band = st5y(sd, [lat.date])[0];
-    if (!band || band.avg == null) return { score: 0, label: 'Neutral', detail: 'No fair price', explanation: '' };
-    const fp = fairPrice(lat.value - band.avg);
-    const next = state.nextContractPrice;
-    if (next == null) return { score: 0, label: 'Neutral', detail: 'No next price', explanation: '' };
+    if (!band || band.avg == null) return { score: 0, label: 'Neutral', detail: 'No fair price', explanation: '', fullMethodology: [] };
+    const fp   = fairPrice(lat.value - band.avg);
+    const next = (window._topbarLastPrice?.next)
+        ?? state.nextContractPrice
+        ?? (() => { const el = document.getElementById('b-ngf-nxt'); const v = parseFloat((el?.textContent||'').replace('$','')); return isFinite(v) ? v : null; })();
+    if (next == null) return { score: 0, label: 'Neutral', detail: 'No next price', explanation: '', fullMethodology: [] };
 
-    const diff = fp - next;
-    let score;
-    if (diff > 0.3)         score = 1;
-    else if (diff > 0.15)   score = 0.5;
-    else if (diff >= -0.15) score = 0;
-    else if (diff >= -0.3)  score = -0.5;
-    else                    score = -1;
-
+    const si = getSeasonInfo();
+    const { score, diff, fairMin, fairMax, downBand, upBand } = scoreFairVsPrice(fp, next, si.isHeating);
     const s = sentiment(score);
+
+    const bandDesc = si.isHeating
+        ? `band $${fairMin.toFixed(2)}–$${fairMax.toFixed(2)} (heating: −$${downBand.toFixed(2)}/+$${upBand.toFixed(2)})`
+        : `band $${fairMin.toFixed(2)}–$${fairMax.toFixed(2)} (±$${downBand.toFixed(2)})`;
+
     return { score, label: s.label, col: s.col,
-        detail: `Fair $${fp.toFixed(3)} vs Next $${next.toFixed(3)} → diff ${diff >= 0 ? '+' : ''}${diff.toFixed(3)}`,
-        explanation: 'Same logic as Fair Price vs Front, but compared to the next delivery month contract price.',
+        detail: `Fair $${fp.toFixed(3)} · Next $${next.toFixed(3)} · diff ${diff >= 0 ? '+' : ''}${diff.toFixed(3)}`,
+        explanation: `Fair price $${fp.toFixed(3)}, ${bandDesc}. Next $${next.toFixed(3)} is ${next < fairMin ? 'BELOW band — underpriced' : next > fairMax ? 'ABOVE band — overpriced' : 'inside band'}. Same logic as vs Front.`,
         fullMethodology: [
-            { state: 'Bullish',          col: '#3fb950', cond: 'Fair price > Next contract by > $0.30',   note: 'Next month significantly underpriced vs storage fundamentals' },
-            { state: 'Slightly Bullish', col: '#7ec97f', cond: 'Fair price > Next contract by $0.15–$0.30', note: 'Next month moderately underpriced' },
-            { state: 'Neutral',          col: '#9ba3ad', cond: 'Difference within ±$0.15',                note: 'Next contract fairly valued relative to storage fundamentals' },
-            { state: 'Slightly Bearish', col: '#ffb085', cond: 'Next contract > Fair price by $0.15–$0.30', note: 'Next month moderately overpriced' },
-            { state: 'Bearish',          col: '#ff7b72', cond: 'Next contract > Fair price by > $0.30',  note: 'Next month significantly overpriced vs storage fundamentals' },
+            { state: 'Bullish +1',            col: '#3fb950', cond: `Next below fairMin ($${fairMin.toFixed(2)})`,              note: 'Next contract below entire fair price band — strongly underpriced' },
+            { state: 'Slightly Bullish +0.5', col: '#7ec97f', cond: `Next in lower 1/3 of band (diff > +$${(downBand/3).toFixed(2)})`, note: 'Next in lower part of fair value range' },
+            { state: 'Neutral 0',             col: '#9ba3ad', cond: 'Next in middle of band',                                   note: 'Next fairly valued within the band' },
+            { state: 'Slightly Bearish −0.5', col: '#ffb085', cond: `Next in upper 1/3 of band (diff < −$${(upBand/3).toFixed(2)})`, note: 'Next in upper part of fair value range' },
+            { state: 'Bearish −1',            col: '#ff7b72', cond: `Next above fairMax ($${fairMax.toFixed(2)})`,              note: 'Next contract above entire fair price band — strongly overpriced' },
         ] };
 }
 
@@ -1060,26 +1084,18 @@ function renderOverview() {
     // Signal rows with trend arrows
     let html = '';
     for (const [key, sig] of Object.entries(signals)) {
-        const trend = getSignalTrend(key, sig.score);
         const dot = `<span class="ov-dot" style="background:${sig.col}"></span>`;
         html += `
           <div class="ov-row" data-key="${key}">
             <div class="ov-row-top">
               <div class="ov-name">${sig.name}</div>
-              <div class="ov-signal" style="color:${sig.col}">${dot}${sig.label}${trend}</div>
+              <div class="ov-signal" style="color:${sig.col}">${dot}${sig.label}</div>
             </div>
             <div class="ov-detail">${sig.detail || ''}</div>
           </div>`;
     }
     container.innerHTML = html;
 
-    // Save previous scores for next render's trend arrows
-    for (const [key, sig] of Object.entries(signals)) {
-        _prevSignalScores[key] = sig.score;
-    }
-
-    // Render history sparkline
-    try { renderScoreHistory(total); } catch(e) { dbLog('Score history: ' + e.message, 'warn'); }
 }
 
 // Popup explanation
@@ -1193,91 +1209,6 @@ export function updateAllWidgets() {
 // FEATURE 1: HISTORICAL SCORE — localStorage sparkline
 // ═══════════════════════════════════════════════════════════════════════════════
 
-const OV_HISTORY_KEY = 'ng_ov_score_history_v1';
-let _histChart = null;
-
-function saveScoreHistory(total) {
-    const today = new Date().toISOString().slice(0, 10);
-    let hist = [];
-    try { hist = JSON.parse(localStorage.getItem(OV_HISTORY_KEY) || '[]'); } catch(e) {}
-    // Remove old entry for today if exists, add new
-    hist = hist.filter(h => h.d !== today);
-    hist.push({ d: today, s: Math.round(total * 10) / 10 });
-    // Keep last 30 days
-    hist = hist.slice(-30);
-    try { localStorage.setItem(OV_HISTORY_KEY, JSON.stringify(hist)); } catch(e) {}
-    return hist;
-}
-
-function renderScoreHistory(total) {
-    const canvas = $('ov-history-canvas');
-    if (!canvas) return;
-    const hist = saveScoreHistory(total);
-    if (hist.length < 2) return;
-
-    const rangeEl = $('ov-history-range');
-    if (rangeEl) rangeEl.textContent = hist[0].d + ' – ' + hist[hist.length-1].d;
-
-    const dpr = window.devicePixelRatio || 1;
-    const W = canvas.offsetWidth || 200;
-    const H = 48;
-    canvas.width  = W * dpr;
-    canvas.height = H * dpr;
-    canvas.style.width  = W + 'px';
-    canvas.style.height = H + 'px';
-    const ctx = canvas.getContext('2d');
-    ctx.scale(dpr, dpr);
-    ctx.clearRect(0, 0, W, H);
-
-    const scores = hist.map(h => h.s);
-    const PAD = 4;
-    const gW = W - PAD * 2;
-    const gH = H - PAD * 2;
-    const MAX = 6.5;
-
-    function toX(i) { return PAD + (i / (hist.length - 1)) * gW; }
-    function toY(s) { return PAD + gH * (1 - (s + MAX) / (MAX * 2)); }
-
-    // Zero line
-    const z = toY(0);
-    ctx.strokeStyle = 'rgba(110,118,129,0.2)';
-    ctx.lineWidth = 1;
-    ctx.setLineDash([2, 3]);
-    ctx.beginPath(); ctx.moveTo(PAD, z); ctx.lineTo(W - PAD, z); ctx.stroke();
-    ctx.setLineDash([]);
-
-    // Gradient fill
-    const grad = ctx.createLinearGradient(0, PAD, 0, H - PAD);
-    grad.addColorStop(0, 'rgba(63,185,80,0.25)');
-    grad.addColorStop(0.5, 'rgba(110,118,129,0.05)');
-    grad.addColorStop(1, 'rgba(255,123,114,0.25)');
-
-    ctx.beginPath();
-    ctx.moveTo(toX(0), toY(scores[0]));
-    scores.forEach((s, i) => { if (i > 0) ctx.lineTo(toX(i), toY(s)); });
-    ctx.lineTo(toX(scores.length - 1), z);
-    ctx.lineTo(toX(0), z);
-    ctx.closePath();
-    ctx.fillStyle = grad;
-    ctx.fill();
-
-    // Line
-    ctx.beginPath();
-    ctx.moveTo(toX(0), toY(scores[0]));
-    scores.forEach((s, i) => { if (i > 0) ctx.lineTo(toX(i), toY(s)); });
-    ctx.strokeStyle = '#4493f8';
-    ctx.lineWidth = 1.5;
-    ctx.lineJoin = 'round';
-    ctx.stroke();
-
-    // Today dot
-    const last = scores[scores.length - 1];
-    const ov = overallSentiment(last);
-    ctx.fillStyle = ov.col;
-    ctx.beginPath();
-    ctx.arc(toX(scores.length - 1), toY(last), 3.5, 0, Math.PI * 2);
-    ctx.fill();
-}
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // FEATURE 2: EIA SURPRISE TRACKER
@@ -1349,15 +1280,6 @@ export function updateEIATracker() {
 // Compare current signal scores to previous render
 // ═══════════════════════════════════════════════════════════════════════════════
 
-let _prevSignalScores = {};
-
-function getSignalTrend(key, currentScore) {
-    const prev = _prevSignalScores[key];
-    if (prev === undefined) return '';
-    if (currentScore > prev) return '<span class="ov-trend up">↑</span>';
-    if (currentScore < prev) return '<span class="ov-trend dn">↓</span>';
-    return '<span class="ov-trend eq">→</span>';
-}
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // FEATURE 4: FUTURES CURVE TIMESTAMP

@@ -380,7 +380,7 @@ export function taRenderTF(tf, candles) {
   }
   const delayNote = (tf === '5m' || tf === '15m') ? ' · 15min delay' : '';
   const subEl = document.getElementById('ta-sub-' + tf);
-  if (subEl) subEl.textContent = fD(fd) + ' - ' + fD(ld) + ' · ' + n + ' bars · CET' + delayNote;
+  if (subEl) subEl.textContent = fD(fd) + ' – ' + fD(ld);
 
   // Show chart
   const spinEl = document.getElementById('ta-spin-' + tf);
