@@ -44,6 +44,7 @@ function updateSeason() {
     const si = getSeasonInfo();
     if (!si) return;
     setText('season-ico', si.icon || '');
+    setText('season-cur-name', si.name || '—');
     setText('season-next-ico', si.nxtIcon || '');
 
     // Build next season label: "Cooling Mon 01/06"
