@@ -592,8 +592,8 @@ function sentiment(score) {
 // Overall score uses absolute thresholds (scale −6.5 to +6.5)
 function overallSentiment(total) {
     if (total >= 3.5)  return { key: 'bullish',          label: 'Bullish',          col: '#3fb950' };
-    if (total >= 1.5)  return { key: 'slightly_bullish', label: 'Slightly Bullish', col: '#7ec97f' };
-    if (total > -1.5)  return { key: 'neutral',          label: 'Neutral',          col: '#9ba3ad' };
+    if (total >= 2.0)  return { key: 'slightly_bullish', label: 'Slightly Bullish', col: '#7ec97f' };
+    if (total > -2.0)  return { key: 'neutral',          label: 'Neutral',          col: '#9ba3ad' };
     if (total > -3.5)  return { key: 'slightly_bearish', label: 'Slightly Bearish', col: '#ffb085' };
     return              { key: 'bearish',                label: 'Bearish',          col: '#ff7b72' };
 }
