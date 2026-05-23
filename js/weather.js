@@ -100,8 +100,15 @@ async function fetchFcst(lat,lon) {
   }
   return res;
 }
+async function fetchArchive(lat, lon, startDate, endDate) {
+  const params = '?latitude='+lat+'&longitude='+lon+'&daily=temperature_2m_max,temperature_2m_min&start_date='+startDate+'&end_date='+endDate+'&timezone=UTC';
+  // archive-api.open-meteo.com is the only source for ERA5 data
+  // Use longer timeout (15s) and more retries for resilience during outages
+  const url = 'https://archive-api.open-meteo.com/v1/archive' + params;
+  return await fetchRetry(url, 5, 3000);
+}
 async function fetchHist(lat,lon,s,e) {
-  const j=await fetchRetry('https://archive-api.open-meteo.com/v1/archive?latitude='+lat+'&longitude='+lon+'&daily=temperature_2m_max,temperature_2m_min&start_date='+s+'&end_date='+e+'&timezone=UTC');
+  const j=await fetchArchive(lat,lon,s,e);
   return j.daily.time.map((dt,i)=>({date:dt,avg:(j.daily.temperature_2m_max[i]+j.daily.temperature_2m_min[i])/2}));
 }
 
@@ -352,7 +359,7 @@ export async function exportHistoricalWeekly() {
     const allReg=[];
     for (let ri=0;ri<WX_REGIONS.length;ri++) {
       const r=WX_REGIONS[ri]; btn.textContent='⏳ '+r.name+' ('+(ri+1)+'/'+WX_REGIONS.length+')…';
-      const dd=await fetchRetry('https://archive-api.open-meteo.com/v1/archive?latitude='+r.lat+'&longitude='+r.lon+'&daily=temperature_2m_max,temperature_2m_min&start_date=2010-01-01&end_date='+todayISO+'&timezone=UTC');
+      const dd=await fetchArchive(r.lat, r.lon, '2010-01-01', todayISO);
       if (!dd?.daily?.time) throw new Error('No data for '+r.name);
       allReg.push(dd.daily); if(ri<WX_REGIONS.length-1) await sleep(600);
     }

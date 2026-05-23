@@ -197,17 +197,21 @@ export function updateRollKpi() {
     if (!dateEl || !etaEl) return;
 
     const now = new Date();
-    const yr  = now.getUTCFullYear();
-    const mo  = now.getUTCMonth();
 
-    // Use shared t212RollDate from contracts.js
-    let candidate = t212RollDate(yr, mo);
-    if (candidate <= now) {
-        const nm = mo + 1;
-        candidate = nm > 11 ? t212RollDate(yr + 1, 0) : t212RollDate(yr, nm);
+    // Find next T212 roll date — iterate delivery months until we find one in the future
+    let candidate = null;
+    for (let off = 0; off <= 13; off++) {
+        const totalM = now.getUTCMonth() + off;
+        const mo = totalM % 12;
+        const yr = now.getUTCFullYear() + Math.floor(totalM / 12);
+        const roll = t212RollDate(yr, mo);
+        if (roll > now) {
+            candidate = roll;
+            break;
+        }
     }
-
-    const msUntil    = candidate - now;
+    if (!candidate) return;
+    const msUntil = candidate - now;
     const hoursUntil = msUntil / 3_600_000;
     const daysUntil  = msUntil / 86_400_000;
 
