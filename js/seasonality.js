@@ -384,6 +384,16 @@ function _renderSeason(cfg) {
     { _k: 'fp_max',  label: 'Fair max',   data: fpMax,  borderColor: 'rgba(163,113,247,0.7)', borderWidth: 1, borderDash: [4, 3], pointRadius: 0, tension: 0.3, fill: false }
   ] : [];
 
+  // Deviation of the current price vs fair price (abs mode, current year only).
+  // Computed independently of the overlay so it also works on the full list chart.
+  let fairDev = null;
+  if (mode === 'abs' && isCurrentYear && nowIdx >= 0 && nowVal != null) {
+    const d = new Date(Date.UTC(displayYear, 0, 1 + nowIdx * 7 + 3));
+    const fps = buildFairPriceSeries([d.toISOString().slice(0, 10)]);
+    const nowFair = fps && fps.fair && fps.fair[0] != null ? fps.fair[0] : null;
+    if (nowFair != null) fairDev = nowVal - nowFair;
+  }
+
   const fcstDatasets = [];
 
   const fontSize = cfg.compact ? 8 : 9;
@@ -437,26 +447,37 @@ function _renderSeason(cfg) {
       cx.strokeStyle = '#11151c';
       cx.lineWidth = 2;
       cx.beginPath(); cx.arc(px, py, cfg.compact ? 3.5 : 4.5, 0, Math.PI * 2); cx.fill(); cx.stroke();
-      // deviation label (full size only)
-      if (!cfg.compact && nowDev != null) {
-        const txt = fmtDev(nowDev) + ' vs median';
-        cx.font = '600 11px Inter, sans-serif';
-        const tw = cx.measureText(txt).width;
-        const pad = 6;
-        let bx = px + 10;
-        if (bx + tw + pad * 2 > ca.right) bx = px - 10 - tw - pad * 2; // flip if near right edge
-        const by = Math.max(ca.top + 4, py - 26);
-        const col = nowDev >= 0 ? '#ff7b72' : '#3fb950';
+      // deviation label — full size: single line "vs median"; compact (overview):
+      // two stacked lines, "vs median" and (in $ mode) "vs fair".
+      const lines = [];
+      if (nowDev != null) lines.push({ txt: fmtDev(nowDev) + ' vs median', col: nowDev >= 0 ? '#ff7b72' : '#3fb950' });
+      if (cfg.compact && mode === 'abs' && fpFair && fpFair[nowIdx] != null) {
+        const fairDev = nowVal - fpFair[nowIdx];
+        lines.push({ txt: fmtDev(fairDev) + ' vs fair', col: fairDev >= 0 ? '#ff7b72' : '#3fb950' });
+      }
+      if (lines.length) {
+        const fs = cfg.compact ? 9 : 11;
+        const lh = cfg.compact ? 13 : 16;       // line height
+        const pad = cfg.compact ? 4 : 6;
+        cx.font = '600 ' + fs + 'px Inter, sans-serif';
+        const tw = Math.max(...lines.map(l => cx.measureText(l.txt).width));
+        const bw = tw + pad * 2;
+        const bh = lines.length * lh + pad * 2 - (lines.length > 1 ? 2 : 0);
+        let bx = px + (cfg.compact ? 7 : 10);
+        if (bx + bw > ca.right) bx = px - (cfg.compact ? 7 : 10) - bw; // flip near right edge
+        let by = py - (cfg.compact ? 20 : 26) - (lines.length - 1) * lh;
+        by = Math.max(ca.top + 4, by);
         cx.fillStyle = 'rgba(28,33,40,0.92)';
         cx.strokeStyle = 'rgba(255,255,255,0.10)';
         cx.lineWidth = 1;
-        const bh = 20;
         cx.beginPath();
-        if (cx.roundRect) cx.roundRect(bx, by, tw + pad * 2, bh, 4); else cx.rect(bx, by, tw + pad * 2, bh);
+        if (cx.roundRect) cx.roundRect(bx, by, bw, bh, 4); else cx.rect(bx, by, bw, bh);
         cx.fill(); cx.stroke();
-        cx.fillStyle = col;
         cx.textBaseline = 'middle';
-        cx.fillText(txt, bx + pad, by + bh / 2);
+        lines.forEach((l, i) => {
+          cx.fillStyle = l.col;
+          cx.fillText(l.txt, bx + pad, by + pad + lh * i + lh / 2 - (cfg.compact ? 1 : 0));
+        });
       }
       cx.restore();
     }
