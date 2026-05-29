@@ -92,11 +92,15 @@ async function batch(tasks, bs=5, delay=400) {
   return out;
 }
 async function fetchFcst(lat,lon) {
-  const j=await fetchRetry('https://api.open-meteo.com/v1/forecast?latitude='+lat+'&longitude='+lon+'&hourly=temperature_2m&forecast_days='+WX_FCST_DAYS+'&timezone=UTC');
+  // Use DAILY max/min (not hourly averages): a day's max/min are fixed for that
+  // calendar day, so the computed demand stays stable whether you look in the
+  // morning or afternoon. Hourly averaging drifted through the day as past hours
+  // filled in with real (cooler) values. This also matches how history is built.
+  const j=await fetchRetry('https://api.open-meteo.com/v1/forecast?latitude='+lat+'&longitude='+lon+'&daily=temperature_2m_max,temperature_2m_min&forecast_days='+WX_FCST_DAYS+'&timezone=UTC');
   const res=[];
   for (let d=0;d<WX_FCST_DAYS;d++) {
-    const sl=j.hourly.temperature_2m.slice(d*24,d*24+24).filter(v=>v!=null);
-    res.push(sl.length?sl.reduce((a,b)=>a+b)/sl.length:null);
+    const mx=j.daily?.temperature_2m_max?.[d], mn=j.daily?.temperature_2m_min?.[d];
+    res.push((mx!=null&&mn!=null)?(mx+mn)/2:null);
   }
   return res;
 }
