@@ -254,7 +254,7 @@ body.sidebar-collapsed .nav-ico{margin:0}
 /* Heatmap wrap — Chart.js fills full space */
 .hm-chart-wrap{flex:1;position:relative;min-height:0}
 .hm-chart-wrap canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
-.hm-card.ft-show-trend #hm-wrap,.hm-card.ft-show-trend #hm-spin{display:none!important}
+.hm-card.ft-show-trend #hm-wrap,.hm-card.ft-show-trend #hm-spin,.hm-card.ft-show-trend #hm-legend{display:none!important}
 .hm-card.ft-show-current #ft-wrap,.hm-card.ft-show-current #ft-spin,.hm-card.ft-show-current #ft-stats{display:none!important}
 
 /* ═══ EIA countdown banner ═══ */
@@ -774,7 +774,7 @@ body.sidebar-collapsed .dbg-drawer{left:56px}
                 <button id="ft-btn-current" class="tw-btn" data-ft-mode="current">Current</button>
                 <button id="ft-btn-trend" class="tw-btn on" data-ft-mode="trend">Forecast trend</button>
               </div>
-              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <div id="hm-legend" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
                 <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--text2);font-family:var(--mono);white-space:nowrap">
                   <svg width="12" height="12" aria-hidden="true"><rect x="0" y="0" width="12" height="12" rx="2" fill="rgba(163,113,247,0.85)"/></svg>
                   Hist.
@@ -796,26 +796,26 @@ body.sidebar-collapsed .dbg-drawer{left:56px}
                   5y range
                 </span>
               </div>
+              <div id="ft-stats" style="display:none;align-items:center;gap:16px;margin-left:auto;flex-wrap:wrap">
+                <div style="display:flex;align-items:baseline;gap:5px">
+                  <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;font-weight:700">Now</span>
+                  <span id="ft-stat-now" style="font-size:16px;font-weight:700;font-family:var(--mono);color:var(--text);line-height:1;letter-spacing:-0.3px">—</span>
+                </div>
+                <div style="display:flex;align-items:baseline;gap:5px">
+                  <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;font-weight:700">24h</span>
+                  <span id="ft-stat-chg" style="font-size:12px;font-weight:600;font-family:var(--mono);color:var(--text2);line-height:1">—</span>
+                </div>
+                <div style="display:flex;align-items:baseline;gap:5px">
+                  <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;font-weight:700">7d</span>
+                  <span id="ft-stat-range" style="font-size:12px;font-weight:600;font-family:var(--mono);color:var(--text2);line-height:1">—</span>
+                </div>
+              </div>
             </div>
             <div id="hm-spin" class="spin-msg" style="display:flex;align-items:center;justify-content:center;min-height:120px"><span class="sp"></span>Loading weather…</div>
             <div id="hm-wrap" class="hm-chart-wrap" style="display:none">
               <canvas id="hm-canvas" role="img" aria-label="Weather demand index vs 5-year average"></canvas>
             </div>
             <div id="ft-spin" class="spin-msg" style="display:none;align-items:center;justify-content:center;min-height:120px;font-size:11px;color:var(--text3);text-align:center;padding:0 20px"></div>
-            <div id="ft-stats" style="display:none;gap:18px;flex-wrap:wrap;align-items:flex-end;padding:2px 2px 10px;flex-shrink:0">
-              <div style="display:flex;flex-direction:column;gap:3px">
-                <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;font-weight:700">Demand now</span>
-                <span id="ft-stat-now" style="font-size:20px;font-weight:700;font-family:var(--mono);color:var(--text);line-height:1;letter-spacing:-0.3px">—</span>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:3px">
-                <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;font-weight:700">24h change</span>
-                <span id="ft-stat-chg" style="font-size:13px;font-weight:600;font-family:var(--mono);color:var(--text2);line-height:1">—</span>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:3px">
-                <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;font-weight:700">7d range</span>
-                <span id="ft-stat-range" style="font-size:13px;font-weight:600;font-family:var(--mono);color:var(--text2);line-height:1">—</span>
-              </div>
-            </div>
             <div id="ft-wrap" class="hm-chart-wrap" style="display:none">
               <canvas id="ft-canvas" role="img" aria-label="Forecast demand trend over time"></canvas>
             </div>
