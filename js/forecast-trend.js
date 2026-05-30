@@ -4,10 +4,17 @@
 // keeps the last 7 days, and draws how the summed 16-day Demand outlook has
 // evolved over time. All timestamps are shown in Prague time (Europe/Prague),
 // regardless of the viewer's location.
+//
+// Pro styling:
+//   - line segments colored green (rising outlook) / red (falling outlook)
+//   - the latest point is highlighted with a labelled value badge
+//   - a stats row above the chart shows current value, 24h change, 7d range
 
 const HISTORY_URL = 'data/history.json';
 const WINDOW_DAYS = 7;
-const DEM_COLOR = '#a371f7';
+const COL_GREEN = '#3fb950';
+const COL_RED = '#ff7b72';
+const COL_PURPLE = '#a371f7';
 
 let _trendChart = null;
 let _loaded = false;
@@ -26,41 +33,156 @@ function pragueLabel(iso) {
   catch { return iso; }
 }
 
+// "2026-05-30" -> "30.5."
+function fmtDate(iso) {
+  const p = (iso || '').split('-');
+  if (p.length === 3) return parseInt(p[2], 10) + '.' + parseInt(p[1], 10) + '.';
+  return iso;
+}
+
 async function loadHistory() {
   const res = await fetch(HISTORY_URL + '?t=' + Date.now());
   if (!res.ok) throw new Error('HTTP ' + res.status);
   const data = await res.json();
   if (!Array.isArray(data)) return [];
-  // Keep only the last 7 days of snapshots.
   const cutoff = Date.now() - WINDOW_DAYS * 86400000;
-  return data.filter(r => r && r.ts && new Date(r.ts).getTime() >= cutoff);
+  return data
+    .filter(r => r && r.ts && typeof r.dem === 'number' && new Date(r.ts).getTime() >= cutoff)
+    .sort((a, b) => new Date(a.ts) - new Date(b.ts));
+}
+
+// Plugin: draw a highlighted dot + value badge on the last data point.
+const lastPointPlugin = {
+  id: 'ftLastPoint',
+  afterDatasetsDraw(chart) {
+    const ds = chart.data.datasets[0];
+    if (!ds || !ds.data.length) return;
+    const meta = chart.getDatasetMeta(0);
+    const pts = meta.data;
+    if (!pts || !pts.length) return;
+    const i = pts.length - 1;
+    const pt = pts[i];
+    if (!pt) return;
+    const val = ds.data[i];
+    const ctx = chart.ctx;
+
+    // Rising vs falling for the badge color (compare to previous point).
+    const prev = ds.data[i - 1];
+    const rising = prev == null || val >= prev;
+    const col = rising ? COL_GREEN : COL_RED;
+
+    // Glow dot
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(pt.x, pt.y, 6, 0, Math.PI * 2);
+    ctx.fillStyle = col + '33';
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(pt.x, pt.y, 3.5, 0, Math.PI * 2);
+    ctx.fillStyle = col;
+    ctx.fill();
+    ctx.strokeStyle = '#0a0d12';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Value badge
+    const txt = val.toFixed(1);
+    ctx.font = '600 11px JetBrains Mono, monospace';
+    const tw = ctx.measureText(txt).width;
+    const padX = 6, padY = 3, bw = tw + padX * 2, bh = 18;
+    let bx = pt.x + 10, by = pt.y - bh / 2;
+    // keep badge inside the chart area
+    if (bx + bw > chart.chartArea.right) bx = pt.x - 10 - bw;
+    if (by < chart.chartArea.top) by = chart.chartArea.top;
+    if (by + bh > chart.chartArea.bottom) by = chart.chartArea.bottom - bh;
+
+    ctx.fillStyle = '#1c2128';
+    ctx.strokeStyle = col;
+    ctx.lineWidth = 1;
+    const r = 4;
+    ctx.beginPath();
+    ctx.moveTo(bx + r, by);
+    ctx.arcTo(bx + bw, by, bx + bw, by + bh, r);
+    ctx.arcTo(bx + bw, by + bh, bx, by + bh, r);
+    ctx.arcTo(bx, by + bh, bx, by, r);
+    ctx.arcTo(bx, by, bx + bw, by, r);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = col;
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'left';
+    ctx.fillText(txt, bx + padX, by + bh / 2 + 0.5);
+    ctx.restore();
+  },
+};
+
+function updateStats(records) {
+  const now = records[records.length - 1];
+  const elNow = $('ft-stat-now');
+  const elChg = $('ft-stat-chg');
+  const elRange = $('ft-stat-range');
+  if (!now) return;
+
+  if (elNow) elNow.textContent = now.dem.toFixed(1);
+
+  // 24h change: compare to the record closest to 24h ago.
+  if (elChg) {
+    const target = new Date(now.ts).getTime() - 86400000;
+    let ref = null, best = Infinity;
+    for (const r of records) {
+      const d = Math.abs(new Date(r.ts).getTime() - target);
+      if (d < best) { best = d; ref = r; }
+    }
+    // only meaningful if we have a point within ~6h of 24h ago
+    if (ref && ref !== now && best <= 6 * 3600000) {
+      const diff = now.dem - ref.dem;
+      const sign = diff >= 0 ? '+' : '';
+      elChg.textContent = sign + diff.toFixed(1);
+      elChg.style.color = diff >= 0 ? COL_GREEN : COL_RED;
+    } else {
+      elChg.textContent = 'n/a';
+      elChg.style.color = 'var(--text3)';
+    }
+  }
+
+  // 7d range
+  if (elRange) {
+    const vals = records.map(r => r.dem);
+    const mn = Math.min(...vals), mx = Math.max(...vals);
+    elRange.textContent = mn.toFixed(1) + ' – ' + mx.toFixed(1);
+    elRange.style.color = 'var(--text2)';
+  }
 }
 
 function renderTrendChart(records) {
   const canvas = $('ft-canvas');
   const spin = $('ft-spin');
   const wrap = $('ft-wrap');
+  const stats = $('ft-stats');
   if (!canvas || !wrap) return;
 
   if (!records.length) {
-    if (spin) {
-      spin.style.display = 'flex';
-      spin.textContent = 'Not enough data yet — collection runs hourly.';
-    }
+    if (spin) { spin.style.display = 'flex'; spin.textContent = 'Not enough data yet — collection runs hourly.'; }
     wrap.style.display = 'none';
+    if (stats) stats.style.display = 'none';
     return;
   }
 
   if (spin) spin.style.display = 'none';
   wrap.style.display = 'block';
+  if (stats) stats.style.display = 'flex';
+
+  updateStats(records);
 
   const labels = records.map(r => pragueLabel(r.ts));
   const dem = records.map(r => r.dem);
 
   const textCol = getComputedStyle(document.documentElement).getPropertyValue('--text3').trim() || '#6e7681';
-  const gridCol = getComputedStyle(document.documentElement).getPropertyValue('--border').trim() || '#1f242c';
+  const gridCol = 'rgba(255,255,255,0.05)';
 
-  // Subtitle: show the forecast window the latest snapshot covers.
+  // Subtitle: forecast window the latest snapshot covers.
   const last = records[records.length - 1];
   const sub = $('ft-sub');
   if (sub && last && last.from && last.to) {
@@ -71,24 +193,32 @@ function renderTrendChart(records) {
 
   _trendChart = new Chart(canvas, {
     type: 'line',
+    plugins: [lastPointPlugin],
     data: {
       labels,
       datasets: [{
         label: 'Demand (16d sum)',
         data: dem,
-        borderColor: DEM_COLOR,
-        backgroundColor: DEM_COLOR,
+        borderColor: COL_PURPLE,
         borderWidth: 2,
         pointRadius: 0,
         pointHoverRadius: 4,
         tension: 0.25,
         fill: false,
+        // Color each segment green if rising, red if falling.
+        segment: {
+          borderColor: (ctx) => {
+            const y0 = ctx.p0.parsed.y, y1 = ctx.p1.parsed.y;
+            return y1 >= y0 ? COL_GREEN : COL_RED;
+          },
+        },
       }],
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
+      layout: { padding: { right: 44, top: 6 } },
       plugins: {
         legend: { display: false },
         tooltip: {
@@ -98,6 +228,7 @@ function renderTrendChart(records) {
           titleColor: '#e6edf3',
           bodyColor: '#9ba3ad',
           padding: 10,
+          displayColors: false,
           callbacks: {
             label: ctx => 'Demand: ' + (ctx.parsed.y != null ? ctx.parsed.y.toFixed(1) : 'N/A'),
           },
@@ -108,7 +239,7 @@ function renderTrendChart(records) {
           grid: { color: gridCol },
           ticks: {
             color: textCol,
-            font: { size: 10, family: 'var(--mono, monospace)' },
+            font: { size: 10, family: 'JetBrains Mono, monospace' },
             maxRotation: 0, autoSkip: true, maxTicksLimit: 8,
           },
         },
@@ -116,21 +247,14 @@ function renderTrendChart(records) {
           grid: { color: gridCol },
           title: {
             display: true, text: 'Demand (16d sum)', color: textCol,
-            font: { size: 10, family: 'var(--mono, monospace)', weight: '600' },
+            font: { size: 10, family: 'JetBrains Mono, monospace', weight: '600' },
             padding: { bottom: 4 },
           },
-          ticks: { color: textCol, font: { size: 10, family: 'var(--mono, monospace)' } },
+          ticks: { color: textCol, font: { size: 10, family: 'JetBrains Mono, monospace' } },
         },
       },
     },
   });
-}
-
-// "2026-05-30" -> "30.5."
-function fmtDate(iso) {
-  const p = (iso || '').split('-');
-  if (p.length === 3) return parseInt(p[2], 10) + '.' + parseInt(p[1], 10) + '.';
-  return iso;
 }
 
 async function showTrend() {
@@ -142,13 +266,14 @@ async function showTrend() {
     renderTrendChart(records);
   } catch (e) {
     if (spin) { spin.style.display = 'flex'; spin.textContent = 'Could not load history: ' + e.message; }
+    const stats = $('ft-stats');
+    if (stats) stats.style.display = 'none';
   }
 }
 
 // Toggle between the existing "Current" chart (hm-*) and the new trend chart (ft-*).
 // Visibility is driven by a class on the .hm-card so it wins over the inline
-// display styles that renderWeatherHeatmap() sets later (which previously caused
-// both charts to show at once on first load).
+// display styles that renderWeatherHeatmap() sets later.
 function setMode(mode) {
   _mode = mode;
   const isTrend = mode === 'trend';
@@ -159,14 +284,13 @@ function setMode(mode) {
     card.classList.toggle('ft-show-current', !isTrend);
   }
 
-  // Make sure the active view's wrapper is allowed to show (the CSS class hides
-  // the inactive one regardless of these inline values).
   const ftWrap = $('ft-wrap');
   const hmWrap = $('hm-wrap');
+  const stats = $('ft-stats');
   if (ftWrap) ftWrap.style.display = isTrend ? 'block' : 'none';
   if (hmWrap && !isTrend) hmWrap.style.display = 'block';
+  if (stats) stats.style.display = isTrend ? 'flex' : 'none';
 
-  // Button active states
   const bCur = $('ft-btn-current');
   const bTr = $('ft-btn-trend');
   if (bCur) bCur.classList.toggle('on', !isTrend);
@@ -178,7 +302,7 @@ function setMode(mode) {
 export function initForecastTrend() {
   const bCur = $('ft-btn-current');
   const bTr = $('ft-btn-trend');
-  if (!bCur || !bTr) return; // markup not present yet
+  if (!bCur || !bTr) return;
   bCur.addEventListener('click', () => setMode('current'));
   bTr.addEventListener('click', () => setMode('trend'));
   setMode('trend'); // default view
