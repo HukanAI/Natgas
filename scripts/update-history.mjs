@@ -1,19 +1,21 @@
 // scripts/update-history.mjs
 // Runs on GitHub Actions (no browser, no app open). Once per hour it:
 //   1. fetches the 16-day daily forecast for each region from Open-Meteo,
-//   2. computes ONE weighted HDD / CDD / Demand value for the forecast window
-//      (tomorrow .. end of the 16-day forecast),
-//   3. appends a single timestamped record to data/history.json.
+//   2. computes the SUM of weighted HDD / CDD / Demand across all 16 forecast
+//      days (today .. today+15),
+//   3. appends a single timestamped record (with the covered date range) to
+//      data/history.json.
 //
-// The math mirrors weather.js / constants.js exactly:
+// The per-day math mirrors weather.js / constants.js exactly:
 //   daily avg temp = (tmax + tmin) / 2
-//   HDD = max(0, BASE - t),  CDD = max(0, t - BASE),  BASE = 18 °C
+//   HDD = max(0, BASE - t),  CDD = max(0, t - BASE),  BASE = 18 deg C
 //   weighted across regions by each region's weight w.
+// We then SUM these per-day weighted values over the whole forecast window.
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { dirname } from 'node:path';
 
-// ── Config (kept in sync with js/constants.js) ──────────────────────────────
+// -- Config (kept in sync with js/constants.js) ------------------------------
 const WX_BASE = 18;
 const WX_FCST_DAYS = 16;
 const WX_REGIONS = [
@@ -25,11 +27,11 @@ const WX_REGIONS = [
 ];
 
 const HISTORY_PATH = 'data/history.json';
-// Keep ~60 days of hourly records (1440/month-ish). The chart only shows the
-// last 7 days, but we retain more so you can widen the window later if you want.
+// Keep ~60 days of hourly records. The chart shows the last 7 days; extra is
+// retained so you can widen the window later without losing data.
 const MAX_RECORDS = 4320;
 
-// ── Helpers ─────────────────────────────────────────────────────────────────
+// -- Helpers -----------------------------------------------------------------
 const hdd = (t) => Math.max(0, WX_BASE - t);
 const cdd = (t) => Math.max(0, t - WX_BASE);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -52,7 +54,7 @@ async function fetchRetry(url, tries = 4, delay = 1500) {
   }
 }
 
-// Returns array of WX_FCST_DAYS daily mean temps. Index 0 = today.
+// Returns { temps: [16 daily means], dates: [16 ISO date strings] }. Index 0 = today.
 async function fetchFcst(lat, lon) {
   const url =
     'https://api.open-meteo.com/v1/forecast?latitude=' + lat +
@@ -60,28 +62,30 @@ async function fetchFcst(lat, lon) {
     '&daily=temperature_2m_max,temperature_2m_min&forecast_days=' + WX_FCST_DAYS +
     '&timezone=UTC';
   const j = await fetchRetry(url);
-  const res = [];
+  const temps = [];
   for (let d = 0; d < WX_FCST_DAYS; d++) {
     const mx = j.daily?.temperature_2m_max?.[d];
     const mn = j.daily?.temperature_2m_min?.[d];
-    res.push(mx != null && mn != null ? (mx + mn) / 2 : null);
+    temps.push(mx != null && mn != null ? (mx + mn) / 2 : null);
   }
-  return res;
+  return { temps, dates: j.daily?.time || [] };
 }
 
-// ── Main ────────────────────────────────────────────────────────────────────
+// -- Main --------------------------------------------------------------------
 async function main() {
   // Fetch forecast per region, sequentially (gentle on the free API).
   const regionDaily = [];
+  let forecastDates = [];
   for (const r of WX_REGIONS) {
-    regionDaily.push(await fetchFcst(r.lat, r.lon));
+    const f = await fetchFcst(r.lat, r.lon);
+    regionDaily.push(f.temps);
+    if (f.dates.length > forecastDates.length) forecastDates = f.dates; // keep the date axis
     await sleep(300);
   }
 
-  // For each forecast day, weight HDD/CDD/demand across regions, then average
-  // over days 1..end (skip index 0 = today → "from the day following today").
+  // SUM weighted HDD/CDD/demand across ALL 16 forecast days (include today).
   let sumHdd = 0, sumCdd = 0, sumDem = 0, nDays = 0;
-  for (let d = 1; d < WX_FCST_DAYS; d++) {
+  for (let d = 0; d < WX_FCST_DAYS; d++) {
     let hW = 0, cW = 0, wSum = 0;
     WX_REGIONS.forEach((r, ri) => {
       const t = regionDaily[ri][d];
@@ -100,11 +104,13 @@ async function main() {
   if (nDays === 0) throw new Error('No valid forecast days returned');
 
   const record = {
-    ts: new Date().toISOString(),       // snapshot time (UTC)
-    hdd: +(sumHdd / nDays).toFixed(3),  // avg daily HDD across the 16-day outlook
-    cdd: +(sumCdd / nDays).toFixed(3),  // avg daily CDD across the 16-day outlook
-    dem: +(sumDem / nDays).toFixed(3),  // avg daily total demand across the outlook
-    days: nDays,                        // forecast days that went into the average
+    ts: new Date().toISOString(),                         // snapshot time (UTC)
+    from: forecastDates[0] || null,                       // first forecast day (today)
+    to: forecastDates[forecastDates.length - 1] || null,  // last forecast day (today+15)
+    hdd: +sumHdd.toFixed(3),            // SUM of weighted HDD over the window
+    cdd: +sumCdd.toFixed(3),            // SUM of weighted CDD over the window
+    dem: +sumDem.toFixed(3),            // SUM of weighted total demand over the window
+    days: nDays,                        // forecast days summed (normally 16)
   };
 
   // Load existing history (tolerate missing / empty / corrupt file).
