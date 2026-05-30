@@ -20,6 +20,7 @@ import { stExportStorage, stExportDev, stExportNgf, stExportInj, peExport, peExp
 import { startTopbarTicker, updateTopbar } from './topbar.js';
 import { startWidgetTicker, initOverviewEvents, updateAllWidgets, updateFuturesTimestamp, renderFuturesCurve } from './widgets.js';
 import { newsLoad, newsPauseHover, newsAutoRefresh } from './news.js';
+import { initForecastTrend } from './forecast-trend.js';
 
 // ── Clock ─────────────────────────────────────────────────────────────────────
 tickClock();
@@ -395,3 +396,6 @@ async function loadDailyHistory() {
     document.dispatchEvent(new CustomEvent('daily:history:loaded'));
   }
 }
+
+// ── Forecast trend toggle (Weather Demand card) ──────────────────────────────
+initForecastTrend();
