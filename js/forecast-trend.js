@@ -11,7 +11,7 @@ const DEM_COLOR = '#a371f7';
 
 let _trendChart = null;
 let _loaded = false;
-let _mode = 'current'; // 'current' | 'trend'
+let _mode = 'trend'; // 'current' | 'trend'
 
 function $(id) { return document.getElementById(id); }
 
@@ -177,5 +177,5 @@ export function initForecastTrend() {
   if (!bCur || !bTr) return; // markup not present yet
   bCur.addEventListener('click', () => setMode('current'));
   bTr.addEventListener('click', () => setMode('trend'));
-  setMode('current'); // default view
+  setMode('trend'); // default view
 }
