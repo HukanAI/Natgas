@@ -45,7 +45,7 @@ function renderTrendChart(records) {
   if (!records.length) {
     if (spin) {
       spin.style.display = 'flex';
-      spin.textContent = 'Zatím není dost dat — sběr běží každou hodinu.';
+      spin.textContent = 'Not enough data yet — collection runs hourly.';
     }
     wrap.style.display = 'none';
     return;
@@ -64,7 +64,7 @@ function renderTrendChart(records) {
   const last = records[records.length - 1];
   const sub = $('ft-sub');
   if (sub && last && last.from && last.to) {
-    sub.textContent = 'Výhled ' + fmtDate(last.from) + ' – ' + fmtDate(last.to) + ' · poslední 7 dní · pražský čas';
+    sub.textContent = 'Outlook ' + fmtDate(last.from) + ' – ' + fmtDate(last.to) + ' · last 7 days · Prague time';
   }
 
   if (_trendChart) { _trendChart.destroy(); _trendChart = null; }
@@ -135,13 +135,13 @@ function fmtDate(iso) {
 
 async function showTrend() {
   const spin = $('ft-spin');
-  if (spin && !_loaded) { spin.style.display = 'flex'; spin.textContent = 'Načítám historii…'; }
+  if (spin && !_loaded) { spin.style.display = 'flex'; spin.textContent = 'Loading history…'; }
   try {
     const records = await loadHistory();
     _loaded = true;
     renderTrendChart(records);
   } catch (e) {
-    if (spin) { spin.style.display = 'flex'; spin.textContent = 'Nepodařilo se načíst historii: ' + e.message; }
+    if (spin) { spin.style.display = 'flex'; spin.textContent = 'Could not load history: ' + e.message; }
   }
 }
 
