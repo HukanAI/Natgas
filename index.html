@@ -768,9 +768,9 @@ body.sidebar-collapsed .dbg-drawer{left:56px}
           <div class="hm-card">
             <div class="hm-head" style="flex-wrap:wrap;gap:8px">
               <span class="hm-title">Weather Demand</span>
-              <div class="ft-toggle" style="display:flex;gap:4px;flex-shrink:0">
-                <button id="ft-btn-current" class="ft-tab on" style="font-size:9px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.5px;padding:3px 8px;border-radius:5px;border:1px solid var(--border2);background:var(--bg2);color:var(--text2);cursor:pointer">Current</button>
-                <button id="ft-btn-trend" class="ft-tab" style="font-size:9px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.5px;padding:3px 8px;border-radius:5px;border:1px solid var(--border2);background:var(--bg2);color:var(--text2);cursor:pointer">Forecast trend</button>
+              <div class="tw-bar" style="flex-shrink:0">
+                <button id="ft-btn-current" class="tw-btn on" data-ft-mode="current">Current</button>
+                <button id="ft-btn-trend" class="tw-btn" data-ft-mode="trend">Forecast trend</button>
               </div>
               <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
                 <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--text2);font-family:var(--mono);white-space:nowrap">
