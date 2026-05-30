@@ -66,16 +66,17 @@ const lastPointPlugin = {
     const val = ds.data[i];
     const ctx = chart.ctx;
 
-    // Rising vs falling for the badge color (compare to previous point).
+    // Rising vs falling for the dot/badge color (compare to previous point).
     const prev = ds.data[i - 1];
     const rising = prev == null || val >= prev;
     const col = rising ? COL_GREEN : COL_RED;
 
     // Glow dot
+    const glow = col + '33'; // hex + alpha
     ctx.save();
     ctx.beginPath();
     ctx.arc(pt.x, pt.y, 6, 0, Math.PI * 2);
-    ctx.fillStyle = col + '33';
+    ctx.fillStyle = glow;
     ctx.fill();
     ctx.beginPath();
     ctx.arc(pt.x, pt.y, 3.5, 0, Math.PI * 2);
@@ -156,6 +157,20 @@ function updateStats(records) {
   }
 }
 
+// Build a horizontal gradient for one line segment that blends from the
+// previous segment's color into this segment's color, so the green<->red
+// switch is a soft local fade instead of a hard corner.
+function segGradient(ctx, p0, p1, fromCol, toCol) {
+  try {
+    const g = ctx.createLinearGradient(p0.x, 0, p1.x, 0);
+    g.addColorStop(0, fromCol);
+    g.addColorStop(1, toCol);
+    return g;
+  } catch {
+    return toCol;
+  }
+}
+
 function renderTrendChart(records) {
   const canvas = $('ft-canvas');
   const spin = $('ft-spin');
@@ -199,17 +214,26 @@ function renderTrendChart(records) {
       datasets: [{
         label: 'Demand (16d sum)',
         data: dem,
-        borderColor: COL_PURPLE,
-        borderWidth: 2,
+        borderColor: COL_GREEN,
+        borderWidth: 2.5,
         pointRadius: 0,
         pointHoverRadius: 4,
-        tension: 0.25,
+        tension: 0.3,
         fill: false,
-        // Color each segment green if rising, red if falling.
+        // Binary green (rising) / red (falling), but each segment fades from the
+        // previous segment's color into its own, so the switch is a soft local
+        // blend rather than a hard corner.
         segment: {
-          borderColor: (ctx) => {
-            const y0 = ctx.p0.parsed.y, y1 = ctx.p1.parsed.y;
-            return y1 >= y0 ? COL_GREEN : COL_RED;
+          borderColor: (c) => {
+            const ctx = c.chart.ctx;
+            const data = c.chart.data.datasets[0].data;
+            const i = c.p1DataIndex;          // segment goes from i-1 to i
+            const cur = data[i] >= data[i - 1] ? COL_GREEN : COL_RED;
+            // color of the previous segment (i-1 to i-2)
+            let prevCol = cur;
+            if (i - 2 >= 0) prevCol = data[i - 1] >= data[i - 2] ? COL_GREEN : COL_RED;
+            if (prevCol === cur) return cur;  // no change → solid
+            return segGradient(ctx, c.p0, c.p1, prevCol, cur);
           },
         },
       }],
