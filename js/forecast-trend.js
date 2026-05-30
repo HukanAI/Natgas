@@ -146,21 +146,25 @@ async function showTrend() {
 }
 
 // Toggle between the existing "Current" chart (hm-*) and the new trend chart (ft-*).
+// Visibility is driven by a class on the .hm-card so it wins over the inline
+// display styles that renderWeatherHeatmap() sets later (which previously caused
+// both charts to show at once on first load).
 function setMode(mode) {
   _mode = mode;
   const isTrend = mode === 'trend';
 
-  // Existing current-view elements
-  const hmWrap = $('hm-wrap');
-  const hmSpin = $('hm-spin');
-  // New trend-view elements
-  const ftWrap = $('ft-wrap');
-  const ftSpin = $('ft-spin');
+  const card = $('ft-btn-trend')?.closest('.hm-card');
+  if (card) {
+    card.classList.toggle('ft-show-trend', isTrend);
+    card.classList.toggle('ft-show-current', !isTrend);
+  }
 
-  if (hmWrap) hmWrap.style.display = isTrend ? 'none' : 'block';
-  if (hmSpin && isTrend) hmSpin.style.display = 'none';
+  // Make sure the active view's wrapper is allowed to show (the CSS class hides
+  // the inactive one regardless of these inline values).
+  const ftWrap = $('ft-wrap');
+  const hmWrap = $('hm-wrap');
   if (ftWrap) ftWrap.style.display = isTrend ? 'block' : 'none';
-  if (ftSpin && !isTrend) ftSpin.style.display = 'none';
+  if (hmWrap && !isTrend) hmWrap.style.display = 'block';
 
   // Button active states
   const bCur = $('ft-btn-current');
