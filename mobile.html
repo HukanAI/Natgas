@@ -147,6 +147,29 @@
     <span id="ta-api-count"></span>
   </div>
 
+  <!-- TEMP diagnostics: shows any script error directly on the page -->
+  <div id="m-errbox" style="display:none;margin-top:14px;padding:12px;border:1px solid var(--red);border-radius:10px;background:rgba(255,123,114,0.08);font-family:var(--mono);font-size:11px;color:var(--red);white-space:pre-wrap;word-break:break-word"></div>
+
+<script>
+  // Plain (non-module) error catcher — runs even if the module below fails to
+  // load/parse, so import-time errors are visible on the phone.
+  (function () {
+    function show(msg) {
+      var b = document.getElementById('m-errbox');
+      if (!b) return;
+      b.style.display = 'block';
+      b.textContent = (b.textContent ? b.textContent + '\n\n' : '') + msg;
+    }
+    window.addEventListener('error', function (e) {
+      var src = e.filename ? (' @ ' + e.filename.split('/').pop() + ':' + e.lineno) : '';
+      show('ERROR: ' + (e.message || e.error || 'unknown') + src);
+    });
+    window.addEventListener('unhandledrejection', function (e) {
+      show('PROMISE: ' + (e.reason && e.reason.message ? e.reason.message : e.reason));
+    });
+  })();
+</script>
+
 <script type="module">
   // Reuse the SAME logic modules as the desktop app — no duplicated math.
   import { ngfCurrent, ngfNext, ngfFetchQuote, fetchDailyHistory, yahooFetch } from './js/contracts.js';
