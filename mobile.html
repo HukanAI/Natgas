@@ -34,6 +34,7 @@
   .pc-ticker{font-size:10px;color:var(--text2);font-family:var(--mono);margin-bottom:8px;min-height:13px}
   .pc-val{font-size:28px;font-weight:700;font-family:var(--mono);letter-spacing:-0.5px;line-height:1;color:var(--text)}
   .pc-val.dim{color:var(--text3);font-size:18px}
+  .pc-chg{font-size:12px;font-weight:600;font-family:var(--mono);margin-top:6px;min-height:15px;color:var(--text3)}
   .spin{display:inline-block;width:12px;height:12px;border:2px solid var(--border3);border-top-color:var(--blue);border-radius:50%;animation:sp .7s linear infinite;vertical-align:middle}
   @keyframes sp{to{transform:rotate(360deg)}}
 </style>
@@ -49,11 +50,13 @@
       <div class="pc-lbl">Front Month</div>
       <div class="pc-ticker" id="m-front-ticker">—</div>
       <div class="pc-val dim" id="m-front-price">—</div>
+      <div class="pc-chg" id="m-front-chg">—</div>
     </div>
     <div class="price-card">
       <div class="pc-lbl">Next Contract</div>
       <div class="pc-ticker" id="m-next-ticker">—</div>
       <div class="pc-val dim" id="m-next-price">—</div>
+      <div class="pc-chg" id="m-next-chg">—</div>
     </div>
   </div>
 
@@ -69,7 +72,7 @@
 
 <script type="module">
   // Reuse the SAME logic modules as the desktop app — no duplicated math.
-  import { ngfCurrent, ngfNext, ngfFetchQuote } from './js/contracts.js';
+  import { ngfCurrent, ngfNext, ngfFetchQuote, fetchDailyHistory } from './js/contracts.js';
 
   const $ = (id) => document.getElementById(id);
   const fmt = (v) => (v != null && isFinite(v)) ? '$' + v.toFixed(3) : '—';
@@ -81,6 +84,33 @@
     el.classList.toggle('dim', val == null);
   }
 
+  // Previous daily close = most recent daily bar whose Prague date isn't today.
+  function prevClose(bars) {
+    if (!bars || !bars.length) return null;
+    const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Prague' });
+    for (let i = bars.length - 1; i >= 0; i--) {
+      const d = new Date(bars[i].ts).toLocaleDateString('sv-SE', { timeZone: 'Europe/Prague' });
+      if (d !== today) return bars[i].close;
+    }
+    return null;
+  }
+
+  // Format like the desktop: "+0.123 (+1.45%)" and color the element.
+  function setChange(elId, cur, prev) {
+    const el = $(elId);
+    if (!el) return;
+    if (cur == null || prev == null || prev === 0) {
+      el.textContent = '—';
+      el.style.color = 'var(--text3)';
+      return;
+    }
+    const chg = cur - prev;
+    const pct = chg / prev * 100;
+    const sign = chg >= 0 ? '+' : '';
+    el.textContent = sign + chg.toFixed(3) + ' (' + sign + pct.toFixed(2) + '%)';
+    el.style.color = chg >= 0 ? 'var(--green)' : 'var(--red)';
+  }
+
   async function loadPrices() {
     const status = $('m-status');
     try {
@@ -89,14 +119,20 @@
       if (cur) $('m-front-ticker').textContent = cur.ticker || '';
       if (nxt) $('m-next-ticker').textContent = nxt.ticker || '';
 
-      // Fetch the two quotes in parallel.
-      const [qFront, qNext] = await Promise.all([
+      // Fetch live quotes + daily history (for prev close) in parallel.
+      const [qFront, qNext, hFront, hNext] = await Promise.all([
         cur ? ngfFetchQuote(cur.ticker, true) : Promise.resolve(null),
         nxt ? ngfFetchQuote(nxt.ticker, false) : Promise.resolve(null),
+        cur ? fetchDailyHistory(cur.ticker).catch(() => null) : Promise.resolve(null),
+        nxt ? fetchDailyHistory(nxt.ticker).catch(() => null) : Promise.resolve(null),
       ]);
 
-      setPrice('m-front-price', qFront?.last ?? null);
-      setPrice('m-next-price', qNext?.last ?? null);
+      const fLast = qFront?.last ?? null;
+      const nLast = qNext?.last ?? null;
+      setPrice('m-front-price', fLast);
+      setPrice('m-next-price', nLast);
+      setChange('m-front-chg', fLast, prevClose(hFront));
+      setChange('m-next-chg', nLast, prevClose(hNext));
 
       const t = new Date().toLocaleTimeString('cs-CZ', { timeZone: 'Europe/Prague', hour: '2-digit', minute: '2-digit' });
       if (status) status.textContent = 'Updated ' + t;
