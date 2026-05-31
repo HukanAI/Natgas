@@ -272,6 +272,7 @@
       ]);
       state.stNgfData = ngf;
       state.stStorageData = stor;
+      state.seasonMode = 'abs'; // dollar mode — required for the fair-price overlay
       renderSeasonChartOverview();
     } catch (e) {
       if (spin) { spin.style.display = 'flex'; spin.textContent = 'Seasonality unavailable: ' + e.message; }
