@@ -229,6 +229,39 @@ export async function wxLoadAll(force=false) {
   }
 }
 
+// Headless loader for the mobile page: same data + processWx() as wxLoadAll,
+// but touches no DOM, no cache, and no rendering. Returns the wxS object (or
+// throws). Uses a short history window (default 7 days) since the demand
+// heatmap only ever shows todayIdx-7 .. todayIdx+16.
+export async function wxLoadHeadless(histDays=7) {
+  const HD = histDays;
+  const hS = isoDate(-HD), hE = isoDate(-1);
+
+  const hPR = await batch(WX_REGIONS.map(r=>()=>fetchHist(r.lat,r.lon,hS,hE)),5,200);
+  const hDates = hPR[0].map(d=>d.date);
+  const hTR = hPR.map(rh=>rh.map(d=>d.avg));
+
+  const fPR = await batch(WX_REGIONS.map(r=>()=>fetchFcst(r.lat,r.lon)),5,200);
+  const fDates=[]; for(let ii=0;ii<WX_FCST_DAYS;ii++) fDates.push(isoDate(ii));
+  const fTR = fPR.map(rf=>rf.slice());
+
+  const flat = await batch(WX_HIST_YRS.reduce((acc,yr)=>
+    acc.concat(WX_REGIONS.map(r=>()=>fetchHist(r.lat,r.lon,isoDate(-HD,yr),isoDate(WX_FCST_DAYS-1,yr)))),[]),5,200);
+
+  const byY = WX_HIST_YRS.map((_,yi)=>{
+    const pr=flat.slice(yi*WX_REGIONS.length,(yi+1)*WX_REGIONS.length);
+    const nd=pr[0].length, arr=[];
+    for (let d=0;d<nd;d++) arr.push(wAvg(pr.map(rh=>rh[d]?rh[d].avg:null)));
+    return arr;
+  });
+  const byYR = WX_HIST_YRS.map((_,yi)=>{
+    const pr=flat.slice(yi*WX_REGIONS.length,(yi+1)*WX_REGIONS.length);
+    return pr.map(rh=>rh.map(d=>d.avg));
+  });
+
+  return processWx({hDates,fDates,byY,HD,hTR,fTR,byYR});
+}
+
 export function wxForceRefresh() {
   state.wxS=null;
   killChart(state.wxCh1); killChart(state.wxCh3); killChart(state.wxChReg);
