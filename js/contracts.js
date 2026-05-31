@@ -171,9 +171,12 @@ const YAHOO_BASES = [
 ];
 
 const CORS_PROXIES = [
-  u => 'https://corsproxy.io/?url=' + encodeURIComponent(u),
-  u => 'https://proxy.cors.sh/' + u,
+  // allorigins /raw — currently the most reliable from mobile networks
   u => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u),
+  // allorigins /get — same service, wrapped response (handled via data.contents)
+  u => 'https://api.allorigins.win/get?url=' + encodeURIComponent(u),
+  // independent fallbacks in case allorigins is briefly down
+  u => 'https://corsproxy.io/?url=' + encodeURIComponent(u),
   u => 'https://thingproxy.freeboard.io/fetch/' + u,
 ];
 
@@ -183,9 +186,12 @@ export async function yahooFetch(symbol, queryParams) {
     const baseUrl = base + encodeURIComponent(symbol) + '?' + queryParams + '&lang=en-US&region=US';
     for (const proxy of CORS_PROXIES) {
       try {
-        const res = await fetch(proxy(baseUrl), { signal: AbortSignal.timeout(8000), cache: 'no-store' });
+        const res = await fetch(proxy(baseUrl), { signal: AbortSignal.timeout(7000), cache: 'no-store' });
         if (!res.ok) throw new Error('HTTP ' + res.status);
         let text = await res.text(), data;
+        // Some proxies return HTTP 200 with an error message (e.g. quota text)
+        // instead of JSON — bail out fast so the next proxy is tried.
+        if (!text || (text[0] !== '{' && text[0] !== '[')) throw new Error('non-JSON proxy response');
         try { data = JSON.parse(text); if (data.contents) data = JSON.parse(data.contents); }
         catch(pe) { throw new Error('JSON parse error'); }
         const result = data?.chart?.result?.[0];
