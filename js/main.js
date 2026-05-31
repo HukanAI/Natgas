@@ -11,7 +11,7 @@ import { resetZoom } from './charts.js';
 import { wxLoadAll, wxForceRefresh, wxSetWindow, exportHistoricalWeekly } from './weather.js';
 import { stLoadAll, stSetWindow, stUpdateSubtitles, stRenderStorChart, stRenderDevChart, stRenderInjChart } from './storage.js';
 import { peLoadAll, peSetWindow, peRenderOne } from './production.js';
-import { ngfRenderChart, ngfUpdateSubtitle, ngfSetWindow, ngfSetChartType, fcLoad, fcToggle, fcSilentRefresh } from './futures.js';
+import { ngfRenderChart, ngfUpdateSubtitle, ngfSetWindow, ngfSetChartType, fcLoad, fcToggle, fcSilentRefresh } from './futures2.js';
 import { renderSeasonChart, renderSeasonChartOverview, renderSeasonStats, seasonSetMode, fwCardSetMode, seasonOvSetYear } from './seasonality.js';
 import { taLoadAll, taRefresh, taSilentRefresh, taSetType, taSetTicker, taResetZoomTF, taRenderTF } from './technical.js';
 import { cotLoadAll, cotSetWindow, cotShowHelp, cotHideHelp, cotExportNet, cotExportLS, cotExportProd, cotExportSwap, cotExportChg } from './cot.js';

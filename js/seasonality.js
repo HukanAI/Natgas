@@ -2,7 +2,7 @@
 import { state } from './state.js';
 import { dbLog } from './debug.js';
 import { killChart, baseX, baseY, baseTT, zoomOpts } from './charts.js';
-import { buildFairPriceSeries } from './futures.js';
+import { buildFairPriceSeries } from './futures2.js';
 
 const WEEKS = 52;
 const MONTH_TICKS = { 1: 'Jan', 5: 'Feb', 9: 'Mar', 13: 'Apr', 18: 'May', 22: 'Jun', 27: 'Jul', 31: 'Aug', 35: 'Sep', 40: 'Oct', 44: 'Nov', 48: 'Dec' };
