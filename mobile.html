@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="#0a0d12" />
+<title>NatGas Mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0d12; --bg2:#11151c; --bg3:#161b22; --bg4:#1c2128; --bg5:#21262d;
+    --border:#1f242c; --border2:#2a313a; --border3:#3a424d;
+    --text:#e6edf3; --text2:#9ba3ad; --text3:#6e7681; --text4:#4a525c;
+    --blue:#4493f8; --blue2:#1f6feb; --orange:#f0883e; --red:#ff7b72; --green:#3fb950;
+    --font:'Inter',-apple-system,sans-serif; --mono:'JetBrains Mono',monospace;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:var(--font);padding:14px 12px 28px;
+    max-width:560px;margin:0 auto;
+  }
+  .m-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .m-title{font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text2)}
+  .m-status{font-size:10px;color:var(--text3);font-family:var(--mono)}
+  .price-row{display:flex;gap:10px;margin-bottom:14px}
+  .price-card{
+    flex:1;background:var(--bg2);border:1px solid var(--border2);
+    border-radius:12px;padding:14px 14px 16px;
+  }
+  .pc-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);font-weight:700;margin-bottom:2px}
+  .pc-ticker{font-size:10px;color:var(--text2);font-family:var(--mono);margin-bottom:8px;min-height:13px}
+  .pc-val{font-size:28px;font-weight:700;font-family:var(--mono);letter-spacing:-0.5px;line-height:1;color:var(--text)}
+  .pc-val.dim{color:var(--text3);font-size:18px}
+  .spin{display:inline-block;width:12px;height:12px;border:2px solid var(--border3);border-top-color:var(--blue);border-radius:50%;animation:sp .7s linear infinite;vertical-align:middle}
+  @keyframes sp{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+  <div class="m-head">
+    <span class="m-title">NatGas · Mobile</span>
+    <span class="m-status" id="m-status"><span class="spin"></span></span>
+  </div>
+
+  <div class="price-row">
+    <div class="price-card">
+      <div class="pc-lbl">Front Month</div>
+      <div class="pc-ticker" id="m-front-ticker">—</div>
+      <div class="pc-val dim" id="m-front-price">—</div>
+    </div>
+    <div class="price-card">
+      <div class="pc-lbl">Next Contract</div>
+      <div class="pc-ticker" id="m-next-ticker">—</div>
+      <div class="pc-val dim" id="m-next-price">—</div>
+    </div>
+  </div>
+
+  <!-- Stage 1: prices only. Seasonality / Weather demand / TA 5m come next. -->
+
+  <!-- Hidden stubs: shared modules call dbLog()/renderDbg() which expect these
+       elements. Keeping them here (hidden) lets the shared code run harmlessly. -->
+  <div style="display:none">
+    <span id="dbg-count"></span>
+    <span id="dbg-dot"></span>
+    <div id="dbg-log"></div>
+  </div>
+
+<script type="module">
+  // Reuse the SAME logic modules as the desktop app — no duplicated math.
+  import { ngfCurrent, ngfNext, ngfFetchQuote } from './js/contracts.js';
+
+  const $ = (id) => document.getElementById(id);
+  const fmt = (v) => (v != null && isFinite(v)) ? '$' + v.toFixed(3) : '—';
+
+  function setPrice(elId, val) {
+    const el = $(elId);
+    if (!el) return;
+    el.textContent = fmt(val);
+    el.classList.toggle('dim', val == null);
+  }
+
+  async function loadPrices() {
+    const status = $('m-status');
+    try {
+      const cur = ngfCurrent();
+      const nxt = cur ? ngfNext(cur) : null;
+      if (cur) $('m-front-ticker').textContent = cur.ticker || '';
+      if (nxt) $('m-next-ticker').textContent = nxt.ticker || '';
+
+      // Fetch the two quotes in parallel.
+      const [qFront, qNext] = await Promise.all([
+        cur ? ngfFetchQuote(cur.ticker, true) : Promise.resolve(null),
+        nxt ? ngfFetchQuote(nxt.ticker, false) : Promise.resolve(null),
+      ]);
+
+      setPrice('m-front-price', qFront?.last ?? null);
+      setPrice('m-next-price', qNext?.last ?? null);
+
+      const t = new Date().toLocaleTimeString('cs-CZ', { timeZone: 'Europe/Prague', hour: '2-digit', minute: '2-digit' });
+      if (status) status.textContent = 'Updated ' + t;
+    } catch (e) {
+      if (status) status.textContent = 'Error: ' + e.message;
+    }
+  }
+
+  loadPrices();
+  // Refresh every 60s while the page is open.
+  setInterval(loadPrices, 60000);
+</script>
+</body>
+</html>
