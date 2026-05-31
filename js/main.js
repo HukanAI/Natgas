@@ -8,7 +8,7 @@ import { dbLog, renderDbg } from './debug.js';
 import { ngfCurrent, ngfLogContracts, ngfFetchQuote, ngfNext, ngfFetchTwoDays, fetchDailyHistory } from './contracts.js';
 import { resetZoom } from './charts.js';
 
-import { wxLoadAll, wxForceRefresh, wxSetWindow, exportHistoricalWeekly } from './weather.js';
+import { wxLoadAll, wxForceRefresh, wxSetWindow, exportHistoricalWeekly } from './weather2.js';
 import { stLoadAll, stSetWindow, stUpdateSubtitles, stRenderStorChart, stRenderDevChart, stRenderInjChart } from './storage.js';
 import { peLoadAll, peSetWindow, peRenderOne } from './production.js';
 import { ngfRenderChart, ngfUpdateSubtitle, ngfSetWindow, ngfSetChartType, fcLoad, fcToggle, fcSilentRefresh } from './futures2.js';
