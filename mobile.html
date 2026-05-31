@@ -8,6 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
 <style>
   :root{
     --bg:#0a0d12; --bg2:#11151c; --bg3:#161b22; --bg4:#1c2128; --bg5:#21262d;
@@ -35,6 +38,21 @@
   .pc-val{font-size:28px;font-weight:700;font-family:var(--mono);letter-spacing:-0.5px;line-height:1;color:var(--text)}
   .pc-val.dim{color:var(--text3);font-size:18px}
   .pc-chg{font-size:12px;font-weight:600;font-family:var(--mono);margin-top:6px;min-height:15px;color:var(--text3)}
+  .m-card{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:14px;margin-bottom:14px}
+  .m-card-title{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-weight:700;margin-bottom:10px}
+  .m-chart-wrap{position:relative;height:240px}
+  .m-chart-wrap canvas{width:100%!important;height:100%!important}
+  .m-spin{display:flex;align-items:center;justify-content:center;height:240px;font-size:11px;color:var(--text3)}
+  .hm-card.ft-show-trend #hm-wrap,.hm-card.ft-show-trend #hm-spin{display:none!important}
+  .hm-card.ft-show-current #ft-wrap,.hm-card.ft-show-current #ft-spin,.hm-card.ft-show-current #ft-stats{display:none!important}
+  .m-toggle{display:flex;gap:2px;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:2px}
+  .m-toggle button{background:none;border:none;color:var(--text2);padding:4px 9px;border-radius:4px;cursor:pointer;font-size:10px;font-weight:600;font-family:var(--font)}
+  .m-toggle button.on{background:var(--bg4);color:var(--blue)}
+  .m-stats{display:none;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+  .m-stat{display:flex;align-items:baseline;gap:5px}
+  .m-stat .lbl{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;font-weight:700}
+  .m-stat .now{font-size:16px;font-weight:700;font-family:var(--mono);color:var(--text);line-height:1}
+  .m-stat .v{font-size:12px;font-weight:600;font-family:var(--mono);color:var(--text2);line-height:1}
   .spin{display:inline-block;width:12px;height:12px;border:2px solid var(--border3);border-top-color:var(--blue);border-radius:50%;animation:sp .7s linear infinite;vertical-align:middle}
   @keyframes sp{to{transform:rotate(360deg)}}
 </style>
@@ -60,7 +78,40 @@
     </div>
   </div>
 
-  <!-- Stage 1: prices only. Seasonality / Weather demand / TA 5m come next. -->
+  <!-- Seasonality (overview, compact) -->
+  <div class="m-card">
+    <div class="m-card-title">Seasonality</div>
+    <div id="fw-spin" class="m-spin">Loading NG=F history…</div>
+    <div id="fw-season-wrap" class="m-chart-wrap" style="display:none">
+      <canvas id="fw-season-canvas"></canvas>
+    </div>
+  </div>
+
+  <!-- Weather demand (Current heatmap + Forecast trend) -->
+  <div class="m-card hm-card">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+      <span class="m-card-title" style="margin-bottom:0">Weather Demand</span>
+      <div class="m-toggle">
+        <button id="ft-btn-current" data-ft-mode="current">Current</button>
+        <button id="ft-btn-trend" class="on" data-ft-mode="trend">Forecast trend</button>
+      </div>
+    </div>
+    <div id="ft-stats" class="m-stats">
+      <div class="m-stat"><span class="lbl">Now</span><span class="now" id="ft-stat-now">—</span></div>
+      <div class="m-stat"><span class="lbl">24h</span><span class="v" id="ft-stat-chg">—</span></div>
+      <div class="m-stat"><span class="lbl">7d</span><span class="v" id="ft-stat-range">—</span></div>
+    </div>
+    <div id="hm-spin" class="m-spin">Loading weather…</div>
+    <div id="hm-wrap" class="m-chart-wrap" style="display:none">
+      <canvas id="hm-canvas"></canvas>
+    </div>
+    <div id="ft-spin" class="m-spin" style="display:none"></div>
+    <div id="ft-wrap" class="m-chart-wrap" style="display:none">
+      <canvas id="ft-canvas"></canvas>
+    </div>
+  </div>
+
+  <!-- Stage 3 done: prices + seasonality + weather demand (with trend). TA 5m comes next. -->
 
   <!-- Hidden stubs: shared modules call dbLog()/renderDbg() which expect these
        elements. Keeping them here (hidden) lets the shared code run harmlessly. -->
@@ -68,11 +119,20 @@
     <span id="dbg-count"></span>
     <span id="dbg-dot"></span>
     <div id="dbg-log"></div>
+    <span id="ngf-api-count"></span>
+    <span id="st-api-count"></span>
   </div>
 
 <script type="module">
   // Reuse the SAME logic modules as the desktop app — no duplicated math.
   import { ngfCurrent, ngfNext, ngfFetchQuote, fetchDailyHistory } from './js/contracts.js';
+  import { fetchNGF } from './js/storage.js';
+  import { state } from './js/state.js';
+  import { renderSeasonChartOverview } from './js/seasonality.js';
+  import { ST_API_KEY } from './js/constants.js';
+  import { wxLoadHeadless } from './js/weather.js';
+  import { renderWeatherHeatmap } from './js/widgets.js';
+  import { initForecastTrend } from './js/forecast-trend.js';
 
   const $ = (id) => document.getElementById(id);
   const fmt = (v) => (v != null && isFinite(v)) ? '$' + v.toFixed(3) : '—';
@@ -141,7 +201,49 @@
     }
   }
 
+  // Fetch EIA weekly storage (same query as the desktop) — needed for the
+  // fair-price overlay on the seasonality chart.
+  async function fetchStorageData() {
+    const qs = 'api_key=' + ST_API_KEY + '&frequency=weekly&data[0]=value&facets[series][]=NW2_EPG0_SWO_R48_BCF&sort[0][column]=period&sort[0][direction]=asc&length=1000';
+    const res = await fetch('https://api.eia.gov/v2/natural-gas/stor/wkly/data?' + qs);
+    if (!res.ok) throw new Error('EIA HTTP ' + res.status);
+    const json = await res.json();
+    const rows = json.response?.data || [];
+    const out = rows.map(r => { const v = parseFloat(r.value); return isFinite(v) ? { date: r.period, value: v } : null; }).filter(Boolean);
+    out.sort((a, b) => a.date < b.date ? -1 : 1);
+    return out;
+  }
+
+  async function loadSeasonality() {
+    const spin = $('fw-spin');
+    try {
+      // Storage + NG=F history in parallel; storage feeds the fair-price overlay.
+      const [ngf, stor] = await Promise.all([
+        fetchNGF(),
+        fetchStorageData().catch(() => []),
+      ]);
+      state.stNgfData = ngf;
+      state.stStorageData = stor;
+      renderSeasonChartOverview();
+    } catch (e) {
+      if (spin) { spin.style.display = 'flex'; spin.textContent = 'Seasonality unavailable: ' + e.message; }
+    }
+  }
+
+  async function loadWeather() {
+    const spin = $('hm-spin');
+    try {
+      state.wxS = await wxLoadHeadless(7);
+      renderWeatherHeatmap();
+    } catch (e) {
+      if (spin) { spin.style.display = 'flex'; spin.textContent = 'Weather unavailable: ' + e.message; }
+    }
+  }
+
   loadPrices();
+  loadSeasonality();
+  loadWeather();
+  initForecastTrend(); // wires Current/Forecast trend toggle + stats; defaults to trend
   // Refresh every 60s while the page is open.
   setInterval(loadPrices, 60000);
 </script>
