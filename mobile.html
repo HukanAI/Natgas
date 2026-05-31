@@ -53,6 +53,8 @@
   .m-stat .lbl{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;font-weight:700}
   .m-stat .now{font-size:16px;font-weight:700;font-family:var(--mono);color:var(--text);line-height:1}
   .m-stat .v{font-size:12px;font-weight:600;font-family:var(--mono);color:var(--text2);line-height:1}
+  .m-reset{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);font-size:10px;font-family:var(--mono);padding:4px 9px;border-radius:5px;cursor:pointer}
+  .m-reset:active{background:var(--bg4)}
   .spin{display:inline-block;width:12px;height:12px;border:2px solid var(--border3);border-top-color:var(--blue);border-radius:50%;animation:sp .7s linear infinite;vertical-align:middle}
   @keyframes sp{to{transform:rotate(360deg)}}
 </style>
@@ -113,6 +115,27 @@
 
   <!-- Stage 3 done: prices + seasonality + weather demand (with trend). TA 5m comes next. -->
 
+  <!-- Technical Analysis 5min (price+EMA+BB, volume, RSI, MACD) -->
+  <div class="m-card">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+      <span class="m-card-title" style="margin-bottom:0">Technical · 5 Min</span>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span id="ta-pat-5m" style="font-size:10px;font-family:var(--mono);color:var(--text2)"></span>
+        <button id="ta-reset-5m" class="m-reset">⤢ Reset</button>
+      </div>
+    </div>
+    <div class="bsub" id="ta-sub-5m" style="font-size:10px;color:var(--text3);font-family:var(--mono);margin-bottom:8px">—</div>
+    <div id="ta-spin-5m" class="m-spin">Loading 5m…</div>
+    <div id="ta-wrap-5m" style="display:none">
+      <div style="height:280px;position:relative"><canvas id="ta-c-price-5m"></canvas></div>
+      <div style="height:70px;position:relative;margin-top:4px"><canvas id="ta-c-vol-5m"></canvas></div>
+      <div style="height:100px;position:relative;margin-top:4px"><canvas id="ta-c-rsi-5m"></canvas></div>
+      <div style="height:100px;position:relative;margin-top:4px"><canvas id="ta-c-macd-5m"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Stage 4 done: all five panels (prices, seasonality, weather demand, TA 5m). -->
+
   <!-- Hidden stubs: shared modules call dbLog()/renderDbg() which expect these
        elements. Keeping them here (hidden) lets the shared code run harmlessly. -->
   <div style="display:none">
@@ -121,11 +144,12 @@
     <div id="dbg-log"></div>
     <span id="ngf-api-count"></span>
     <span id="st-api-count"></span>
+    <span id="ta-api-count"></span>
   </div>
 
 <script type="module">
   // Reuse the SAME logic modules as the desktop app — no duplicated math.
-  import { ngfCurrent, ngfNext, ngfFetchQuote, fetchDailyHistory } from './js/contracts.js';
+  import { ngfCurrent, ngfNext, ngfFetchQuote, fetchDailyHistory, yahooFetch } from './js/contracts.js';
   import { fetchNGF } from './js/storage.js';
   import { state } from './js/state.js';
   import { renderSeasonChartOverview } from './js/seasonality.js';
@@ -133,6 +157,7 @@
   import { wxLoadHeadless } from './js/weather.js';
   import { renderWeatherHeatmap } from './js/widgets.js';
   import { initForecastTrend } from './js/forecast-trend.js';
+  import { taRenderTF, taResetZoomTF } from './js/technical.js';
 
   const $ = (id) => document.getElementById(id);
   const fmt = (v) => (v != null && isFinite(v)) ? '$' + v.toFixed(3) : '—';
@@ -240,10 +265,38 @@
     }
   }
 
+  // Resolve the front-month contract ticker, same as the desktop TA module.
+  function taTicker() {
+    const cur = ngfCurrent();
+    return (cur && cur.ticker) ? cur.ticker : 'NG=F';
+  }
+
+  async function loadTA() {
+    const spin = $('ta-spin-5m');
+    try {
+      const ticker = taTicker();
+      // 1d is needed for the Fibonacci overlay; 5m is the chart itself.
+      const [raw5m, raw1d] = await Promise.all([
+        yahooFetch(ticker, 'interval=5m&range=15d&_t=' + Date.now()),
+        yahooFetch(ticker, 'interval=1d&range=5y&_t=' + Date.now()).catch(() => null),
+      ]);
+      if (raw1d && raw1d.length) state.taData['1d'] = raw1d;
+      if (!raw5m || !raw5m.length) throw new Error('5m data unavailable');
+      state.taData['5m'] = raw5m;
+      taRenderTF('5m', raw5m);
+    } catch (e) {
+      if (spin) { spin.style.display = 'flex'; spin.textContent = 'TA unavailable: ' + e.message; }
+    }
+  }
+
   loadPrices();
   loadSeasonality();
   loadWeather();
   initForecastTrend(); // wires Current/Forecast trend toggle + stats; defaults to trend
+  loadTA();
+  // Reset zoom/pan on the TA 5m chart.
+  const taResetBtn = $('ta-reset-5m');
+  if (taResetBtn) taResetBtn.addEventListener('click', () => { try { taResetZoomTF('5m'); } catch (e) {} });
   // Refresh every 60s while the page is open.
   setInterval(loadPrices, 60000);
 </script>
