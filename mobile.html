@@ -102,6 +102,7 @@
       <div class="m-stat"><span class="lbl">Now</span><span class="now" id="ft-stat-now">—</span></div>
       <div class="m-stat"><span class="lbl">24h</span><span class="v" id="ft-stat-chg">—</span></div>
       <div class="m-stat"><span class="lbl">7d</span><span class="v" id="ft-stat-range">—</span></div>
+      <div class="m-stat"><span class="lbl">vs 5y</span><span class="v" id="ft-stat-vs5y">—</span></div>
     </div>
     <div id="hm-spin" class="m-spin">Loading weather…</div>
     <div id="hm-wrap" class="m-chart-wrap" style="display:none">
@@ -179,7 +180,7 @@
   import { ST_API_KEY } from './js/constants.js';
   import { wxLoadHeadless } from './js/weather2.js';
   import { renderWeatherHeatmap } from './js/widgets.js';
-  import { initForecastTrend } from './js/forecast-trend.js';
+  import { initForecastTrend } from './js/forecast-trend2.js';
   import { taRenderTF, taResetZoomTF } from './js/technical.js';
 
   const $ = (id) => document.getElementById(id);
