@@ -96,6 +96,8 @@ jobs:
             - Do NOT run any git commands. Only read the snapshot and write the JSON file.
 
       - name: Commit and push if changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "natgas-bot"
           git config user.email "natgas-bot@users.noreply.github.com"
@@ -104,5 +106,5 @@ jobs:
             echo "No changes to commit."
           else
             git commit -m "Update Claude market overview [skip ci]"
-            git push
+            git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
           fi
