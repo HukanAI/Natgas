@@ -40,8 +40,6 @@ jobs:
       - name: Capture dashboard snapshot
         env:
           DASH_URL: http://localhost:8080/index.html
-          SNAPSHOT_WAIT_MS: '60000'
-          SNAPSHOT_SETTLE_MS: '10000'
         run: node scripts/snapshot.mjs
 
       - name: Generate Claude overview
@@ -50,49 +48,74 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           claude_args: '--allowedTools "Read,Write" --max-turns 20'
           prompt: |
-            You are a natural-gas (Henry Hub, NG=F futures) trading analyst.
+            You are an independent natural-gas (Henry Hub, NG=F) futures strategist.
 
-            STEP 1 — Read the file `data/snapshot.json`. It is an hourly snapshot of a
-            natural-gas dashboard: live front/next futures prices, a 7-signal market
-            overview (seasonality, short/long-term weather demand, storage, fair price
-            vs front and next, managed-money positioning) each with a label, numeric
-            score and detail string, plus storage, COT and seasonality KPIs.
+            STEP 1 — Read `data/snapshot.json`. It is a dump of the RAW data shown
+            across the whole dashboard (seasonality, weather, fair-value band, COT,
+            storage, technicals, futures curve, prices) — NOT pre-scored buy/sell
+            signals. Build your OWN view from the raw data; do not assume any prior
+            scoring is correct.
 
-            STEP 2 — Synthesize ALL of it into one coherent view and decide a stance:
-            "LONG", "SHORT", or "WAIT". Weigh the signals; note confirmations and
-            conflicts. Be decisive but honest about uncertainty.
+            STEP 2 — Weigh the evidence in this priority order, but use ALL of it:
+              1. Seasonality: price vs median (seasonality.vsMedian), % higher in
+                 1/2/3/4 weeks, typical 4-week move, reliability.
+              2. Weather + trend: weather.demand_1_7D and demand_8_16D (pctVs5y,
+                 rangePos, aboveMax/belowMin) and weather.trend (direction/vs 5y).
+              3. Price vs fair value: fairValue.now/plus7D/plus14D/plus21D — each has
+                 fair, the min-max band, and front/next spread + status. Use the band
+                 edges (min/max), not just the midpoint.
+              4. Price vs median (seasonality.vsMedian / vsMedianDetail).
+              then: cot (managed-money net, 5y percentile, ratio), storage (vs 5y,
+              surprise), technicals (per timeframe 5m-1w: trend/RSI/MACD/EMA/Bollinger),
+              futuresCurve (contango/backwardation from spreadVsFront), production.
 
-            STEP 3 — Write your answer as STRICT JSON to `data/claude-overview.json`
-            (use the Write tool, overwrite it). Output ONLY valid JSON, no markdown,
-            matching exactly this shape:
+            STEP 3 — Decide the overall market state, then produce TWO concrete trade
+            ideas:
+              • longTerm  — horizon 3-12 weeks (seasonality, weather trend, fair value,
+                            storage, COT).
+              • shortTerm — horizon 1-10 days (near-term weather, price vs fair,
+                            technicals, futures curve).
+            Each may be LONG, SHORT or WAIT. If WAIT, set entry/stop/tp1/tp2/riskReward/
+            sizing to "n/a" and put the condition you're waiting for in "trigger".
+            For directional trades give Entry, Stop-loss, TP1, TP2, Risk:Reward, and
+            Sizing in R plus a suggested % account risk (e.g. "1R approx 1% risk").
+            Base levels on the actual front price, the fair-value band edges and
+            realistic NG=F ranges ($1.5-$6/MMBtu).
+
+            STEP 4 — Write STRICT JSON to `data/claude-overview.json` (Write tool,
+            overwrite). Output ONLY valid JSON, no markdown, exactly this shape:
 
             {
-              "generatedAt": "<ISO-8601 timestamp, now>",
+              "generatedAt": "<ISO-8601 now>",
               "sourceSnapshotAt": "<copy snapshot.generatedAt>",
               "frontPrice": <number or null, copy snapshot.price.front>,
-              "stance": "LONG" | "SHORT" | "WAIT",
-              "conviction": "low" | "medium" | "high",
-              "headline": "<one punchy sentence, max ~90 chars>",
-              "summary": "<2-4 sentences synthesizing the data>",
-              "position": {
-                "direction": "<long / short / flat-wait>",
-                "size": "<e.g. 'small (0.5R)', 'standard (1R)', 'none'>",
-                "entry": "<price or zone in $/MMBtu, or 'n/a'>",
-                "stop": "<price in $/MMBtu, or 'n/a'>",
-                "target": "<price/zone in $/MMBtu, or 'n/a'>",
-                "rationale": "<one sentence on the levels>"
+              "nextPrice": <number or null, copy snapshot.price.next>,
+              "marketState": "<bullish/bearish/neutral + one short clause>",
+              "summary": "<3-5 sentences: your independent read of the data>",
+              "longTerm": {
+                "stance": "LONG" | "SHORT" | "WAIT",
+                "conviction": "low" | "medium" | "high",
+                "horizon": "3-12 weeks",
+                "entry": "<price/zone $/MMBtu or n/a>",
+                "stop": "<price or n/a>",
+                "tp1": "<price or n/a>",
+                "tp2": "<price or n/a>",
+                "riskReward": "<e.g. 1:2.5 or n/a>",
+                "sizing": "<e.g. '1R approx 1% risk' or n/a>",
+                "rationale": "<2-3 sentences citing the priority data>",
+                "invalidation": "<what would prove this wrong>",
+                "trigger": "<if WAIT, the condition to wait for, else empty>"
               },
-              "drivers": ["<3-5 short bullet strings, the key reasons>"],
-              "risks": ["<2-3 short bullet strings, what would invalidate this>"],
+              "shortTerm": { ...same shape..., "horizon": "1-10 days" },
+              "keyDrivers": ["<3-5 short bullet strings>"],
+              "risks": ["<2-3 short bullet strings>"],
               "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
             }
 
             Rules:
-            - Base entry/stop/target on the actual front price and signal context; keep
-              them realistic for NG=F (typically $1.5-$6/MMBtu). If stance is WAIT, set
-              direction "flat-wait", size "none", and entry/stop/target to "n/a".
-            - If much of the snapshot is null/empty (data failed to load), say so in the
-              summary, lower conviction, and lean toward WAIT.
+            - If priority data (seasonality, weather, fair value, price vs median) is
+              missing/empty, say so in the summary, lower conviction, and lean WAIT for
+              the affected trade.
             - Do NOT run any git commands. Only read the snapshot and write the JSON file.
 
       - name: Commit and push if changed
