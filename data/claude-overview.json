@@ -1,30 +1,30 @@
 {
-  "generatedAt": "2026-06-21T17:02:00.000Z",
-  "sourceSnapshotAt": "2026-06-21T17:01:10.290Z",
+  "generatedAt": "2026-06-21T17:47:30.000Z",
+  "sourceSnapshotAt": "2026-06-21T17:46:55.419Z",
   "frontPrice": null,
   "stance": "WAIT",
-  "conviction": "low",
-  "headline": "Data gaps dominate; extreme net-short COT is the lone bullish spark",
-  "summary": "Critical feeds are largely offline: live front/next prices, storage, weather, and fair-value all returned null, leaving only seasonality and COT positioning as actionable inputs. On those two signals the bias is mildly bullish — early cooling season (day 21/121) adds slight demand tailwind, and managed-money net positioning at the 3rd percentile of its 5-year range is a historically strong contrarian long setup. However, the COT trend is still moving more short (-7,763 W/W as of 9 Jun), suggesting capitulation has not yet occurred, and acting without confirmed price and storage data carries unacceptable execution risk. Prior close on front was ~$3.198; monitoring for a confirmed reversal catalyst before initiating.",
+  "conviction": "medium",
+  "headline": "Extreme MM shorts vs near-term weather miss — wait for fair-value pullback",
+  "summary": "The signal board nets a weak +1.0/6.5, held back by a sharp near-term weather miss (1-7D demand -20% vs 5y avg) and a front price ($3.198, inferred from the fair-value signal as live price feed failed) that sits $0.24 above model fair value ($2.96). The lone high-conviction bull case is managed-money positioning at the 3rd percentile — historically a reliable contrarian setup — backed by long-term weather projecting 8-16D demand above the 5y max. However, that forward weather signal carries high uncertainty at this horizon, and last week's storage print delivered a +25 Bcf bearish surprise against a +48 Bcf forecast. A pullback toward fair value (~$2.96) with weather verification would offer a much better risk/reward for a long entry.",
   "position": {
     "direction": "flat-wait",
     "size": "none",
     "entry": "n/a",
     "stop": "n/a",
     "target": "n/a",
-    "rationale": "Insufficient live price and fundamental data to define a reliable entry/stop/target with confidence."
+    "rationale": "No position initiated; monitoring for pullback toward $2.96 fair value before considering a long on MM-positioning reversal."
   },
   "drivers": [
-    "MM net positioning at 3rd percentile (5-yr): -122,617 contracts — historically contrarian bullish setup",
-    "Early cooling season (day 21 of 121) provides mild AC-demand tailwind",
-    "Live price feed returned null; only prior close (~$3.198 front) available — stale for active trading",
-    "Storage, weather short/long-term, and fair-value signals all offline, leaving the picture severely incomplete",
-    "COT long/short ratio of 0.61x confirms skewed short positioning, but trend still worsening W/W"
+    "MM net at 3rd percentile (–122,617 contracts) — extreme net-short historically precedes price reversals",
+    "8-16D weather demand +51% above 5y avg and above 5y max — strongly bullish if verified",
+    "Storage slope –25 Bcf/wk signals draw-season traction building",
+    "Early cooling season (day 21/121) providing baseline AC demand support",
+    "Front (~$3.198 inferred) only $0.24 above fair value — pullback to $2.96 is plausible near-term"
   ],
   "risks": [
-    "Short positioning could extend further before any reversal, deepening losses on a premature long",
-    "If summer cooling demand disappoints (mild weather), the seasonal tailwind evaporates quickly",
-    "Data restoration may reveal bearish storage surplus or weak fair-value that overrides the COT signal"
+    "Near-term (1-7D) demand –20% vs 5y avg is a live headwind that can push prices lower before any reversal",
+    "Storage surplus +153 Bcf above 5y avg; last week's +73 Bcf build was a +25 Bcf bearish surprise vs forecast",
+    "MM positioning continues deteriorating (–7,763 W/W); capitulation not yet confirmed, shorts may extend further"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
