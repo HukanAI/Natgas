@@ -21,6 +21,8 @@ import { startTopbarTicker, updateTopbar } from './topbar.js';
 import { startWidgetTicker, initOverviewEvents, updateAllWidgets, updateFuturesTimestamp, renderFuturesCurve } from './widgets.js';
 import { newsLoad, newsPauseHover, newsAutoRefresh } from './news.js';
 import { initForecastTrend } from './forecast-trend2.js';
+import './snapshot.js';
+import { initOverviewToggle } from './overview.js';
 
 // ── Clock ─────────────────────────────────────────────────────────────────────
 tickClock();
@@ -32,6 +34,7 @@ startTopbarTicker();
 // ── Widgets (EIA banner etc.) ─────────────────────────────────────────────────
 startWidgetTicker();
 initOverviewEvents();
+initOverviewToggle();
 
 // ── NGF live price refresh — every 60s ───────────────────────────────────────
 // Uses direct contract tickers (NGM26.NYM etc.), not NG=F continuous.
