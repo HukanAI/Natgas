@@ -16,11 +16,19 @@ function txt(id) {
   return t && t !== '—' ? t : null;
 }
 
+// Parse a number out of a formatted string like "$3.198" or "-122,617".
+function num(s) {
+  if (s == null) return null;
+  const v = parseFloat(String(s).replace(/[^0-9.\-]/g, ''));
+  return Number.isFinite(v) ? v : null;
+}
+
 function lastClose(arr) {
   if (!Array.isArray(arr) || !arr.length) return null;
   const r = arr[arr.length - 1];
   if (r == null) return null;
-  return r.close ?? r.value ?? null;
+  const v = r.close ?? r.value ?? r.c ?? null;
+  return Number.isFinite(v) ? v : null;
 }
 
 export function buildSnapshot() {
@@ -36,13 +44,22 @@ export function buildSnapshot() {
     explanation: s.explanation || null,
   }));
 
+  // Front/next price: prefer the live tick, then the latest loaded NG=F close,
+  // then the rendered Fair-Price banner. Live ticks come via flaky CORS proxies
+  // that often fail from CI, so the fallbacks keep a real price available.
+  const front =
+    state.frontLivePrice ?? lastClose(state.stNgfData) ?? num(txt('fpv-banner-front'));
+  const next =
+    state.nextContractPrice ?? lastClose(state.dailyHistory?.next) ?? num(txt('fpv-banner-next'));
+
   return {
     generatedAt: new Date().toISOString(),
     price: {
-      front: state.frontLivePrice ?? null,
-      next: state.nextContractPrice ?? null,
-      frontPrevClose: lastClose(state.dailyHistory?.front),
+      front,
+      next,
+      frontPrevClose: lastClose(state.dailyHistory?.front) ?? lastClose(state.stNgfData),
       nextPrevClose: lastClose(state.dailyHistory?.next),
+      frontIsLive: state.frontLivePrice != null,
     },
     overview: {
       total: ovTotal?.total ?? null,
