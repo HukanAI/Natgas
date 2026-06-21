@@ -185,6 +185,36 @@ body.sidebar-collapsed .nav-ico{margin:0}
 .ov-signal{font-size:11px;font-weight:700;display:flex;align-items:center;gap:5px;white-space:nowrap;flex-shrink:0}
 .ov-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:2px}
 .ov-detail{font-size:9.5px;color:var(--text3);font-family:var(--mono);line-height:1.5}
+/* ── Market Overview: Claude vs Signals view switch ──────────────────────────── */
+.ov-toggle{display:inline-flex;gap:2px;background:var(--bg3);border:1px solid var(--border2);border-radius:7px;padding:2px;flex-shrink:0}
+.ov-toggle-btn{font:600 10px/1 inherit;letter-spacing:.4px;text-transform:uppercase;color:var(--text3);background:transparent;border:none;border-radius:5px;padding:5px 9px;cursor:pointer;transition:all .15s}
+.ov-toggle-btn:hover{color:var(--text2)}
+.ov-toggle-btn.on{background:var(--bg2);color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,.3)}
+.ov-claude{display:none;flex-direction:column;gap:10px;flex:1;min-height:0;overflow-y:auto}
+.ov-card[data-view="claude"] .ov-claude{display:flex}
+.ov-card[data-view="claude"] #market-overview-grid{display:none}
+.ov-card[data-view="claude"] .ov-total-wrap,.ov-card[data-view="claude"] #ov-help-btn{display:none}
+.cov-empty{color:var(--text3);font-size:11px;line-height:1.6;text-align:center;margin:auto;padding:20px}
+.cov-empty code{font-family:var(--mono);color:var(--text2)}
+.cov-top{display:flex;align-items:center;gap:10px}
+.cov-stance{font-size:14px;font-weight:800;letter-spacing:.5px;padding:4px 12px;border-radius:6px;border:1px solid}
+.cov-conv{font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:var(--text3);font-weight:700}
+.cov-headline{font-size:13px;font-weight:700;color:var(--text);line-height:1.4}
+.cov-summary{font-size:11.5px;color:var(--text2);line-height:1.6}
+.cov-pos{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.cov-pos-head{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);font-weight:700;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.cov-pos-dir{color:var(--text);font-size:11px;text-transform:none;letter-spacing:0;font-weight:600}
+.cov-lvls{display:flex;gap:8px}
+.cov-lvl{flex:1;background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:6px 8px;text-align:center}
+.cov-lvl-lbl{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.6px;color:var(--text3);font-weight:700;margin-bottom:3px}
+.cov-lvl-val{display:block;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--text)}
+.cov-pos-rat{font-size:10px;color:var(--text3);line-height:1.5}
+.cov-sec-h{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);font-weight:700;margin-bottom:5px}
+.cov-list{margin:0;padding-left:16px;display:flex;flex-direction:column;gap:3px}
+.cov-list li{font-size:11px;color:var(--text2);line-height:1.5}
+.cov-list-risk li{color:#ffb085}
+.cov-foot{margin-top:auto;padding-top:8px;border-top:1px solid var(--border2);display:flex;flex-direction:column;gap:3px;font-size:9.5px;color:var(--text3);font-family:var(--mono)}
+.cov-disc{font-style:italic}
 
 /* Right: two rows stacked */
 .right-stack{display:grid;grid-template-columns:1fr 1fr;gap:14px;min-width:0}
@@ -646,6 +676,10 @@ body.sidebar-collapsed .dbg-drawer{left:56px}
       <div class="ov-card">
         <div class="ov-head">
           <span class="ov-title">Market Overview</span>
+          <div class="ov-toggle">
+            <button type="button" class="ov-toggle-btn" data-view="claude">Claude</button>
+            <button type="button" class="ov-toggle-btn" data-view="signals">Signals</button>
+          </div>
           <div class="ov-total-wrap">
             <span class="ov-total" id="market-overview-total">—</span>
             <span class="ov-total-label" id="market-overview-total-label">Computing…</span>
@@ -654,6 +688,9 @@ body.sidebar-collapsed .dbg-drawer{left:56px}
         </div>
         <div class="ov-grid" id="market-overview-grid">
           <div class="ov-row"><div class="ov-row-top"><div class="ov-name">Loading signals…</div><div class="ov-signal" style="color:var(--text3)">—</div></div><div class="ov-detail"></div></div>
+        </div>
+        <div class="ov-claude" id="claude-overview">
+          <div class="cov-empty">Loading Claude overview…</div>
         </div>
       </div>
 
