@@ -1,23 +1,28 @@
 // scripts/snapshot.mjs
 // Runs in GitHub Actions. Loads the dashboard in headless Chromium, waits until
-// the Market Overview signals have been computed, then harvests
-// window.__SNAPSHOT__() into data/snapshot.json. This reuses every computation
-// the live app does (no duplicated math), so the snapshot matches the UI.
+// the key data feeds have actually loaded (not just the first signal), then
+// harvests window.__SNAPSHOT__() into data/snapshot.json. This reuses every
+// computation the live app does (no duplicated math), so the snapshot matches
+// the UI.
 //
-// It also records per-host network results, failed requests and console
-// errors into snap.diagnostics, so we can see exactly which data feed failed
-// (block vs timeout vs HTTP error) when feeds come back empty.
+// Reliability: the dashboard pulls Yahoo prices through public CORS proxies
+// that are flaky from CI. So instead of a fixed short wait we poll until the
+// snapshot is "rich enough" (price + storage + COT + NG=F history present),
+// capped by MAX_WAIT_MS, giving slow/retried feeds time to land.
+//
+// snap.diagnostics records per-host network results, failed requests and
+// console errors so we can see exactly which feed failed when data is missing.
 
 import { chromium } from 'playwright';
 import { writeFile, mkdir } from 'node:fs/promises';
 
 const URL = process.env.DASH_URL || 'http://localhost:8080/index.html';
 const OUT = process.env.SNAPSHOT_OUT || 'data/snapshot.json';
-const WAIT_MS = Number(process.env.SNAPSHOT_WAIT_MS || 60000);
-const SETTLE_MS = Number(process.env.SNAPSHOT_SETTLE_MS || 8000);
+const MAX_WAIT_MS = 150000; // hard cap: wait up to 2.5 min for feeds
+const SETTLE_MS = 6000;     // small grace period after data looks complete
 
 function hostOf(u) {
-  try { return new URL(u).host; } catch { return '?'; }
+  try { return new URL(u).host || '?'; } catch { return '?'; }
 }
 
 const browser = await chromium.launch({ args: ['--no-sandbox'] });
@@ -67,15 +72,27 @@ await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 60000 }).catch((e
   console.error('goto warning:', e.message);
 });
 
-// Wait until the overview has been computed at least once.
+// Poll until the snapshot is rich enough, or until MAX_WAIT_MS elapses.
 await page
   .waitForFunction(
-    () => window._ovTotal && window._ovSignals && Object.keys(window._ovSignals).length > 0,
-    { timeout: WAIT_MS }
+    () => {
+      if (!window.__SNAPSHOT__) return false;
+      const s = window.__SNAPSHOT__();
+      const dc = s.dataCounts || {};
+      return (
+        dc.ngf > 0 &&
+        dc.storage > 0 &&
+        dc.cot > 0 &&
+        s.price && s.price.front != null &&
+        s.storage && s.storage.value != null
+      );
+    },
+    { timeout: MAX_WAIT_MS, polling: 2000 }
   )
-  .catch(() => console.error('Overview not fully computed before timeout — capturing partial snapshot.'));
+  .then(() => console.log('All key feeds loaded.'))
+  .catch(() => console.error('Timed out waiting for full data — capturing partial snapshot.'));
 
-// Let slower async sources (COT, storage, production) settle.
+// Small grace period for anything still settling (e.g. live tick, news).
 await page.waitForTimeout(SETTLE_MS);
 
 const snap = await page.evaluate(() => (window.__SNAPSHOT__ ? window.__SNAPSHOT__() : null));
@@ -98,6 +115,7 @@ await writeFile(OUT, JSON.stringify(snap, null, 2) + '\n', 'utf8');
 
 const sigCount = snap.overview?.signals?.length || 0;
 console.log(`Wrote ${OUT} — sentiment="${snap.overview?.sentiment}", ${sigCount} signals, front=${snap.price?.front}`);
+console.log('Data counts:', JSON.stringify(snap.dataCounts));
 console.log('Network by host:', JSON.stringify(byHost));
 if (failedRequests.length) console.log('Failed requests:', JSON.stringify(failedRequests.slice(0, 40)));
 if (consoleMsgs.length) console.log('Console errors/warnings:', JSON.stringify(consoleMsgs.slice(0, 40)));
