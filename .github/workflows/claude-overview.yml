@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write       # needed to push the generated JSON back
+  id-token: write       # needed for claude-code-action OIDC auth
 
 concurrency:
   group: claude-overview
