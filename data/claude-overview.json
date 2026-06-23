@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-23T21:29:00.000Z",
-  "sourceSnapshotAt": "2026-06-23T21:28:20.461Z",
-  "frontPrice": 3.1589999198913574,
-  "nextPrice": 3.194999933242798,
-  "marketState": "neutral — bearish near-term weather offset by extreme 8-16D heat forecast and historically crowded short positioning",
-  "summary": "NG=F is trading at $3.159, roughly 6.8% above its current fair-value midpoint of $2.958 but comfortably inside the model band ($2.458–$3.458), so the price is stretched but not extreme. Near-term demand (1-7D) is running 14% below the 5-year average and sits in the lower quartile of the historical range — a near-term bearish drag — but the 8-16 day demand outlook flips sharply, printing 41.3% above the 5-year normal and above the 5-year maximum, signaling an incoming extreme heat event. Managed money net positioning sits at just the 17th percentile of the 5-year range (net short -84,909 contracts), meaning the market is crowded short and vulnerable to a sharp squeeze if the heat materialises or extends. Storage at +153 Bcf above the 5-year average with a recent bearish injection surprise (+25 Bcf) is the primary structural headwind, limiting upside unless summer heat drives faster-than-expected draws. The seasonal signal is low-reliability (44 pp 10-90 spread) and mildly bullish only for weeks 1-3, with the typical 4-week move -2.3%; taken together the data favours waiting for a near-term weather dip to provide better entry toward fair value before positioning for the incoming heat catalyst.",
+  "generatedAt": "2026-06-23T23:10:00.000Z",
+  "sourceSnapshotAt": "2026-06-23T23:04:17.652Z",
+  "frontPrice": 3.1559998989105225,
+  "nextPrice": 3.194000005722046,
+  "marketState": "neutral with bearish lean; above-average demand fighting above-average storage and bearish technicals",
+  "summary": "Front-month NG=F sits at $3.156, modestly above the fair-value midpoint of $2.958 but well within the $2.458–$3.458 band, so the market is not dangerously stretched in either direction. The single clearest bullish signal is current weather demand running +17% above the 5-year normal at 148.4 and spiking +7.6 in 24 hours, which supports near-term power-burn and creates short-squeeze risk given that managed-money net positioning is at the 17th percentile — extremely short by recent history. Countering this, storage sits +153 Bcf above the 5-year average, a structural ceiling on sustained rallies, and technicals are broadly bearish across the 5m through daily and weekly timeframes. Seasonality offers a mild near-term edge (56–69% probability higher over weeks 1–3) that reverses sharply by week 4 (31% probability, typical move –2.3%) with very low reliability (44pp 10–90th percentile spread). Critical data gaps — granular 1–7D and 8–16D weather demand metrics, forward fair-value projections (plus7D/14D/21D), and the futures curve — all returned null, meaningfully reducing conviction on any multi-week directional call.",
   "longTerm": {
     "stance": "WAIT",
-    "conviction": "medium",
+    "conviction": "low",
     "horizon": "3-12 weeks",
     "entry": "n/a",
     "stop": "n/a",
@@ -15,35 +15,35 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "COT net at the 17th 5-year percentile (-84,909 contracts short) is a meaningful contrarian bullish setup, and the 8-16D demand surge above the 5-year max could establish a summer-heat narrative that burns into the storage surplus. However, storage is +153 Bcf above the 5-year average with a recent bearish surprise, and the seasonality signal has a 44 pp reliability spread — too noisy to commit size at the current slightly-above-fair-value price of $3.159. The winter strip (Dec '26 $3.977, Jan '27 $4.38) confirms structural demand is priced in further out, but the near term needs a cleaner entry.",
-    "invalidation": "Storage surplus widens above +200 Bcf vs 5-year average; 8-16D heat forecast cools materially on model revisions; price breaks below $2.85 (outside the lower fair-value band) with no COT short-covering.",
-    "trigger": "Pullback to the $3.00–$3.05 zone (near the fair-value midpoint of $2.958–$2.968) AND at least one weekly storage report showing a draw or a build materially below the 5-year seasonal injection pace, confirming the heat wave is burning supply."
+    "rationale": "The 4-week seasonal probability is just 31% higher with a typical –2.3% expected move, and storage at +153 Bcf above the 5-year average suppresses the case for a sustained rally. Price is already slightly above the fair-value midpoint ($3.156 vs $2.958) and forward fair-value data is unavailable, leaving the band trajectory unknown. The extreme COT short (17th percentile) is intriguing as a contrarian signal, but September is the seasonally strongest month and a better entry near fair value ($2.95–3.05) would offer substantially improved risk/reward for capturing that window.",
+    "invalidation": "Storage builds stop shrinking vs. the 5-year average; price fails to recover fair value on any pullback; demand trend reverses below 5-year normal.",
+    "trigger": "Enter LONG when price pulls back to the $2.95–3.05 fair-value zone AND/OR EIA weekly storage reports begin printing consistent below-forecast surprises (surplus vs. 5y narrows to under 80 Bcf), signaling hot-weather demand is meaningfully eroding the structural overhang."
   },
   "shortTerm": {
     "stance": "LONG",
-    "conviction": "medium",
+    "conviction": "low",
     "horizon": "1-10 days",
-    "entry": "$3.07–$3.10 (on near-term weather softness dip)",
-    "stop": "$2.95",
-    "tp1": "$3.28",
-    "tp2": "$3.45",
-    "riskReward": "1:2.5 (to TP2 from mid-entry $3.085, risk $0.135, reward $0.365)",
-    "sizing": "1R approx 1% risk",
-    "rationale": "The 8-16D demand is above the 5-year maximum (+41.3% vs 5y, aboveMax=true) — a rare extreme that gas markets typically price in 3-5 days ahead as forecasters publish — while the 1h RSI has retreated to 36.1 (near oversold) and COT short crowding (17th pct) raises short-squeeze risk on any bullish headline. Near-term weather softness (1-7D at -14% vs 5y) is the entry opportunity: a dip toward $3.07-$3.10 pulls price back inside the fair-value midpoint zone and offers a defined stop below $2.95. TP1 $3.28 targets the upper mid-band; TP2 $3.45 approaches the current fair-value band ceiling of $3.458.",
-    "invalidation": "Weather model consensus shifts 8-16D demand back toward or below 5-year normal; price closes below $2.95 on the daily bar; storage injection for the following week again surprises to the bearish side by more than 15 Bcf.",
+    "entry": "$3.10–$3.16 (current price or modest pullback)",
+    "stop": "$2.95 (below fair-value midpoint; a close here negates the bounce thesis and risks band re-test at $2.46)",
+    "tp1": "$3.30 (first resistance; take partial profits)",
+    "tp2": "$3.45 (near fair-value band ceiling of $3.458)",
+    "riskReward": "1:1.4 blended (TP1 ~1:0.9, TP2 ~1:1.9)",
+    "sizing": "0.5R approx 0.5% account risk — half-sized given missing weather detail data and bearish technical structure",
+    "rationale": "Current gas demand at 148.4 (+17% vs 5-year normal, +7.6 intraday) is the dominant near-term driver; sustained heat keeps power-burn elevated and tightens the daily balance. The 1-week and 2-week seasonal probabilities favor the upside (56% each) and the 3-week is 69%, providing a statistical tailwind. With managed money at the 17th percentile (5-year), any bullish headline could trigger forced short-covering; 1-hour RSI at 35.5 supports at least a tactical bounce from current levels.",
+    "invalidation": "Price closes below $2.95, confirming the bearish EMA structure (50 < 200 on 5m/15m/1d/1w) is dominant and the weather-demand pop was insufficient to reverse the trend.",
     "trigger": ""
   },
   "keyDrivers": [
-    "8-16D demand forecast above 5-year MAX (+41.3% vs 5y, aboveMax=true) — primary near-term bullish catalyst",
-    "COT managed-money net at 17th 5-year percentile (-84,909 contracts) — crowded short, short-squeeze vulnerability",
-    "Storage +153 Bcf above 5-year average with recent +25 Bcf bearish injection surprise — structural ceiling on rallies",
-    "Near-term (1-7D) demand 14% below 5-year average — short-term headwind creating potential entry opportunity on dip",
-    "Winter strip (Jan '27 $4.38 vs front $3.16) confirms market prices in tighter supply-demand into heating season"
+    "Weather demand running +17% above 5-year normal (148.4 units) and rising sharply (+7.6 in 24h) — primary near-term bullish support",
+    "Managed-money net at 17th percentile (–84,909 contracts) — extreme short positioning vulnerable to squeeze on any bullish catalyst",
+    "Storage +153 Bcf above 5-year average — structural bearish ceiling on sustained multi-week rallies",
+    "Seasonal probability positive for weeks 1–3 (56/56/69%) but turns bearish at week 4 (31%); typical 4-week move is –2.3%",
+    "Technicals broadly bearish (5m/15m/1d/1w trend bearish, EMA 50 < 200); 1h/4h neutral with RSI approaching oversold at 1h (35.5)"
   ],
   "risks": [
-    "Heat wave fails to materialise or forecast rolls back — removes the primary bullish catalyst and leaves COT shorts in control with storage as a further drag",
-    "Storage surplus accelerates above +200 Bcf vs 5-year average — would signal supply overwhelm even with summer heat demand",
-    "Seasonality reliability is very low (44 pp spread) and the typical 4-week move is -2.3%, so seasonal tailwinds are weak and could reverse quickly if weather reverts to normal"
+    "Critical data gaps: 1–7D and 8–16D weather demand metrics are null, forward fair-value projections are null, and the futures curve is unavailable — confidence in any directional call is materially reduced",
+    "Storage surplus (+153 Bcf vs 5y) could persist or widen if demand normalizes after the heat event, reasserting downward pressure toward fair value and potentially the band floor near $2.46",
+    "Technical breakdown below $3.00 (and especially a daily close below fair-value mid of $2.958) would confirm the bearish EMA structure across timeframes and open a move toward the $2.46 band low"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
