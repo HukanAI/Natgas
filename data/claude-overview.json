@@ -1,49 +1,49 @@
 {
-  "generatedAt": "2026-06-24T10:25:00.000Z",
-  "sourceSnapshotAt": "2026-06-24T10:18:24.459Z",
-  "frontPrice": 3.1640000343322754,
-  "nextPrice": 3.2130000591278076,
-  "marketState": "neutral — extreme 8-16 day heat demand clashes with bearish storage surplus and weak daily/weekly technicals",
-  "summary": "Front-month NG (Jul 2026) sits at $3.164, only $0.206 above the fair-value midpoint of $2.958 and comfortably inside the $2.458–$3.458 band, keeping it structurally non-extreme in either direction. The dominant conflict is between a bearish structural backdrop (storage +153 Bcf above the 5-year average, a +25 Bcf bullish build surprise, and a confirmed bearish EMA 50<200 cross on both the daily and weekly charts) and an extraordinary forward-demand signal (8–16 day weather forecast +32.1% above the 5-year average, exceeding the 5-year maximum with rangePos at 1.37). Seasonality is flagged as low-reliability this week (44 pp 10–90% spread); the 4-week probability of a higher price is only 31% and the typical 4-week move is -2.3%, so seasonal tailwinds are absent on that horizon. Managed-money net positioning sits at the 17th 5-year percentile (-84,909 contracts net short), creating latent short-squeeze fuel that could activate if the heat catalyst drives visible storage draws. The futures curve is sharply contango into winter (Jan 2027 at $4.389, +$1.225 vs. front), confirming the market prices in a large seasonal demand premium but does not reward near-term long-rolling strategies.",
+  "generatedAt": "2026-06-24T13:20:00.000Z",
+  "sourceSnapshotAt": "2026-06-24T13:15:41.298Z",
+  "frontPrice": 3.2090001106262207,
+  "nextPrice": 3.2090001106262207,
+  "marketState": "neutral — near-term demand soft but extreme 8-16D heat forecast and historically short COT create medium-term upside potential",
+  "summary": "Natural gas at $3.209 sits modestly above its fair value midpoint of $2.958 but well within the $2.46–$3.46 band, a premium sustained consistently across all four forward horizons, narrowing only to +$0.17 at the 21-day horizon as fair value rises toward current price. The dominant setup is a sharp contrast: near-term demand (1-7D) is -5% below the 5-year norm at the 38th percentile of the historical range, while the 8-16D demand outlook is +30% above 5-year norms and above the 5-year maximum — an extreme reading that is the single most important bullish catalyst in this dataset. Storage remains a structural headwind at +153 Bcf above the 5-year average with a bearish injection surprise of +25 Bcf last week, and daily and weekly technicals are bearish (50<200 EMA death cross, negative MACD on 1d and 4h). Seasonality shows a 69% probability of a higher close in 3 weeks but carries very low reliability (44 pp 10-90 spread), and managed-money net shorts sit at the 17th percentile of their 5-year range — extreme positioning that creates meaningful short-covering fuel if the heat wave verifies. Futures curve data is unavailable due to data feed failures, preventing term-structure assessment.",
   "longTerm": {
+    "stance": "LONG",
+    "conviction": "medium",
+    "horizon": "3-12 weeks",
+    "entry": "$3.10 – $3.15 (buy near-term weakness before 8-16D heat arrives; current price $3.209 may dip on soft 1-7D demand)",
+    "stop": "$2.90 (below fair-value midpoint $2.958 and in the lower third of the current band; breach signals fundamental deterioration)",
+    "tp1": "$3.46 (upper edge of current fair-value band, consistent across all four forward-horizon ceilings)",
+    "tp2": "$3.75 (extended target if 8-16D heat sustains and drives short-covering from extreme MM positioning)",
+    "riskReward": "~1:2.1 (blended 50/50 TP1/TP2 from $3.12 entry vs $2.90 stop)",
+    "sizing": "1R approx 1% risk",
+    "rationale": "The 8-16D demand reading above the 5-year maximum (+30% vs normal, rangePos 1.32, aboveMax=true) is the primary catalyst: if it verifies, managed money at the 17th percentile short (-84,909 net contracts) creates a significant short-covering squeeze. Week-3 seasonality shows a 69% historical probability of a higher close, and the fair-value band upper edge at $3.46–$3.54 provides a fundamentally anchored target. Storage surplus (+153 Bcf) and bearish daily/weekly technicals are key offsets but appear already reflected in price near fair-value midpoint.",
+    "invalidation": "Storage surplus widens beyond +200 Bcf vs 5-year; the 8-16D extreme heat forecast reverses toward normal on successive model runs; or price breaks below $2.90 on volume, confirming the bearish technical trend.",
+    "trigger": ""
+  },
+  "shortTerm": {
     "stance": "WAIT",
     "conviction": "low",
-    "horizon": "3-12 weeks",
+    "horizon": "1-10 days",
     "entry": "n/a",
     "stop": "n/a",
     "tp1": "n/a",
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Storage at +153 Bcf above the 5-year average with a recent +25 Bcf bearish surprise is the dominant structural drag; it would take several weeks of heat-driven draws well below the seasonal norm to meaningfully close this gap. Daily and weekly technicals are both bearish (trend bearish, EMA 50<200 on both timeframes), and the 4-week seasonal probability of a higher price falls to just 31% with a typical -2.3% 4-week move and low reliability. The MM short squeeze potential at the 17th percentile is real but is a momentum amplifier, not a standalone catalyst; without a confirmed shift in the storage trajectory, the path of least resistance remains neutral-to-lower over a multi-week horizon.",
-    "invalidation": "Two consecutive EIA storage prints showing builds ≤35 Bcf confirm the extreme heat demand is eroding the surplus; or a daily close and hold above $3.45 (upper fair-value band edge) with the daily MACD histogram turning positive.",
-    "trigger": "Two consecutive weekly EIA storage reports with builds ≤35 Bcf (vs. the seasonal norm of ~50–60 Bcf for this time of year), demonstrating the extreme 8-16 day heat is translating into sustained storage draws and narrowing the +153 Bcf surplus."
-  },
-  "shortTerm": {
-    "stance": "LONG",
-    "conviction": "medium",
-    "horizon": "1-10 days",
-    "entry": "$3.08–$3.12 zone (buy the mean-reversion pullback; 5m RSI at 63.5 and price above upper Bollinger band on the 5m chart suggest a minor dip before the heat catalyst fully engages)",
-    "stop": "$2.95",
-    "tp1": "$3.35",
-    "tp2": "$3.45",
-    "riskReward": "1:1.7 to TP1 / 1:2.3 to TP2 (from midpoint entry $3.10, stop $2.95)",
-    "sizing": "1R approx 1% account risk (risk of ~$0.15/MMBtu from $3.10 entry to $2.95 stop; size accordingly)",
-    "rationale": "The 8–16 day demand forecast is +32.1% above the 5-year average and has breached the 5-year maximum — a rare extreme that typically translates into power-burn demand spikes and price support within 5–10 trading sessions. At $3.164, front-month is inside the fair-value band with the upper edge at $3.458 providing meaningful upside room relative to a $3.10 entry. Near-term MACD is positive on both the 5m and 15m frames, and the 1-week and 2-week seasonal probabilities of a higher price are both 56%, offering a modest base-rate edge. A pullback entry around $3.08–$3.12 avoids the short-term overbought 5m condition and places the stop just below the fair-value midpoint of $2.958, where the bullish thesis weakens materially.",
-    "invalidation": "Next EIA storage build prints above 70 Bcf (heat not converting to draws) and/or the 8–16 day weather forecast revises sharply lower toward the 5-year average; daily close below $2.95.",
-    "trigger": ""
+    "rationale": "Near-term demand is soft (-5% vs 5-year, 38th percentile) and daily/4h technicals are bearish (MACD negative, 50<200 EMA); however, the market is unlikely to break down cleanly given the extreme MM short positioning at the 17th percentile and the extraordinary 8-16D heat forecast approaching within days. The conflicting signals — near-term softness vs medium-term heat catalyst vs bearish technicals vs short-squeeze risk — make a high-confidence directional trade inadvisable without a cleaner setup.",
+    "invalidation": "n/a",
+    "trigger": "Enter LONG if price pulls back to $3.00–$3.10 with 8-16D heat forecast maintained (better-risk entry for the heat trade), OR on a breakout above $3.30 with improving technical momentum signaling heat is being priced in. Enter SHORT only if price breaks below $2.95 (below fair-value midpoint) AND the 8-16D forecast moderates toward normal on successive model runs."
   },
   "keyDrivers": [
-    "8–16 day weather demand at +32.1% vs. 5-year average, exceeding the 5-year maximum (rangePos 1.37, aboveMax true) — strongest near-term bullish catalyst",
-    "Storage +153 Bcf above 5-year average with a +25 Bcf bearish build surprise — dominant structural headwind",
-    "Managed-money net at 17th 5-year percentile (-84,909 contracts net short) — latent short-squeeze fuel, not yet confirmed catalyst",
-    "Daily and weekly EMA 50<200 bearish cross with trend classified bearish on both timeframes — technical headwind for sustained rallies",
-    "Steep winter contango: Jan 2027 at $4.389 (+$1.225 vs. front) prices in large seasonal demand premium but does not support near-term rolling long strategies"
+    "8-16D weather demand above 5-year maximum (+30% vs 5yr normal, rangePos 1.32, aboveMax=true) — most powerful near-term bullish catalyst",
+    "Storage +153 Bcf above 5-year average with a bearish +25 Bcf injection surprise — persistent structural headwind",
+    "Managed-money net short at 17th percentile of 5-year range (-84,909 contracts) — extreme positioning creates short-covering fuel on any bullish trigger",
+    "Daily and weekly technicals bearish: 50<200 EMA death cross on 1d and 1w, negative MACD on 1d and 4h — momentum unfavorable",
+    "Price $0.17–$0.25 above fair value across all horizons with upper band resistance at $3.46–$3.54; futures curve data unavailable limiting full term-structure view"
   ],
   "risks": [
-    "Weather forecast revision: 8–16 day outlooks carry high uncertainty; a moderate-temperature revision would eliminate the primary near-term bullish catalyst and expose the bearish storage/technical backdrop",
-    "Storage overhang persistence: at +153 Bcf above 5-year average, even 3–4 weeks of above-normal draws may leave a meaningful surplus intact, capping any rally near the $3.45–$3.50 fair-value band upper edge",
-    "MM short squeeze absent: positioning at the 17th percentile is historically bearish but not extreme; forced covering requires a sustained directional move above $3.30–$3.35 that current daily/weekly technicals do not yet support"
+    "8-16D extreme heat forecast fails to verify or rolls back on model updates — removes primary bull catalyst, leaving market with storage surplus and bearish technicals",
+    "Storage surplus widens further above 5-year norms through summer, capping recovery toward the upper fair-value band",
+    "Bearish daily/weekly technical trend accelerates if $3.00 support breaks, triggering long liquidation despite crowded short MM positioning"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
