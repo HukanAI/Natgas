@@ -64,6 +64,28 @@
   .m-reset:active{background:var(--bg4)}
   .spin{display:inline-block;width:12px;height:12px;border:2px solid var(--border3);border-top-color:var(--blue);border-radius:50%;animation:sp .7s linear infinite;vertical-align:middle}
   @keyframes sp{to{transform:rotate(360deg)}}
+  .cov-state{font-size:12px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:6px}
+  .cov-summary{font-size:11.5px;color:var(--text2);line-height:1.6;margin-bottom:10px}
+  .cov-trade{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:10px 12px;margin-bottom:10px}
+  .cov-trade-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .cov-trade-title{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);font-weight:700}
+  .cov-horizon{font-size:10px;color:var(--text3);font-family:var(--mono)}
+  .cov-badge{font-size:11px;font-weight:800;letter-spacing:.5px;padding:2px 9px;border-radius:5px;border:1px solid;margin-left:auto}
+  .cov-conv{font-size:9.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);font-weight:700}
+  .cov-lvls{display:flex;gap:6px;margin-bottom:6px}
+  .cov-lvl{flex:1;background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:5px 4px;text-align:center}
+  .cov-lvl-lbl{display:block;font-size:8.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);font-weight:700;margin-bottom:2px}
+  .cov-lvl-val{display:block;font-family:var(--mono);font-size:11.5px;font-weight:700;color:var(--text)}
+  .cov-trade-meta{font-size:10px;color:var(--text2);font-family:var(--mono);margin-bottom:4px}
+  .cov-trade-trigger{font-size:10.5px;color:#d29922;line-height:1.5}
+  .cov-trade-rat{font-size:10.5px;color:var(--text2);line-height:1.55}
+  .cov-inval{font-size:9.5px;color:#ff7b72;line-height:1.45;margin-top:4px}
+  .cov-sec-h{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);font-weight:700;margin:8px 0 4px}
+  .cov-list{margin:0;padding-left:15px}
+  .cov-list li{font-size:10.5px;color:var(--text2);line-height:1.5}
+  .cov-list-risk li{color:#ffb085}
+  .cov-foot{margin-top:8px;padding-top:8px;border-top:1px solid var(--border2);font-size:9px;color:var(--text3);font-family:var(--mono);line-height:1.5}
+  .cov-empty{color:var(--text3);font-size:11px;line-height:1.6;padding:10px 0}
 </style>
 </head>
 <body>
@@ -85,6 +107,12 @@
       <div class="pc-val dim" id="m-next-price">—</div>
       <div class="pc-chg" id="m-next-chg">—</div>
     </div>
+  </div>
+
+  <!-- Claude overview (hourly AI assessment) -->
+  <div class="m-card">
+    <div class="m-card-title">Claude overview</div>
+    <div id="claude-overview"><div class="cov-empty">Loading Claude overview…</div></div>
   </div>
 
   <!-- Seasonality (overview, compact) -->
@@ -329,6 +357,56 @@
   // Reset zoom/pan on the TA 5m chart.
   const taResetBtn = $('ta-reset-5m');
   if (taResetBtn) taResetBtn.addEventListener('click', () => { try { taResetZoomTF('5m'); } catch (e) {} });
+  // ---- Claude overview (data/claude-overview.json) ----
+  var COV_STANCE = { LONG:{c:'#3fb950',l:'LONG'}, SHORT:{c:'#ff7b72',l:'SHORT'}, WAIT:{c:'#d29922',l:'WAIT'} };
+  function covEsc(x){ return String(x==null?'':x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function covRel(iso){ if(!iso) return '\u2014'; var t=Date.parse(iso); if(isNaN(t)) return '\u2014';
+    var m=Math.round((Date.now()-t)/60000); if(m<1) return 'just now'; if(m<60) return m+' min ago';
+    var h=Math.floor(m/60); if(h<24) return h+'h ago'; return Math.floor(h/24)+'d ago'; }
+  function covLvl(l,v){ return '<div class="cov-lvl"><span class="cov-lvl-lbl">'+l+'</span><span class="cov-lvl-val">'+covEsc(v==null?'n/a':v)+'</span></div>'; }
+  function covTrade(title,t){
+    if(!t) return '';
+    var st = COV_STANCE[t.stance] || {c:'#9ba3ad',l:covEsc(t.stance||'\u2014')};
+    var wait = t.stance==='WAIT';
+    var meta = [t.riskReward?('R:R '+covEsc(t.riskReward)):'', t.sizing?covEsc(t.sizing):''].filter(Boolean).join(' \u00b7 ');
+    var levels = wait ? '' :
+      '<div class="cov-lvls">'+covLvl('Entry',t.entry)+covLvl('Stop',t.stop)+covLvl('TP1',t.tp1)+covLvl('TP2',t.tp2)+'</div>'+
+      (meta?('<div class="cov-trade-meta">'+meta+'</div>'):'');
+    var trig = (wait && t.trigger) ? '<div class="cov-trade-trigger">\u23f3 Waiting for: '+covEsc(t.trigger)+'</div>' : '';
+    return '<div class="cov-trade"><div class="cov-trade-head">'+
+      '<span class="cov-trade-title">'+title+'</span>'+
+      '<span class="cov-horizon">'+covEsc(t.horizon||'')+'</span>'+
+      '<span class="cov-badge" style="background:'+st.c+'1a;color:'+st.c+';border-color:'+st.c+'55">'+st.l+'</span>'+
+      '<span class="cov-conv">'+covEsc(t.conviction||'')+'</span></div>'+
+      levels+trig+
+      (t.rationale?('<div class="cov-trade-rat">'+covEsc(t.rationale)+'</div>'):'')+
+      (t.invalidation?('<div class="cov-inval">\u2715 '+covEsc(t.invalidation)+'</div>'):'')+
+      '</div>';
+  }
+  function covRender(d){
+    var box=document.getElementById('claude-overview'); if(!box) return;
+    if(!d || (!d.longTerm && !d.shortTerm && !d.summary)){
+      box.innerHTML='<div class="cov-empty">Claude overview not generated yet.</div>'; return;
+    }
+    var drivers=Array.isArray(d.keyDrivers)?d.keyDrivers:[];
+    var risks=Array.isArray(d.risks)?d.risks:[];
+    box.innerHTML =
+      (d.marketState?('<div class="cov-state">'+covEsc(d.marketState)+'</div>'):'')+
+      (d.summary?('<div class="cov-summary">'+covEsc(d.summary)+'</div>'):'')+
+      covTrade('Long-term', d.longTerm)+
+      covTrade('Short-term', d.shortTerm)+
+      (drivers.length?('<div class="cov-sec-h">Key drivers</div><ul class="cov-list">'+drivers.map(function(x){return '<li>'+covEsc(x)+'</li>';}).join('')+'</ul>'):'')+
+      (risks.length?('<div class="cov-sec-h">Risks</div><ul class="cov-list cov-list-risk">'+risks.map(function(x){return '<li>'+covEsc(x)+'</li>';}).join('')+'</ul>'):'')+
+      '<div class="cov-foot">Updated '+covRel(d.generatedAt)+(d.frontPrice!=null?(' \u00b7 front $'+covEsc(d.frontPrice)):'')+'<br>'+covEsc(d.disclaimer||'Informational only, not financial advice.')+'</div>';
+  }
+  function loadClaude(){
+    fetch('data/claude-overview.json?t='+Date.now(),{cache:'no-store'})
+      .then(function(r){ return r.ok?r.json():null; })
+      .then(covRender).catch(function(){ covRender(null); });
+  }
+  loadClaude();
+  setInterval(loadClaude, 10*60*1000);
+
   // Refresh every 60s while the page is open.
   setInterval(loadPrices, 60000);
 </script>
