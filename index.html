@@ -153,8 +153,8 @@ body.sidebar-collapsed .nav-ico{margin:0}
 .toolbtn.primary:hover{background:var(--blue);border-color:var(--blue)}
 
 /* ═══ Master layout: overview left | cards right ═══ */
-.master-grid{display:grid;grid-template-columns:280px 1fr;gap:14px;margin-bottom:16px;align-items:start}
-@media(max-width:1400px){.master-grid{grid-template-columns:260px 1fr}}
+.master-grid{display:grid;grid-template-columns:360px 1fr;gap:14px;margin-bottom:16px;align-items:start}
+@media(max-width:1400px){.master-grid{grid-template-columns:320px 1fr}}
 @media(max-width:1100px){.master-grid{grid-template-columns:1fr}}
 
 /* ═══ News ticker ═══ */
@@ -217,7 +217,16 @@ body.sidebar-collapsed .nav-ico{margin:0}
 .cov-disc{font-style:italic}
 
 /* Right: two rows stacked */
-.right-stack{display:grid;grid-template-columns:1fr 1fr;gap:14px;min-width:0}
+.right-stack{display:flex;flex-direction:column;gap:14px;min-width:0}
+.sec-strip{margin:0 0 16px}
+.sec-toggle{width:100%;display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:11px 14px;color:var(--text2);cursor:pointer;font-size:10px;text-transform:uppercase;letter-spacing:1.2px;font-weight:700;transition:all .15s}
+.sec-toggle:hover{border-color:var(--blue);color:var(--text)}
+.sec-caret{display:inline-block;transition:transform .15s;color:var(--text3)}
+.sec-strip.open .sec-caret{transform:rotate(90deg)}
+.sec-hint{margin-left:auto;font-size:10px;color:var(--text3);text-transform:none;letter-spacing:0;font-weight:400}
+.sec-content{display:none;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.sec-strip.open .sec-content{display:grid}
+@media(max-width:1100px){.sec-content{grid-template-columns:1fr}}
 .right-col{display:flex;flex-direction:column;gap:14px;min-width:0}
 @media(max-width:1100px){.right-stack{grid-template-columns:1fr}}
 /* Row 1 cards — Fair Price shorter, Storage taller */
@@ -672,7 +681,7 @@ body.sidebar-collapsed .dbg-drawer{left:56px}
     <!-- ═══ Master always-on layout: Overview left | cards right ═══ -->
     <section class="master-grid">
 
-      <!-- LEFT: Market Overview -->
+      <!-- LEFT: Market Overview (Claude / Signals) -->
       <div class="ov-card">
         <div class="ov-head">
           <span class="ov-title">Market Overview</span>
@@ -694,13 +703,138 @@ body.sidebar-collapsed .dbg-drawer{left:56px}
         </div>
       </div>
 
-      <!-- RIGHT: stacked cards -->
+      <!-- RIGHT: Weather Demand + Seasonality (priority charts) -->
       <div class="right-stack">
+        <div class="hm-card">
+            <div class="hm-head" style="flex-wrap:wrap;gap:8px">
+              <span class="hm-title">Weather Demand</span>
+              <div class="tw-bar" style="flex-shrink:0;border:1px solid var(--border2)">
+                <button id="ft-btn-current" class="tw-btn" data-ft-mode="current">Current</button>
+                <button id="ft-btn-trend" class="tw-btn on" data-ft-mode="trend">Forecast trend</button>
+              </div>
+              <div id="hm-legend" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--text2);font-family:var(--mono);white-space:nowrap">
+                  <svg width="12" height="12" aria-hidden="true"><rect x="0" y="0" width="12" height="12" rx="2" fill="rgba(163,113,247,0.85)"/></svg>
+                  Hist.
+                </span>
+                <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--text2);font-family:var(--mono);white-space:nowrap">
+                  <svg width="12" height="12" aria-hidden="true"><rect x="0" y="0" width="12" height="12" rx="2" fill="rgba(63,185,80,0.65)"/></svg>
+                  Fcst ↑
+                </span>
+                <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--text2);font-family:var(--mono);white-space:nowrap">
+                  <svg width="12" height="12" aria-hidden="true"><rect x="0" y="0" width="12" height="12" rx="2" fill="rgba(255,123,114,0.65)"/></svg>
+                  Fcst ↓
+                </span>
+                <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--text2);font-family:var(--mono);white-space:nowrap">
+                  <svg width="20" height="9" aria-hidden="true"><line x1="0" y1="4.5" x2="20" y2="4.5" stroke="rgba(230,237,243,0.7)" stroke-width="2" stroke-dasharray="4,3" stroke-linecap="round"/></svg>
+                  5y avg
+                </span>
+                <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--text2);font-family:var(--mono);white-space:nowrap">
+                  <svg width="20" height="9" aria-hidden="true"><rect x="0" y="1" width="20" height="7" rx="2" fill="rgba(200,200,200,0.15)" stroke="rgba(200,200,200,0.3)" stroke-width="1"/></svg>
+                  5y range
+                </span>
+              </div>
+              <div id="ft-stats" style="display:none;align-items:center;gap:16px;margin-left:auto;flex-wrap:wrap">
+                <div style="display:flex;align-items:baseline;gap:5px">
+                  <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;font-weight:700">Now</span>
+                  <span id="ft-stat-now" style="font-size:16px;font-weight:700;font-family:var(--mono);color:var(--text);line-height:1;letter-spacing:-0.3px">—</span>
+                </div>
+                <div style="display:flex;align-items:baseline;gap:5px">
+                  <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;font-weight:700">24h</span>
+                  <span id="ft-stat-chg" style="font-size:12px;font-weight:600;font-family:var(--mono);color:var(--text2);line-height:1">—</span>
+                </div>
+                <div style="display:flex;align-items:baseline;gap:5px">
+                  <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;font-weight:700">7d</span>
+                  <span id="ft-stat-range" style="font-size:12px;font-weight:600;font-family:var(--mono);color:var(--text2);line-height:1">—</span>
+                </div>
+                <div style="display:flex;align-items:baseline;gap:5px">
+                  <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;font-weight:700">vs 5y</span>
+                  <span id="ft-stat-vs5y" style="font-size:12px;font-weight:600;font-family:var(--mono);color:var(--text2);line-height:1">—</span>
+                </div>
+              </div>
+            </div>
+            <div id="hm-spin" class="spin-msg" style="display:flex;align-items:center;justify-content:center;min-height:120px"><span class="sp"></span>Loading weather…</div>
+            <div id="hm-wrap" class="hm-chart-wrap" style="display:none">
+              <canvas id="hm-canvas" role="img" aria-label="Weather demand index vs 5-year average"></canvas>
+            </div>
+            <div id="ft-spin" class="spin-msg" style="display:none;align-items:center;justify-content:center;min-height:120px;font-size:11px;color:var(--text3);text-align:center;padding:0 20px"></div>
+            <div id="ft-wrap" class="hm-chart-wrap" style="display:none">
+              <canvas id="ft-canvas" role="img" aria-label="Forecast demand trend over time"></canvas>
+            </div>
+          </div>
 
-        <!-- Row 1: Fair Price Curve + Storage Forecast -->
-        <!-- LEFT COLUMN: Fair Price (short) + Weather (tall) -->
-        <div class="right-col">
-          <div class="fp-card">
+        <div class="fw-card">
+            <div class="fw-head">
+              <span class="fw-title" id="fw-card-title">Seasonality</span>
+              <div id="fw-legend-curve" style="display:none;align-items:center;gap:10px;flex-wrap:wrap">
+                <span style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);font-family:var(--mono)">
+                  <svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="#4493f8" stroke-width="2.5" stroke-linecap="round"/></svg>Price
+                </span>
+                <span style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);font-family:var(--mono)">
+                  <svg width="10" height="10" aria-hidden="true"><circle cx="5" cy="5" r="4" fill="none" stroke="#e3b341" stroke-width="2"/></svg>Front
+                </span>
+                <span style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);font-family:var(--mono)">
+                  <svg width="10" height="10" aria-hidden="true"><circle cx="5" cy="5" r="4" fill="none" stroke="#3fb950" stroke-width="2"/></svg>Next
+                </span>
+              </div>
+              <div id="fw-legend-season" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                <span style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);font-family:var(--mono)">
+                  <svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="#e3b341" stroke-width="2.5" stroke-linecap="round"/></svg><span id="fw-season-curyear">This year</span>
+                </span>
+                <span style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);font-family:var(--mono)">
+                  <svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="#4493f8" stroke-width="1.5" stroke-dasharray="4 3"/></svg>Median
+                </span>
+                <span id="fw-legend-fp" style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);font-family:var(--mono)">
+                  <svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="#a371f7" stroke-width="2" stroke-linecap="round"/></svg>Fair value
+                </span>
+              </div>
+              <div style="display:flex;align-items:center;gap:4px;margin-left:auto">
+                <select id="fw-season-year" title="Year to compare against the historical median" style="background:var(--bg2,#11151c);color:var(--text2,#c9d1d9);border:1px solid var(--border,#1f242c);border-radius:4px;font-size:9.5px;font-family:var(--mono);padding:3px 5px;cursor:pointer"></select>
+                <button class="cot-help-btn" id="fw-season-help-btn" title="How to read this chart" style="margin-right:2px">?</button>
+                <button class="tbtn" id="fw-tab-curve" style="font-size:9.5px;padding:3px 7px">Curve</button>
+                <button class="tbtn on" id="fw-tab-season" style="font-size:9.5px;padding:3px 7px">Seasonality</button>
+              </div>
+              <span class="fw-note" id="fw-note" style="display:none">awaiting data</span>
+            </div>
+            <div id="fw-spin" class="spin-msg" style="display:flex;align-items:center;justify-content:center;min-height:120px"><span class="sp"></span>Loading…</div>
+            <div class="fw-chart-wrap" id="fw-wrap" style="display:none">
+              <canvas id="fw-chart-canvas" role="img" aria-label="Natural gas futures price curve across delivery months"></canvas>
+            </div>
+            <div class="fw-chart-wrap" id="fw-season-wrap" style="display:none">
+              <canvas id="fw-season-canvas" role="img" aria-label="Natural gas seasonality: current year vs historical median and 10 to 90 percentile band"></canvas>
+            </div>
+          </div>
+
+        <div class="cot-popup-overlay" id="season-chart-popup-overlay">
+            <div class="cot-popup">
+              <button class="cot-popup-close" id="season-chart-popup-close">✕</button>
+              <h3>Reading the Seasonality Chart</h3>
+              <p>This chart shows where this year's price sits versus how NG=F has behaved in the same part of the year historically: the <b>yellow line</b> is the current year, the <b>dashed blue line</b> the historical median, and the <b>shaded band</b> the 10–90% range of past years.</p>
+              <p>It answers a different question from the "% higher" stats — one is about <b>level</b>, the other about <b>direction</b>, and they often point different ways without contradicting each other.</p>
+              <p><b>Above / below median (level)</b> — whether gas is seasonally <b>expensive or cheap right now</b> versus a typical year.</p>
+              <p><b>Higher in 1–4 weeks (direction)</b> — in what share of past years the price <b>rose from here</b> over the next weeks, regardless of how high it already is.</p>
+              <p>You can be above the median (expensive) and still have high odds of rising — e.g. heading into the heating season, prices are already elevated but the seasonal pull is still upward.</p>
+              <p style="margin-bottom:8px"><b>Four combinations:</b></p>
+              <p style="margin-bottom:6px"><span class="tag bear">Above median</span> + <span class="tag bull">high % higher</span> — expensive, but seasonal tailwind still pushing up (strong part of the year).</p>
+              <p style="margin-bottom:6px"><span class="tag bear">Above median</span> + <span class="tag bear">low % higher</span> — expensive and seasonally past the peak; history tends lower from here.</p>
+              <p style="margin-bottom:6px"><span class="tag bull">Below median</span> + <span class="tag bull">high % higher</span> — cheap and seasonally pre-rally; the strongest seasonal "buy" setup.</p>
+              <p style="margin-bottom:12px"><span class="tag bull">Below median</span> + <span class="tag bear">low % higher</span> — cheap but in a weak stretch; tends to keep drifting down.</p>
+              <p style="color:var(--text4);font-size:11px;margin-bottom:0">Seasonality is a tendency, not a guarantee — use it as context alongside storage, weather, COT and fair value, never on its own.</p>
+            </div>
+          </div>
+      </div><!-- /.right-stack -->
+
+    </section><!-- /.master-grid -->
+
+    <!-- SECONDARY (collapsible): Fair Price Curve + Storage Forecast -->
+    <section class="sec-strip" id="sec-strip">
+      <button class="sec-toggle" id="sec-toggle" type="button" aria-expanded="false" aria-controls="sec-content">
+        <span class="sec-caret">▸</span>
+        <span>Fair price curve &amp; storage forecast</span>
+        <span class="sec-hint">click to expand</span>
+      </button>
+      <div class="sec-content" id="sec-content">
+        <div class="fp-card">
             <div class="fp-head">
               <span class="fp-title">Fair Price Curve</span>
               <div class="fp-legend">
@@ -804,68 +938,7 @@ body.sidebar-collapsed .dbg-drawer{left:56px}
             </div>
           </div>
 
-          <div class="hm-card">
-            <div class="hm-head" style="flex-wrap:wrap;gap:8px">
-              <span class="hm-title">Weather Demand</span>
-              <div class="tw-bar" style="flex-shrink:0;border:1px solid var(--border2)">
-                <button id="ft-btn-current" class="tw-btn" data-ft-mode="current">Current</button>
-                <button id="ft-btn-trend" class="tw-btn on" data-ft-mode="trend">Forecast trend</button>
-              </div>
-              <div id="hm-legend" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-                <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--text2);font-family:var(--mono);white-space:nowrap">
-                  <svg width="12" height="12" aria-hidden="true"><rect x="0" y="0" width="12" height="12" rx="2" fill="rgba(163,113,247,0.85)"/></svg>
-                  Hist.
-                </span>
-                <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--text2);font-family:var(--mono);white-space:nowrap">
-                  <svg width="12" height="12" aria-hidden="true"><rect x="0" y="0" width="12" height="12" rx="2" fill="rgba(63,185,80,0.65)"/></svg>
-                  Fcst ↑
-                </span>
-                <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--text2);font-family:var(--mono);white-space:nowrap">
-                  <svg width="12" height="12" aria-hidden="true"><rect x="0" y="0" width="12" height="12" rx="2" fill="rgba(255,123,114,0.65)"/></svg>
-                  Fcst ↓
-                </span>
-                <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--text2);font-family:var(--mono);white-space:nowrap">
-                  <svg width="20" height="9" aria-hidden="true"><line x1="0" y1="4.5" x2="20" y2="4.5" stroke="rgba(230,237,243,0.7)" stroke-width="2" stroke-dasharray="4,3" stroke-linecap="round"/></svg>
-                  5y avg
-                </span>
-                <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--text2);font-family:var(--mono);white-space:nowrap">
-                  <svg width="20" height="9" aria-hidden="true"><rect x="0" y="1" width="20" height="7" rx="2" fill="rgba(200,200,200,0.15)" stroke="rgba(200,200,200,0.3)" stroke-width="1"/></svg>
-                  5y range
-                </span>
-              </div>
-              <div id="ft-stats" style="display:none;align-items:center;gap:16px;margin-left:auto;flex-wrap:wrap">
-                <div style="display:flex;align-items:baseline;gap:5px">
-                  <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;font-weight:700">Now</span>
-                  <span id="ft-stat-now" style="font-size:16px;font-weight:700;font-family:var(--mono);color:var(--text);line-height:1;letter-spacing:-0.3px">—</span>
-                </div>
-                <div style="display:flex;align-items:baseline;gap:5px">
-                  <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;font-weight:700">24h</span>
-                  <span id="ft-stat-chg" style="font-size:12px;font-weight:600;font-family:var(--mono);color:var(--text2);line-height:1">—</span>
-                </div>
-                <div style="display:flex;align-items:baseline;gap:5px">
-                  <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;font-weight:700">7d</span>
-                  <span id="ft-stat-range" style="font-size:12px;font-weight:600;font-family:var(--mono);color:var(--text2);line-height:1">—</span>
-                </div>
-                <div style="display:flex;align-items:baseline;gap:5px">
-                  <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;font-weight:700">vs 5y</span>
-                  <span id="ft-stat-vs5y" style="font-size:12px;font-weight:600;font-family:var(--mono);color:var(--text2);line-height:1">—</span>
-                </div>
-              </div>
-            </div>
-            <div id="hm-spin" class="spin-msg" style="display:flex;align-items:center;justify-content:center;min-height:120px"><span class="sp"></span>Loading weather…</div>
-            <div id="hm-wrap" class="hm-chart-wrap" style="display:none">
-              <canvas id="hm-canvas" role="img" aria-label="Weather demand index vs 5-year average"></canvas>
-            </div>
-            <div id="ft-spin" class="spin-msg" style="display:none;align-items:center;justify-content:center;min-height:120px;font-size:11px;color:var(--text3);text-align:center;padding:0 20px"></div>
-            <div id="ft-wrap" class="hm-chart-wrap" style="display:none">
-              <canvas id="ft-canvas" role="img" aria-label="Forecast demand trend over time"></canvas>
-            </div>
-          </div>
-        </div>
-
-        <!-- RIGHT COLUMN: Storage (tall) + Futures (short) -->
-        <div class="right-col">
-          <div class="st-card">
+        <div class="st-card">
             <div class="st-head">
               <span class="st-title">Storage Forecast</span>
               <div class="st-legend">
@@ -917,72 +990,25 @@ body.sidebar-collapsed .dbg-drawer{left:56px}
               <canvas id="st-deviation-canvas" role="img" aria-label="Storage deviation vs 5-year average across historical and forecast weekly reports"></canvas>
             </div>
           </div>
-
-          <div class="fw-card">
-            <div class="fw-head">
-              <span class="fw-title" id="fw-card-title">Seasonality</span>
-              <div id="fw-legend-curve" style="display:none;align-items:center;gap:10px;flex-wrap:wrap">
-                <span style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);font-family:var(--mono)">
-                  <svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="#4493f8" stroke-width="2.5" stroke-linecap="round"/></svg>Price
-                </span>
-                <span style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);font-family:var(--mono)">
-                  <svg width="10" height="10" aria-hidden="true"><circle cx="5" cy="5" r="4" fill="none" stroke="#e3b341" stroke-width="2"/></svg>Front
-                </span>
-                <span style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);font-family:var(--mono)">
-                  <svg width="10" height="10" aria-hidden="true"><circle cx="5" cy="5" r="4" fill="none" stroke="#3fb950" stroke-width="2"/></svg>Next
-                </span>
-              </div>
-              <div id="fw-legend-season" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-                <span style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);font-family:var(--mono)">
-                  <svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="#e3b341" stroke-width="2.5" stroke-linecap="round"/></svg><span id="fw-season-curyear">This year</span>
-                </span>
-                <span style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);font-family:var(--mono)">
-                  <svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="#4493f8" stroke-width="1.5" stroke-dasharray="4 3"/></svg>Median
-                </span>
-                <span id="fw-legend-fp" style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text2);font-family:var(--mono)">
-                  <svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="#a371f7" stroke-width="2" stroke-linecap="round"/></svg>Fair value
-                </span>
-              </div>
-              <div style="display:flex;align-items:center;gap:4px;margin-left:auto">
-                <select id="fw-season-year" title="Year to compare against the historical median" style="background:var(--bg2,#11151c);color:var(--text2,#c9d1d9);border:1px solid var(--border,#1f242c);border-radius:4px;font-size:9.5px;font-family:var(--mono);padding:3px 5px;cursor:pointer"></select>
-                <button class="cot-help-btn" id="fw-season-help-btn" title="How to read this chart" style="margin-right:2px">?</button>
-                <button class="tbtn" id="fw-tab-curve" style="font-size:9.5px;padding:3px 7px">Curve</button>
-                <button class="tbtn on" id="fw-tab-season" style="font-size:9.5px;padding:3px 7px">Seasonality</button>
-              </div>
-              <span class="fw-note" id="fw-note" style="display:none">awaiting data</span>
-            </div>
-            <div id="fw-spin" class="spin-msg" style="display:flex;align-items:center;justify-content:center;min-height:120px"><span class="sp"></span>Loading…</div>
-            <div class="fw-chart-wrap" id="fw-wrap" style="display:none">
-              <canvas id="fw-chart-canvas" role="img" aria-label="Natural gas futures price curve across delivery months"></canvas>
-            </div>
-            <div class="fw-chart-wrap" id="fw-season-wrap" style="display:none">
-              <canvas id="fw-season-canvas" role="img" aria-label="Natural gas seasonality: current year vs historical median and 10 to 90 percentile band"></canvas>
-            </div>
-          </div>
-
-          <!-- Seasonality chart help popup (overview, always-on card) -->
-          <div class="cot-popup-overlay" id="season-chart-popup-overlay">
-            <div class="cot-popup">
-              <button class="cot-popup-close" id="season-chart-popup-close">✕</button>
-              <h3>Reading the Seasonality Chart</h3>
-              <p>This chart shows where this year's price sits versus how NG=F has behaved in the same part of the year historically: the <b>yellow line</b> is the current year, the <b>dashed blue line</b> the historical median, and the <b>shaded band</b> the 10–90% range of past years.</p>
-              <p>It answers a different question from the "% higher" stats — one is about <b>level</b>, the other about <b>direction</b>, and they often point different ways without contradicting each other.</p>
-              <p><b>Above / below median (level)</b> — whether gas is seasonally <b>expensive or cheap right now</b> versus a typical year.</p>
-              <p><b>Higher in 1–4 weeks (direction)</b> — in what share of past years the price <b>rose from here</b> over the next weeks, regardless of how high it already is.</p>
-              <p>You can be above the median (expensive) and still have high odds of rising — e.g. heading into the heating season, prices are already elevated but the seasonal pull is still upward.</p>
-              <p style="margin-bottom:8px"><b>Four combinations:</b></p>
-              <p style="margin-bottom:6px"><span class="tag bear">Above median</span> + <span class="tag bull">high % higher</span> — expensive, but seasonal tailwind still pushing up (strong part of the year).</p>
-              <p style="margin-bottom:6px"><span class="tag bear">Above median</span> + <span class="tag bear">low % higher</span> — expensive and seasonally past the peak; history tends lower from here.</p>
-              <p style="margin-bottom:6px"><span class="tag bull">Below median</span> + <span class="tag bull">high % higher</span> — cheap and seasonally pre-rally; the strongest seasonal "buy" setup.</p>
-              <p style="margin-bottom:12px"><span class="tag bull">Below median</span> + <span class="tag bear">low % higher</span> — cheap but in a weak stretch; tends to keep drifting down.</p>
-              <p style="color:var(--text4);font-size:11px;margin-bottom:0">Seasonality is a tendency, not a guarantee — use it as context alongside storage, weather, COT and fair value, never on its own.</p>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /.right-stack -->
-
-    </section><!-- /.master-grid -->
+      </div>
+    </section>
+    <script>
+  (function(){
+    var strip=document.getElementById("sec-strip"), btn=document.getElementById("sec-toggle");
+    if(!strip||!btn) return;
+    var KEY="ng_sec_strip_open_v1", hint=btn.querySelector(".sec-hint");
+    function set(open){
+      strip.classList.toggle("open",open);
+      btn.setAttribute("aria-expanded",open?"true":"false");
+      if(hint) hint.textContent=open?"click to collapse":"click to expand";
+      try{localStorage.setItem(KEY,open?"1":"0");}catch(e){}
+      if(open) setTimeout(function(){window.dispatchEvent(new Event("resize"));},60);
+    }
+    var saved="0"; try{saved=localStorage.getItem(KEY)||"0";}catch(e){}
+    set(saved==="1");
+    btn.addEventListener("click",function(){ set(!strip.classList.contains("open")); });
+  })();
+</script>
 
     <!-- ═══════════ TAB PANELS ═══════════ -->
 
