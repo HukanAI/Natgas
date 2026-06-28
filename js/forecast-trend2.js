@@ -41,14 +41,29 @@ function fmtDate(iso) {
   return iso;
 }
 
+const FCST_DAYS = 16; // canonical forecast-window length
+
 async function loadHistory() {
   const res = await fetch(HISTORY_URL + '?t=' + Date.now());
   if (!res.ok) throw new Error('HTTP ' + res.status);
   const data = await res.json();
   if (!Array.isArray(data)) return [];
   const cutoff = Date.now() - WINDOW_DAYS * 86400000;
+  // dem / dem5y are SUMS over the forecast window. Open-Meteo occasionally
+  // returns 15 instead of 16 days in the early UTC morning, which would make
+  // both sums dip. Normalise every record to a 16-day-equivalent sum so the
+  // series (and the 5y-normal line) stay smooth regardless of window length.
   return data
     .filter(r => r && r.ts && typeof r.dem === 'number' && new Date(r.ts).getTime() >= cutoff)
+    .map(r => {
+      const days = (typeof r.days === 'number' && r.days > 0) ? r.days : FCST_DAYS;
+      const k = FCST_DAYS / days;
+      return {
+        ...r,
+        dem: r.dem * k,
+        dem5y: (typeof r.dem5y === 'number') ? r.dem5y * k : r.dem5y,
+      };
+    })
     .sort((a, b) => new Date(a.ts) - new Date(b.ts));
 }
 
