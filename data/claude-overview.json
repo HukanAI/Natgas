@@ -1,49 +1,49 @@
 {
-  "generatedAt": "2026-06-30T13:10:00.000Z",
-  "sourceSnapshotAt": "2026-06-30T13:08:14.863Z",
-  "frontPrice": 3.2750000953674316,
-  "nextPrice": 3.2049999237060547,
-  "marketState": "bearish medium-term with weather-driven short-term bid; extreme heat above 5y max offsets bearish storage surplus and seasonal drift",
-  "summary": "Natural gas (Aug front) is trading at $3.275, sitting $0.315 above the fair-value midpoint of $2.960 but inside the $2.46–$3.46 band (status: SLIGHTLY OVER). The dominant near-term driver is an exceptional heat wave: 1-7D demand is +47.6% vs the 5-year normal and above the historical maximum, while 8-16D demand is also above the 5y max (+30.1%), and overall demand is still accelerating (+8.5 units in 24 hours) — this is the strongest bullish signal in the dataset. The 3-12 week picture is materially weaker: seasonal statistics show just 19% probability of being higher in four weeks, a typical -1.8% four-week move, low seasonal reliability, and storage running +151 Bcf above the five-year average — a structural surplus that will reassert downward pressure once the weather premium fades. Managed-money positioning at the 18th 5-year percentile (net short -82,722) is a meaningful contrarian wildcard: a sustained heat shock into a historically crowded short can generate sharp short-covering before the seasonal and storage gravity reasserts. The futures curve confirms the split: near-term backwardation in Aug/Sep/Oct reflects heat demand while Dec 2026 at $3.99 and Jan 2027 at $4.40 signal the market views elevated spot prices as temporary.",
+  "generatedAt": "2026-06-30T16:25:00.000Z",
+  "sourceSnapshotAt": "2026-06-30T16:20:39.089Z",
+  "frontPrice": 3.316999912261963,
+  "nextPrice": 3.239000082015991,
+  "marketState": "neutral-bearish — weather premium fully priced, seasonal and storage headwinds building",
+  "summary": "Natural gas (Aug front) is trading at $3.317, roughly $0.36 above the fair-value midpoint of $2.96 and in the upper half of the $2.46–$3.46 band (status: SLIGHTLY OVER on all four forward horizons). Weather demand remains far above the 5-year maximum for both the 1–7D (pctVs5y +46%, rangePos 1.85) and 8–16D (pctVs5y +30%, rangePos 1.32) windows — the key near-term bull signal — but the 24-hour trend has flipped from accelerating to slightly declining (-0.9 Bcf/d), suggesting the heat event may be peaking. Beyond the near term, the case for lower prices strengthens: storage is +151 Bcf above the 5-year average with a bearish injection surprise, the 4-week seasonal win-rate is only 19% (typical move -1.8%), and fair value over the next three weeks stays in the $2.95–$3.12 range — well below spot. Managed-money positioning at the 18th 5-year percentile (net short -82,722) remains the key contrarian wildcard that constrains short conviction.",
   "longTerm": {
-    "stance": "WAIT",
+    "stance": "SHORT",
     "conviction": "medium",
     "horizon": "3-12 weeks",
+    "entry": "$3.30–$3.32 zone (current area, scale in)",
+    "stop": "$3.50",
+    "tp1": "$2.96",
+    "tp2": "$2.65",
+    "riskReward": "1:2.5",
+    "sizing": "1R approx 1% risk",
+    "rationale": "Seasonality assigns only 19% probability of price being higher in 4 weeks with a typical 4-week move of -1.8% and low reliability; the fair-value model shows front is 'SLIGHTLY OVER' on all horizons through +21 days with the gap only narrowing from $0.357 to $0.196 as fair value itself rises slowly to $3.12 — price is not reverting to fair value on its own. Storage surplus (+151 Bcf vs 5-year average, bearish surprise) and the bearish 50/200 EMA cross on both the daily and weekly timeframes reinforce the downward structural bias once the weather premium fades.",
+    "invalidation": "Weekly close above $3.50 (above the current fair-value band top of $3.46), or storage deficit vs 5-year average flips negative, or weather demand remains above the 5-year maximum continuously beyond mid-July compressing storage.",
+    "trigger": ""
+  },
+  "shortTerm": {
+    "stance": "WAIT",
+    "conviction": "low",
+    "horizon": "1-10 days",
     "entry": "n/a",
     "stop": "n/a",
     "tp1": "n/a",
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "The medium-term short case is structurally sound: seasonal probabilities are only 19% bullish at four weeks with a typical -1.8% move, storage is +151 Bcf above five-year norms, the weekly trend is bearish (50<200 EMA), and fair value at +7D actually dips to $2.945 before recovering to $3.124 at +21D — current price is still above these. However, timing a short entry now means fighting the tail risk of a heat-driven squeeze into historically extreme net-short COT positioning (18th 5y percentile); premature entry could suffer $0.15–$0.20 of adverse move before the seasonal gravity reasserts.",
-    "invalidation": "Weather demand above +30% vs 5y persists through mid-July AND consecutive storage builds come in below 60 Bcf, suggesting the bullish impulse has structural legs beyond the current heat event.",
-    "trigger": "Wait for evidence the heat premium is exhausting: demand_8_16D pctVs5y dropping below +20% vs 5y, or price reversing from a test of $3.40+, or two consecutive storage builds with bearish surprises above 80 Bcf. Then consider short entry around $3.35–$3.42 with stop above $3.60, targeting $2.95–$3.00 (fair value) and $2.75 (lower band area)."
-  },
-  "shortTerm": {
-    "stance": "LONG",
-    "conviction": "medium",
-    "horizon": "1-10 days",
-    "entry": "$3.22 limit (pullback toward Sep contract level / $3.20 support)",
-    "stop": "$3.07",
-    "tp1": "$3.42",
-    "tp2": "$3.46",
-    "riskReward": "1:1.3 to TP1 / 1:1.6 to TP2",
-    "sizing": "1R approx 1% risk",
-    "rationale": "Near-term demand is above the 5-year historical maximum in both the 1-7D (+47.6%) and 8-16D (+30.1%) windows and is still accelerating — the strongest single signal in the dataset and a valid reason for prices to remain elevated for days. Managed-money at the 18th 5-year percentile net-short creates significant short-squeeze potential on a sustained heat catalyst. The 4h trend is bullish (50>200 EMA, RSI 54.4) with room to run. Entry on a limit pullback rather than market is preferred because 1h RSI (70.8) is overbought and price is above the upper Bollinger on the 1h timeframe, so a brief dip to $3.20–$3.22 improves R:R meaningfully before the next leg toward the upper band.",
-    "invalidation": "Price closes below $3.07 (breaks below Sep contract and the near-term fair-value support cluster), or weather models shift to show rapid cooling with 8-16D demand reverting toward the 5y average, eliminating the core catalyst.",
-    "trigger": ""
+    "rationale": "Demand is still above the 5-year historical maximum in both near windows, making a new short high-risk; but the 24-hour demand trend has flipped to -0.9 Bcf/d (vs +8.5 in the prior snapshot) and the 1-hour RSI is overbought at 75.8, suggesting the weather-driven spike may be exhausting near the band top. Entering long here chases an already-extended move with the weather catalyst likely peaking; entering short still risks a squeeze if heat holds.",
+    "invalidation": "n/a",
+    "trigger": "Enter SHORT if price reaches $3.44–$3.46 (fair-value band top) with 1-hour RSI still above 70, confirming exhaustion at resistance; OR if weather demand model revisions drop the 1–7 day pctVs5y below +20% (demand rolling back toward historical range), signalling the heat-driven premium is fading — target $3.10–$3.15 with stop above $3.50."
   },
   "keyDrivers": [
-    "Extreme heat: 1-7D demand +47.6% vs 5y and above 5y historical max; demand accelerating +8.5 units in 24h — primary near-term bull driver",
-    "8-16D demand also above 5y max (+30.1%): heat-driven support window extends at least two weeks, not just days",
-    "Managed money at 18th 5y pctl net-short (-82,722 net): historically crowded short creates material short-squeeze risk on sustained heat",
-    "Storage +151 Bcf above 5y avg with bearish build surprise (+6 Bcf vs forecast): structural surplus caps medium-term upside once heat fades",
-    "Seasonal headwinds: only 19% probability higher in 4 weeks, typical -1.8% four-week move, low reliability (51 pp spread)"
+    "Weather demand above 5-year historical max in both 1–7D (rangePos 1.85, +46% vs 5y) and 8–16D (rangePos 1.32, +30% vs 5y) windows — primary near-term bull catalyst, though 24h trend has turned -0.9 Bcf/d",
+    "Storage surplus +151 Bcf vs 5-year average with bearish injection surprise (+6 Bcf above forecast) — structural medium-term bear headwind",
+    "Fair value $2.96 midpoint ($2.46–$3.46 band); front 'SLIGHTLY OVER' on all four forward horizons, gap only slowly closes to $0.196 at +21 days",
+    "Managed-money net short at 18th 5-year percentile (−82,722 contracts) — historically crowded short creates contrarian squeeze risk that limits new short conviction",
+    "Seasonality bearish: 19% win-rate in 4 weeks, typical 4-week move −1.8%, low reliability (51 pp 10–90 percentile spread this week)"
   ],
   "risks": [
-    "Weather normalization: if 8-16D demand forecasts cool sharply, the near-term bull case collapses and a rapid move toward $3.00–$3.10 (fair value) is likely",
-    "Storage builds accelerate above seasonal norms: consecutive injections above 80 Bcf with bearish surprises would reinforce the structural surplus and press prices toward the $2.46–$2.54 band floor",
-    "Short squeeze escalation above $3.46: historically extreme short COT positioning could drive the front contract above the upper fair-value band, invalidating the medium-term WAIT-to-short thesis and requiring full reassessment"
+    "Persistent extreme heat holds demand above 5-year maximum through late July, sustaining the fair-value premium and squeezing shorts toward or above the band top ($3.46–$3.52)",
+    "COT at 18th percentile net-short means a sustained bull catalyst could trigger a sharp short-covering rally well above $3.50, requiring a full reassessment of the short thesis",
+    "Winter curve premium (Dec 2026 $4.02, Jan 2027 $4.43) means any early-season cold-weather signal or supply disruption could pull the front month higher before seasonal weakness fully materialises"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
