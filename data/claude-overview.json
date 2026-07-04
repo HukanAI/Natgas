@@ -1,49 +1,49 @@
 {
-  "generatedAt": "2026-07-04T22:55:00.000Z",
-  "sourceSnapshotAt": "2026-07-04T22:53:41.800Z",
+  "generatedAt": "2026-07-04T23:59:00.000Z",
+  "sourceSnapshotAt": "2026-07-04T23:57:31.559Z",
   "frontPrice": 3.244999885559082,
   "nextPrice": 3.1419999599456787,
-  "marketState": "neutral, tilted cautious — price already running above fair value with short-term technicals overbought",
-  "summary": "Seasonality is only mildly bullish (56/50/56/63% odds of a higher price over 1-4 weeks, price +3.3pp above its median seasonal path) and explicitly flagged 'Low' reliability, so it shouldn't carry a trade on its own. Weather demand is well above the 5-year normal in the next 7 days (+11.1%, rangePos 0.87 near the top of its range) but eases in the 8-16 day window (+6.9%, rangePos 0.63) and has ticked down 7.4 units in the last 24h, sitting near the bottom of its own weekly range - a fading, not building, tailwind. Front-month price ($3.245) is 'SLIGHTLY OVER' modeled fair value at every horizon out to 21 days, and notably already exceeds even the plus-21-day fair estimate ($3.066), meaning the rally has front-run its own fundamental curve rather than being validated by it. Storage is a genuine bearish headwind (+175 Bcf surplus vs 5y, plus a +13 Bcf bearish build surprise), while COT managed-money sits at an 18th-percentile net-short extreme, a contrarian-bullish positioning offset. Near-term technicals are overbought (5m/15m RSI 74-84, price above the upper Bollinger band) even as 4h/1d look closer to neutral, favoring mean reversion over continuation in the next 1-10 days.",
+  "marketState": "Neutral: near-term overbought/rich-to-fair-value risk offset by modestly bullish seasonality and weather trend",
+  "summary": "NG=F trades at $3.245, +3.3pp above its seasonal median and $0.19-$0.32 over modeled fair value across every horizon (now through +21D), though comfortably inside each fair-value band rather than at an extreme. Weather demand is running well above 5-year normal both near-term (+8.7%) and in the 8-16 day window (+11%, rangePos 0.74), supportive of cooling-season gas burn, but the 24h demand trend is already softening (-7.7). Short-term technicals are stretched (RSI 74-84 and price above the upper Bollinger band on 5m/15m/1h), and storage posted a bearish surprise (+13 Bcf vs forecast, +175 Bcf surplus vs 5y), reinforcing near-term downside/pullback risk. Managed money is net short near the 18th percentile of its 5-year range (mild contrarian upside risk on short-covering), and the futures curve shows a large winter contango (Dec/Jan near $3.95-$4.37) confirming seasonal strength is already priced further out. Net take: near-term mean-reversion risk from overbought/over-fair conditions, but medium-term seasonality, weather trend, and a rising fair-value glidepath (from $2.93 now to $3.06 by +21D) keep the longer-term bias cautiously long, albeit with explicitly low seasonality reliability.",
   "longTerm": {
-    "stance": "WAIT",
+    "stance": "LONG",
     "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "n/a",
-    "stop": "n/a",
-    "tp1": "n/a",
-    "tp2": "n/a",
-    "riskReward": "n/a",
-    "sizing": "n/a",
-    "rationale": "Mildly bullish seasonality/weather and a contrarian-bullish COT extreme (managed-money net short at the 18th 5y percentile) are offset by a confirmed storage surplus (+175 Bcf vs 5y, bearish build surprise) and a price that already trades above its own plus-21D fair-value estimate. With seasonality reliability explicitly flagged 'Low' this week and the weather tailwind fading by the 8-16D window, the top-priority evidence is too mixed to size a directional multi-week position.",
-    "invalidation": "n/a",
-    "trigger": "Wait for either (a) a pullback into the $2.75-2.95 fair-value zone with weather demand still above-normal to build a LONG, or (b) a confirmed break below ~$3.00 alongside continued/growing storage surpluses to justify a SHORT."
+    "entry": "$3.05-$3.15 (pullback toward now/+7D fair value)",
+    "stop": "$2.85",
+    "tp1": "$3.35",
+    "tp2": "$3.55",
+    "riskReward": "1:1.6 (blended, entry $3.10 / stop $2.85)",
+    "sizing": "1R approx 1% account risk",
+    "rationale": "8-16D weather demand is +11% vs 5y with rangePos 0.74, supporting above-normal cooling-season burn; seasonality shows 63% historical odds of a higher price in 4 weeks with a +2.3% typical move; and the fair-value glidepath rises from $2.929 now to $3.057 by +21D, narrowing today's overvaluation as time passes rather than requiring price to fall.",
+    "invalidation": "Sustained break below $2.85 (below the now fair-value band low), 8-16D weather demand reverting to/below 5y normal, or continued larger-than-forecast storage builds widening the +175 Bcf surplus",
+    "trigger": ""
   },
   "shortTerm": {
     "stance": "SHORT",
     "conviction": "medium",
     "horizon": "1-10 days",
-    "entry": "$3.24 - $3.30 (scale into strength/fade the extension)",
+    "entry": "$3.24-$3.30 (current price / bounce into resistance)",
     "stop": "$3.43",
-    "tp1": "$3.06",
+    "tp1": "$3.05",
     "tp2": "$2.93",
-    "riskReward": "1:1.2 to TP1, 1:1.9 to TP2",
-    "sizing": "1R approx 1% account risk (~$0.17-0.19/MMBtu stop distance)",
-    "rationale": "Front trades 'SLIGHTLY OVER' fair value at every modeled horizon while 5m/15m/1h are overbought (RSI 74-84, price above the upper Bollinger band), favoring a mean-reversion fade toward the fair-value band ($3.06 plus7D/14D fair, $2.93 now-fair) rather than chasing the extension. This is a tactical, technically-driven fade, not a fundamentals call.",
-    "invalidation": "A push and hold above the $3.43 fair-value-now band ceiling, or a fresh spike in 1-7D weather demand/rangePos, would invalidate the fade thesis.",
+    "riskReward": "1:1.9 (entry $3.26 / stop $3.43 / TP2 $2.93)",
+    "sizing": "1R approx 1% account risk",
+    "rationale": "Price is stretched on short-term technicals (RSI 74-84, trading above the upper Bollinger band on 5m/15m/1h) while sitting $0.32 over 'now' fair value; the front-vs-next backwardation (-$0.103) and the bearish +13 Bcf storage surprise both add fundamental weight to a near-term pullback toward fair value.",
+    "invalidation": "Close and hold above $3.43 (top of the now fair-value band), or 1-7D weather demand reaccelerating back above the recent +8.7% vs 5y pace",
     "trigger": ""
   },
   "keyDrivers": [
-    "Front price already above modeled fair value at every horizon (now through +21D), including the model's own plus-21D estimate",
-    "1-7D weather demand +11.1% vs 5y (rangePos 0.87) but fading into the 8-16D window (+6.9%, rangePos 0.63) and down 7.4 in the last 24h",
-    "Storage surplus +175 Bcf vs 5y with a bearish build surprise (+13 Bcf vs forecast)",
-    "Managed-money COT net short at an 18th-percentile extreme (contrarian bullish offset)",
-    "Short-frame technicals overbought (RSI 74-84, above upper Bollinger) vs more neutral 4h/1d"
+    "Weather demand +8.7%/+11% vs 5y (1-7D/8-16D) supports cooling-season gas burn",
+    "Price sits $0.19-$0.32 over fair value at every horizon, but fair value itself rises into +21D",
+    "Storage surplus +175 Bcf vs 5y with a bearish +13 Bcf build surprise",
+    "Managed-money net short at just the 18th 5y percentile - some short-covering upside risk",
+    "Short-term technicals (5m/15m/1h) overbought, trading above the upper Bollinger band"
   ],
   "risks": [
-    "Seasonality signal flagged 'Low' reliability (51pp 10-90% spread) - don't over-weight the seasonal tilt",
-    "A resurgence in near-term heat/cooling demand would quickly invalidate the short-term fade",
-    "Extreme COT short positioning can trigger a sharp short-covering rally with little warning"
+    "Seasonality reliability is explicitly LOW (51pp 10-90% spread) - wide dispersion of outcomes",
+    "Large and growing storage surplus keeps structural bearish pressure on price",
+    "1-7D weather demand trend is already decelerating (-7.7 in 24h), could remove the near-term tailwind"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
