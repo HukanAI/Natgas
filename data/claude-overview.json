@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-07-06T19:50:02.000Z",
-  "sourceSnapshotAt": "2026-07-06T19:48:25.377Z",
-  "frontPrice": 3.246000051498413,
-  "nextPrice": 3.131999969482422,
+  "generatedAt": "2026-07-06T21:30:00.000Z",
+  "sourceSnapshotAt": "2026-07-06T21:25:08.865Z",
+  "frontPrice": 3.244999885559082,
+  "nextPrice": 3.1419999599456787,
   "marketState": "neutral, slight bearish near-term tilt with a low-conviction bullish seasonal backdrop",
-  "summary": "Seasonality and weather both lean mildly bullish (price running +3.4pp above its typical seasonal path, cooling demand +1.8%/+4.9% above 5y norms), but the seasonality read is explicitly flagged LOW reliability (51pp 10-90% spread) so it carries little weight on its own. Front-month price is 'SLIGHTLY OVER' fair value at every horizon (now, +7D, +14D, +21D), and that premium is largest today ($0.317) and only converges as the fair-value model itself drifts higher over the next three weeks - meaning the market has already priced in much of the seasonal support. Storage remains a genuine bearish counterweight: a bigger-than-forecast build (+87 vs +74 Bcf) pushed the surplus to +175 Bcf vs 5-year, and managed money is net short (though only at the 31st percentile, not extreme). Technicals are mixed with no clean multi-timeframe confirmation, and the futures curve shows backwardation into Sep/Oct before a steep winter contango, a normal seasonal shape rather than a directional signal. Net: near-term data (rich fair value, backwardation, bearish storage surprise) argues for caution/short bias, while the 3-12 week picture is too split between bullish seasonality/weather and bearish storage/COT to commit with conviction.",
+  "summary": "Seasonality and weather both lean mildly bullish (price running +3.3pp above its typical seasonal path, cooling demand +2.3%/+4.9% above 5y norms), but the seasonality read is explicitly flagged LOW reliability (51pp 10-90% spread) so it carries limited weight on its own. Front-month price is 'SLIGHTLY OVER' fair value at every horizon out to +21D, and that premium is largest today ($0.316) and only narrows as the fair-value model itself drifts higher over the next three weeks - meaning the market has already priced in much of the seasonal support and is paying up for it right now. Storage remains a genuine bearish counterweight: a bigger-than-forecast build (+87 vs +74 Bcf) pushed the surplus to +175 Bcf vs 5-year, and managed money is net short (though only at the 31st percentile, not an extreme). Technicals are mixed with no clean multi-timeframe confirmation - intraday/4h lean bullish (EMA 50>200) while daily/weekly lean neutral-to-bearish (EMA 50<200) - and the futures curve shows backwardation into Sep/Oct ahead of a steep winter contango, a normal seasonal shape rather than a directional signal. Net: near-term data (rich fair value, backwardation, bearish storage surprise, cooling demand momentum) argues for a tactical short, while the 3-12 week picture is too split between bullish seasonality/weather and bearish fair-value/storage/COT to commit with conviction.",
   "longTerm": {
     "stance": "WAIT",
     "conviction": "low",
@@ -15,29 +15,29 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Seasonality (price +3.4pp above median, 63% odds higher in 4wks, strongest month Sep ahead) and weather (demand +1.8%/+4.9% above 5y) lean bullish, but seasonality reliability is explicitly LOW and storage surplus (+175 Bcf vs 5y, bearish surprise) plus net-short managed money argue the other way.",
+    "rationale": "Seasonality (price +3.3pp above median, 63% odds higher in 4wks, strongest month Sep ahead) and weather (demand +2.3%/+4.9% above 5y) lean bullish, but seasonality reliability is explicitly flagged LOW, fair value shows the front 'SLIGHTLY OVER' at every horizon out to +21D (not undervalued anywhere on the curve), and storage surplus (+175 Bcf vs 5y, bearish surprise) plus net-short-but-not-extreme managed money round out a genuinely split picture.",
     "invalidation": "n/a",
-    "trigger": "Wait for either a pullback into the lower/mid fair-value band (~$2.90-$3.05) to buy the seasonal Sep/Oct strength at better value, or a storage report printing below forecast (bullish surprise) confirming the demand-led tightening thesis before adding long exposure."
+    "trigger": "Wait for either a pullback into the lower/mid fair-value band (~$2.90-$3.05) to buy the seasonal Sep/Oct strength at better value, or a storage report printing below forecast (bullish surprise) confirming a demand-led tightening thesis before adding long exposure."
   },
   "shortTerm": {
     "stance": "SHORT",
     "conviction": "medium",
     "horizon": "1-10 days",
     "entry": "$3.24 - $3.29 (sell into strength near current front price)",
-    "stop": "$3.42 (above fair-value band ceiling of $3.429)",
+    "stop": "$3.43 (above fair-value band ceiling of $3.429)",
     "tp1": "$3.05 (near-curve/next-contract level, partial fair-value reversion)",
     "tp2": "$2.93 (fair value 'now' estimate, full reversion)",
-    "riskReward": "1:1.2 to TP1, 1:1.9 to TP2 (entry $3.26, stop $3.42, risk $0.16)",
+    "riskReward": "1:1.3 to TP1, 1:2.0 to TP2 (entry $3.265, stop $3.43, risk $0.165)",
     "sizing": "1R approx 1% account risk",
-    "rationale": "Front price is the richest point vs fair value on the curve ('SLIGHTLY OVER' by $0.317, the widest spread of any horizon), the curve is in backwardation into Sep/Oct (-$0.11/-$0.12), and this week's storage build beat forecast (bearish +13 Bcf surprise) while near-term demand momentum is cooling (24h change -10.5).",
+    "rationale": "Front price is the richest point vs fair value on the curve ('SLIGHTLY OVER' by $0.316, the widest spread of any horizon), the curve is in backwardation into Sep/Oct (-$0.10/-$0.10), this week's storage build beat forecast (bearish +13 Bcf surprise), and near-term demand momentum is cooling (24h change -10.1) even as daily/weekly EMA structure stays bearish (50<200).",
     "invalidation": "A daily close above $3.43 (top of the current fair-value band) or a bullish storage surprise (build well below the +74 Bcf forecast) would invalidate the short thesis.",
     "trigger": ""
   },
   "keyDrivers": [
-    "Front contract is 'SLIGHTLY OVER' fair value at every horizon, and richest today ($0.317 over $2.929 fair, narrowing to $0.177 by +21D)",
+    "Front contract is 'SLIGHTLY OVER' fair value at every horizon, and richest today ($0.316 over $2.929 fair, narrowing to $0.175 by +21D)",
     "Storage surplus widening (+175 Bcf vs 5y) with a bearish +13 Bcf surprise on this week's build",
     "Seasonality modestly bullish (price above median, 63% odds higher in 4wks) but reliability explicitly flagged LOW (51pp spread)",
-    "Cooling demand above 5y norms both 1-7D (+1.8%) and 8-16D (+4.9%), though momentum cooled in the last 24h (-10.5)",
+    "Cooling demand above 5y norms both 1-7D (+2.3%) and 8-16D (+4.9%), though momentum cooled in the last 24h (-10.1)",
     "Managed money net short (-64,808 contracts, 31st percentile of 5y range) - moderate bearish positioning, not extreme"
   ],
   "risks": [
