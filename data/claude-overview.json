@@ -1,49 +1,49 @@
 {
-  "generatedAt": "2026-07-10T23:00:00.000Z",
-  "sourceSnapshotAt": "2026-07-10T22:57:50.447Z",
+  "generatedAt": "2026-07-10T23:58:00.000Z",
+  "sourceSnapshotAt": "2026-07-10T23:56:53.328Z",
   "frontPrice": 2.947999954223633,
   "nextPrice": 2.9000000953674316,
-  "marketState": "neutral, tilted bullish near-term on extreme summer heat demand, capped medium-term by storage surplus and weak/unreliable seasonality",
-  "summary": "Front price ($2.948) is trading almost exactly at model fair value ($2.917, spread +$0.031, FAIR), so there is no fair-value edge today, though the fair-value path itself rises to $3.067 by +21D. The dominant near-term driver is weather: cooling demand is running 15.4% above the 5-year norm over the next week and 23.9% above over days 8-16, both near the top of their historical ranges (rangePos 0.90-0.93) and still climbing (+24.5 in the last 24h, +20% vs the 5y normal trend). That supports a short-term bounce, reinforced by daily/4h technicals that are oversold (RSI 26-36, price below the lower daily Bollinger band) just as intraday momentum (5m/15m RSI 59-66, MACD positive) is already turning up, and by front-month backwardation versus Sep (-$0.048) consistent with near-term tightness. Working against a longer commitment: seasonality shows only 31-38% odds of a higher price over 1-4 weeks with a -3.1% typical 4-week move, but that read is explicitly flagged Low reliability; storage sits +184 Bcf above the 5-year average after a build that beat forecast by 72 Bcf (bearish surprise); and daily/weekly technicals carry a 50<200 EMA cross. None of these are extreme (managed money is only net short at the 35th 5y percentile), so the medium-term picture is a genuine standoff between high-priority bullish weather and lower-priority bearish fundamentals/technicals rather than a clean directional edge.",
+  "marketState": "Neutral-to-bearish with a near-term weather-driven bounce risk",
+  "summary": "Price sits well below its seasonal median (-13.5% YTD vs -3.4% median) and seasonality odds skew down (only 31% chance higher in 4 weeks, typical move -3.1%), reinforced by a bearish storage surprise (+72 Bcf vs forecast, +184 Bcf above the 5y average) and a bearish EMA structure across every technical timeframe. Against that, 1-7 day weather demand is running +18.2% above the 5-year norm near the top of its range and rising fast, while 4h/1d technicals are oversold (RSI 26/36, price below the lower daily Bollinger band) - a setup for a short-lived counter-trend bounce even inside a heavier bear backdrop. Fair value pegs the front contract as essentially FAIR at every horizon (front spread +$0.03 now, widening only modestly to -$0.07 by +21D), so there is no large mispricing edge either way. Managed money is net short (-60,295 contracts, ratio 0.80) but only at the 35th percentile of its 5-year range, leaving room to extend shorts rather than signaling an extreme. Seasonality reliability is explicitly flagged Low (50pp spread), which caps conviction on the longer-term seasonal read.",
   "longTerm": {
-    "stance": "WAIT",
+    "stance": "SHORT",
     "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "n/a",
-    "stop": "n/a",
-    "tp1": "n/a",
-    "tp2": "n/a",
-    "riskReward": "n/a",
-    "sizing": "n/a",
-    "rationale": "Seasonality (top priority) is bearish-leaning but explicitly flagged Low reliability (31% odds higher in 4 weeks, typical -3.1% move, 50pp spread), while weather (priority #2) is strongly bullish - a genuine conflict at the top of the priority stack. Storage (+184 Bcf above 5y, +72 Bcf bearish build surprise) and a 50<200 EMA cross on the daily/weekly chart lean bearish, but managed money is only moderately net short (35th percentile), leaving no side of this with a clean, well-supported edge for a multi-week commitment.",
-    "invalidation": "n/a",
-    "trigger": "Wait for either (a) price to push toward and hold above ~$3.10-3.15 (near the +14D/+21D fair-value path) alongside continued above-normal weather demand, confirming a bullish breakout toward the $3.35-3.45 fair-value band top, or (b) a drop into the $2.60-2.70 zone (near the fair-value band's lower quartile) alongside weather demand fading back toward the 5y norm and another bearish storage surprise, confirming a seasonal mean-reversion short."
+    "entry": "$2.95 - $3.05 (scale in on any bounce)",
+    "stop": "$3.15",
+    "tp1": "$2.70",
+    "tp2": "$2.45",
+    "riskReward": "1:1.6 (TP1) / 1:3.1 (TP2)",
+    "sizing": "1R approx 1% account risk",
+    "rationale": "Storage is +184 Bcf above the 5y average with a bearish +72 Bcf surprise build, price is already -13.5% YTD vs a -3.4% seasonal median, and 4-week seasonality odds favor lower prices (31% higher, typical -3.1% move) - a structurally oversupplied backdrop into the Cooling season.",
+    "invalidation": "A sustained storage deficit vs forecast, or 8-16D weather demand accelerating well above +5-10% vs 5y, would remove the oversupply thesis and invalidate the short.",
+    "trigger": ""
   },
   "shortTerm": {
     "stance": "LONG",
     "conviction": "medium",
     "horizon": "1-10 days",
-    "entry": "$2.90 - $2.95",
-    "stop": "$2.76",
-    "tp1": "$3.08",
-    "tp2": "$3.30",
-    "riskReward": "~1:1 to TP1, ~1:2.2 to TP2",
+    "entry": "$2.95 - $2.98",
+    "stop": "$2.85",
+    "tp1": "$3.05",
+    "tp2": "$3.20",
+    "riskReward": "1:1.0 (TP1) / 1:2.5 (TP2)",
     "sizing": "1R approx 1% account risk",
-    "rationale": "1-7 day and 8-16 day weather demand are 15-24% above the 5y normal near the top of their historical ranges and still rising, the futures curve is in backwardation from front to Sep (-$0.048) consistent with near-term tightness, and daily/4h RSI are oversold (26-36, price below the lower daily Bollinger band) just as 5m/15m momentum (RSI 59-66, positive MACD) is already turning up - a classic short-term bounce setup into peak summer cooling demand.",
-    "invalidation": "A daily close back below ~$2.76, or a shift in the 1-7D/8-16D weather forecast back toward or below the 5y normal, would remove the basis for the bounce.",
+    "rationale": "1-7D cooling demand is +18.2% vs 5y and near the top of its range (rangePos 0.98) and still rising (+24.5 24h), while 4h/1d technicals are oversold (RSI 26.2/35.9, price below the lower daily Bollinger band) - a near-term bounce setup even though the broader multi-timeframe EMA trend (50<200 everywhere) stays bearish.",
+    "invalidation": "If 1-7D demand rolls over back toward the 5y norm or price closes below $2.85, the bounce thesis fails and the broader bearish trend resumes.",
     "trigger": ""
   },
   "keyDrivers": [
-    "Cooling demand 15.4% (1-7D) and 23.9% (8-16D) above 5y normal, near top of historical range and still rising",
-    "Price essentially at fair value now ($2.948 vs $2.917 fair) with the fair-value path rising to $3.067 by +21D",
-    "Daily/4h oversold technicals (RSI 26-36, below lower Bollinger) vs turning-up intraday momentum - bounce setup",
-    "Storage surplus +184 Bcf vs 5y with a 72 Bcf bearish build surprise caps the medium-term upside",
-    "Seasonality is bearish-leaning but explicitly Low reliability (31-38% odds higher over 1-4 weeks); managed money only moderately net short (35th percentile)"
+    "Storage +184 Bcf vs 5y average with a bearish +72 Bcf surprise build",
+    "Price -13.5% YTD vs -3.4% seasonal median; 4-week seasonality odds only 31% higher",
+    "1-7D cooling demand +18.2% vs 5y, rangePos 0.98 and rising fast, but 8-16D demand only +1.4% (fades)",
+    "Bearish EMA structure (50<200) on every technical timeframe, with 4h/1d oversold (RSI 26/36)",
+    "Managed money net short (-60,295, ratio 0.80) at only the 35th percentile of its 5y range"
   ],
   "risks": [
-    "Seasonality reliability is explicitly Low (50pp spread) - the historical pattern could fail in either direction",
-    "Weather forecasts beyond 7-16 days are volatile; a cooldown would remove the main short-term bullish catalyst quickly",
-    "Steep winter contango further out the curve (Dec $3.79 / Jan $4.24 vs front $2.948) reflects a storage/weather risk premium, not a near-term fundamental signal, and should not be read as current bullish confirmation"
+    "Seasonality reliability is explicitly Low (50pp spread) - the seasonal edge could easily fail",
+    "Weather forecasts can shift quickly; the 1-7D demand spike could intensify or fade faster than modeled, whipsawing both trades",
+    "Fair value shows price as FAIR at every horizon, limiting the mispricing edge and making both trades sensitive to the next storage/weather data revision"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
