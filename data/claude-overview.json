@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-07-15T22:05:00.000Z",
-  "sourceSnapshotAt": "2026-07-15T21:54:11.390Z",
-  "frontPrice": 2.921,
-  "nextPrice": 2.888,
+  "generatedAt": "2026-07-15T22:56:06.000Z",
+  "sourceSnapshotAt": "2026-07-15T22:54:24.133Z",
+  "frontPrice": 2.9149999618530273,
+  "nextPrice": 2.88100004196167,
   "marketState": "neutral-to-bearish on a 3-12wk horizon, with a near-term bullish weather tilt",
-  "summary": "NG front trades at $2.921, almost exactly on the model's fair value ($2.917, band $2.42-$3.42), with next-month at $2.888 (slight backwardation). Seasonality is a mild long-term headwind: price is already 10.9pp below its seasonal median and the 16-year sample gives only a 31% chance of being higher in 4 weeks (typical move -3.1%), though the 'Low' reliability tag (50pp spread) caps how much weight this deserves. Weather is the standout near-term driver - cooling demand is running +22.7% above the 5-year norm and near the top of its range (91st percentile) for days 1-7, a bullish catalyst not yet priced into the fair-value spread, though it fades to +10.1%/72nd percentile by days 8-16. Fundamentals skew bearish: storage is +184 Bcf above the 5-year average with a +72 Bcf bearish build surprise, and managed money is net short (-60.3k contracts, 35th percentile). Technicals split by horizon - 5m/15m lean neutral-to-bullish while 4h/1d/1w show a bearish trend with 50<200 EMA crosses, and the futures curve dataset is missing so contango/backwardation structure can't be confirmed beyond the raw front/next spread.",
+  "summary": "NG front trades at $2.915, almost exactly on the model's fair value ($2.917, band $2.42-$3.42), with next-month at $2.881 (slight backwardation, -$0.034). Seasonality is a mild long-term headwind: price is already 11.0pp below its seasonal median and the 16-year sample gives only a 31% chance of being higher in 4 weeks (typical move -3.1%), though the 'Low' reliability tag (50pp spread) caps how much weight this deserves. Weather is the standout near-term driver - cooling demand is running +22.2% above the 5-year norm and near the top of its range (rangePos 0.9) for days 1-7, rising fast (+15% vs normal, +10.8 in the last 24h), a bullish catalyst that fades to +10.1%/0.72 rangePos by days 8-16. Fundamentals skew bearish further out: storage is +184 Bcf above the 5-year average with a +72 Bcf bearish build surprise, and managed money is net short (-60.3k contracts, 35th percentile). Technicals confirm the split by horizon - 5m/15m are neutral while 1h through 1w all show a bearish trend with 50<200 EMA crosses and negative MACD, and the futures curve is in a normal seasonal contango building into winter (Jan 2027 +$1.27 vs front) rather than signaling anything unusual.",
   "longTerm": {
     "stance": "SHORT",
     "conviction": "low",
@@ -12,38 +12,38 @@
     "entry": "$2.95 - $3.05 (sell into bounces toward fair value)",
     "stop": "$3.20",
     "tp1": "$2.75",
-    "tp2": "$2.55",
-    "riskReward": "~1:1.3 to TP1, ~1:2.3 to TP2",
+    "tp2": "$2.50",
+    "riskReward": "~1:1.25 to TP1, ~1:2.5 to TP2",
     "sizing": "0.5R approx 0.5% risk (low conviction)",
-    "rationale": "16y seasonality gives only 31% odds of a higher price in 4 weeks with a -3.1% typical move; storage is +184 Bcf above the 5y average with a bearish +72 Bcf build surprise; COT shows managed money net short (-60.3k, 35th percentile) and 1d/1w technicals confirm a bearish trend (50<200 EMA, RSI 35-38). Fair value is rising toward $3.05 by +21D while front sits FAIR today, so this is a fade-the-bounce short rather than a breakdown call.",
-    "invalidation": "A sustained break and hold above the plus21D fair-value zone (~$3.05), or a run of bullish storage draws / COT short-covering that flips the 1d/1w trend structure bullish.",
+    "rationale": "16y seasonality gives only 31% odds of a higher price in 4 weeks with a -3.1% typical move; storage is +184 Bcf above the 5y average with a bearish +72 Bcf build surprise; COT shows managed money net short (-60.3k, 35th percentile) and 1d/1w technicals confirm a bearish trend (50<200 EMA, RSI 35-37, negative MACD). Fair value is rising toward $3.05 by +21D while front sits FAIR today, so this is a fade-the-bounce short rather than a breakdown call.",
+    "invalidation": "A sustained close and hold above ~$3.20-3.25 (into the plus21D fair-value zone), or a run of bullish storage draws / COT short-covering that flips the 1d/1w trend structure bullish.",
     "trigger": ""
   },
   "shortTerm": {
     "stance": "LONG",
     "conviction": "low",
     "horizon": "1-10 days",
-    "entry": "$2.90 - $2.95 (current front price)",
-    "stop": "$2.85",
-    "tp1": "$3.02",
-    "tp2": "$3.15",
-    "riskReward": "~1:1.4 to TP1, ~1:3.3 to TP2",
-    "sizing": "0.5R approx 0.5% risk (countertrend vs daily/weekly bearish structure)",
-    "rationale": "Days 1-7 cooling demand is +22.7% above the 5y norm and near the top of its range (91st percentile), a bullish catalyst not yet reflected in the fair-value spread (front is only +$0.004 over fair). 15m trend is bullish and 1h is neutral, offering a tactical long into the demand spike, with the plus7D fair value ($2.952) acting as a nearby magnet for TP1.",
-    "invalidation": "demand_1_7D rolls over toward the 5y norm, or price closes back below recent support, confirming the 4h/1d/1w downtrend remains in control.",
+    "entry": "$2.88 - $2.92 (current front price)",
+    "stop": "$2.78",
+    "tp1": "$3.05",
+    "tp2": "$3.20",
+    "riskReward": "~1:1.25 to TP1, ~1:2.5 to TP2",
+    "sizing": "0.5R approx 0.5% risk (countertrend vs the 1h-1w bearish structure)",
+    "rationale": "Days 1-7 cooling demand is +22.2% above the 5y norm and near the top of its range (rangePos 0.9) and still rising (+10.8 in 24h), a bullish catalyst not yet reflected in the fair-value spread (front is essentially exactly at fair, -$0.002). 5m/15m technicals are neutral (not confirming the bearish 1h+ trend yet), and slight backwardation to Sep (-$0.034) is consistent with near-term tightness, giving a tactical long into the demand spike with plus7D fair value ($2.952) as an early magnet.",
+    "invalidation": "demand_1_7D rolls over back toward the 5y norm, or price closes back below $2.78 confirming the 1h/4h/1d/1w downtrend remains in control.",
     "trigger": ""
   },
   "keyDrivers": [
-    "Demand_1_7D +22.7% vs 5y, 91st percentile of range - near-term bullish weather catalyst",
+    "Demand_1_7D +22.2% vs 5y, rangePos 0.9 and rising - near-term bullish weather catalyst",
     "Storage +184 Bcf above 5y avg with a +72 Bcf bearish build surprise",
     "Seasonality: only 31% odds of a higher price in 4wks, typical move -3.1% (reliability: Low)",
     "Managed money net short -60.3k contracts (35th percentile, room to add)",
-    "Fair value curve rising ($2.917 now to $3.049 by +21D) while front trades right at fair"
+    "Technicals bearish 1h through 1w (50<200 EMA, negative MACD) while price sits right at fair value"
   ],
   "risks": [
     "Seasonality reliability flagged Low (50pp spread) - thin edge for the long-term call",
-    "Futures curve data missing - can't confirm contango/backwardation structure",
-    "Weather forecasts can flip quickly, and demand_8_16D already shows the heat impulse fading (+10.1% vs +22.7%)"
+    "A crowded net-short COT position plus an extreme near-term heat demand spike could trigger a sharp short-covering squeeze",
+    "Weather forecasts can flip quickly, and demand_8_16D already shows the heat impulse fading (+10.1% vs +22.2%)"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
