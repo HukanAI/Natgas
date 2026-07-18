@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-07-18T15:51:25.162Z",
-  "sourceSnapshotAt": "2026-07-18T15:51:25.162Z",
+  "generatedAt": "2026-07-18T17:05:00.000Z",
+  "sourceSnapshotAt": "2026-07-18T16:51:29.594Z",
   "frontPrice": 2.9110000133514404,
   "nextPrice": 2.875999927520752,
-  "marketState": "neutral, cautiously bullish tilt from peak-season weather demand",
-  "summary": "Front price ($2.911) sits almost exactly on modeled fair value ($2.923, FAIR status), so there is no near-term mispricing edge to trade today. The strongest signal in the data is weather: 8-16 day cooling demand is running +21.8% above the 5-year norm and sits near the top of its seasonal range (rangePos 0.97), and the fair-value curve itself drifts up from $2.923 now to $3.042 by +21 days, implying the model expects the heat-driven demand pull to firm prices into August. That bullish read is offset by a +180 Bcf storage surplus vs the 5-year average and a bearish +22 Bcf build surprise this week, plus seasonality that shows only a 38% chance of higher prices at the 3-4 week mark with low reliability (59pp spread). Managed money is net short at just the 8th percentile of its 5-year range, a stretched positioning that could fuel a short-covering rally but could equally reflect funds correctly leaning into the supply overhang. The futures curve is in mild backwardation front-to-next (-$0.035) consistent with cooling-season roll-off, but flips into a large winter contango (Dec $3.735, Jan $4.16), confirming the market already prices a seasonal ramp. Technicals are split by timeframe - 15m/1h lean neutral-to-bullish while 4h/1d/1w show bearish trend with a 50<200 EMA cross.",
+  "marketState": "neutral, cautiously bullish medium-term (hot weather + crowded short COT vs. storage surplus and a bearish daily trend)",
+  "summary": "Front price ($2.911) sits almost exactly at model fair value ($2.923, spread -$0.012, FAIR status), so there is no near-term mispricing edge today. The strongest signal is weather: demand is +13% above 5-year normal over 1-7 days and +21.8% over 8-16 days, with the medium window near the top of its seasonal range (rangePos 0.97), and the fair-value curve itself drifts up from $2.923 now to $3.042 by +21 days, implying the model expects the heat-driven demand pull to firm prices. That bullish read is offset by a +180 Bcf storage surplus vs the 5-year average, a bearish +22 Bcf build surprise this week, and seasonality showing only a 38% chance of higher prices at the 3-4 week mark with low reliability (59pp 10-90% spread). Managed money is net short at just the 8th percentile of its 5-year range, a stretched positioning that could fuel a short-covering rally. Technicals split by timeframe - 15m/1h lean neutral, while 4h/1d/1w show a bearish trend with a 50<200 EMA cross and negative daily/weekly MACD; futuresCurve data was unavailable (null) to confirm term-structure positioning.",
   "longTerm": {
     "stance": "LONG",
     "conviction": "medium",
     "horizon": "3-12 weeks",
     "entry": "$2.85 - $2.95 (current zone, at/near fair value)",
-    "stop": "$2.65 (below lower-quartile of fair-value band; invalidates the weather-demand thesis)",
-    "tp1": "$3.10 (~plus21D fair value / Nov contract level)",
-    "tp2": "$3.45 (upper region of fair-value band, if peak-summer heat and winter contango pull continue)",
-    "riskReward": "~1:0.8 to TP1, ~1:2.2 to TP2 (risk ~$0.25 from a $2.90 entry)",
-    "sizing": "1R approx 1% account risk; size so a $0.25/MMBtu adverse move equals 1R",
-    "rationale": "8-16D weather demand is +21.8% vs 5y and near the top of its range, the fair-value curve rises to $3.042 by +21 days, and the futures curve already prices a steep winter contango (Dec $3.735, Jan $4.16), all arguing for higher prices into peak cooling season and beyond; extreme net-short COT positioning (8th percentile) adds short-covering upside risk. This is tempered by a +180 Bcf storage surplus, a bearish weekly storage surprise, and low-reliability seasonality showing only a 38% chance of higher prices at 3-4 weeks, so conviction is capped at medium rather than high.",
-    "invalidation": "A drop through $2.65, a fade in the 8-16D weather demand anomaly back toward normal, or another larger-than-forecast storage build would invalidate the long thesis.",
+    "stop": "$2.65",
+    "tp1": "$3.15",
+    "tp2": "$3.42 (top of fair-value band)",
+    "riskReward": "1:2.2 (to TP2, risk ~$0.25 from a $2.90 entry)",
+    "sizing": "1R approx 1% account risk",
+    "rationale": "Weather demand is +13% (1-7D) to +21.8% (8-16D) above 5y normal with the medium window near the top of its range, the fair-value curve rises from $2.92 now to $3.04 by +21D while front trades right at fair, and managed-money is net short at only the 8th percentile of its 5y range - a crowded short vulnerable to covering if the heat demand verifies.",
+    "invalidation": "Weather demand fades back toward 5y normal, the storage surplus widens further on more bearish builds, or price closes below $2.65 confirming the bearish daily/weekly technical trend wins out over the fundamental case.",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Front price is essentially at fair value (spread -$0.012, status FAIR) so there is no near-term mispricing to fade, and technicals conflict sharply by timeframe: 15m/1h neutral-to-bullish vs 4h/1d/1w bearish trend with a 50<200 EMA cross. The front-next curve is only mildly backwardated (-$0.035), too small to be an actionable term-structure signal on its own.",
+    "rationale": "Daily and weekly technicals confirm a bearish trend (50<200 EMA cross, negative MACD, RSI 37-38) even though intraday timeframes (5m/15m/1h) are neutral, front price is already sitting at fair value with no cheap/rich edge, and futuresCurve data is missing (null) so term-structure confirmation isn't available - not enough edge for a clean near-term directional trade.",
     "invalidation": "n/a",
-    "trigger": "Wait for either a pullback toward the $2.70-2.75 lower fair-value zone to buy in line with hot 1-7D weather (+13% vs 5y), or a confirmed breakdown below $2.75 with 1h/4h/1d trend alignment to short."
+    "trigger": "Daily close back above $2.95-$3.00 with EMA re-cross bullish (confirms weather-driven demand play) for a LONG scalp, or a breakdown below $2.70 confirming the bearish storage/technical thesis for a SHORT scalp."
   },
   "keyDrivers": [
-    "8-16D weather demand +21.8% vs 5y, rangePos 0.97 (near seasonal top) - strong cooling-demand pull",
-    "Front price at fair value now ($2.911 vs $2.923 fair) but fair-value curve rising to $3.042 by +21D",
-    "Managed money net short at 8th percentile of 5y range - stretched positioning, short-covering risk",
-    "Storage surplus +180 Bcf vs 5y with a bearish +22 Bcf build surprise this week caps upside",
-    "Futures curve backwardated front-to-next but strongly contangoed into winter (Dec/Jan), confirming seasonal repricing already underway"
+    "Weather demand +13% (1-7D) and +21.8% (8-16D) vs 5y, medium-term window near top of historical range (rangePos 0.97)",
+    "Managed-money net short at 8th percentile of 5y range - crowded positioning, contrarian bullish risk",
+    "Fair value trajectory rises from $2.92 now to $3.04 by +21D while front trades near fair, implying upside skew if weather verifies",
+    "Storage surplus +180 Bcf vs 5y with a bearish build surprise (+22 Bcf) caps rally potential",
+    "Daily/weekly technicals bearish (death cross, negative MACD) despite RSI nearing oversold on 1d/1w"
   ],
   "risks": [
-    "Seasonality reliability is Low (59pp 10-90% spread) - the seasonal edge itself is weak this week",
-    "Higher-timeframe technicals (4h/1d/1w) show a bearish trend and death cross, risking further downside before the fundamentals thesis plays out",
-    "Extreme COT short positioning may reflect valid bearish fundamentals (storage surplus) rather than a pure contrarian setup"
+    "Seasonality reliability is Low (59pp 10-90% spread this week) - the -7.7pp vs-median read should not be weighted heavily",
+    "futuresCurve data is missing (null) and no production data was available, removing two inputs meant to sharpen the short-term call",
+    "A continued storage surplus or a cooling in the weather forecast would quickly flip the medium-term case bearish"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
