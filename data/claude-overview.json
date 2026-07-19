@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-07-19T13:04:26.000Z",
-  "sourceSnapshotAt": "2026-07-19T13:03:23.779Z",
+  "generatedAt": "2026-07-19T15:05:00.000Z",
+  "sourceSnapshotAt": "2026-07-19T14:50:36.765Z",
   "frontPrice": 2.9110000133514404,
   "nextPrice": 2.875999927520752,
   "marketState": "neutral, mild bullish tilt — extreme heat-driven demand and stretched short positioning offset by a comfortable storage surplus",
-  "summary": "Front price ($2.911) is sitting almost exactly on the model's fair value ($2.923, spread -$0.012, status FAIR) at every horizon out to 21 days, so there is no valuation edge on the spot itself. The strongest signal in the data is weather: 8-16 day demand is +30.5% vs the 5-year norm and actually exceeds the historical max range, while 1-7 day demand is a more modest +9.1%. That sits alongside a managed-money COT position at just the 8th percentile of the last 5 years on net shorts (mmNet -105,709), raising short-covering risk if the hot weather verifies. Working against that is a clearly bearish storage picture (+180 Bcf vs 5y, and this week's build beat forecast by 22 Bcf), and weak, low-reliability seasonality (price already -7.7pp below its typical-year path, with only 38-44% historical odds of being higher in 1/3/4 weeks). Technicals are split by timeframe (5m/15m leaning constructive, 4h/1d/1w bearish with EMA50<200), and futures-curve data is unavailable this run, so there is no clean technical consensus to lean on for a quick trade.",
+  "summary": "Front price ($2.911) is sitting almost exactly on the model's fair value ($2.923, spread -$0.012, status FAIR) at every horizon out to 21 days, so there is no valuation edge on the spot itself. The strongest signal in the data is weather: 8-16 day demand is +30.5% vs the 5-year norm and actually exceeds the historical max range, while 1-7 day demand is a more modest +9.1%. That sits alongside a managed-money COT position at just the 8th percentile of the last 5 years on net shorts (mmNet -105,709), raising short-covering risk if the hot weather verifies. Working against that is a clearly bearish storage picture (+180 Bcf vs 5y, and this week's build beat forecast by 22 Bcf), and weak, low-reliability seasonality (price already -7.7pp below its typical-year path, with only 38-44% historical odds of being higher in 1/3/4 weeks). The futures curve is roughly flat to slightly backwardated through Oct (front $2.911, Sep -$0.035, Oct -$0.006) before building into a steep contango toward the Dec/Jan winter strip ($3.735/$4.16), a normal seasonal shape that neither confirms nor contradicts a near-term move, while technicals split by timeframe (5m/15m constructive, 4h/1d/1w bearish with EMA50<200).",
   "longTerm": {
     "stance": "LONG",
     "conviction": "medium",
@@ -29,7 +29,7 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Front price is trading essentially AT fair value (spread only -$0.012, status FAIR) so there is no near-term mispricing edge, and technicals disagree by timeframe — 5m/15m lean neutral-to-bullish (RSI 52, EMA50>200) while 4h/1d/1w are bearish (EMA50<200, RSI 37-49). Near-term (1-7D) weather demand is only moderately elevated (+9.1% vs 5y, rangePos 0.63), not the extreme readout seen further out, and futures-curve data is unavailable this run to confirm term structure, so it doesn't justify forcing a trade against mixed technicals.",
+    "rationale": "Front price is trading essentially AT fair value (spread only -$0.012, status FAIR) so there is no near-term mispricing edge, and technicals disagree by timeframe — 5m/15m lean neutral-to-bullish (RSI 52, EMA50>200) while 4h/1d/1w are bearish (EMA50<200, RSI 37-49). Near-term (1-7D) weather demand is only moderately elevated (+9.1% vs 5y, rangePos 0.63), not the extreme readout seen further out, and the front-to-Oct curve is flat/slightly backwardated with no strong term-structure signal, so it doesn't justify forcing a trade against mixed technicals.",
     "invalidation": "n/a",
     "trigger": "Wait for either: (a) price breaking below ~$2.70-2.75 with 4h/1d/1w trend staying aligned bearish, confirming downside momentum for a short, or (b) 1h/4h technicals turning consistently bullish alongside a push through ~$3.00, confirming the weather-driven long thesis is being realized near-term."
   },
@@ -38,11 +38,11 @@
     "Managed-money net short near 5-year-low percentile (8th) — short-covering risk if heat verifies",
     "Storage surplus +180 Bcf vs 5y with a bearish +22 Bcf build-vs-forecast surprise — caps upside",
     "Price is essentially at fair value at every horizon (front spreads -1c to -14c, all FAIR) — no valuation edge either way",
-    "Seasonality reliability is Low (59pp 10-90% spread) and price already sits -7.7pp below its typical seasonal path"
+    "Front-to-Oct curve flat/slightly backwardated, steep contango building into the Dec/Jan winter strip — normal seasonal shape"
   ],
   "risks": [
     "8-16 day weather forecasts are inherently uncertain and can revise cooler, removing the main bullish driver",
-    "Futures curve data is unavailable this run — cannot confirm contango/backwardation term structure",
+    "Seasonality reliability is Low this week (59pp 10-90% spread), so the historical seasonal pattern may not hold",
     "Technicals conflict across timeframes (constructive short-term vs bearish 4h/1d/1w), raising whipsaw risk for any near-term trade"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
