@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-07-22T06:00:00.000Z",
-  "sourceSnapshotAt": "2026-07-22T05:43:54.203Z",
-  "frontPrice": 2.877000093460083,
-  "nextPrice": 2.8480000495910645,
-  "marketState": "Neutral, tilting bearish near-term: price sits right at fair value inside a storage glut, but crowded short positioning and above-normal cooling demand cap downside conviction",
-  "summary": "Front-month NG is trading essentially at fair value ($2.877 vs $2.923 fair, well inside the wide $2.42-$3.42 band), so there is no clean mispricing edge to trade off the fair-value model alone. Fundamentals are mixed: storage is +180 Bcf above the 5-year average with last week's build coming in bearish-hotter-than-forecast (+22 Bcf surprise), yet current cooling demand is running moderately above the 5-year normal for both the 1-7D (+9%) and 8-16D (+15.1%) windows, which should be working against the surplus even though it is no longer at an extreme. Seasonality is genuinely weak evidence right now (reliability flagged Low, 59pp spread) and its own signals conflict - up 56% of the time at 2 weeks but down-biased at 1, 3 and 4 weeks with a -1.4% typical 4-week move. Technicals lean bearish on the 4h/1d/1w timeframes (50<200 EMA, RSI in the high-30s/mid-40s, not yet oversold) while intraday (5m/15m/1h) is closer to neutral. The standout outlier is COT: managed money is net short at only the 8th percentile of its 5-year range, an unusually crowded short that raises the risk of a sharp squeeze on any bullish catalyst (heat extension, a surprise draw).",
+  "generatedAt": "2026-07-22T08:20:00.000Z",
+  "sourceSnapshotAt": "2026-07-22T08:16:11.703Z",
+  "frontPrice": 2.878999948501587,
+  "nextPrice": 2.8519999980926514,
+  "marketState": "neutral, tilting bearish near-term with a crowded-short squeeze risk overhanging",
+  "summary": "Seasonality data (vs-median, probability-higher tables, typical 4-week move, reliability) is entirely missing from this snapshot, so the top-priority input for the longer-horizon call is unavailable and that view is scaled back accordingly. Price is sitting almost exactly at modeled fair value (front spread just -$0.044, well inside the $2.42-$3.42 band), so there is no clean mispricing edge, while cooling demand is running above the 5-year norm (+9.1% 1-7D, +15.1% 8-16D) but has cooled roughly 7% over the last 24 hours. Storage printed a bigger-than-forecast build (+41 Bcf vs +19 Bcf expected, a bearish surprise) on top of an already large +180 Bcf surplus to the 5-year average, and daily/weekly technicals confirm a bearish trend (50<200 EMA crosses, RSI in the mid-30s) even though intraday timeframes are flat to mixed. The standout outlier is positioning: managed money is net short about 106k contracts at just the 8th percentile of its 5-year range, a classic crowded-short setup that argues against pressing the bearish trend too hard.",
   "longTerm": {
     "stance": "WAIT",
     "conviction": "low",
@@ -15,35 +15,35 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Seasonality reliability is explicitly flagged Low this week and its own weekly signals disagree with each other, storage surplus/bearish surprise argues for further softness while above-normal cooling demand and an 8th-percentile managed-money net-short argue the opposite; front price sitting at fair value (FAIR status) gives no valuation edge to lean on either way.",
-    "invalidation": "n/a",
-    "trigger": "LONG bias if upcoming EIA storage prints undershoot forecast (surplus narrowing) while demand stays comfortably above 5y normal, or front breaks above the fair-value band upper edge (~$3.42) on COT short-covering; SHORT bias if storage surprises stay bearish for 2+ more weeks and front breaks below the band's lower edge (~$2.42) with technicals staying 50<200 across 1d/1w."
+    "rationale": "Seasonality is completely null this run, removing the top-priority input for a multi-week call. What remains is genuinely split: a rising fair-value path (from $2.923 now to $3.037 by +21D) and an extremely stretched managed-money short (8th percentile, favoring mean reversion higher) versus a bearish storage surprise, a growing +180 Bcf surplus, and a confirmed bearish trend on daily/weekly technicals.",
+    "invalidation": "A close and hold below the fair-value band low (~$2.42) would confirm bearish fundamentals are winning; a rally through ~$3.10-3.20 accompanied by MM short-covering would confirm the contrarian long case.",
+    "trigger": "Wait for seasonality data to repopulate, or for a decisive break of the $2.42-$3.42 fair-value band, or for the COT percentile to start climbing off its 8th-percentile low before committing directionally."
   },
   "shortTerm": {
     "stance": "SHORT",
     "conviction": "medium",
     "horizon": "1-10 days",
-    "entry": "$2.88-$2.92 (near current front price, on any bounce toward the $2.92 fair value)",
+    "entry": "$2.87 - $2.90 (near front price)",
     "stop": "$3.05",
-    "tp1": "$2.75",
+    "tp1": "$2.74",
     "tp2": "$2.60",
-    "riskReward": "1:1 to TP1, 1:2 to TP2 (risk ~$0.15)",
+    "riskReward": "1:1 to TP1, 1:2 to TP2 (risk ~$0.15-0.17)",
     "sizing": "1R approx 1% account risk",
-    "rationale": "1h/4h/1d/1w technicals all show bearish trend with 50<200 EMA crosses, and last week's storage surprise was bearish (+22 Bcf vs forecast) despite hot weather, suggesting supply is still comfortably outrunning demand near-term; front trading exactly at fair value (FAIR status, no cheap floor) removes a valuation reason to expect a bounce.",
-    "invalidation": "A close back above ~$3.05 (above the plus-7D fair value of $2.941 and recent structure), or a sharp short-covering rally driven by the extremely crowded managed-money short base (8th percentile) would invalidate the short.",
+    "rationale": "4h, 1d and 1w trends are all bearish with 50<200 EMA crosses, price is only fair (not cheap) versus the model band so there is no value cushion, and the storage print was a bearish surprise (+41 Bcf vs +19 Bcf forecast) adding a fresh bearish catalyst. Front month is in slight backwardation to the next contract, offering no carry incentive to hold long.",
+    "invalidation": "A close back above ~$3.05 (above the plus-7D fair value of $2.941 and recent structure), or a swing back to bullish daily trend/EMA would invalidate the short.",
     "trigger": ""
   },
   "keyDrivers": [
-    "Storage +180 Bcf vs 5y average with a bearish +22 Bcf weekly build surprise",
-    "Cooling demand moderately above 5y normal (1-7D +9%, 8-16D +15.1% vs 5y, rangePos 0.73)",
-    "Managed money net short at just the 8th percentile of its 5y range - crowded short, squeeze risk",
-    "Front price essentially at fair value ($2.877 vs $2.923 fair) - no mispricing edge",
-    "Bearish 50<200 EMA structure on 4h/1d/1w with RSI not yet oversold"
+    "Managed-money short at just the 8th percentile of its 5y range - crowded short, squeeze risk",
+    "Bearish storage surprise (+41 Bcf actual vs +19 Bcf forecast) on a +180 Bcf 5y surplus",
+    "Front price essentially at fair value across all horizons (FAIR status) - no mispricing edge",
+    "Daily/weekly technicals bearish (50<200 EMA, RSI mid-30s) vs flat/mixed intraday timeframes",
+    "Cooling demand above 5y norm (+9.1% 1-7D, +15.1% 8-16D) but easing over the last 24h"
   ],
   "risks": [
-    "Extremely stretched short COT positioning could spark a fast short-covering rally on any bullish weather or storage surprise",
-    "Seasonality reliability is flagged Low this week (59pp spread), so its directional signals carry limited statistical confidence",
-    "Large winter forward premium (Dec ~$3.73, Jan ~$4.15) shows the curve is pricing real weather risk that could reprice front months quickly if forecasts shift"
+    "Seasonality dataset is empty this run, removing the top-priority signal for the long-term call",
+    "Extremely stretched managed-money short positioning raises real short-squeeze risk against any short trade",
+    "Winter contracts show steep contango (Dec $3.73, Jan 2027 $4.16), so a shift in the weather/storage narrative could reprice the front months quickly"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
