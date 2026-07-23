@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-07-23T13:45:00.000Z",
-  "sourceSnapshotAt": "2026-07-23T13:42:51.551Z",
-  "frontPrice": 2.934000015258789,
-  "nextPrice": 2.9140000343322754,
-  "marketState": "neutral, leaning bullish on weather/COT extremes offset by bearish storage and daily-weekly technical trend",
-  "summary": "Front-month gas is trading almost exactly at fair value across all horizons ($2.923-$3.017 fair vs $2.934 front, all status FAIR), so there is no valuation-band edge right now. The 8-16 day weather window is the standout signal: demand is +38% vs 5-year norms and rangePos is above the historical max, a strong bullish heat driver into August. Managed money is net short at only the 8th percentile of its 5-year range, a stretched positioning extreme that raises squeeze risk if heat/demand keeps building. Working against this, storage sits +180 Bcf above the 5-year average with a bearish +22 Bcf build surprise, and technicals are bearish on the daily and weekly timeframes (EMA50<200, negative MACD). Seasonality is mildly supportive (price running -4.3pp below its typical-year path, 69% historical odds of being higher in 1 and 4 weeks) but flagged Low reliability, so the overall read is a cautiously bullish medium-term tilt against a fairly priced, technically weak near-term tape.",
+  "generatedAt": "2026-07-23T15:53:41.000Z",
+  "sourceSnapshotAt": "2026-07-23T15:52:18.594Z",
+  "frontPrice": 2.9549999237060547,
+  "nextPrice": 2.937999963760376,
+  "marketState": "neutral, leaning constructive: bullish weather + extreme short positioning offset by a storage surplus and bearish weekly trend",
+  "summary": "NG front month ($2.955) is essentially at fair value ($2.919 fair, $2.42-$3.42 band) and only modestly below its 5-year median context (-3.6pp), so there is no clean statistical mispricing to trade right now. The standout signal is the 8-16 day weather window: cooling demand is running +38% vs the 5-year norm and above the historical max range, with the demand trend up +18.2 in 24h to +20% vs normal — a real bullish catalyst for late-summer gas burn that the market has not obviously priced in yet. Managed money is net short 105,709 contracts, at just the 8th percentile of 5-year positioning, an extreme that has historically preceded short-covering rallies. Countering this, storage sits +183 Bcf above the 5-year average with a bearish +17 Bcf build surprise, and the daily/weekly technical trend is still bearish (RSI 38.7-43, negative MACD) even though intraday timeframes (5m/15m) have flipped neutral-to-bullish. On balance the multi-week case is cautiously bullish (weather + COT extreme vs. storage overhang), while the 1-10 day picture is too mixed for a high-conviction directional trade.",
   "longTerm": {
     "stance": "LONG",
     "conviction": "medium",
     "horizon": "3-12 weeks",
-    "entry": "$2.85 - $2.95 (scale in near current price/on dips)",
-    "stop": "$2.60",
-    "tp1": "$3.15",
-    "tp2": "$3.40",
-    "riskReward": "~1:0.8 to TP1, ~1:1.7 to TP2",
-    "sizing": "1R approx 1% account risk; scale out 50% at TP1, trail remainder toward TP2",
-    "rationale": "8-16D weather demand is +38% vs 5y and above the historical max range going into peak cooling season, managed money is near a 5y-low percentile net short (8th pct) leaving room for short covering, and price is running below its seasonal median (-13.9% YTD vs -9.6% median) with a 69% historical hit-rate for higher prices 4 weeks out. Storage is a genuine headwind (+180 Bcf vs 5y, bearish build surprise), so this is sized as a medium-conviction, not high-conviction, long.",
-    "invalidation": "Daily/weekly close below $2.60, the 8-16D heat anomaly fading back toward normal, and/or storage surplus vs 5y continuing to widen would invalidate the bullish case",
+    "entry": "$2.85 - $2.95 (scale in on any pullback toward fair value)",
+    "stop": "$2.65",
+    "tp1": "$3.28",
+    "tp2": "$3.53",
+    "riskReward": "1:1.5 (TP1) / 1:2.5 (TP2)",
+    "sizing": "1R approx 1% risk",
+    "rationale": "8-16D cooling demand is +38% vs 5y and above the historical max range with a sharply rising trend, seasonality favors Sep strength (69% odds higher in 4wks, typical +3.7% move) and managed money is at an 8th-percentile net-short extreme that skews toward mean-reversion higher; storage's +183 Bcf surplus and bearish build surprise are the main offsetting risk, which is why conviction is medium rather than high.",
+    "invalidation": "A confirmed break and close below $2.65, a further deterioration in the 8-16D weather outlook back toward/below the 5y norm, or another materially bearish storage surprise that pushes the 5y surplus wider",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Front price sits dead-center FAIR across now/+7D/+14D fair-value windows (spreads of just 1-2 cents), near-term (1-7D) weather demand is only +1.4% vs 5y and mid-range, and technicals are conflicting - 5m/15m RSI near oversold (33-38) argues against chasing a short while the daily/weekly trend is clearly bearish (EMA50<200, negative MACD) arguing against a long. There is no near-term valuation or trend edge to trade.",
+    "rationale": "Near-term weather (demand_1_7D) is neutral (0% vs 5y, mid-range), price is already FAIR on both the now and +7D fair-value checks (no discount to buy), and technicals are split — intraday (5m/15m/1h) neutral-to-bullish vs daily/weekly still bearish — so there is no clean short-horizon edge yet despite the constructive medium-term backdrop.",
     "invalidation": "n/a",
-    "trigger": "Daily close below $2.75 (below fair-value lower-mid, confirming the bearish daily/weekly trend) would open a short-term SHORT; a daily close above $3.05 with 1h/4h RSI reclaiming 50 and EMA structure turning up would support a short-term LONG aligned with the weather thesis"
+    "trigger": "Wait for either (a) daily trend/RSI to turn up (1d RSI clears ~50 with a bullish EMA cross) confirming the intraday bounce is carrying through, or (b) a pullback into the $2.80-$2.85 zone that lines up with the longer-term long, or (c) the 8-16D heat signal rolling into the 1-7D window with pctVs5y turning clearly positive"
   },
   "keyDrivers": [
-    "8-16D weather demand +38% vs 5y, above the historical max range - strong bullish heat catalyst into August",
-    "Managed money net short at the 8th percentile of its 5y range - stretched positioning, squeeze risk",
-    "Price running below seasonal median (-13.9% YTD vs -9.6%) with 69%/69% odds of being higher in 1/4 weeks",
-    "Storage +180 Bcf vs 5y with a bearish +22 Bcf build surprise - caps upside",
-    "Daily and weekly technical trend bearish (EMA50<200, negative MACD) across 1h-1w timeframes"
+    "8-16D cooling demand +38% vs 5y and above the historical max range, rising fast (+20% vs normal, +18.2 in 24h)",
+    "Managed money net short 105,709 contracts at the 8th percentile of 5y positioning - extreme, short-covering risk",
+    "Storage surplus +183 Bcf vs 5y with a bearish +17 Bcf build surprise",
+    "Price is essentially FAIR on every horizon checked (now through +21D) - no cheap/rich mispricing to lean on",
+    "Daily/weekly technicals still bearish (RSI 38.7-43, negative MACD) even as intraday timeframes turn neutral/bullish"
   ],
   "risks": [
-    "Seasonality reliability is flagged Low (63pp 10-90 spread) - the probability tilts are noisy and can flip quickly",
-    "Storage surplus and bearish build could keep pressuring price even if weather stays hot, blunting the long thesis",
-    "Price is exactly FAIR across every fair-value horizon - no valuation cushion, so moves can whipsaw against either side"
+    "Seasonality reliability is rated Low (63pp 10-90% spread this week) - limited confidence in the seasonal edge",
+    "8-16 day weather forecasts are volatile and can revise sharply before they verify",
+    "The crowded net-short COT position could stay stretched longer than expected rather than reverting"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
