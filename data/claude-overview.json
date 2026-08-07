@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-08-07T17:55:00.000Z",
-  "sourceSnapshotAt": "2026-08-07T17:44:26.608Z",
-  "frontPrice": 2.674999952316284,
-  "nextPrice": 2.7330000400543213,
-  "marketState": "neutral-to-bullish - extreme heat-driven demand and a crowded short base offset by an entrenched daily/weekly downtrend",
-  "summary": "The standout signal in this snapshot is weather: both the 1-7 day and 8-16 day demand windows are above their maximum 5-year range (+22.5% and +41.6% vs 5y respectively), a strong bullish driver for gas burn during Cooling season. Managed money is net short at just the 8th percentile of its 5-year range (ratio 0.69), leaving the market vulnerable to short covering, and front price ($2.675) sits modestly below the model's fair value ($2.939) across all horizons. Working against this: the daily and weekly technical trend remains bearish (EMA death cross, negative MACD, RSI 33-36), storage carries a +167 Bcf surplus to the 5-year average, and seasonality reliability is flagged Low this week (53pp 10-90 spread). Futures curve data was unavailable in this snapshot, removing a useful near-term term-structure input.",
+  "generatedAt": "2026-08-07T18:47:00.000Z",
+  "sourceSnapshotAt": "2026-08-07T18:45:44.507Z",
+  "frontPrice": 2.6649999618530273,
+  "nextPrice": 2.7230000495910645,
+  "marketState": "neutral-to-bullish - oversold value setup fighting an intact bearish technical trend",
+  "summary": "Front-month price ($2.665) sits 21.8% below its typical YTD path (vs -5.2% median) and $0.27-0.34 under the fair-value model at every horizon out to 21 days, while cooling-demand weather is running 23-30% above 5-year normal on both the 1-7D and 8-16D windows, above the historical max range and still rising. Managed money is net short at just the 8th percentile of its 5-year range, a crowded positioning extreme that raises squeeze risk. Working against that: the daily and weekly technical trend is bearish (50<200 EMA, weekly RSI 32.6) and storage carries a +167 Bcf surplus to the 5-year average, so the downtrend hasn't technically broken even though price looks statistically cheap. Net read: fundamentals, seasonality and positioning argue for mean reversion higher into September (seasonally the strongest month), but near-term price action is still trend-down, so I favor a patient long-term long and a wait-and-confirm short-term stance.",
   "longTerm": {
     "stance": "LONG",
     "conviction": "medium",
     "horizon": "3-12 weeks",
-    "entry": "$2.60 - $2.70 (scale in near front price)",
-    "stop": "$2.44 (below fair-value band low of $2.439)",
-    "tp1": "$2.95 (near current fair value $2.939)",
-    "tp2": "$3.15 (upper band region, aligned with seasonal Sep strength)",
-    "riskReward": "~1:1.4 to TP1, ~1:2.4 to TP2",
-    "sizing": "1R approx 1% account risk",
-    "rationale": "Both weather windows sit above their maximum 5y range (extreme heat driving cooling demand), managed money is net short at the 8th 5y percentile (squeeze fuel), and front price is running $0.26-$0.35 below fair value across the 7/14/21-day horizons. Seasonality favors gains into September (strongest historical month, 63-75% probability higher over 2-4 weeks) despite low reliability this week, and the +167 Bcf storage surplus is a headwind but not an extreme one given the in-line build surprise.",
-    "invalidation": "A daily close below $2.44 (fair-value band low) alongside weather forecasts normalizing back toward 5y norms would invalidate the thesis; a further deterioration in COT positioning or a run of bearish storage surprises would also weaken it.",
+    "entry": "$2.55-$2.70 (scale in, current front $2.665)",
+    "stop": "$2.40",
+    "tp1": "$2.90",
+    "tp2": "$3.15",
+    "riskReward": "TP1 ~1:1, TP2 ~1:2",
+    "sizing": "1R approx 1% account risk, scale in half now / half on a dip toward $2.55",
+    "rationale": "Price is 21.8% below its seasonal median path entering September (the historically strongest month, prob-higher 63-75% over 2-4wks) and $0.27-0.34 under the fair-value model across all horizons, while both near- and mid-term weather demand run 23-30% above 5-year normal, above the max historical range. Managed-money net shorts at the 8th 5y percentile add squeeze potential on top of the value gap.",
+    "invalidation": "A close below $2.40 (below the fair-value lower band and recent support), a sharp cooling in the weather demand trend, or a run of bearish storage surprises that erodes the value/positioning case would invalidate this thesis.",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Near-term weather is extremely bullish (1-7D demand +22.5% vs 5y, above max range) and front price is modestly below fair value, but technicals conflict - 5m/1h show neutral-to-bullish tape (RSI 56-58, positive MACD, 5m EMA golden cross) while 4h/1d/1w remain in a bearish EMA death-cross with negative MACD and RSI 33-36. The futures curve dataset is missing entirely, removing a key short-term term-structure input.",
-    "invalidation": "If daily/weekly technicals confirm a bullish reversal (MACD turning positive, price reclaiming the 50 EMA) while the heat wave persists, the WAIT stance flips to LONG; if weather forecasts normalize back toward 5y norms, the case weakens further toward SHORT/neutral.",
-    "trigger": "Wait for either: (1) 4h/1d MACD turning positive with price reclaiming the 50 EMA, confirming the heat-driven demand is showing up in the tape, or (2) a pullback into the $2.50-$2.55 zone (near fair-value band low) to buy with tighter risk. Also want futures-curve/spread data restored to confirm near-term term structure before sizing a short-term position."
+    "rationale": "Near-term weather (demand_1_7D +23.2% vs 5y, above max range) and a modest fair-value discount favor longs, but 4h/1d/1w technicals are all trend-bearish with 50<200 EMA crosses and negative daily MACD, and the daily/weekly downtrend has not yet turned, so chasing longs here fights the tape.",
+    "invalidation": "n/a",
+    "trigger": "Wait for either (a) daily RSI to reclaim above 40-45 with price closing back above the 1d/4h 50-EMA, confirming the downtrend has stalled, or (b) a pullback into the $2.45-$2.55 zone (near the fair-value lower band) to buy with a tighter stop."
   },
   "keyDrivers": [
-    "Extreme heat: demand 1-7D +22.5% vs 5y (above max range), 8-16D +41.6% vs 5y (above max) - the strongest signal in the data",
-    "Managed money net short at 8th percentile of 5y range (ratio 0.69) - crowded short, squeeze risk",
-    "Front price $2.675 sits 'slightly under' fair value ($2.939) across all horizons, spread -$0.21 to -$0.35",
-    "Seasonality: price -21.5% YTD vs -5.2% median (16.2pp cheap to typical year), but reliability flagged Low; Sep is historically the strongest month",
-    "Storage +167 Bcf surplus vs 5y caps upside; daily/weekly technicals still bearish (EMA death cross, RSI 33-36)"
+    "Weather demand +23-30% vs 5y on both 1-7D and 8-16D horizons, above the historical max range and still rising",
+    "Managed-money COT net short at the 8th percentile of the 5-year range - crowded short, squeeze risk",
+    "Front price running $0.22-0.34 below the fair-value model at every horizon, inside a roughly $1/MMBtu band",
+    "Entering seasonally strongest month (September) with price 21.8% below its typical YTD path",
+    "Daily/weekly technical downtrend (50<200 EMA, RSI 32-35) still intact despite the value/positioning setup"
   ],
   "risks": [
-    "Futures curve data missing (null) - cannot confirm contango/backwardation or near-term term structure",
-    "Daily/weekly technical trend remains bearish (death cross, negative MACD) - the long-term long is a countertrend trade",
-    "Seasonality reliability flagged 'Low' this week (53pp 10-90 spread) and storage surplus vs 5y could cap any rally if heat fades"
+    "Storage surplus of +167 Bcf vs 5y caps upside if weather demand cools faster than expected",
+    "Seasonality reliability flagged 'Low' (53pp 10-90% spread) - wide historical dispersion around the median path",
+    "Bearish daily/weekly trend could extend further before any reversal is technically confirmed, risking premature longs"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
