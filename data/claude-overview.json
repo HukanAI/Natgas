@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-08-09T21:30:00.000Z",
-  "sourceSnapshotAt": "2026-08-09T21:25:40.370Z",
-  "frontPrice": 2.6619999408721924,
-  "nextPrice": 2.7209999561309814,
-  "marketState": "bullish medium-term (demand/fair-value/COT) but choppy short-term (bearish technicals)",
-  "summary": "Cooling-season demand is running far above normal (+21.7% over the next 7 days, +43.2% over days 8-16, both above the 5-year max) and accelerating, while NG front-month price trades below modeled fair value across every horizon out to +21 days, with the gap widening the further out you look. Managed money is near a 5-year-low net-short percentile (3rd), a crowded short that raises squeeze risk on any demand or storage surprise. Seasonality is directionally supportive into September (63-75% historical win-rate at 2-4 weeks) but its reliability is rated Low this week, and a +167 Bcf storage surplus vs the 5-year average caps the fundamental upside. Short-term technicals are bearish across nearly every timeframe (15m through 1w), with weekly price already below its lower Bollinger band, creating tension between bullish fundamentals and bearish near-term momentum that favors patience over chasing longs intraday.",
+  "generatedAt": "2026-08-09T22:30:00.000Z",
+  "sourceSnapshotAt": "2026-08-09T22:23:52.003Z",
+  "frontPrice": 2.7230000495910645,
+  "nextPrice": 2.7790000438690186,
+  "marketState": "neutral-to-bullish — seasonally oversold with extreme short COT positioning, but daily/weekly trend still bearish",
+  "summary": "Front-month NG at $2.723 sits 14.8pp below its seasonal median (-20.1% YTD vs -5.2% median) and slightly under our fair-value estimate ($2.939, band $2.439-$3.439), while managed-money is near its most net-short stance in 5 years (3rd percentile) — a setup that has historically favored mean-reversion higher. Weather demand is running +33% above the 5-year normal and rising fast (+20.9 in 24h) as we sit in the cooling season, supportive of near-term gas burn, though the granular 1-7D/8-16D demand breakdown needed to time the short-term trade is missing from this snapshot. Seasonality favors higher prices 63-75% of the time over the next 2-4 weeks with a typical +4.1% move, and September (next month) is historically the strongest month of the year. Working against this: storage is +167 Bcf above the 5-year average (ample supply) and the daily/weekly technical trend remains bearish (RSI 34-40, negative MACD, price below the 200-EMA), even as intraday (5m-4h) momentum looks stretched to overbought (RSI 67-79, price above the upper Bollinger band). Given the missing near-term weather detail and the conflict between overbought intraday momentum and a still-bearish daily trend, the longer-term mean-reversion case is clearer than short-term timing.",
   "longTerm": {
     "stance": "LONG",
     "conviction": "medium",
     "horizon": "3-12 weeks",
-    "entry": "$2.55-$2.70, scale in near front price and add on dips toward the fair-value band low (~$2.45)",
-    "stop": "$2.35 (below the now fair-value band low of $2.439)",
-    "tp1": "$2.95 (near current modeled fair value ~$2.94)",
-    "tp2": "$3.30 (toward upper fair-value band area / beyond +21D fair of $3.03)",
-    "riskReward": "~1:1 to TP1, ~1:2.2 to TP2",
-    "sizing": "1R approx 1% account risk; scale in across 2 tranches",
-    "rationale": "Weather demand is running +21.7%/+43.2% above 5y norms and accelerating into the 8-16D window, price sits below fair value at every horizon out to +21D, and managed money is near a 5y-low net-short percentile (3rd) - a crowded short that raises squeeze risk. Seasonality also favors higher prices into September (63-75% historical odds at 2-4 weeks), though the signal's reliability is rated Low this week.",
-    "invalidation": "A sustained fade of demand back toward/below 5y normal, storage surprises building materially above forecast, or a price close below the fair-value band low (~$2.40) would invalidate the long thesis.",
+    "entry": "$2.60 – $2.75 (scale in, favor dips toward fair-value support)",
+    "stop": "$2.40 (below fair-value band floor of $2.439)",
+    "tp1": "$2.95 (current fair value, $2.939)",
+    "tp2": "$3.40 (upper fair-value band / seasonal Sept strength)",
+    "riskReward": "~1:1.2 to TP1, ~1:3 to TP2",
+    "sizing": "1R approx 1% account risk",
+    "rationale": "Managed money is near a 5-year extreme net-short (3rd percentile, ratio 0.64) while price trades below fair value and 14.8pp under its seasonal median; seasonality favors higher prices 63-75% of the time over 2-4 weeks (+4.1% typical) heading into September, historically the strongest month, with weather demand running well above the 5y normal.",
+    "invalidation": "Daily close below the $2.40 fair-value band floor, or the storage surplus widening sharply while weather demand reverts back toward/below the 5y normal",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Near-term demand is extreme (+21.7% vs 5y, above the 5y max range) and price is only slightly under fair value (-$0.28), but technical trend is bearish across 15m-1w with weekly price already below the lower Bollinger band, and futuresCurve data is missing so contango/backwardation can't be confirmed to time an entry.",
-    "invalidation": "n/a",
-    "trigger": "Wait for either (a) 1h/4h trend and EMA cross to flip bullish with RSI reclaiming above 50, confirming momentum has turned, or (b) a pullback to the $2.45-2.50 fair-value-band support zone to buy the dip in line with the hot-weather demand backdrop."
+    "rationale": "Intraday momentum (5m-4h) is overbought (RSI 67-79, price above upper Bollinger, EMA50>200 on 5m/15m) even as the daily/weekly trend stays bearish (RSI 34-40, negative MACD, EMA50<200) — this reads as a stretched bounce inside a larger downtrend rather than a confirmed reversal, and the near-term weather breakdown (demand_1_7D / demand_8_16D) needed to time this horizon is missing from the data.",
+    "invalidation": "n/a — see trigger for the conditions that would activate a trade",
+    "trigger": "Pullback toward $2.60-$2.65 with 1h RSI cooling below 60 for a long entry, or daily MACD/EMA flipping positive to confirm a trend change; a breakdown below $2.55 alongside a growing storage surplus would instead favor a short."
   },
   "keyDrivers": [
-    "Demand outlook extreme: 1-7D +21.7% vs 5y (above max), 8-16D +43.2% vs 5y (above max) - accelerating heat-driven cooling demand",
-    "Price trades below modeled fair value at every horizon (now/+7D/+14D/+21D), with the spread widening to -$0.37 by +21D",
-    "Managed-money net short at the 3rd percentile of its 5y range (-126,933 contracts) - crowded short, contrarian bullish for squeeze risk",
-    "Seasonality favors September strength with 63-75% odds of higher prices at 2-4 weeks, though reliability is rated Low this week",
-    "Storage surplus +167 Bcf vs 5y caps upside, and technicals are bearish across nearly every timeframe from 15m to 1w"
+    "Managed-money net short at 3rd percentile of 5y range — contrarian bullish, short-squeeze risk",
+    "Weather demand +33% vs 5y normal and rising (+20.9 in 24h) into cooling season",
+    "Front price $0.22 below fair value ($2.939), inside $2.439-$3.439 band",
+    "Seasonality favors higher prices 63-75% of the time over next 2-4 weeks (+4.1% typical); Sept is historically strongest month",
+    "Storage surplus +167 Bcf vs 5y and bearish daily/weekly technical trend both cap near-term upside"
   ],
   "risks": [
-    "Low seasonality reliability (53pp 10-90% spread) means the historical odds are a weak edge this week",
-    "Storage surplus vs 5y plus broad bearish short-term technical trend could keep pressuring price despite hot weather",
-    "futuresCurve data is missing (null) - contango/backwardation structure cannot be confirmed to validate curve-based short-term timing"
+    "Near-term weather demand detail (1-7D / 8-16D) missing from snapshot — reduces short-term timing confidence",
+    "Storage surplus and bearish daily/weekly trend could pressure price lower before any mean-reversion bounce plays out",
+    "Seasonality reliability flagged Low (53pp 10-90% spread) — wide historical dispersion around the seasonal pattern"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
