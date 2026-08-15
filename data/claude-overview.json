@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-08-15T14:25:00.000Z",
-  "sourceSnapshotAt": "2026-08-15T14:16:47.474Z",
+  "generatedAt": "2026-08-15T15:20:00.000Z",
+  "sourceSnapshotAt": "2026-08-15T15:14:53.074Z",
   "frontPrice": 2.7330000400543213,
   "nextPrice": 2.7850000858306885,
-  "marketState": "neutral, tilting bullish medium-term (undervalued vs a rising fair-value curve, extreme-short COT) but short-term technicals are mixed/bearish",
-  "summary": "NG=F front (Sep 2026) trades at $2.733, about 15pp below its typical seasonal path, and is drifting further under Claude's fair-value curve, which rises from $2.874 today to $3.022 by +21 days while spot has stayed flat — a widening undervaluation gap. Weather demand is running +22-26% above the 5-year normal in both the 1-7D and 8-16D windows (though 24h demand momentum just turned down), and managed money is net short at only the 7th percentile of its 5-year range — a historically stretched position that raises squeeze risk into the winter contango (Dec $3.549, Jan $3.961). Working against the bulls: storage sits +218 Bcf above the 5-year average with a bearish +11 Bcf build surprise, and technical trend is bearish on 4 of 6 timeframes (15m-1w) with 50<200 EMA crosses, even as the 5m frame looks short-term overbought (RSI 63.8, price above upper Bollinger). Net read: a medium-conviction long-term long on the fair-value/weather/COT tailwinds versus the storage overhang and low-reliability seasonality (56pp 10-90% spread), and a WAIT short-term since front price is already 'FAIR' with no pricing edge and timeframes disagree.",
+  "marketState": "neutral, conflicting signals with two top-priority datasets missing",
+  "summary": "Front-month NG is at $2.733 with a normal winter-premium contango curve (Jan27 near $3.96). Two of the four priority inputs — seasonality (vs-median, probability, reliability) and fair-value bands — are entirely null in this snapshot, so I cannot confirm whether price is rich/cheap versus fair value or its typical seasonal path. What data is present cuts both ways: cooling-driven demand is running +21-26% above the 5-year normal and near the top of its range (bullish), and managed-money is net short at just the 7th percentile of the past 5 years, a stretched positioning extreme that raises short-covering-squeeze risk. Against that, the latest storage report surprised +11 Bcf bearish and technical trend is bearish on the 4h/1d/1w timeframes, with only a short-term overbought bounce on the 5m chart. Given the missing top-priority data and the genuine conflict between bullish demand/positioning and bearish storage/technicals, I don't have a high-conviction directional edge right now.",
   "longTerm": {
-    "stance": "LONG",
-    "conviction": "medium",
+    "stance": "WAIT",
+    "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$2.70-2.75 (scale in on dips)",
-    "stop": "$2.55",
-    "tp1": "$2.95",
-    "tp2": "$3.15",
-    "riskReward": "1:1.2 to TP1, 1:2.3 to TP2",
-    "sizing": "1R approx 1% account risk",
-    "rationale": "Fair value ($2.874 now, rising to $3.022 by +21D) is pulling away above spot while spot stays flat, weather demand is +22-26% above 5y normal in both the 1-7D and 8-16D windows, and managed-money is net short at just the 7th percentile of its 5y range — a stretched setup that favors mean reversion higher into the steep winter contango (Dec $3.549, Jan $3.961).",
-    "invalidation": "A daily close below $2.55 (breaking the recent seasonal low and moving outside the current fair-value drift), or another 2+ weeks of meaningfully bearish storage surprises, would invalidate the long thesis.",
-    "trigger": ""
+    "entry": "n/a",
+    "stop": "n/a",
+    "tp1": "n/a",
+    "tp2": "n/a",
+    "riskReward": "n/a",
+    "sizing": "n/a",
+    "rationale": "Seasonality data (vs-median, probability of higher, reliability) is completely missing, removing the top-priority input for a multi-week call. Elevated cooling demand (+21-26% vs 5y, near top of range) and a historically stretched managed-money short (7th percentile) argue for upside risk, but an above-forecast storage build (+11 Bcf bearish surprise) and bearish weekly/daily technical trend argue the other way.",
+    "invalidation": "A confirmed weekly close below the recent 1w trend low with storage deviation turning further bearish would rule out the long case; a resumption of well-above-normal demand into a bullish weekly EMA cross would rule out the short case.",
+    "trigger": "Wait for seasonality vs-median/reliability data to repopulate, and for weekly technicals (currently bearish EMA/RSI35) to turn, or for storage surprises to stop running bearish, before sizing a 3-12 week position aligned with the current bullish demand/COT backdrop."
   },
   "shortTerm": {
     "stance": "WAIT",
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Front price sits right at fair value (spread only -$0.141, status FAIR) so there is no near-term pricing edge, and timeframes disagree — 5m looks overbought (RSI 63.8, price above upper Bollinger) while 15m-1w trend is bearish with 50<200 EMA crosses; near-term weather-demand momentum also just turned down (24h change -12.9).",
-    "invalidation": "n/a - no position held while waiting",
-    "trigger": "Daily close above $2.85 (confirms break of contango resistance and bullish weather-demand follow-through) for a long entry, or below $2.60 (confirms bearish breakdown through the 1w downtrend and storage overhang) for a short entry."
+    "rationale": "Fair-value band data (now/+7D/+14D/+21D) is completely null, removing the key reference for judging whether $2.733 is rich or cheap over the next 1-10 days. Near-term weather demand is still strong (+26% vs 5y, rangePos 0.98) but momentum has cooled over the last 24h (-14.1), while 15m/4h technicals are bearish and 1h/5m are mixed, giving no clean short-term technical alignment.",
+    "invalidation": "A sustained rebound in near-term demand alongside a bullish alignment across 1h-4h technicals would favor a long; a break of the 1d/1w downtrend lows with demand rolling over further would favor a short.",
+    "trigger": "Wait for fair-value band data to populate so price can be measured against a fair range, and for 1h/4h technicals to align in one direction, before taking a 1-10 day position."
   },
   "keyDrivers": [
-    "Fair value rising ($2.874 to $3.022 over 21D) while spot is flat — widening undervaluation",
-    "Weather demand +22-26% vs 5y normal in both 1-7D and 8-16D windows",
-    "Managed-money net short at 7th percentile of 5y range — squeeze risk",
-    "Storage +218 Bcf vs 5y with a bearish +11 Bcf surprise — supply cushion",
-    "Technical trend bearish on 4 of 6 timeframes (15m-1w) with 50<200 EMA crosses"
+    "Cooling-driven demand +21-26% above 5-year normal and near the top of its range for both 1-7D and 8-16D windows",
+    "Managed-money COT net short at the 7th percentile of the past 5 years — a stretched positioning extreme with squeeze risk",
+    "Storage build surprised +11 Bcf bearish versus forecast, signaling a looser near-term balance",
+    "Technicals bearish across 4h/1d/1w despite an overbought bounce on the 5m chart",
+    "Futures curve in steep contango into Dec/Jan, consistent with normal seasonal winter premium"
   ],
   "risks": [
-    "Seasonality reliability is Low (56pp 10-90% spread) — weak statistical edge behind the seasonal tilt",
-    "Storage surplus could keep pressuring price lower near-term despite weather and COT tailwinds",
-    "Extreme COT short positioning can persist longer than expected, delaying any short-covering squeeze"
+    "Seasonality (vs-median/probability/reliability) and fair-value band data are both entirely missing from this snapshot, removing two of the four top-priority inputs",
+    "Weather demand momentum ticked down over the last 24h (-14.1), so the current bullish demand pulse could fade quickly",
+    "Natural gas is prone to sharp weather- and headline-driven moves that can invalidate technical or positioning-based theses within days"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
