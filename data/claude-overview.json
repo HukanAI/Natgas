@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-08-15T15:20:00.000Z",
-  "sourceSnapshotAt": "2026-08-15T15:14:53.074Z",
+  "generatedAt": "2026-08-15T16:20:00.000Z",
+  "sourceSnapshotAt": "2026-08-15T16:17:34.020Z",
   "frontPrice": 2.7330000400543213,
   "nextPrice": 2.7850000858306885,
-  "marketState": "neutral, conflicting signals with two top-priority datasets missing",
-  "summary": "Front-month NG is at $2.733 with a normal winter-premium contango curve (Jan27 near $3.96). Two of the four priority inputs — seasonality (vs-median, probability, reliability) and fair-value bands — are entirely null in this snapshot, so I cannot confirm whether price is rich/cheap versus fair value or its typical seasonal path. What data is present cuts both ways: cooling-driven demand is running +21-26% above the 5-year normal and near the top of its range (bullish), and managed-money is net short at just the 7th percentile of the past 5 years, a stretched positioning extreme that raises short-covering-squeeze risk. Against that, the latest storage report surprised +11 Bcf bearish and technical trend is bearish on the 4h/1d/1w timeframes, with only a short-term overbought bounce on the 5m chart. Given the missing top-priority data and the genuine conflict between bullish demand/positioning and bearish storage/technicals, I don't have a high-conviction directional edge right now.",
+  "marketState": "Neutral, tilting bullish — hot weather and extreme short COT positioning offset by storage surplus and a bearish daily/weekly technical trend",
+  "summary": "Henry Hub front-month ($2.733) is roughly fairly valued today versus the model's fair value ($2.874), but the gap widens to nearly -$0.29 by 21 days out as fair value climbs with seasonal demand, suggesting the market may be underpricing the weeks ahead. Near- and medium-term weather demand is running 21-26% above the 5-year normal and near the top of its range, a bullish cooling-driven demand signal, while managed money is net short at just the 7th percentile of its 5-year range — an extreme that historically precedes short-covering rallies. These bullish drivers are offset by storage sitting +218 Bcf above the 5-year average with a bearish build surprise (+11 Bcf vs forecast), and technical trend is bearish on the 15m/4h/1d/1w timeframes even as 1w RSI (35) approaches oversold. Seasonality shows price already running well below its typical seasonal path (-14.9pp) with a modest upward bias (56-69% probability higher over 1-4 weeks), but reliability is explicitly flagged Low. Net: fundamentals (weather, positioning, fair value) skew constructive for the medium term while near-term price action lacks a clean technical trigger.",
   "longTerm": {
-    "stance": "WAIT",
-    "conviction": "low",
+    "stance": "LONG",
+    "conviction": "medium",
     "horizon": "3-12 weeks",
-    "entry": "n/a",
-    "stop": "n/a",
-    "tp1": "n/a",
-    "tp2": "n/a",
-    "riskReward": "n/a",
-    "sizing": "n/a",
-    "rationale": "Seasonality data (vs-median, probability of higher, reliability) is completely missing, removing the top-priority input for a multi-week call. Elevated cooling demand (+21-26% vs 5y, near top of range) and a historically stretched managed-money short (7th percentile) argue for upside risk, but an above-forecast storage build (+11 Bcf bearish surprise) and bearish weekly/daily technical trend argue the other way.",
-    "invalidation": "A confirmed weekly close below the recent 1w trend low with storage deviation turning further bearish would rule out the long case; a resumption of well-above-normal demand into a bullish weekly EMA cross would rule out the short case.",
-    "trigger": "Wait for seasonality vs-median/reliability data to repopulate, and for weekly technicals (currently bearish EMA/RSI35) to turn, or for storage surprises to stop running bearish, before sizing a 3-12 week position aligned with the current bullish demand/COT backdrop."
+    "entry": "$2.65-2.75 (accumulate near front price)",
+    "stop": "$2.50",
+    "tp1": "$2.90 (near +7D/+14D fair value)",
+    "tp2": "$3.10-3.15 (approaching +21D fair value $3.02 and curve resistance)",
+    "riskReward": "approx 1:1.1 to TP1, 1:2 to TP2",
+    "sizing": "1R approx 1% account risk; consider scaling in, half now and half on a dip toward $2.60",
+    "rationale": "Weather demand running 21-26% above the 5y normal near the top of its range and managed money at a 7th-percentile net-short extreme both favor a bullish medium-term resolution; fair value ($2.92-$3.02 over 7-21 days) sits meaningfully above the current front price with the gap widening the further out the model looks, and September (within this horizon) is seasonally the strongest month.",
+    "invalidation": "A break below $2.50 (piercing near-term support and approaching the fair-value band's lower edge) or a further larger-than-forecast storage build that pushes the surplus wider and drags fair value down would invalidate this thesis.",
+    "trigger": ""
   },
   "shortTerm": {
     "stance": "WAIT",
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Fair-value band data (now/+7D/+14D/+21D) is completely null, removing the key reference for judging whether $2.733 is rich or cheap over the next 1-10 days. Near-term weather demand is still strong (+26% vs 5y, rangePos 0.98) but momentum has cooled over the last 24h (-14.1), while 15m/4h technicals are bearish and 1h/5m are mixed, giving no clean short-term technical alignment.",
-    "invalidation": "A sustained rebound in near-term demand alongside a bullish alignment across 1h-4h technicals would favor a long; a break of the 1d/1w downtrend lows with demand rolling over further would favor a short.",
-    "trigger": "Wait for fair-value band data to populate so price can be measured against a fair range, and for 1h/4h technicals to align in one direction, before taking a 1-10 day position."
+    "rationale": "Short-term technicals are mixed-to-bearish (15m and 4h trend bearish, 5m RSI at 63.8 with price already above the upper Bollinger band) while the front contract is only fairly valued today (spread -$0.14, status FAIR) rather than cheap, leaving no clean edge despite very hot near-term weather (demand_1_7D rangePos 0.98).",
+    "invalidation": "n/a",
+    "trigger": "Wait for either a pullback into the $2.60-2.68 zone with 1h/4h RSI basing and MACD histogram turning positive, or a confirmed close above $2.85-2.90 with bullish MACD on the 4h/1d, before entering long; a bearish storage report or a cooling in the weather trend would favor standing aside instead."
   },
   "keyDrivers": [
-    "Cooling-driven demand +21-26% above 5-year normal and near the top of its range for both 1-7D and 8-16D windows",
-    "Managed-money COT net short at the 7th percentile of the past 5 years — a stretched positioning extreme with squeeze risk",
-    "Storage build surprised +11 Bcf bearish versus forecast, signaling a looser near-term balance",
-    "Technicals bearish across 4h/1d/1w despite an overbought bounce on the 5m chart",
-    "Futures curve in steep contango into Dec/Jan, consistent with normal seasonal winter premium"
+    "Weather demand +21-26% above 5y normal, near top of range (bullish)",
+    "Managed money net short at 7th percentile of 5y range (contrarian bullish)",
+    "Front price at discount to fair value, gap widening to -$0.29 by +21D",
+    "Storage +218 Bcf vs 5y with bearish build surprise (bearish)",
+    "Daily/weekly technical trend bearish despite 1w RSI nearing oversold"
   ],
   "risks": [
-    "Seasonality (vs-median/probability/reliability) and fair-value band data are both entirely missing from this snapshot, removing two of the four top-priority inputs",
-    "Weather demand momentum ticked down over the last 24h (-14.1), so the current bullish demand pulse could fade quickly",
-    "Natural gas is prone to sharp weather- and headline-driven moves that can invalidate technical or positioning-based theses within days"
+    "Low seasonality reliability (56pp 10-90% spread) undermines directional conviction",
+    "Large recurring storage surprises could keep pressuring price despite hot weather",
+    "A technical breakdown could accelerate a test of the fair-value band's lower edge (~$2.37-2.42)"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
