@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-08-16T12:30:00.000Z",
-  "sourceSnapshotAt": "2026-08-16T12:26:27.166Z",
+  "generatedAt": "2026-08-16T13:35:00.000Z",
+  "sourceSnapshotAt": "2026-08-16T13:26:53.329Z",
   "frontPrice": 2.7330000400543213,
   "nextPrice": 2.7660000324249268,
-  "marketState": "neutral-to-bullish tilt: price cheap vs fair value with extreme short positioning, but capped by a storage surplus and a bearish near-term technical drift",
-  "summary": "Front NG is trading at $2.733, roughly 20% below its seasonal median for the date and priced FAIR-to-cheap against a fair-value curve that rises from $2.87 today to $3.02 by +21 days, so the discount widens the further out you look. Near-term weather demand is running +29.6% above the 5-year norm and above the seasonal max, a genuine near-term bullish input, though the 8-16 day outlook has cooled to +9.2% vs 5y. Managed-money is net short at just the 7th percentile of its 5-year range, an extreme that historically precedes short-covering rallies, while storage is +218 Bcf above the 5-year average with a bearish +11 Bcf build surprise that argues against chasing strength. Technicals are the weak link for timing: 4h/1d/1w trends are all bearish with 50<200 EMA crosses on most timeframes, even as the 5m chart looks stretched (RSI 63.8, price above the upper Bollinger band). Net: the fundamental/positioning setup favors a longer-horizon long, but near-term price action lacks confirmation.",
+  "marketState": "neutral, tilting constructive — seasonal/fair-value discount and extreme short positioning offset by storage overhang and bearish medium-term trend",
+  "summary": "Front price sits 19.8% YTD vs a -4.9% seasonal median (-14.9pp gap), and is priced roughly FAIR to SLIGHTLY UNDER a fair-value model whose estimate rises from $2.87 now to $3.02 by +21D — meaning the discount widens the further out you look. Near-term weather demand is running hot (+29.4% vs 5y, above the historical max) but is already cooling 24h-over-24h, while the 8-16D outlook moderates sharply to +9.2%. Managed money is net short at just the 7th percentile of its 5-year range, an extreme positioning skew that historically favors mean reversion/short-covering. Working against this: storage is +218 Bcf vs 5y with a bearish build surprise, and technical trend is bearish on the 4h/1d/1w frames (50<200 EMA), though weekly RSI near 35 suggests the selloff is getting stretched. Seasonality's own reliability is flagged Low (56pp spread), so that leg of the thesis is weak on its own and needs the fair-value/COT/weather context to lean bullish overall over the coming weeks; over the next 1-10 days signals are genuinely mixed with no clean edge in either direction." ,
   "longTerm": {
     "stance": "LONG",
     "conviction": "medium",
     "horizon": "3-12 weeks",
     "entry": "$2.65 - $2.75 (scale in near current front price)",
     "stop": "$2.45",
-    "tp1": "$3.00",
-    "tp2": "$3.45",
-    "riskReward": "~1:1 to TP1, ~1:2.6 to TP2 (blended ~1:1.8)",
-    "sizing": "1R approx $0.28/MMBtu, approx 1% account risk; take half off at TP1, trail stop to breakeven",
-    "rationale": "Fair value rises from $2.87 (now) to $3.02 (+21D) while front price sits flat, widening the discount to -$0.28 by +21D; managed money is at a 5y-low 7th percentile net-short, a classic short-squeeze setup; and the futures curve already prices a steep winter contango (Dec26 $3.55, Jan27 $3.96), consistent with a seasonal grind higher into fall.",
-    "invalidation": "A daily close below $2.45, a further widening of the storage surplus vs 5y, or managed-money shorts failing to cover despite the extreme positioning would invalidate the long thesis.",
+    "tp1": "$2.95",
+    "tp2": "$3.30",
+    "riskReward": "1:1.1 to TP1, 1:2.3 to TP2",
+    "sizing": "1R approx 1% account risk",
+    "rationale": "Price is well below its seasonal median and the fair-value discount widens from -$0.14 now to -$0.28 by +21D even as the fair-value estimate itself rises into the seasonally strong Sep-Jan stretch; combined with managed money at a 7-year-percentile-low net-short position, the setup favors mean reversion despite a bearish storage overhang.",
+    "invalidation": "A close below $2.45, storage surprises continuing bearish for 2+ more weeks, or weather demand normalizing to below-5y would invalidate the long thesis.",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Price vs fair value is essentially neutral right now (front spread only -$0.14, status FAIR) so there is no clean mispricing to trade, and the top short-term signal (weather) conflicts with the second-tier signal (technicals): 1-7D demand is +29.6% vs 5y and above the seasonal max (bullish), but 4h/1d/1w trend is bearish with 50<200 EMA crosses and the 5m chart already looks overbought (RSI 63.8, above upper Bollinger).",
-    "invalidation": "",
-    "trigger": "Long trigger: pullback to $2.55-$2.65 with 1h/4h RSI turning up and MACD histogram flipping positive, confirming the hot-weather demand story is reasserting. Short trigger: a daily close below $2.55 with 1w RSI breaking under 30, confirming bearish trend continuation despite the strong weather backdrop."
+    "rationale": "Near-term weather demand is very hot (+29.4% vs 5y, above max) but decelerating (-8.6 in 24h) and the 8-16D read moderates to +9.2%, while sub-daily technicals conflict — 5m is overbought (above upper Bollinger, RSI 63.6) yet 4h/1d/1w trend remains bearish. Price is already close to fair (front spread only -$0.14), leaving no clean short-horizon mispricing to trade.",
+    "invalidation": "n/a",
+    "trigger": "Wait for either a pullback into the $2.55-$2.60 zone to align entry with the weather-driven demand story, or a technical trend turn (4h/1d RSI reclaiming 50 and EMA50 crossing back above EMA200)."
   },
   "keyDrivers": [
-    "Managed-money net short at the 7th percentile of its 5-year range — extreme positioning ripe for short-covering",
-    "Price at/below fair value now, with the discount widening to -$0.28 by +21D as the fair-value curve rises into fall",
-    "Near-term weather demand +29.6% vs 5y and above the seasonal max — strong current cooling/power-burn support",
-    "Storage +218 Bcf vs 5y average with a bearish +11 Bcf build surprise — ample supply caps near-term upside",
-    "Technicals bearish on 4h/1d/1w with 50<200 EMA crosses — near-term trend still pointed down"
+    "Front price -19.8% YTD vs -4.9% seasonal median; fair-value discount widens from -$0.14 (now) to -$0.28 (+21D) as fair value rises into Sep-Jan seasonal strength",
+    "Near-term weather demand +29.4% vs 5y and above the historical max range, but cooling 24h-over-24h and moderating sharply in the 8-16D window (+9.2%)",
+    "Managed money net short at the 7th percentile of its 5-year range — extreme positioning that historically precedes short-covering",
+    "Storage +218 Bcf vs 5y with a bearish weekly build surprise (+11 Bcf vs forecast) — a persistent bearish fundamental headwind",
+    "Technicals bearish on 4h/1d/1w (price below both EMAs, 50<200 cross) though weekly RSI near 35 suggests the downtrend is stretched"
   ],
   "risks": [
-    "Seasonality reliability is rated Low (56pp 10-90% spread this week), so the seasonal edge itself carries low confidence",
-    "The storage surplus vs 5y could keep rallies capped even if weather-driven demand stays hot",
-    "8-16 day weather demand has already cooled to +9.2% vs 5y from an above-max 1-7D reading, so the near-term demand tailwind may be fading"
+    "Seasonality's own reliability is flagged Low (56pp 10-90% spread), so the seasonal edge alone is weak and could easily fail",
+    "Storage overhang could keep pressuring price lower if weather normalizes faster than expected, especially given the 8-16D demand cooldown already underway",
+    "Extreme short COT positioning can extend further before reversing — crowded positioning is not a precise timing signal"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
