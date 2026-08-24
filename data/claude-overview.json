@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-08-24T10:36:00.000Z",
-  "sourceSnapshotAt": "2026-08-24T10:31:52.226Z",
-  "frontPrice": 2.76200008392334,
-  "nextPrice": 2.8310000896453857,
-  "marketState": "Neutral tilting constructive — fair value gap and crowded-short COT argue up, storage surplus and daily downtrend cap conviction",
-  "summary": "Natural gas sits between conflicting signals. Cooling demand is running 17-18% above the 5-year normal in both the 1-7 day and 8-16 day windows, and the front contract ($2.762) trades below modeled fair value across every horizon out to 21 days ($2.919 now, rising toward $2.97 by +14D, all flagged FAIR/SLIGHTLY UNDER). Managed-money positioning is unusually stretched short at just the 12th percentile of the past 5 years, a setup that has historically preceded short-covering bounces. Working against that: storage is +182 Bcf above the 5-year average with an in-line build, price is running 11.5pp below its seasonal median YTD (-18.9% vs -7.5%), and daily/weekly technicals confirm a downtrend (50<200 EMA, weekly RSI 36.5). Seasonality reliability is explicitly flagged Low this week, so the weather/fair-value/COT combination carries more weight for the multi-week view while the noisier, conflicting near-term picture argues for patience.",
+  "generatedAt": "2026-08-24T11:23:21.000Z",
+  "sourceSnapshotAt": "2026-08-24T11:21:51.277Z",
+  "frontPrice": 2.7790000438690186,
+  "nextPrice": 2.8389999866485596,
+  "marketState": "neutral - mixed fundamentals vs. bearish daily/weekly trend, stretched short COT",
+  "summary": "Seasonality data (the top-priority input) is entirely missing from this snapshot, so the seasonal price path cannot be confirmed. Weather demand is running well above the 5-year normal for both the 1-7D (+16.8%, rangePos 0.81) and 8-16D (+18.3%, rangePos 0.63) windows, though the 24h trend is cooling (-9.2). Front-month price ($2.779) sits modestly below the model's fair value ($2.919, band $2.419-$3.419) and the FAIR/SLIGHTLY UNDER status persists out to the 21D horizon, a mild bullish tilt. Storage is +182 Bcf above the 5-year average (bearish oversupply cushion) while managed money is net short at just the 12th percentile of the past 5 years, a historically crowded short that raises squeeze risk. Technicals are split: intraday frames (5m/15m/1h) are bullish but overbought (RSI 72-74), while the daily and weekly trend remain bearish (EMA 50<200, negative weekly MACD), so momentum and trend disagree.",
   "longTerm": {
-    "stance": "LONG",
-    "conviction": "medium",
+    "stance": "WAIT",
+    "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$2.70-2.80 (current front zone)",
-    "stop": "$2.55",
-    "tp1": "$2.95",
-    "tp2": "$3.25",
-    "riskReward": "~1:0.9 to TP1, ~1:2 to TP2",
-    "sizing": "1R approx 1% account risk; size = 1% equity / $0.21 entry-stop distance",
-    "rationale": "Demand is running 17-18% above 5y normal in both weather windows, front price is priced below the model's fair value at every horizon out to +21D, and managed money is net-short at only the 12th percentile of 5 years — a crowded short book prone to squeezes. The winter-premium contango curve (Sep 2.76 -> Jan 3.92) is structurally intact.",
-    "invalidation": "Daily close below $2.55, or the storage surplus widens further while demand normalizes back toward 5y average — either would undercut the fair-value/weather thesis.",
-    "trigger": ""
+    "entry": "n/a",
+    "stop": "n/a",
+    "tp1": "n/a",
+    "tp2": "n/a",
+    "riskReward": "n/a",
+    "sizing": "n/a",
+    "rationale": "Seasonality (vsMedian, probHigher, typicalMove4w, reliability) is null, removing the highest-priority input, and the remaining evidence conflicts: storage +182 Bcf vs 5y is a bearish oversupply signal, while managed-money net shorts at the 12th 5y percentile and price trading slightly under fair value both argue for squeeze/mean-reversion upside.",
+    "invalidation": "A clean break and daily close below ~$2.55 with the storage surplus continuing to widen would confirm the bearish oversupply case; a reclaim of $2.95-3.00+ (into/above the fair-value band) alongside managed-money shorts starting to cover would confirm the bullish squeeze case.",
+    "trigger": "Wait for seasonality metrics to populate and for either (a) mmNet percentile to start recovering from the current extreme with price holding above ~$2.90 fair-value support, or (b) a confirmed break below ~$2.55, before sizing a directional position."
   },
   "shortTerm": {
     "stance": "WAIT",
-    "conviction": "low",
+    "conviction": "medium",
     "horizon": "1-10 days",
     "entry": "n/a",
     "stop": "n/a",
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Near-term weather is still hot (1-7D demand rangePos 0.81, near top of range) and fair value is only slightly under at now/+7D, but daily trend is bearish (50<200 EMA, RSI 47, weekly RSI 36.5) and 1-week seasonality shows only a 38% chance of price being higher. Intraday timeframes (5m/1h bullish) conflict with the daily/weekly downtrend, and seasonality reliability is flagged Low this week, so near-term signals don't line up cleanly enough to size a trade.",
-    "invalidation": "A daily close back above $2.85-2.90 or a breakdown below $2.60-2.62 would resolve the current conflict.",
-    "trigger": "Wait for a daily close above $2.85-2.90 (reclaiming fair value, EMA flip) to go long toward $2.95-3.05, or a break below $2.60-2.62 to go short toward $2.45-2.50 on a storage-surplus/downtrend continuation."
+    "rationale": "Front price is only modestly cheap to fair value (status FAIR, spread -$0.14), not cheap enough for a high-conviction long, while intraday technicals are overbought (RSI 72-74 on 5m/15m) even as the 4h/1d trend stays neutral-to-bearish (negative MACD, EMA 50<200) - momentum and near-term trend are pointed in opposite directions.",
+    "invalidation": "A daily close back above the intraday highs with RSI resetting from overbought and the 4h MACD turning positive would negate the bearish trend read; a daily close below ~$2.70 with bearish EMA/MACD alignment confirming would negate the case for a bounce long.",
+    "trigger": "Wait for either a pullback toward $2.65-$2.70 (near recent range support) with 5m/15m RSI cooling out of overbought for a long entry, or a confirmed daily close below ~$2.70 with bearish EMA/MACD alignment for a short entry."
   },
   "keyDrivers": [
-    "Cooling demand +17-18% above 5y normal in both 1-7D and 8-16D windows, near top of range",
-    "Front price trading below modeled fair value at every horizon out to +21D (SLIGHTLY UNDER)",
-    "Managed-money net short at 12th percentile of 5y range — crowded short, squeeze risk",
-    "Storage +182 Bcf above 5y average with in-line builds — supply overhang caps upside",
-    "Daily/weekly technicals bearish (50<200 EMA, weekly RSI 36.5) while price is 11.5pp below seasonal median YTD"
+    "Seasonality data missing entirely - top-priority input unavailable this cycle",
+    "Weather demand +16-18% above 5y normal (1-7D and 8-16D) but 24h trend cooling",
+    "Storage +182 Bcf above 5y average - bearish supply cushion into the fall shoulder season",
+    "Managed money net short at 12th percentile of 5y range - crowded short, squeeze risk",
+    "Daily/weekly technical trend bearish (EMA 50<200) vs. overbought intraday bounce (RSI 72-74)"
   ],
   "risks": [
-    "Seasonality reliability flagged Low (64pp 10-90 spread) — this week's seasonal probabilities are noisy",
-    "24h demand trend already softening (-9.3) — could resume downside if heat breaks into September",
-    "Bullish intraday vs bearish daily/weekly technicals raise whipsaw risk for short-term entries"
+    "Extreme short COT positioning can unwind violently against shorts (squeeze) or persist for weeks if fundamentals stay bearish",
+    "Missing seasonality/vsMedian data materially reduces confidence in the long-term read",
+    "Weather demand momentum is already fading 24h-over-24h, which could flip the near-term narrative quickly"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
