@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-08-24T09:45:00.000Z",
-  "sourceSnapshotAt": "2026-08-24T09:40:35.299Z",
-  "frontPrice": 2.760999917984009,
-  "nextPrice": 2.825000047683716,
-  "marketState": "neutral, tilted bullish on weather/fair-value gap but capped by storage surplus",
-  "summary": "Front (Sep) is $2.761, running $0.16-0.21 under modeled fair value ($2.92-$2.97) across the 7-21 day horizons, and near-term/medium-term weather demand is running 17-18% above the 5-year normal with the near-term reading at the 81st percentile of its range - both mildly bullish. That's offset by a storage surplus of +182 Bcf vs the 5-year average (ample supply, bearish overhang) and price already sitting -11.5pp below its seasonal median YTD, with the model itself flagging seasonality reliability as Low this week. Managed-money is net short at just the 12th percentile of its 5-year range, an extreme that argues for asymmetric squeeze risk even though it currently reflects the same bearish consensus. Technicals are split by horizon: 5m/15m are overbought (RSI 70/69.6) with a bullish 1h trend, but 4h/1d/1w retain bearish EMA structure - so the tape hasn't confirmed the fundamental tilt yet.",
+  "generatedAt": "2026-08-24T10:36:00.000Z",
+  "sourceSnapshotAt": "2026-08-24T10:31:52.226Z",
+  "frontPrice": 2.76200008392334,
+  "nextPrice": 2.8310000896453857,
+  "marketState": "Neutral tilting constructive — fair value gap and crowded-short COT argue up, storage surplus and daily downtrend cap conviction",
+  "summary": "Natural gas sits between conflicting signals. Cooling demand is running 17-18% above the 5-year normal in both the 1-7 day and 8-16 day windows, and the front contract ($2.762) trades below modeled fair value across every horizon out to 21 days ($2.919 now, rising toward $2.97 by +14D, all flagged FAIR/SLIGHTLY UNDER). Managed-money positioning is unusually stretched short at just the 12th percentile of the past 5 years, a setup that has historically preceded short-covering bounces. Working against that: storage is +182 Bcf above the 5-year average with an in-line build, price is running 11.5pp below its seasonal median YTD (-18.9% vs -7.5%), and daily/weekly technicals confirm a downtrend (50<200 EMA, weekly RSI 36.5). Seasonality reliability is explicitly flagged Low this week, so the weather/fair-value/COT combination carries more weight for the multi-week view while the noisier, conflicting near-term picture argues for patience.",
   "longTerm": {
     "stance": "LONG",
     "conviction": "medium",
     "horizon": "3-12 weeks",
-    "entry": "$2.68-2.78 (current front area)",
-    "stop": "$2.49",
-    "tp1": "$2.95 (fair value now/plus7D)",
-    "tp2": "$3.20 (approaching Nov contract / seasonal Sep-Oct strength & winter contango pull)",
-    "riskReward": "approx 1:0.7 to TP1, 1:1.6 to TP2",
-    "sizing": "1R approx 1% account risk",
-    "rationale": "Front price sits $0.16-0.21 below fair value in every forward window and weather demand is running well above the 5-year normal near-term (81st percentile) and medium-term, both arguing for reversion toward the fair-value band; September is historically the strongest month and the extreme managed-money short (12th percentile) adds squeeze potential. The +182 Bcf storage surplus and Low seasonality reliability cap conviction and justify a stop below round-number support rather than a tight one.",
-    "invalidation": "A daily/weekly close below $2.49, storage surprises running persistently bigger than forecast (deepening the surplus), or weather demand rolling back to/below the 5y normal would invalidate this thesis.",
+    "entry": "$2.70-2.80 (current front zone)",
+    "stop": "$2.55",
+    "tp1": "$2.95",
+    "tp2": "$3.25",
+    "riskReward": "~1:0.9 to TP1, ~1:2 to TP2",
+    "sizing": "1R approx 1% account risk; size = 1% equity / $0.21 entry-stop distance",
+    "rationale": "Demand is running 17-18% above 5y normal in both weather windows, front price is priced below the model's fair value at every horizon out to +21D, and managed money is net-short at only the 12th percentile of 5 years — a crowded short book prone to squeezes. The winter-premium contango curve (Sep 2.76 -> Jan 3.92) is structurally intact.",
+    "invalidation": "Daily close below $2.55, or the storage surplus widens further while demand normalizes back toward 5y average — either would undercut the fair-value/weather thesis.",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Near-term weather (demand_1_7D +17% vs 5y, rangePos 0.81) and a bullish 1h trend argue for upside, but 5m/15m are overbought (RSI 70.6/69.6) and the 1d/1w trend plus EMA structure (50<200) are still bearish, and price vs fair value now reads FAIR (not stretched enough to lean hard either way) - too much cross-timeframe conflict for a clean 1-10 day entry.",
-    "invalidation": "n/a",
-    "trigger": "Wait for either (a) a pullback to $2.60-2.65 with 5m/15m RSI cooling under 50 to buy into the longer-term long thesis, or (b) a daily close below $2.65 confirming the 1d/1w downtrend to consider a tactical short toward $2.50."
+    "rationale": "Near-term weather is still hot (1-7D demand rangePos 0.81, near top of range) and fair value is only slightly under at now/+7D, but daily trend is bearish (50<200 EMA, RSI 47, weekly RSI 36.5) and 1-week seasonality shows only a 38% chance of price being higher. Intraday timeframes (5m/1h bullish) conflict with the daily/weekly downtrend, and seasonality reliability is flagged Low this week, so near-term signals don't line up cleanly enough to size a trade.",
+    "invalidation": "A daily close back above $2.85-2.90 or a breakdown below $2.60-2.62 would resolve the current conflict.",
+    "trigger": "Wait for a daily close above $2.85-2.90 (reclaiming fair value, EMA flip) to go long toward $2.95-3.05, or a break below $2.60-2.62 to go short toward $2.45-2.50 on a storage-surplus/downtrend continuation."
   },
   "keyDrivers": [
-    "Weather demand +17-18% vs 5y normal near- and medium-term, near-term at 81st percentile of range",
-    "Front price $0.16-0.21 under modeled fair value across all forward horizons",
-    "Managed-money net short at 12th percentile of 5y range - extreme positioning, squeeze risk",
-    "Storage +182 Bcf vs 5y normal - ample supply caps upside",
-    "Technicals split: 5m/15m overbought & 1h bullish vs bearish 1d/1w trend and EMA structure"
+    "Cooling demand +17-18% above 5y normal in both 1-7D and 8-16D windows, near top of range",
+    "Front price trading below modeled fair value at every horizon out to +21D (SLIGHTLY UNDER)",
+    "Managed-money net short at 12th percentile of 5y range — crowded short, squeeze risk",
+    "Storage +182 Bcf above 5y average with in-line builds — supply overhang caps upside",
+    "Daily/weekly technicals bearish (50<200 EMA, weekly RSI 36.5) while price is 11.5pp below seasonal median YTD"
   ],
   "risks": [
-    "Seasonality reliability flagged Low (64pp 10-90% spread) - limited confidence in the seasonal edge",
-    "Storage surplus could deepen further if injections keep beating forecast, pressuring price below the fair-value band",
-    "Extreme managed-money short could extend rather than reverse if mild weather or large builds validate the bearish view"
+    "Seasonality reliability flagged Low (64pp 10-90 spread) — this week's seasonal probabilities are noisy",
+    "24h demand trend already softening (-9.3) — could resume downside if heat breaks into September",
+    "Bullish intraday vs bearish daily/weekly technicals raise whipsaw risk for short-term entries"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
