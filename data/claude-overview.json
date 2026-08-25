@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-08-25T19:35:00.000Z",
-  "sourceSnapshotAt": "2026-08-25T19:26:36.825Z",
-  "frontPrice": 2.799999952316284,
-  "nextPrice": 2.8489999771118164,
-  "marketState": "neutral-to-bullish - fundamentals (extreme heat demand, fair-value discount, stretched short positioning) outweigh a still-bearish daily/weekly chart",
-  "summary": "Front NG sits at $2.80, roughly 10pp below its seasonal median and running $0.12-$0.20 under model fair value across every horizon out to +21D, with the gap widening the further out you look. The weather picture is the standout input: 8-16 day cooling demand is running +96.7% vs the 5-year norm and pinned above its historical max, while 1-7 day demand is also well above normal (+19.9%, rangePos 0.88) - a genuine fundamental tailwind. Managed money is net short at just the 12th percentile of the last 5 years, an extreme positioning skew that raises short-covering risk if heat persists or storage builds undershoot. Working against that: storage carries a +182 Bcf surplus to the 5-year average, and daily/weekly technicals remain bearish (RSI 38-50, 50<200 EMA cross) even as the 5m/1h intraday tape is overbought (RSI 74-75) off a short-term bounce. Seasonality itself is low-reliability this week (64pp spread on the probability distribution), so it's a secondary input rather than a driver here.",
+  "generatedAt": "2026-08-25T20:21:57.128Z",
+  "sourceSnapshotAt": "2026-08-25T20:21:57.128Z",
+  "frontPrice": 2.8489999771118164,
+  "nextPrice": 3.005000114440918,
+  "marketState": "neutral - bullish weather catalyst offset by bearish daily/weekly trend and missing valuation data",
+  "summary": "Three of the four priority datasets (seasonality, price-vs-median, fair value) are entirely null this cycle due to upstream data-feed failures, so this read leans heavily on weather, COT and technicals. The 8-16 day demand outlook is extreme - 96.7% vs the 5-year norm and above the historical max range - a strong bullish cooling-demand catalyst, and managed money is sitting at just the 12th percentile of its 5-year net-short range, a crowded position that could fuel a squeeze if heat verifies. That's offset by a daily/weekly technical picture that is still bearish (50<200 EMA death cross on both), even though the shortest timeframes (5m/15m/1h) show bullish intraday momentum. Storage is only described qualitatively (forecast +12 Bcf, surprise +4 Bcf 'in line'), and the futures curve shows normal steep winter contango (front $2.85 up to ~$3.92 in Jan-27) rather than anything unusual. Given the missing valuation anchors and the conflict between intraday and higher-timeframe technicals, this favors patience over forcing a trade.",
   "longTerm": {
-    "stance": "LONG",
-    "conviction": "medium",
+    "stance": "WAIT",
+    "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$2.75-$2.85 (scale in, current front ~$2.80)",
-    "stop": "$2.55",
-    "tp1": "$2.95 (near +7D/+14D fair value)",
-    "tp2": "$3.25 (toward +21D fair value / Nov-Dec curve ramp)",
-    "riskReward": "1:2 (to TP2, off $2.80 entry)",
-    "sizing": "1R approx 1% account risk",
-    "rationale": "Price is undervalued vs the model's own fair-value band across all horizons, the gap widens into +21D (status slips to SLIGHTLY UNDER), and 8-16D weather demand is at the top of its historical range - a setup for convergence higher. Managed money's 12th-percentile-of-5y net-short position adds short-covering fuel, though the +182 Bcf storage surplus and still-bearish daily/weekly trend argue for measured (not full) conviction.",
-    "invalidation": "8-16D demand anomaly fades back toward normal, storage surprises materially bullish (large builds), or price closes below $2.55 confirming the daily/weekly downtrend is back in control.",
-    "trigger": ""
+    "entry": "n/a",
+    "stop": "n/a",
+    "tp1": "n/a",
+    "tp2": "n/a",
+    "riskReward": "n/a",
+    "sizing": "n/a",
+    "rationale": "Seasonality (vsMedian, probability-higher, typical 4-week move, reliability) and fair-value bands are entirely unavailable, removing two of the four priority inputs for a multi-week call, and storage's actual level/deviation is also null (only a qualitative in-line surprise note). What remains leans bullish - an extreme 8-16D demand overshoot (96.7% vs 5y, above the historical max) plus managed-money net shorts at the 12th percentile of the 5y range - but there is no valuation anchor to size entries or stops against.",
+    "invalidation": "The bullish lean weakens if the 8-16D heat forecast fades back toward normal on the next update, or if managed-money shorts stay pinned without price responding (no squeeze materializing).",
+    "trigger": "Wait for seasonality and fair-value data to repopulate and confirm price sits at/below the fair-value band, or for the extreme 8-16D heat signal to persist alongside a bullish (larger than forecast draw / smaller build) storage surprise."
   },
   "shortTerm": {
     "stance": "WAIT",
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "5m/15m RSI is overbought (74-75) after an intraday bounce, the 1-week seasonality odds of a higher price are only 38%, and daily/weekly trend/EMA structure is still bearish - too mixed for a clean directional trade at $2.80 despite supportive near-term weather.",
-    "invalidation": "",
-    "trigger": "Long trigger: pullback into $2.65-$2.70 with 1h RSI cooling below 55-60, or a clean break/hold above $2.90 with RSI easing from overbought. Short trigger: daily close back below $2.70 with MACD turning negative on 4h/1h."
+    "rationale": "Near-term (1-7D) demand is moderately elevated at +18.1% vs 5y (rangePos 0.85, not above max) but not extreme, and fair-value bands - needed to judge whether the $2.849 front is cheap or rich right now - are null. Intraday technicals (5m/15m/1h) are bullish with 50>200 EMAs, but 15m RSI is overbought (72.6) and both the daily and weekly trends are bearish with a 50<200 EMA death cross, so a fresh long here risks buying a bounce inside a larger downtrend. The front-to-next futures spread (+$0.156) is unremarkable and shows no unusual near-term stress.",
+    "invalidation": "The case for staying flat weakens if the daily EMA structure flips to 50>200 and RSI cools from overbought without price breaking down, confirming the intraday bid is more than a short-lived bounce.",
+    "trigger": "Wait for either a pullback toward the $2.70-2.75 area with RSI resetting from overbought while intraday trend holds bullish, or the daily trend/EMA turning bullish (50>200) to align with the weather tailwind, or fair-value data returning to confirm price is inside/below the fair band."
   },
   "keyDrivers": [
-    "8-16D cooling demand +96.7% vs 5y, pinned above its historical max range",
-    "Front price $0.12-$0.20 below fair value at every horizon, gap widening to +21D",
-    "Managed money net short at the 12th percentile of 5 years - short-squeeze risk",
-    "Storage surplus +182 Bcf vs 5y caps upside and offsets the weather tailwind",
-    "Daily/weekly technicals still bearish (RSI 38-50, 50<200 EMA) despite an overbought intraday bounce"
+    "8-16D demand forecast at 96.7% vs 5y and above the historical max range - extreme cooling-driven gas demand",
+    "Managed-money net short at the 12th percentile of its 5y range - crowded short, squeeze risk",
+    "Daily/weekly technicals show a bearish 50<200 EMA death cross despite bullish intraday (5m-1h) momentum",
+    "Futures curve in steep contango into Dec/Jan (winter premium already priced up to ~$3.92 in Jan-27)",
+    "Seasonality and fair-value data unavailable this cycle (upstream Yahoo Finance fetch failures) - no valuation anchor"
   ],
   "risks": [
-    "Seasonality reliability is low this week (64pp probability spread) - weak signal confidence",
-    "Storage surplus could reassert bearish pressure if the heat anomaly fades quickly",
-    "Chasing the current bounce risks buying into overbought intraday conditions (5m/15m RSI 74-75) with 1w seasonality odds only 38% higher"
+    "Extreme 8-16D heat forecast could fade back toward normal before it feeds through to actual storage draws",
+    "Daily/weekly downtrend could reassert if demand disappoints, with no fair-value floor available to lean on",
+    "Data outage removes seasonality, price-vs-median and fair-value inputs, materially raising uncertainty on any directional call"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
