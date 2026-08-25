@@ -1,49 +1,48 @@
 {
-  "generatedAt": "2026-08-25T21:30:00Z",
-  "sourceSnapshotAt": "2026-08-25T21:21:34.449Z",
-  "frontPrice": 2.8450000286102295,
-  "nextPrice": 3.002000093460083,
-  "marketState": "neutral-to-bullish - extreme heat-driven demand and stretched short positioning offset by a well-supplied storage backdrop",
-  "summary": "Front price ($2.845) sits inside the fair-value band and is essentially FAIR (-$0.074 spread), but is running 9pp below the typical seasonal path for the year (-16.5% YTD vs -7.5% median), signaling a broader bear-market context. The 8-16 day weather outlook is the standout signal: demand is +96.7% vs the 5y norm and above the historical range max (rangePos 1.5), a genuine near-term bullish catalyst that isn't fully reflected in the still-FAIR pricing. Managed money is net short at just the 12th percentile of its 5y range, a crowded positioning that raises squeeze risk on any bullish weather or storage surprise. Technicals are split by timeframe - 5m/15m/1h show bullish trend and EMA cross, while 4h/1d/1w remain bearish/neutral with a weak weekly RSI (37.7) - consistent with a tradable bounce inside a larger downtrend. Storage remains well above the 5-year average (+182 Bcf) and the curve's contango into winter (Jan +$1.08 vs front) is a normal seasonal shape, not evidence of a supply squeeze, so upside should be treated as tactical rather than a trend reversal. Production data was not present in the snapshot and was excluded from this analysis.",
+  "generatedAt": "2026-08-25T22:25:00.000Z",
+  "sourceSnapshotAt": "2026-08-25T22:20:42.901Z",
+  "frontPrice": 2.8410000801086426,
+  "nextPrice": 3.000999927520752,
+  "marketState": "neutral, data-constrained, with a bullish weather/positioning tilt",
+  "summary": "Most of the priority stack is unavailable this cycle: seasonality, fair value (all four horizons), storage, and technicals all returned null/empty because the underlying Yahoo Finance fetches failed (see diagnostics.failedRequests). What is usable points in a mildly bullish direction: 8-16 day demand is running +96.7% vs 5y and is pinned above the historical max (rangePos 1.5), with 1-7 day demand also +18.2% vs 5y, consistent with a late-August cooling-demand spike. Managed money is net short 100k contracts at just the 12th percentile of its 5-year range, an unusually stretched short base that raises the risk of a demand-driven short squeeze rather than confirming further downside. The futures curve is in normal contango out to the Jan27 winter peak (+$1.08 vs front) and rolls into a shallow backwardation in the Apr-May shoulder months, which is a seasonally typical shape, not a distress signal. Given the missing fair-value band and technicals, precise entries/stops cannot be responsibly derived, so both trade ideas below default to WAIT with explicit triggers.",
   "longTerm": {
-    "stance": "LONG",
-    "conviction": "medium",
+    "stance": "WAIT",
+    "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$2.75-$2.90 (scale in near spot)",
-    "stop": "$2.45",
-    "tp1": "$3.15",
-    "tp2": "$3.50",
-    "riskReward": "approx 1:1 to TP1, 1:2 to TP2 (risk ~$0.35 from $2.80 mid-entry)",
-    "sizing": "1R approx 1% account risk",
-    "rationale": "8-16D demand is extreme (+96.7% vs 5y, above the historical range max) while price still trades at only a small discount to fair value, and managed-money shorts are at a 5y-percentile low (12%) - a setup where a weather or COT-driven squeeze can outrun the well-supplied storage backdrop. Seasonality modestly favors a 3-4 week bounce (56%/50% odds higher) even though reliability is flagged Low, so conviction is medium rather than high.",
-    "invalidation": "A reversion of the 8-16D forecast back toward 5y-normal demand, a break and close below the fair-value floor (~$2.42-2.50), or storage surprises continuing to build the +182 Bcf surplus would invalidate the long thesis.",
-    "trigger": ""
+    "entry": "n/a",
+    "stop": "n/a",
+    "tp1": "n/a",
+    "tp2": "n/a",
+    "riskReward": "n/a",
+    "sizing": "n/a",
+    "rationale": "Seasonality (vsMedian, probHigher, typicalMove4w) and storage (deviationVs5y, surprise) are both fully null, removing the two anchors this horizon depends on most; COT's extreme low percentile (12th) is only a supportive secondary signal, not enough alone to size a multi-week position.",
+    "invalidation": "n/a",
+    "trigger": "Wait for seasonality and storage data to repopulate. If they confirm price below typical-year median with elevated hot-demand persistence and a 5y storage deficit, favor LONG toward the Dec26/Jan27 curve premium (~$3.50-3.90); if storage shows a surplus/bearish surprise despite the heat, favor fading the curve premium instead."
   },
   "shortTerm": {
-    "stance": "LONG",
+    "stance": "WAIT",
     "conviction": "low",
     "horizon": "1-10 days",
-    "entry": "$2.80-$2.90 (current zone)",
-    "stop": "$2.68",
-    "tp1": "$3.00",
-    "tp2": "$3.15",
-    "riskReward": "approx 1:1 to TP1, 1:1.8 to TP2 (risk ~$0.17 from $2.85)",
-    "sizing": "0.5R approx 0.5% account risk (reduced size given conflicting timeframe signals)",
-    "rationale": "Intraday technicals (5m/15m/1h) are bullish with a 50>200 EMA cross and 1-7D weather demand elevated (+18.2% vs 5y, rangePos 0.85), supporting a near-term push toward the next contract price ($3.00) and the fair-value line. Conviction is capped at low because 4h/1d/1w trend, EMA structure, and weekly RSI (37.7) remain bearish, so this is a tactical trade against a larger downtrend, not a trend-following one.",
-    "invalidation": "A close back below $2.68, or 1-7D weather demand rolling back toward 5y-normal, would invalidate the near-term long.",
-    "trigger": ""
+    "entry": "n/a",
+    "stop": "n/a",
+    "tp1": "n/a",
+    "tp2": "n/a",
+    "riskReward": "n/a",
+    "sizing": "n/a",
+    "rationale": "fairValue.now/plus7D and technicals (all timeframes) are empty, so there is no fair-value band or trend/RSI/MACD confirmation to set a defensible entry and stop; the only live short-term signal is the 8-16D demand spike (+96.7% vs 5y, above the historical max), which is bullish but not sufficient by itself to trade with real risk.",
+    "invalidation": "n/a",
+    "trigger": "Wait for fair-value bands and at least the 1h/4h technicals to populate. A confirmed break and hold above the Nov26 contract level (~$3.00) with bullish technicals would support a tactical LONG targeting the $3.20-3.50 curve steps; a rejection back below ~$2.70 (below the Apr27 shoulder-month low) would instead favor standing aside or a tactical SHORT back toward the front's recent range."
   },
   "keyDrivers": [
-    "8-16 day cooling demand +96.7% vs 5y and above the historical range max (rangePos 1.5) - the dominant near-term bullish catalyst",
-    "Managed-money net short at the 12th percentile of its 5y range - crowded positioning raises squeeze risk",
-    "Front price near fair value but drifting further below the rising fair-value curve ($2.919 now to $2.997 at +21D)",
-    "Seasonality favors a 3-4 week bounce (56%/50% odds higher) though reliability is flagged Low",
-    "Storage +182 Bcf vs 5y and normal winter contango (Jan +$1.08 vs front) cap upside as a structural bearish counterweight"
+    "8-16D demand +96.7% vs 5y and above the historical max range (rangePos 1.5) — extreme late-summer heat/cooling demand",
+    "Managed money net short 100,080 contracts at only the 12th percentile of 5y range — stretched short positioning",
+    "Futures curve in normal contango to the Jan27 winter peak (+$1.08 vs front), rolling into shallow Apr-May backwardation",
+    "Seasonality, fair value, storage, and technicals all missing/null this cycle due to failed Yahoo Finance fetches"
   ],
   "risks": [
-    "Storage surplus (+182 Bcf vs 5y) is a persistent bearish fundamental that can limit rally size",
-    "Daily/weekly technicals remain bearish (1w RSI 37.7, EMA50<200 on 4h/1d/1w) - real risk of a false bounce inside a larger downtrend",
-    "Seasonality reliability is flagged Low (64pp 10-90% spread) and weather forecasts beyond the 8-16D window can shift quickly, undercutting both trade theses"
+    "No fair-value band or technicals means any directional trade right now would be sized against guesswork, not data — capital preservation favors waiting for the feed to recover",
+    "Extreme short COT positioning can either mean-revert (squeeze) or simply keep being right if fundamentals stay bearish; percentile alone doesn't disambiguate",
+    "Heat-driven demand spikes in shoulder/late-summer weeks can fade quickly once forecasts roll over, so the weather tailwind may not persist through the full short-term window"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
