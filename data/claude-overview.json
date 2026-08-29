@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-29T21:35:00.000Z",
-  "sourceSnapshotAt": "2026-08-29T21:29:19.924Z",
-  "frontPrice": 2.9140000343322754,
+  "generatedAt": "2026-08-29T23:55:00Z",
+  "sourceSnapshotAt": "2026-08-29T23:50:36.763Z",
+  "frontPrice": null,
   "nextPrice": null,
-  "marketState": "neutral, mixed signals with key datasets missing",
-  "summary": "Seasonality data (vsMedian, probability-higher, typical 4-week move, reliability) is entirely null, and technicals plus the futures curve are also empty, so there is no trend/momentum confirmation and no seasonal base-rate to anchor a swing call. What is available paints a mixed picture: near-term weather demand is well above the 5-year norm (+54% vs normal, 1-7D pctVs5y 60.9%, above the historical max) though softening over the last 24h, while 8-16D demand cools toward roughly average (43.9% vs 5y). Price ($2.914) sits FAIR versus the model's fair-value band at every horizon out to 21 days, trading just $0.03-$0.14 below a fair value that itself drifts higher further out, so there's no stretched mispricing to trade. Storage is +165 Bcf above the 5-year average (a bearish overhang) but this week's build undershot forecast by 5 Bcf (a modestly bullish surprise), and managed-money is net short but only at the 27th percentile of the 5-year range — bearish-leaning positioning, not an extreme squeeze setup. Given the missing priority inputs, conviction is low and both trade ideas below default to WAIT rather than forcing a level.",
+  "marketState": "neutral, data-constrained — fading near-term weather bullishness vs. a still-heavy storage surplus",
+  "summary": "This snapshot's live price feed, technicals, futures curve and seasonality stats all failed to load (front/next price null, technicals empty, futuresCurve null, seasonality vsMedian/probHigher/reliability null), so no price-vs-fair-value or trend read is possible right now — conviction is capped and this leans WAIT on both horizons. What data did come through: 1-7D weather demand is running hot (59.6th percentile vs 5y, above the 5y max) but fading fast (-25.8 in 24h), while the 8-16D outlook cools to a near-normal 37.4th percentile, consistent with an early-autumn shoulder-season roll-off. The fair-value model still pegs a gently rising path from $2.942 now to $3.044 by +21D (bands roughly $2.44-$3.54), storage sits +165 Bcf above the 5-year average (bearish overhang) but this week's build undershot forecast by 5 Bcf (a mild bullish surprise), and managed-money is net short but only at the 27th percentile of its 5-year range — moderately bearish positioning, not an extreme crowded short. Net picture: no dominant directional edge once the missing price/technicals are accounted for, so the actionable move is to wait for the feed to recover and use the fair-value band edges as reference levels.",
   "longTerm": {
     "stance": "WAIT",
     "conviction": "low",
@@ -15,9 +15,9 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Seasonality (the top-priority input for this horizon) is completely missing, so there is no base-rate edge to lean on. Storage sitting +165 Bcf above the 5-year average is a medium-term bearish overhang, while elevated cooling demand (+54% vs 5y normal) and a rising fair-value curve ($2.942 now to $3.052 by +21D) offer a mild offsetting bullish tilt, leaving the picture balanced.",
-    "invalidation": "A confirmed directional break would need either the storage surplus vs 5y to widen further with cooling demand fading (bearish case) or several consecutive bullish storage surprises alongside sustained above-normal demand (bullish case).",
-    "trigger": "Wait for seasonality metrics (vsMedian, probHigher_1_2_3_4w, typicalMove4w, reliability) to populate, and for confirmation of whether the +165 Bcf storage surplus is narrowing or widening over the next 2-3 EIA reports."
+    "rationale": "Seasonality stats (vsMedian, probHigher, reliability) are all null and the front price itself is missing, so there is no confirmed price-vs-fair-value or price-vs-median edge to trade. The fair-value model drifts only mildly higher ($2.942 to $3.044 over 21 days), storage carries a +165 Bcf 5y surplus that caps upside, and COT positioning (27th percentile net short) is moderately bearish but not stretched enough to lean hard either way.",
+    "invalidation": "n/a",
+    "trigger": "Resume live price feed. If front reappears trading near/below the fair-value band low (~$2.44-$2.60) while the storage surprise stays bullish (builds undershooting forecast) and 8-16D demand does not collapse further, favor LONG. If front trades above the band high (~$3.44-$3.54) while the +165 Bcf surplus persists, favor fading/SHORT instead."
   },
   "shortTerm": {
     "stance": "WAIT",
@@ -29,20 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Technicals (all timeframes) and the futures curve are both empty, removing the two primary short-term inputs. Price is FAIR versus fair value (spread only -$0.028, well inside the $2.442-$3.442 band), so there is no near-term dislocation to fade or chase, even though 1-7D weather demand is running hot (+54% vs 5y normal) but decelerating (-24.1 over 24h).",
-    "invalidation": "n/a while flat; once positioned, a reversal of the near-term demand trend or a break outside the fair-value band would invalidate the thesis.",
-    "trigger": "Wait for technical data (RSI/MACD/EMA/Bollinger across 5m-1w) and futures-curve structure to populate, or for price to test the fair-value band edges (~$2.44 support / ~$3.44 resistance) with the 1-7D demand trend re-accelerating."
+    "rationale": "No live price, technicals (RSI/MACD/EMA/Bollinger across all timeframes are empty) or futures-curve spread data came through in this snapshot, so there is nothing to confirm a near-term directional entry against. The only concrete near-term signal is 1-7D weather demand still running hot (above the 5y max) but decelerating sharply (-25.8 in 24h), which argues against chasing strength blindly.",
+    "invalidation": "n/a",
+    "trigger": "Wait for the NG=F price/technicals feed to resume. Once live, check price against the now-fair band ($2.44 support / $3.44 resistance) and confirm with RSI/MACD/curve shape before entering; do not trade the current print-less snapshot."
   },
   "keyDrivers": [
-    "1-7D weather demand +54% vs 5-year normal, though cooling over the last 24h",
-    "Storage +165 Bcf above 5-year average, but this week's build missed forecast by -5 Bcf (bullish surprise)",
-    "Price trading FAIR at every fair-value horizon, $0.03-$0.14 below a fair value that rises toward +21D",
-    "Managed-money net short (-71,673 contracts) but only at the 27th percentile of the 5-year range"
+    "Price/technicals/futures-curve feed is offline this snapshot (front & next price null, technicals empty) — no live price-vs-fair-value read",
+    "1-7D weather demand +59.6% vs 5y (above 5y max) but falling fast (-25.8/24h); 8-16D cools to 37th percentile — shoulder-season fade",
+    "Storage +165 Bcf vs 5y surplus, but this week's build undershot forecast by 5 Bcf (bullish surprise)",
+    "Managed money net short -71,673 contracts, ratio 0.79, only 27th percentile of 5y range — moderately bearish, not extreme",
+    "Fair value model drifts mildly higher: $2.942 now → $3.044 by +21D, band roughly $2.44-$3.54"
   ],
   "risks": [
-    "Seasonality, technicals, and futures-curve datasets are all empty in this snapshot due to upstream data-fetch failures (Yahoo/proxy errors), so this read is based on partial evidence",
-    "8-16D weather demand trend is cooling toward average, which could remove the near-term bullish support if it continues",
-    "Storage remains well above the 5-year average, a persistent bearish backdrop if demand normalizes"
+    "No live price or technicals data — any trade taken now would be blind to actual market level and trend",
+    "Large +165 Bcf storage surplus caps upside if weather demand keeps fading into the autumn shoulder season",
+    "1-7D demand is already above the 5y max and dropping quickly, so near-term weather support could evaporate further"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
