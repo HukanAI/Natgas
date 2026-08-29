@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-29T18:15:00Z",
-  "sourceSnapshotAt": "2026-08-29T18:07:55.976Z",
-  "frontPrice": null,
+  "generatedAt": "2026-08-29T21:35:00.000Z",
+  "sourceSnapshotAt": "2026-08-29T21:29:19.924Z",
+  "frontPrice": 2.9140000343322754,
   "nextPrice": null,
-  "marketState": "neutral — bullish weather-demand undertone but data too incomplete for a confident directional call",
-  "summary": "This snapshot is badly degraded: the price feed (front/next), all technicals, and the futures curve are null/empty because the underlying Yahoo Finance proxy calls failed (401s, CORS blocks, DNS errors), and seasonality's quantitative fields (vsMedian, probHigher, typicalMove4w, reliability) are also missing. What does come through is a clearly bullish weather signal — near- and medium-term demand are running well above 5-year norms during peak cooling season — set against a comfortable storage surplus that caps upside, and a managed-money short position that is moderate rather than extreme. The fair-value model pegs gas around $2.94-$3.06 over the next three weeks with a roughly $1/MMBtu band, but with no live price print we cannot say whether the market is currently rich or cheap to that model. Given the absence of price, technicals, futures-curve and seasonality data — four of the highest-priority inputs — this is a wait-for-better-data situation rather than a trade situation.",
+  "marketState": "neutral, mixed signals with key datasets missing",
+  "summary": "Seasonality data (vsMedian, probability-higher, typical 4-week move, reliability) is entirely null, and technicals plus the futures curve are also empty, so there is no trend/momentum confirmation and no seasonal base-rate to anchor a swing call. What is available paints a mixed picture: near-term weather demand is well above the 5-year norm (+54% vs normal, 1-7D pctVs5y 60.9%, above the historical max) though softening over the last 24h, while 8-16D demand cools toward roughly average (43.9% vs 5y). Price ($2.914) sits FAIR versus the model's fair-value band at every horizon out to 21 days, trading just $0.03-$0.14 below a fair value that itself drifts higher further out, so there's no stretched mispricing to trade. Storage is +165 Bcf above the 5-year average (a bearish overhang) but this week's build undershot forecast by 5 Bcf (a modestly bullish surprise), and managed-money is net short but only at the 27th percentile of the 5-year range — bearish-leaning positioning, not an extreme squeeze setup. Given the missing priority inputs, conviction is low and both trade ideas below default to WAIT rather than forcing a level.",
   "longTerm": {
     "stance": "WAIT",
     "conviction": "low",
@@ -15,9 +15,9 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Weather demand is unusually strong (1-7D at 64.7% vs-5y percentile, 8-16D at 43.9%, both above their historical max range) which is a genuine bullish driver for a 3-12 week horizon, but seasonality's vsMedian/probHigher/reliability figures are all null and storage sits +165 Bcf above the 5-year average, a structurally bearish offset. Without price data to test against the fair-value bands ($2.44-$3.56 now, rising toward $2.56-$3.56 by +21D), there is no defensible entry level.",
-    "invalidation": "n/a",
-    "trigger": "Wait for a confirmed front-month price print plus restored seasonality metrics (vsMedian, probHigher_1_2_3_4w). If price reloads inside or below the plus21D fair-value band (~$2.56-$3.06) while 8-16D demand stays above 5y norms, favor LONG; if storage surplus widens further and demand normalizes toward 5y, favor SHORT."
+    "rationale": "Seasonality (the top-priority input for this horizon) is completely missing, so there is no base-rate edge to lean on. Storage sitting +165 Bcf above the 5-year average is a medium-term bearish overhang, while elevated cooling demand (+54% vs 5y normal) and a rising fair-value curve ($2.942 now to $3.052 by +21D) offer a mild offsetting bullish tilt, leaving the picture balanced.",
+    "invalidation": "A confirmed directional break would need either the storage surplus vs 5y to widen further with cooling demand fading (bearish case) or several consecutive bullish storage surprises alongside sustained above-normal demand (bullish case).",
+    "trigger": "Wait for seasonality metrics (vsMedian, probHigher_1_2_3_4w, typicalMove4w, reliability) to populate, and for confirmation of whether the +165 Bcf storage surplus is narrowing or widening over the next 2-3 EIA reports."
   },
   "shortTerm": {
     "stance": "WAIT",
@@ -29,21 +29,20 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Near-term demand (1-7D) is running +76% vs the 5-year normal and above its typical max range, which is short-term bullish, and this week's storage build undershot forecast (+15 Bcf actual vs +20 Bcf forecast, a -5 Bcf bullish surprise). However, technicals are completely empty and the futures curve is null, so there is no way to time an entry, set a stop against real market structure, or confirm trend/momentum for a 1-10 day trade.",
-    "invalidation": "n/a",
-    "trigger": "Wait for technicals (5m-1w trend/RSI/MACD/EMA/Bollinger) and futures-curve data to repopulate, and for a live front price to compare against the now/plus7D fair-value bands ($2.44-$3.46) before sizing a short-horizon trade."
+    "rationale": "Technicals (all timeframes) and the futures curve are both empty, removing the two primary short-term inputs. Price is FAIR versus fair value (spread only -$0.028, well inside the $2.442-$3.442 band), so there is no near-term dislocation to fade or chase, even though 1-7D weather demand is running hot (+54% vs 5y normal) but decelerating (-24.1 over 24h).",
+    "invalidation": "n/a while flat; once positioned, a reversal of the near-term demand trend or a break outside the fair-value band would invalidate the thesis.",
+    "trigger": "Wait for technical data (RSI/MACD/EMA/Bollinger across 5m-1w) and futures-curve structure to populate, or for price to test the fair-value band edges (~$2.44 support / ~$3.44 resistance) with the 1-7D demand trend re-accelerating."
   },
   "keyDrivers": [
-    "1-7D and 8-16D demand both well above 5-year norms (+76% vs normal per weather.trend) and above typical max range — bullish",
-    "Storage surplus +165 Bcf vs 5y caps upside, but this week's build undershot forecast by 5 Bcf (bullish surprise)",
-    "Managed money net short (-71,673 contracts) but only at the 27th percentile of the 5y range — not an extreme washout",
-    "Fair value model: $2.942 now rising to $3.058 by +21D, with a roughly $1/MMBtu band around each estimate",
-    "Price feed, technicals, futures curve, and seasonality's quantitative fields are all missing this cycle due to data-source outages"
+    "1-7D weather demand +54% vs 5-year normal, though cooling over the last 24h",
+    "Storage +165 Bcf above 5-year average, but this week's build missed forecast by -5 Bcf (bullish surprise)",
+    "Price trading FAIR at every fair-value horizon, $0.03-$0.14 below a fair value that rises toward +21D",
+    "Managed-money net short (-71,673 contracts) but only at the 27th percentile of the 5-year range"
   ],
   "risks": [
-    "No live price feed in this snapshot — any trade sized off stale or estimated levels risks a bad entry once data resumes",
-    "Underlying data outage (Yahoo/allorigins 401s, CORS failures, DNS errors) may recur and further delay confirmation",
-    "Storage surplus could deepen if late-summer cooling demand fades, which would pressure the bullish weather thesis"
+    "Seasonality, technicals, and futures-curve datasets are all empty in this snapshot due to upstream data-fetch failures (Yahoo/proxy errors), so this read is based on partial evidence",
+    "8-16D weather demand trend is cooling toward average, which could remove the near-term bullish support if it continues",
+    "Storage remains well above the 5-year average, a persistent bearish backdrop if demand normalizes"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
