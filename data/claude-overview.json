@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-08-29T09:56:17.000Z",
-  "sourceSnapshotAt": "2026-08-29T09:55:08.273Z",
+  "generatedAt": "2026-08-29T14:55:08.000Z",
+  "sourceSnapshotAt": "2026-08-29T14:54:07.673Z",
   "frontPrice": null,
-  "nextPrice": 3.071000099182129,
-  "marketState": "neutral-to-bullish — demand well above normal and storage surprise bullish, but capped by a large storage surplus and major data gaps",
-  "summary": "This snapshot is missing several priority inputs: seasonality is entirely null, technicals is an empty object across all timeframes, futuresCurve is null, and front-month price is null (dataCounts show ngf:0 and taTimeframes:0, with the diagnostics log full of 401/CORS failures from the Yahoo Finance proxy) — conviction is capped accordingly. Of what is usable, weather demand is running 64-70% above the 5-year percentile and above the max range in both the 1-7D and 8-16D windows, a genuine bullish cooling-demand signal. The next-month contract ($3.071) sits FAIR-status versus fair value at every horizon checked, and the fair-value curve itself drifts higher from $2.942 now to $3.081 by +21 days, a mild bullish carry. Storage has a large +165 Bcf surplus vs the 5-year average, but the latest build undershot forecast by 5 Bcf (bullish surprise), and managed-money is net short but only at the 27th percentile of its 5-year range, leaving room for short covering. Net read: fundamentals and positioning lean modestly bullish for the medium term, while the near-term technical/price picture is simply not present in this data pull.",
+  "nextPrice": null,
+  "marketState": "neutral, tilted cautiously bullish on weather/storage, but data feed is largely down",
+  "summary": "This snapshot is missing most of its price and technical infrastructure: front/next futures prices are null, seasonality (vsMedian, probHigher, typicalMove4w, reliability) is entirely null, technicals is empty, and the futures curve is null — diagnostics show repeated Yahoo Finance 401/CORS/aborted-fetch errors, i.e. a data-pipeline outage rather than a quiet market. What did come through is constructive: weather demand is running well above 5-year norms both 1-7D (62nd percentile, above max) and 8-16D (87th percentile, above max) and rising, consistent with strong cooling-season power-burn demand. The latest storage build came in smaller than forecast (+15 vs +20 Bcf, a bullish surprise) even though absolute stocks remain +165 Bcf above the 5-year average, a lingering bearish overhang. Managed-money COT positioning is net short but only at the 27th percentile of its 5-year range, not an extreme/crowded short. With seasonality, live price, technicals and the futures curve all unavailable, there isn't enough to responsibly size a trade right now — the weather and storage-surprise combination is a bullish lean to watch once the feed recovers.",
   "longTerm": {
-    "stance": "LONG",
-    "conviction": "medium",
+    "stance": "WAIT",
+    "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$2.95 – $3.10 (near current next-month price / fair-value zone)",
-    "stop": "$2.70 (below the 'now' fair-value band support)",
-    "tp1": "$3.44 (top of current fair-value band)",
-    "tp2": "$3.60 – $3.65 (top of +21D fair-value band / extension)",
-    "riskReward": "TP1 ~1:1.5, TP2 ~1:2.2 (entry $3.00, stop $2.70)",
-    "sizing": "1R ≈ 1% account risk (e.g. risk ≈$0.30/MMBtu sized to 1% of account equity)",
-    "rationale": "Weather demand is 64-70% above the 5y percentile and above the max range in both the 1-7D and 8-16D windows, a clear bullish demand signal into the cooling season. The fair-value curve rises from $2.94 now to $3.08 by +21D while price stays FAIR just above it, and storage undershot the forecast by 5 Bcf (bullish surprise) even though the absolute 5y surplus (+165 Bcf) remains an upside cap. Managed money is net short but only at the 27th 5y percentile, leaving room for short covering if elevated demand persists.",
-    "invalidation": "8-16D demand forecast reverts back inside the 5y normal range, storage prints materially above forecast in the next 1-2 EIA reports, or price closes below the fair-value band low (~$2.44-2.58 zone).",
-    "trigger": ""
+    "entry": "n/a",
+    "stop": "n/a",
+    "tp1": "n/a",
+    "tp2": "n/a",
+    "riskReward": "n/a",
+    "sizing": "n/a",
+    "rationale": "Seasonality (top priority) is completely null this snapshot and there is no live front price to compare against the fair-value band ($2.44-$3.44 now, drifting to $2.62-$3.62 by +21D), so a directional call can't be sized responsibly. Weather demand strength (62nd/87th percentile vs 5y, both above max, rising) plus a smaller-than-forecast storage build are constructive, but COT positioning is only mildly net short (27th percentile) and the +165 Bcf storage surplus is a real cap on upside.",
+    "invalidation": "If weather demand normalizes back toward the 5y median or storage builds start running consistently above forecast, the constructive case fades.",
+    "trigger": "Wait for the seasonality block (vsMedian, probHigher, reliability) and live front price to repopulate. If price is then trading in or below the $2.44-$3.44 fair-value band while 8-16D weather demand stays above the 80th percentile vs 5y and storage surprises stay bullish, favor a LONG entry near the band low with a stop below $2.44 minus a buffer."
   },
   "shortTerm": {
     "stance": "WAIT",
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "No usable near-term technical or price-structure data exists in this snapshot: front-month price is null, technicals is empty across all timeframes (5m-1w), futuresCurve is null, and dataCounts confirm ngf:0 / taTimeframes:0 — the underlying price feed failed (401s and CORS errors throughout diagnostics). Weather and fair-value 'FAIR' status alone are not enough to time a short-horizon entry, stop and target.",
-    "invalidation": "n/a while in WAIT",
-    "trigger": "Wait for front-month live price, technicals (RSI/MACD/EMA/Bollinger/EMA across 5m-1w) and futuresCurve (contango/backwardation) to populate, then re-evaluate against the next-month price sitting FAIR near $3.07."
+    "rationale": "Every input this horizon depends on is missing: front/next price is null, technicals is an empty object across all timeframes, and futuresCurve is null (no contango/backwardation read). Near-term weather (1-7D, 62nd percentile vs 5y, above max) is the only usable near-term signal and is mildly bullish on its own, but that alone isn't enough to justify a 1-10 day trade without price and technical confirmation.",
+    "invalidation": "n/a while WAIT",
+    "trigger": "Wait for live front/next price, per-timeframe technicals (trend/RSI/MACD/EMA/Bollinger), and the futures curve to repopulate. Once available, reassess price against the $2.44-$3.44 near-term fair-value band and the 1-7D weather demand read before entering."
   },
   "keyDrivers": [
-    "Cooling-season demand 64-70% above 5y percentile, above max range in both 1-7D and 8-16D windows",
-    "Fair-value curve drifting higher ($2.94 now → $3.08 by +21D) with next-month price FAIR at every horizon",
-    "Storage surprise bullish (-5 Bcf vs forecast) despite a +165 Bcf surplus vs 5y overhang",
-    "Managed-money net short (-71,673 contracts) but only 27th percentile of 5y range — room for short covering",
-    "Seasonality, technicals, futures curve and front-month price all missing from this snapshot (feed failures)"
+    "Weather demand well above 5y norms both 1-7D (62nd pct, above max) and 8-16D (87th pct, above max), rising (+66% vs 5y normal)",
+    "Storage build smaller than forecast (+15 vs +20 Bcf, bullish surprise), though stocks remain +165 Bcf above 5y average",
+    "Managed-money COT net short (-71,673 contracts) but only at the 27th percentile of its 5y range — not a crowded/extreme short",
+    "Fair-value midpoint drifts modestly higher over the next 21 days ($2.94 to $3.12), a mild seasonal upward bias",
+    "Critical data outage: front/next price, seasonality, technicals, and futures curve are all null/empty this snapshot (Yahoo Finance fetch failures)"
   ],
   "risks": [
-    "Large absolute storage surplus (+165 Bcf vs 5y) caps upside if injections resume running hot",
-    "No technicals, futures-curve, or seasonality data to confirm trend structure or timing — this call rests mainly on weather, fair value and COT",
-    "8-16D weather demand forecasts can shift quickly and flip the bullish read"
+    "Live price, technicals, and futures-curve feeds are down, so any trade taken now lacks real-time confirmation",
+    "Absolute storage surplus (+165 Bcf vs 5y) remains a bearish overhang that can cap rallies even if weather stays hot",
+    "No seasonality vsMedian/probHigher/reliability data available to confirm this week's typical seasonal price behavior"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
