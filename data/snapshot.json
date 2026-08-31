@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T14:45:05.694Z",
+  "generatedAt": "2026-08-31T20:35:25.822Z",
   "price": {
     "front": null,
     "next": null,
@@ -21,22 +21,22 @@
   },
   "weather": {
     "demand_1_7D": {
-      "pctVs5y": 60.3,
+      "pctVs5y": 60.2,
       "rangePos": 1.13,
       "aboveMax": true,
       "belowMin": false
     },
     "demand_8_16D": {
-      "pctVs5y": 52.7,
-      "rangePos": 1.22,
+      "pctVs5y": 81,
+      "rangePos": 1.62,
       "aboveMax": true,
       "belowMin": false
     },
     "trend": {
-      "nowDemand": "135.3",
-      "change24h": "+9.3",
+      "nowDemand": "143.9",
+      "change24h": "-7.6",
       "range7d": "121.9 – 161.8",
-      "vs5yNormal": "+50.7 (+60%)"
+      "vs5yNormal": "+59.4 (+70%)"
     }
   },
   "fairValue": {
@@ -67,8 +67,8 @@
       }
     },
     "plus14D": {
-      "fair": "$2.959",
-      "band": "$2.459 – $3.459",
+      "fair": "$2.953",
+      "band": "$2.453 – $3.453",
       "front": {
         "spread": "Spread —",
         "status": null
@@ -79,8 +79,8 @@
       }
     },
     "plus21D": {
-      "fair": "$3.037",
-      "band": "$2.537 – $3.537",
+      "fair": "$3.028",
+      "band": "$2.528 – $3.528",
       "front": {
         "spread": "Spread —",
         "status": null
@@ -91,7 +91,16 @@
       }
     }
   },
-  "cot": null,
+  "cot": {
+    "date": "2026-08-25",
+    "mmNet": -71673,
+    "mmLong": 269125,
+    "mmShort": 340798,
+    "mmRatio": 0.79,
+    "producerNet": -18985,
+    "swapNet": 206722,
+    "mmNetPercentile5y": 27
+  },
   "storage": {
     "value": "3,184 Bcf",
     "weekChange": "+15 Bcf vs last week",
@@ -105,17 +114,17 @@
   "dataCounts": {
     "ngf": 0,
     "storage": 869,
-    "cot": 0,
+    "cot": 520,
     "taTimeframes": 0
   },
   "pageErrors": [],
   "diagnostics": {
     "network": {
       "?": {
-        "ok": 75,
+        "ok": 76,
         "err": 234,
         "statuses": {
-          "200": 75,
+          "200": 76,
           "401": 47
         }
       }
@@ -123,82 +132,82 @@
     "failedRequests": [
       {
         "host": "?",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGZ26.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGZ26.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGF27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGF27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGG27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGG27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGH27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGH27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGJ27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGJ27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGK27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGK27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGM27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGM27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGN27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGN27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGQ27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGQ27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGU27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGU27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D5m%26range%3D15d%26_t%3D1788187469681%26lang%3Den-US%26region%3DUS",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D5m%26range%3D15d%26_t%3D1788208489809%26lang%3Den-US%26region%3DUS",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D1d%26range%3D5y%26_t%3D1788187469682%26lang%3Den-US%26region%3DUS",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D1d%26range%3D5y%26_t%3D1788208489809%26lang%3Den-US%26region%3DUS",
         "error": "net::ERR_ABORTED"
       },
       {
@@ -213,7 +222,7 @@
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNG%253DF%3Fperiod1%3D1262304000%26period2%3D1788187470%26interval%3D1wk%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNG%253DF%3Fperiod1%3D1262304000%26period2%3D1788208490%26interval%3D1wk%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
@@ -228,82 +237,82 @@
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGZ26.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGZ26.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGF27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGF27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGG27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGG27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGH27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGH27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGJ27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGJ27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGK27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGK27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGM27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGM27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGN27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGN27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGQ27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGQ27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGU27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3De",
+        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGU27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3De",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D5m%26range%3D15d%26_t%3D1788187469681%26lang%3Den-US%26region%3DUS",
+        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D5m%26range%3D15d%26_t%3D1788208489809%26lang%3Den-US%26region%3DUS",
         "error": "net::ERR_ABORTED"
       },
       {
         "host": "?",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D1d%26range%3D5y%26_t%3D1788187469682%26lang%3Den-US%26region%3DUS",
+        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D1d%26range%3D5y%26_t%3D1788208489809%26lang%3Den-US%26region%3DUS",
         "error": "net::ERR_ABORTED"
       },
       {
@@ -318,7 +327,7 @@
       },
       {
         "host": "?",
-        "url": "https://thingproxy.freeboard.io/fetch/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=1d&range=5y&_t=1788187469682&lang=en-US&region=US",
+        "url": "https://thingproxy.freeboard.io/fetch/https://query1.finance.yahoo.com/v8/finance/chart/NGQ27.NYM?period1=1735689600&period2=1788208489&interval=1d&events=history&lang=en-US&region=US",
         "error": "net::ERR_NAME_NOT_RESOLVED"
       }
     ],
@@ -348,21 +357,21 @@
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
-      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fquery2.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D1d%26range%3D5y%26_t%3D1788187469682%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Con",
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fquery2.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Finterval%3D1d%26range%3D10d%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' h",
+      "[error] Failed to load resource: net::ERR_FAILED",
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fquery2.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGQ27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked",
       "[error] Failed to load resource: net::ERR_FAILED",
       "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fquery2.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D1d%26range%3D10d%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' h",
       "[error] Failed to load resource: net::ERR_FAILED",
-      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fquery2.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D5m%26range%3D15d%26_t%3D1788187469681%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Co",
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fquery2.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked",
       "[error] Failed to load resource: net::ERR_FAILED",
-      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fquery2.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGK27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked",
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fquery2.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D1d%26range%3D5y%26_t%3D1788208489809%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Con",
       "[error] Failed to load resource: net::ERR_FAILED",
-      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fquery2.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Finterval%3D1d%26range%3D10d%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' h",
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fquery2.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGJ27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked",
       "[error] Failed to load resource: net::ERR_FAILED",
-      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fquery2.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked",
+      "[error] Access to fetch at 'https://api.allorigins.win/get?url=https%3A%2F%2Fquery2.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Finterval%3D1d%26range%3D10d%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' h",
       "[error] Failed to load resource: net::ERR_FAILED",
-      "[error] Access to fetch at 'https://api.allorigins.win/get?url=https%3A%2F%2Fquery2.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D1d%26range%3D5y%26_t%3D1788187469682%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Con",
-      "[error] Failed to load resource: net::ERR_FAILED",
-      "[error] Access to fetch at 'https://api.allorigins.win/get?url=https%3A%2F%2Fquery2.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGK27.NYM%3Fperiod1%3D1735689600%26period2%3D1788187469%26interval%3D1d%26events%3Dhistory%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked"
+      "[error] Access to fetch at 'https://api.allorigins.win/get?url=https%3A%2F%2Fquery2.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGQ27.NYM%3Fperiod1%3D1735689600%26period2%3D1788208489%26interval%3D1d%26events%3Dhistory%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked"
     ]
   }
 }
