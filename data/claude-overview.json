@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-02T10:30:00.000Z",
-  "sourceSnapshotAt": "2026-09-02T10:24:01.239Z",
-  "frontPrice": null,
-  "nextPrice": null,
-  "marketState": "neutral, leaning bullish on fundamentals but unconfirmed — data feed outage",
-  "summary": "The snapshot's price, seasonality (vsMedian/probHigher/typicalMove), fair-value band, technicals, and futures curve are all null or empty because the underlying Yahoo Finance proxies are failing (repeated 401s, CORS blocks, and ERR_NAME_NOT_RESOLVED across allorigins.win and thingproxy.freeboard.io per diagnostics). That removes three of the four priority-1 data sources, so no defensible price levels can be set. What does come through is bullish: weather demand is running well above normal both near-term (69.9% vs 5y, range position 1.13x — above the historical max) and medium-term (84% vs 5y, range position 1.81x, also above max), with demand trending up (+4.2 over 24h, +77% vs 5y normal). Storage posted a bullish surprise (draw/build ~5 Bcf tighter than the +20 Bcf forecast). Managed-money net short (-71,673 contracts) sits at just the 27th percentile of its 5-year range, meaning positioning is already unusually short, which caps incremental selling pressure and raises short-covering risk on a bullish catalyst. Without price or fair-value confirmation, this is fundamentals-only conviction — not tradeable yet.",
+  "generatedAt": "2026-09-02T15:05:00Z",
+  "sourceSnapshotAt": "2026-09-02T14:53:56.712Z",
+  "frontPrice": 2.9579999446868896,
+  "nextPrice": 3.0889999866485596,
+  "marketState": "neutral-to-bullish near term, capped by storage surplus and thin data",
+  "summary": "Weather demand is running dramatically above normal — 1-7D at +62.5% vs 5y and 8-16D at +106.4% vs 5y with both readings above the historical range max, and the demand trend is accelerating (+86% vs 5y normal, rising 24h). Front price ($2.958) sits almost exactly on the model's fair value ($2.942 now, drifting up to $3.056 by +21D), so there is no significant mispricing edge to trade off the band alone. Storage carries a +165 Bcf surplus vs the 5-year average (bearish overhang) but the latest weekly build was smaller than forecast (-5 Bcf surprise, bullish), and managed money is net short but only at the 27th percentile of its 5-year range, a crowded-short setup with squeeze risk. Seasonality (vsMedian, probHigher, typicalMove4w, reliability) and technicals are entirely empty in this snapshot, which materially weakens the confidence of any longer-horizon seasonal call. Net effect: near-term upside pressure from weather/demand is real and actionable, while the medium-term view is muddied by the storage surplus and missing seasonality data.",
   "longTerm": {
     "stance": "WAIT",
     "conviction": "low",
@@ -15,34 +15,35 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Weather demand well above 5-year norms in both the 1-7D and 8-16D windows, a bullish storage surprise, and managed-money positioning already skewed short (27th percentile) all lean bullish. But seasonality (vsMedian, probHigher, typicalMove4w) and the fair-value band are all null, so there is no way to judge whether this bullish fundamental picture is already priced in.",
-    "invalidation": "Weather demand anomaly fades back toward the 5y median, or storage prints revert to in-line/bearish surprises once data resumes.",
-    "trigger": "Wait for seasonality and fair-value data to repopulate (feed currently down) so entries can be benchmarked against the median and fair-value band; then look for LONG entries near/below fair value with demand still elevated."
+    "rationale": "Seasonality (vsMedian, probHigher, typicalMove4w, reliability) is entirely null, removing the top-priority long-term signal. What remains is mixed: rising modeled fair value out to +21D ($2.942 to $3.056) and a bullish storage surprise argue for upside, but the +165 Bcf 5y storage surplus and net-short-but-not-extreme COT positioning argue for caution.",
+    "invalidation": "n/a",
+    "trigger": "Wait for seasonality/vsMedian data to populate, or for storage deviation vs 5y to narrow meaningfully / weather demand to stay elevated into the next 2-3 EIA prints before committing directionally."
   },
   "shortTerm": {
-    "stance": "WAIT",
+    "stance": "LONG",
     "conviction": "low",
     "horizon": "1-10 days",
-    "entry": "n/a",
-    "stop": "n/a",
-    "tp1": "n/a",
-    "tp2": "n/a",
-    "riskReward": "n/a",
-    "sizing": "n/a",
-    "rationale": "No front/next price, no fair-value spread or status, no technicals (RSI/MACD/EMA/Bollinger across any timeframe), and no futures curve data are available in this snapshot, so there is nothing to anchor a short-term entry, stop, or target to. The near-term weather signal alone (69.9% vs 5y, above max) is supportive but not sufficient on its own.",
-    "invalidation": "n/a — no position to invalidate while on WAIT.",
-    "trigger": "Wait for price feed and technicals to come back online (currently blocked by 401s/CORS failures on the Yahoo Finance proxy chain); once price vs fair-value spread and at least one timeframe of technicals populate, reassess for a LONG bias given the weather/storage backdrop."
+    "entry": "$2.93 - $2.98 (scale in near current front price)",
+    "stop": "$2.80",
+    "tp1": "$3.10",
+    "tp2": "$3.30",
+    "riskReward": "1:0.9 to TP1, 1:2.1 to TP2",
+    "sizing": "1R approx 1% risk",
+    "rationale": "1-7D and 8-16D weather demand are both above the top of their historical ranges (+62.5% and +106.4% vs 5y) and accelerating, a strong near-term bullish signal, reinforced by a bullish storage surprise (-5 Bcf vs forecast). Price is currently fair (front +$0.016 vs fair now) rather than cheap, and technicals are unavailable in this snapshot, so conviction is capped at low despite the weather tailwind.",
+    "invalidation": "Weather demand readings (1-7D/8-16D pctVs5y) roll back toward or below the 5y norm, or price closes below $2.80 invalidating the setup.",
+    "trigger": ""
   },
   "keyDrivers": [
-    "Weather demand well above 5y norms: 1-7D at 69.9% (range pos 1.13x, above max), 8-16D at 84% (range pos 1.81x, above max), trending up +4.2/24h",
-    "Storage surprise bullish: actual print ~5 Bcf tighter than the +20 Bcf forecast",
-    "Managed-money net short (-71,673) at only the 27th percentile of its 5y range — limited room for further short-side pressure, short-covering risk",
-    "Price, seasonality, fair-value, technicals, and futures-curve feeds are all down (Yahoo Finance proxy 401s/CORS/DNS failures), removing most of the priority data needed to set trade levels"
+    "Weather demand far above 5y normal and accelerating (1-7D +62.5%, 8-16D +106.4%, both above range max)",
+    "Storage surplus +165 Bcf vs 5y is a bearish overhang, but last week's build undershot forecast (-5 Bcf, bullish surprise)",
+    "Price is trading at fair value across the curve, not cheap or rich, with modeled fair value drifting up to $3.056 by +21D",
+    "Managed money net short (-71,673) but only at 27th percentile of 5y range — a crowded short with squeeze risk",
+    "Seasonality/vsMedian data and technicals are empty in this snapshot, reducing confidence in the longer-horizon call"
   ],
   "risks": [
-    "No live price or fair-value confirmation — any bullish lean here is fundamentals-only and could already be priced in",
-    "Producer net short (-18,985) reflects normal hedging but could accelerate into any rally, capping upside",
-    "Weather-driven demand strength can reverse quickly if the pattern shifts; storage revisions can also flip a bullish surprise to neutral"
+    "Snapshot data gaps (seasonality, vsMedian, technicals) stem from Yahoo Finance API failures noted in diagnostics (401s/CORS errors) — signals may be incomplete",
+    "Storage surplus vs 5y could reassert itself and cap rallies if builds resume running above forecast",
+    "Futures curve has only 3 sparse points, limiting the read on term structure and contango/backwardation dynamics"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
