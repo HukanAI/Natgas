@@ -144,11 +144,26 @@ function fibDailyLevels(dailyCandles, length = 200) {
 
 
 
-export function taPatterns(candles) {
+// Nominal bar length per timeframe, used to tell a forming bar from a closed one.
+const TF_MS = { '5m': 3e5, '15m': 9e5, '1h': 36e5, '4h': 1.44e7, '1d': 8.64e7, '1w': 6.048e8 };
+
+export function taPatterns(candles, tf) {
   const found = [];
   const n = candles.length;
   if (n < 3) return found;
-  const i = n - 1;
+
+  // Read the last CLOSED bar. The newest one is still forming, and on the
+  // intraday feeds it arrives as a single tick with high === low === close —
+  // zero range, which none of the tests below can ever match. The card therefore
+  // showed "No pattern" permanently while the last closed bar was a Doji (5m,
+  // 15m), a Shooting Star (1h) or a Bearish Engulfing (1d); roughly 30% of bars
+  // historically carry a pattern, so the detector itself was fine.
+  let i = n - 1;
+  const step = TF_MS[tf];
+  const forming = candles[i].high === candles[i].low ||
+                  (step ? Date.now() - candles[i].ts < step : false);
+  if (forming && n >= 4) i = n - 2;
+
   const c = candles[i];
   const p = candles[i - 1];
   const cBody = Math.abs(c.close - c.open);
@@ -417,7 +432,7 @@ export function taRenderTF(tf, candles) {
   const bb = taBB(closes, 20, 2);
   const rsi = taRSI(closes, 14);
   const macdObj = taMACD(closes, 12, 26, 9);
-  const patterns = taPatterns(candles);
+  const patterns = taPatterns(candles, tf);
   const fibDaily = fibDailyLevels(state.taData['1d'], 200);
   const fibLevels = fibDaily ? [
     { value: fibDaily.highest, label: 'Fib high', color: 'gray' },
