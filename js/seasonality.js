@@ -82,12 +82,20 @@ function computeSeasonStats() {
   const p10 = histPctAtNow.length >= 2 ? pct(histPctAtNow.slice().sort((a, b) => a - b), 0.1) : null;
   const p90 = histPctAtNow.length >= 2 ? pct(histPctAtNow.slice().sort((a, b) => a - b), 0.9) : null;
 
-  // Forward move from current week: price[nowW+h] / price[nowW] - 1, per historical year
+  // Forward move from current week: price[nowW+h] / price[nowW] - 1, per historical year.
+  // The horizon has to roll into the following year. Clamping it to week 52
+  // instead silently shortened the move and inverted the read every December:
+  // at week 51 the median 4-week move came out -2.04% (31% of years up) when it
+  // is really +1.65% (56% up), and at week 52 every year compared against itself
+  // for a flat 0.00% and a 0% probability — an artefact, in peak heating season.
   function fwdMoves(h) {
     const out = [];
     histYears.forEach(y => {
       const m = byYear[y];
-      const a = m[nowW], b = m[Math.min(WEEKS, nowW + h)];
+      const a = m[nowW];
+      let b;
+      if (nowW + h <= WEEKS) b = m[nowW + h];
+      else { const next = byYear[y + 1]; b = next ? next[nowW + h - WEEKS] : null; }
       if (a != null && b != null && a > 0) out.push((b / a - 1) * 100);
     });
     return out;

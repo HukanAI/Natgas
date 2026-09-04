@@ -20,8 +20,13 @@ function txt(id) {
 
 function num(s) {
   if (s == null) return null;
-  const v = parseFloat(String(s).replace(/[^0-9.\-]/g, ''));
-  return Number.isFinite(v) ? v : null;
+  // Take the first number in the string. Stripping every non-digit and parsing
+  // the remainder concatenated separate figures into fabricated ones:
+  // "115.2 - 159.6" came out as 115.2159 and "44% / 63%" as 4463. These values
+  // are handed to Claude as facts, so a silent invention is the worst failure
+  // mode available here.
+  const m = String(s).replace(/,/g, '').match(/-?\d+(?:\.\d+)?/);
+  return m && Number.isFinite(+m[0]) ? +m[0] : null;
 }
 
 function rnd(v, d = 3) {

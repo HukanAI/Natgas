@@ -436,6 +436,24 @@ function calcForecast(lastDate, startOff, endOff) {
     if (dt>=s&&dt<=e&&state.wxS.demAll[i]!=null&&!isNaN(state.wxS.demAll[i])) { D+=state.wxS.demAll[i]; cnt++; }
   }
   if (!cnt) return null;
+
+  // D is a SUM over the window and the cubic below was fitted on full 7-day
+  // sums, so a short window silently lands the model on the wrong scale. The
+  // +21d window is the exposed one: it ends at lastDate+21, which right after
+  // an EIA release (6-day lag) is the very last forecast day — precisely the
+  // day Open-Meteo has not always filled in yet. One missing day dropped D from
+  // 53.9 to 46.2 and the answer from 36 to 55 Bcf, a 19 Bcf error shown as
+  // fact. Scale a nearly-complete window up to full length; below that the
+  // extrapolation is too much of a guess, so report nothing.
+  const expected = endOff - startOff + 1;
+  if (cnt < expected) {
+    if (cnt < expected - 2) {
+      dbLog('Storage forecast ' + s + '..' + e + ': only ' + cnt + '/' + expected + ' days of weather — skipped', 'warn');
+      return null;
+    }
+    D = D * expected / cnt;
+  }
+
   const FA=0.0001607983,FB=-0.0460227485,FC=0.909433429,FD=95.0676254411;
-  return {D, dBcf:FA*D*D*D+FB*D*D+FC*D+FD, startDate:s, endDate:e};
+  return {D, dBcf:FA*D*D*D+FB*D*D+FC*D+FD, startDate:s, endDate:e, days:cnt, expected};
 }

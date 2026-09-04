@@ -2,33 +2,50 @@
 import { COT_WINDOWS } from './constants.js';
 import { state } from './state.js';
 import { dbLog } from './debug.js';
-import { fmtGB, fmtShort, sgn } from './utils.js';
+import { fmtGB, fmtShort, sgn, esc } from './utils.js';
 import { killChart, baseX, baseY, baseTT, zoomOpts } from './charts.js';
 import { updateTopbar } from './topbar.js';
 import { updateAllWidgets } from './widgets.js';
+import { proxyFetchJSON } from './proxy.js';
 
 function setDot(s)       { document.getElementById('cot-dot').className='sdot '+s; }
 function setBadge(t,txt) { const el=document.getElementById('cot-badge'); el.textContent=txt; el.className='cbadge '+t; }
 
 // ── Fetch (JSON API) ──────────────────────────────────────────────────────────
 
+// CFTC Socrata API — filter by contract market code (NYMEX Henry Hub).
+const COT_URL='https://publicreporting.cftc.gov/resource/72hh-3qpy.json'
+  +'?cftc_contract_market_code=023651&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=520';
+
+// Socrata sends CORS headers, so the direct call is the fast path. The retry
+// through the shared proxy pool covers a network or CORS hiccup on this origin
+// without a second parser to keep in sync.
+async function cotFetchRecords() {
+  try {
+    const res=await fetch(COT_URL,{headers:{'Accept':'application/json'}});
+    if (!res.ok) throw new Error('HTTP '+res.status);
+    return await res.json();
+  } catch(e) {
+    dbLog('COT direct fetch failed ('+e.message+') — retrying via proxy…','warn');
+    return await proxyFetchJSON(COT_URL, {
+      ttl: 10*60*1000,
+      validate: j => Array.isArray(j) && j.length > 0,
+    });
+  }
+}
+
 async function cotFetch() {
   state.cotApiCount++;
   document.getElementById('cot-api-count').textContent=state.cotApiCount;
 
-  // CFTC Socrata API — filter by contract market code (NYMEX Henry Hub)
-  const url='https://publicreporting.cftc.gov/resource/72hh-3qpy.json'
-    +'?cftc_contract_market_code=023651&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=520';
-  const res=await fetch(url,{headers:{'Accept':'application/json'}});
-  if (!res.ok) throw new Error('CFTC Socrata HTTP '+res.status);
-  const records=await res.json();
+  const records=await cotFetchRecords();
   if (!records.length) throw new Error('No COT records returned');
   dbLog('COT: '+records.length+' records, latest: '+records[0]?.report_date_as_yyyy_mm_dd?.slice(0,10),'info');
   const out=records.map(f=>({
     date:(f.report_date_as_yyyy_mm_dd||'').slice(0,10),
     mmLong:  parseInt(f.m_money_positions_long_all||0),
     mmShort: parseInt(f.m_money_positions_short_all||0),
-    mmSpread:parseInt(f.m_money_positions_spread_all||0),
+    mmSpread:parseInt(f.m_money_positions_spread||0), // not *_spread_all — that field does not exist, so this read 0 every week
     prodLong: parseInt(f.prod_merc_positions_long||f.prod_merc_positions_long_all||0),
     prodShort:parseInt(f.prod_merc_positions_short||f.prod_merc_positions_short_all||0),
     swapLong: parseInt(f.swap_positions_long_all||0),
@@ -44,33 +61,6 @@ async function cotFetch() {
   });
   if (!out.length) throw new Error('COT data parsed to 0 rows');
   return out;
-}
-
-// ── CSV fallback ──────────────────────────────────────────────────────────────
-
-async function cotFetchCSV() {
-  const txtUrl='https://corsproxy.io/?url='+encodeURIComponent('https://www.cftc.gov/dea/newcot/f_disagg.txt');
-  const res=await fetch(txtUrl); if(!res.ok) throw new Error('CFTC CSV HTTP '+res.status);
-  const text=await res.text();
-  const lines=text.split('\n');
-  const header=lines[0].split(',').map(h=>h.trim().replace(/"/g,'').toLowerCase());
-  const idx=k=>header.findIndex(h=>h.includes(k));
-  const iDate=idx('report_date_as_yyyy_mm_dd'),iCode=idx('cftc_commodity_code');
-  const iMML=idx('m_money_positions_long'),iMMS=idx('m_money_positions_short');
-  const iPL=idx('prod_merc_positions_long'),iPS=idx('prod_merc_positions_short');
-  const iSL=idx('swap_positions_long');
-  const iSS=header.findIndex(h=>h.includes('swap__positions_short')||h.includes('swap_positions_short'));
-  const iOI=idx('open_interest');
-  const rows=[];
-  for (let i=1;i<lines.length;i++){
-    const cols=lines[i].split(','); if(!cols[iCode]) continue;
-    if(cols[iCode].replace(/"/g,'').trim()!=='023651') continue;
-    rows.push({date:(cols[iDate]||'').replace(/"/g,'').trim(),mmLong:parseInt(cols[iMML])||0,mmShort:parseInt(cols[iMMS])||0,prodLong:parseInt(cols[iPL])||0,prodShort:parseInt(cols[iPS])||0,swapLong:parseInt(cols[iSL])||0,swapShort:parseInt(cols[iSS])||0,openInterest:parseInt(cols[iOI])||0});
-  }
-  if (!rows.length) throw new Error('No NG rows found in CFTC CSV');
-  rows.sort((a,b)=>a.date<b.date?-1:1);
-  rows.forEach(r=>{r.mmNet=r.mmLong-r.mmShort;r.prodNet=r.prodLong-r.prodShort;r.swapNet=r.swapLong-r.swapShort;r.mmRatio=r.mmShort>0?(r.mmLong/r.mmShort):null;});
-  return rows;
 }
 
 // ── Load ──────────────────────────────────────────────────────────────────────
@@ -89,17 +79,15 @@ export async function cotLoadAll() {
     setDot('ok'); setBadge('live','Live data');
     cotUpdateBias(); cotRenderAll();
   } catch(e) {
-    dbLog('COT primary fetch failed: '+e.message+' — trying CSV fallback…','warn');
-    try {
-      state.cotData=await cotFetchCSV();
-      dbLog('COT CSV fallback: OK ('+state.cotData.length+' weeks)','ok');
-      setDot('ok'); setBadge('cached','CSV fallback');
-      cotUpdateBias(); cotRenderAll();
-    } catch(e2) {
-      setDot('err'); setBadge('err','Error');
-      ['net','ls','prod','swap','chg'].forEach(k=>{ document.getElementById('cot-spin-'+k).innerHTML='⚠ '+e2.message; });
-      dbLog('COT CSV fallback also failed: '+e2.message,'error');
-    }
+    // The old CSV fallback could never work: cftc.gov/dea/newcot/f_disagg.txt has
+    // no header row, so every column index resolved to -1 and each row was
+    // skipped; it also filtered the commodity code (023) against a contract
+    // market code (023651), went through a proxy that now answers HTTP 401, and
+    // the file holds only the current week rather than the 520 the charts need.
+    // cotFetchRecords() retries through the proxy pool instead.
+    setDot('err'); setBadge('err','Error');
+    ['net','ls','prod','swap','chg'].forEach(k=>{ document.getElementById('cot-spin-'+k).innerHTML='⚠ '+esc(e.message); });
+    dbLog('COT fetch failed: '+e.message,'error');
   }
 }
 

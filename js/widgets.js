@@ -752,16 +752,24 @@ function signalStorageTrend() {
 
     if (!p0) return { score: 0, label: 'Neutral', detail: 'No data', explanation: '', fullMethodology: [] };
 
-    const bcfPts = [p0, p7, p14, p21].filter(Boolean).map(p => p.dev);
+    // Keep each horizon's real position (0/1/2/3 weeks out). Compacting the array
+    // with filter() and regressing against the compacted index treated a missing
+    // horizon as if it had never existed: with +7d absent, the +14d point slid
+    // into step 1 and a two-week change was billed as one week, roughly doubling
+    // the slope. That slope is scored against fixed ±8/±15/±20 Bcf thresholds and
+    // drives the crossover estimate, so the distortion flips the signal outright.
+    const bcfPts = [p0, p7, p14, p21]
+        .map((p, i) => (p ? { x: i, y: p.dev } : null))
+        .filter(Boolean);
     if (bcfPts.length < 2) return { score: 0, label: 'Neutral', detail: 'Insufficient data', explanation: '', fullMethodology: [] };
 
     // Linear regression slope (Bcf/step, 1 step = 7 days)
     function linSlope(pts) {
         const n = pts.length;
-        const xm = (n - 1) / 2;
-        const ym = pts.reduce((a, b) => a + b) / n;
-        const num = pts.reduce((s, y, i) => s + (i - xm) * (y - ym), 0);
-        const den = pts.reduce((s, _, i) => s + (i - xm) ** 2, 0);
+        const xm = pts.reduce((s, p) => s + p.x, 0) / n;
+        const ym = pts.reduce((s, p) => s + p.y, 0) / n;
+        const num = pts.reduce((s, p) => s + (p.x - xm) * (p.y - ym), 0);
+        const den = pts.reduce((s, p) => s + (p.x - xm) ** 2, 0);
         return den > 0 ? num / den : 0;
     }
 
