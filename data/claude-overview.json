@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-04T15:00:00.000Z",
-  "sourceSnapshotAt": "2026-09-04T14:42:05.779Z",
-  "frontPrice": 2.9790000915527344,
-  "nextPrice": 3.0869998931884766,
-  "marketState": "neutral - price sits right at modeled fair value with conflicting seasonal, weather and technical signals",
-  "summary": "Front-month NG is trading at $2.979, essentially FAIR vs the $2.45-$3.45 model band ($2.950 fair), so there is no mispricing edge to lean on right now. Seasonality has a mild bullish tilt into September (historically the strongest month, 63% odds of higher prices by 3-4 weeks) but reliability is explicitly rated Low (76pp spread) and price is already underperforming its typical seasonal path (-12.6% YTD vs -8.5% median). The weather demand proxy is running +28.2 vs its 5-year normal (highest in 5y) but has just dropped sharply over 24h and sits near the bottom of its own 7-day range, and the granular 1-7D/8-16D forecast fields needed to confirm direction are missing from this snapshot. Storage carries a +159 Bcf surplus vs the 5-year average, a bearish cushion that argues against chasing seasonal strength, while managed-money is net short but only at the 27th percentile of its 5-year range (not extreme). Technicals are internally inconsistent - intraday frames (5m/1h) are bullish but stretched (Bollinger above upper band, RSI 63-67), 4h momentum is fading (negative MACD histogram), and the daily/weekly trend is neutral-to-bearish, so no timeframe alignment exists to support a confident directional call.",
+  "generatedAt": "2026-09-04T18:05:00.000Z",
+  "sourceSnapshotAt": "2026-09-04T17:59:06.660Z",
+  "frontPrice": 2.9579999446868896,
+  "nextPrice": 3.0739998817443848,
+  "marketState": "neutral, mixed fundamentals with no clean directional edge",
+  "summary": "Front-month price ($2.958) sits exactly at modeled fair value ($2.950, +$0.008 spread, status FAIR), so there is no valuation edge right now. Storage is +159 Bcf above the 5-year average and still building, a bearish supply cushion, while weather demand is the highest in 5 years vs normal but fell sharply in the last 24h (-25.8), signaling the cooling-season peak is fading into shoulder season. Seasonality shows a mild bullish tilt further out (63% of years up at 3-4 weeks) but reliability is explicitly Low (76pp 10-90% spread), and both the forward-looking weather (1-7D, 8-16D) and forward fair-value (+7D/+14D/+21D) datasets are missing, removing key confirming evidence for both horizons. Technicals conflict by timeframe (5m-4h mildly bullish, 1w bearish with RSI 42.8), and COT shows managed money net short but only at the 27th percentile of the past 5 years, not an extreme/contrarian reading. Given the missing priority data and genuinely offsetting signals, this favors patience over forcing a trade.",
   "longTerm": {
     "stance": "WAIT",
     "conviction": "low",
@@ -15,9 +15,9 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Seasonality leans mildly bullish into fall (Sept strongest month, 63% higher by 3-4wk) and weather demand is running well above 5y normal, but seasonality reliability is explicitly Low, the demand_1_7D/8_16D forecast fields are missing, and a +159 Bcf storage surplus vs 5y is a real headwind to any seasonal rally - the mix doesn't clear the bar for a sized directional bet.",
-    "invalidation": "n/a",
-    "trigger": "Wait for either: a pullback toward the $2.75-2.80 area (near the lower fair-value zone) to buy with a tight risk budget, or confirmation that weather demand_8_16D turns back up vs 5y with the storage deficit narrowing, before sizing a long. A daily close below $2.60 would invalidate the seasonal bullish case altogether."
+    "rationale": "Seasonality tilts mildly bullish 3-4 weeks out (63% higher) but carries Low reliability (76pp spread), and the weather 8-16D outlook needed to confirm demand trajectory is unavailable. Storage is +159 Bcf above the 5y average and building, a bearish supply overhang into the shoulder season, while COT net-short positioning is only at the 27th percentile of 5y history (not stretched enough to be a contrarian long signal). Fair value is exactly FAIR at 'now' with no +7D/+14D/+21D projection, leaving no clean multi-week valuation edge in either direction.",
+    "invalidation": "A sustained break below ~$2.75 alongside a further deterioration in weather demand and storage surplus would confirm the bearish case; a break above ~$3.20 alongside weather 8-16D data showing above-normal demand would confirm the bullish case.",
+    "trigger": "Wait for weather 8-16D forecast data and forward fair-value (+7D/+14D) projections to populate, or for a storage surprise print, and for price to test the current fair-value band edges ($2.45 / $3.45) with confirmation."
   },
   "shortTerm": {
     "stance": "WAIT",
@@ -29,23 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Price is FAIR vs the model (front spread only +$0.029) so there's no valuation edge to trade, and technicals are split - 5m/1h are bullish but extended (above upper Bollinger, RSI 63-67), 4h momentum is rolling over (negative MACD hist), and 1d/1w are neutral-to-bearish - leaving no multi-timeframe alignment to trade with confidence.",
-    "invalidation": "n/a",
-    "trigger": "Wait for either a pullback toward the $2.95 fair-value line with cooling RSI (back under 60 on 5m/1h) to buy the dip, or a clean break and hold above $3.10-3.15 (above the recent Bollinger extension) with daily/weekly trend turning bullish to confirm a breakout long. A push toward $2.85 with weekly trend still bearish would favor a short scalp back to fair value instead."
+    "rationale": "Near-term weather demand (1-7D), the primary short-term driver, is unavailable in this snapshot. Price is exactly at fair value (front spread +$0.008, status FAIR) so there is no valuation edge, and technicals conflict across timeframes: intraday (5m-4h) trend is mildly bullish with EMA50>200, but the 1w trend is bearish with RSI 42.8 and EMA50<200. The futures curve shows a normal seasonal winter contango (front to Jan +$0.935) with no anomaly to trade.",
+    "invalidation": "This wait view is invalidated by technicals aligning across timeframes (currently split bullish-intraday vs bearish-weekly) or by a decisive break outside the recent $2.85-$3.10 range.",
+    "trigger": "Wait for the weather 1-7D forecast to populate, for technicals to align across timeframes, or for a decisive break outside $2.85-$3.10."
   },
   "keyDrivers": [
-    "September is seasonally the strongest month (63% odds higher by 3-4wks, +5.5% typical 4wk move) but reliability is rated Low",
-    "Weather demand proxy is +28.2 vs 5y normal (highest in 5y) yet fell -16.5 in 24h and sits near the low of its 7-day range",
-    "Price is FAIR vs model both now ($2.979 vs $2.950 fair) and for the next contract ($3.087 vs implied fair)",
-    "Storage surplus of +159 Bcf vs 5y caps upside into the fall/winter build-out",
-    "Managed money is net short (-71.7k contracts) but only at the 27th percentile of its 5y range - not an extreme, crowded position",
-    "Futures curve is in contango out to Jan 2027 (+$0.93 vs front), showing winter risk premium is already priced into deferred months"
+    "Storage +159 Bcf above 5y average and still building (+30 Bcf last week) — bearish supply cushion",
+    "Weather demand highest vs 5y normal but fell sharply in 24h (-25.8), suggesting cooling-season peak is fading",
+    "Front price exactly at modeled fair value ($2.958 vs $2.950 fair, FAIR status) — no valuation edge",
+    "Seasonality mildly bullish 3-4 weeks out (63% higher) but reliability is explicitly Low",
+    "Technicals split: intraday (5m-4h) mildly bullish, weekly trend bearish (RSI 42.8, EMA50<200)"
   ],
   "risks": [
-    "Weather demand_1_7D and demand_8_16D forecast fields are missing from the feed, weakening the near-term demand read for both trade horizons",
-    "Forward fair-value bands (plus7D/14D/21D) are all unavailable, so there is no model check on where fair value is heading",
-    "Technicals conflict sharply across timeframes (bullish/overbought intraday vs neutral-bearish daily/weekly), raising whipsaw risk for any position taken now",
-    "Storage forecast is unavailable (\"weather data unavailable\") and this week's surprise vs forecast is unmeasured"
+    "Weather 1-7D and 8-16D forecast data missing, removing key near- and medium-term demand visibility",
+    "Forward fair-value projections (+7D/+14D/+21D) missing, limiting ability to gauge trend vs model",
+    "Wide fair-value band ($2.45-$3.45) and Low seasonality reliability (76pp spread) limit precision of any levels"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
