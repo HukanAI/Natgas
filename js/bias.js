@@ -1,6 +1,6 @@
 // js/bias.js  —  top "Natural Gas Bias" card
 import { state } from './state.js';
-import { isoAdd, fmtShort, sgn, fmtChg, esc, fairPrice } from './utils.js';
+import { isoAdd, sgn, esc, fairPrice } from './utils.js';
 import { getSeasonInfo } from './season.js';
 import { st5y } from './storage5y.js';
 import { ngfCurrent, ngfNext, ngfFetchTwoDays } from './contracts.js';
@@ -13,110 +13,6 @@ function fmtDM(iso) {
   if (!iso) return '—';
   const d = new Date(iso + 'T12:00:00Z');
   return d.getUTCDate() + '.' + (d.getUTCMonth() + 1) + '.';
-}
-
-// ── Fair price chart ──────────────────────────────────────────────────────────
-
-let _fpChart = null;
-
-function renderFairPriceChart() {
-  const canvas = document.getElementById('fp-chart-canvas');
-  if (!canvas || typeof Chart === 'undefined') return;
-
-  const sd = state.stStorageData;
-  if (!sd || !sd.length) return;
-
-  const labels = ['Now', '+7D', '+14D', '+21D'];
-  const si = getSeasonInfo();
-  const isH = si.isHeating;
-
-  function fpData(devBcf) {
-    const fp = fairPrice(devBcf);
-    return { fp, mn: fp - 0.5, mx: isH ? fp + 1.9 : fp + 0.5 };
-  }
-
-  const lat = sd[sd.length - 1];
-  const band0 = st5y(sd, [lat.date])[0];
-  const d0 = band0?.avg != null ? fpData(lat.value - band0.avg) : null;
-
-  function fHorizon(fcst) {
-    if (!fcst?.predictedLevel || !fcst.endDate) return null;
-    const b = st5y(sd, [fcst.endDate])[0];
-    return b?.avg != null ? fpData(fcst.predictedLevel - b.avg) : null;
-  }
-
-  const d7  = fHorizon(state.stLastF7);
-  const d14 = fHorizon(state.stLastF14);
-  const d21 = fHorizon(state.stLastF21);
-
-  const points = [d0, d7, d14, d21];
-  if (points.every(p => p === null)) return;
-
-  const fair = points.map(p => p?.fp ?? null);
-  const mins = points.map(p => p?.mn ?? null);
-  const maxs = points.map(p => p?.mx ?? null);
-
-  const front = state.stNgfData.length ? state.stNgfData[state.stNgfData.length - 1].close : null;
-  const next  = state.nextContractPrice;
-
-  const allVals = [...fair, ...mins, ...maxs, front, next].filter(v => v != null);
-  const yMin = Math.floor((Math.min(...allVals) - 0.10) * 10) / 10;
-  const yMax = Math.ceil((Math.max(...allVals) + 0.10) * 10) / 10;
-
-  const textCol = getComputedStyle(document.documentElement).getPropertyValue('--text3').trim() || '#6e7681';
-  const gridCol = getComputedStyle(document.documentElement).getPropertyValue('--border').trim() || '#1f242c';
-
-  const datasets = [
-    { label: 'Max range', data: maxs, fill: '+1', backgroundColor: 'rgba(68,147,248,0.12)', borderColor: 'transparent', pointRadius: 0, order: 4, tension: 0.3 },
-    { label: 'Min range', data: mins, fill: false, borderColor: 'transparent', backgroundColor: 'transparent', pointRadius: 0, order: 5, tension: 0.3 },
-    { label: 'Fair price', data: fair, borderColor: '#4493f8', backgroundColor: 'transparent', borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: '#4493f8', pointBorderColor: '#11151c', pointBorderWidth: 2, order: 1, tension: 0.3 },
-  ];
-  if (front != null) datasets.push({ label: 'Front month', data: labels.map(() => front), borderColor: '#ff7b72', backgroundColor: 'transparent', borderWidth: 1.5, borderDash: [5, 4], pointRadius: 0, order: 2, tension: 0 });
-  if (next  != null) datasets.push({ label: 'Next contract', data: labels.map(() => next), borderColor: '#3fb950', backgroundColor: 'transparent', borderWidth: 1.5, borderDash: [2, 3], pointRadius: 0, order: 3, tension: 0 });
-
-  if (_fpChart) { _fpChart.destroy(); _fpChart = null; }
-
-  _fpChart = new Chart(canvas, {
-    type: 'line',
-    data: { labels, datasets },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          backgroundColor: '#1c2128',
-          borderColor: 'rgba(255,255,255,0.08)',
-          borderWidth: 1,
-          titleColor: '#e6edf3',
-          bodyColor: '#9ba3ad',
-          padding: 10,
-          callbacks: {
-            label: ctx => {
-              if (ctx.dataset.label === 'Min range' || ctx.dataset.label === 'Max range') return null;
-              const v = ctx.parsed.y;
-              return v != null ? ctx.dataset.label + ': $' + v.toFixed(3) : null;
-            }
-          }
-        }
-      },
-      scales: {
-        x: { grid: { color: gridCol }, ticks: { color: textCol, font: { size: 10, family: 'var(--mono, monospace)' } } },
-        y: {
-          min: yMin, max: yMax,
-          grid: { color: gridCol },
-          afterBuildTicks: axis => {
-            const step = 0.10;
-            const start = Math.ceil(yMin / step) * step;
-            const ticks = [];
-            for (let v = start; v <= yMax + 0.001; v += step) ticks.push({ value: Math.round(v * 100) / 100 });
-            axis.ticks = ticks;
-          },
-          ticks: { color: textCol, font: { size: 10, family: 'var(--mono, monospace)' }, callback: v => '$' + v.toFixed(2) }
-        }
-      }
-    }
-  });
 }
 
 // ── Storage forecast chart ────────────────────────────────────────────────────

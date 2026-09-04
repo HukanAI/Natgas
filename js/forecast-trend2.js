@@ -64,6 +64,10 @@ async function loadHistory() {
         ...r,
         dem: r.dem * k,
         dem5y: (typeof r.dem5y === 'number') ? r.dem5y * k : r.dem5y,
+        // The per-year sums cover the same short window and must be scaled with
+        // it, or the rank compares a 16-day-equivalent current value against raw
+        // 15-day year sums and reads ~7% too high.
+        dem5yYears: Array.isArray(r.dem5yYears) ? r.dem5yYears.map(v => (typeof v === 'number' ? v * k : v)) : r.dem5yYears,
       };
     })
     .sort((a, b) => new Date(a.ts) - new Date(b.ts));

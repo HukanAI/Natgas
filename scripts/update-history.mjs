@@ -14,7 +14,7 @@
 //   weighted across regions by each region's weight w.
 // We then SUM these per-day weighted values over the whole forecast window.
 
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, appendFile, mkdir } from 'node:fs/promises';
 import { dirname } from 'node:path';
 
 // -- Config (kept in sync with js/constants.js) ------------------------------
@@ -32,9 +32,14 @@ const WX_REGIONS = [
 const NORMAL_YEARS = 5;
 
 const HISTORY_PATH = 'data/history.json';
-// Keep ~60 days of hourly records. The chart shows the last 7 days; extra is
-// retained so you can widen the window later without losing data.
-const MAX_RECORDS = 4320;
+// Records older than the live window move here and are never fetched by the
+// browser. NDJSON (one record per line) so each hourly run appends lines rather
+// than rewriting a growing array — git stores that as a small delta.
+const ARCHIVE_PATH = 'data/history-archive.ndjson';
+// The dashboard filters to the last 7 days (WINDOW_DAYS in forecast-trend2.js)
+// and throws the rest away, yet downloaded the whole file on every page load,
+// on mobile too. 14 days is double what the chart reads.
+const RETAIN_DAYS = 14;
 
 // -- Helpers -----------------------------------------------------------------
 const hdd = (t) => Math.max(0, WX_BASE - t);
@@ -236,13 +241,23 @@ async function main() {
   }
 
   history.push(record);
-  if (history.length > MAX_RECORDS) history = history.slice(history.length - MAX_RECORDS);
+
+  // Split the live window from the archive.
+  const cutoff = Date.now() - RETAIN_DAYS * 86400000;
+  const keep = [], retire = [];
+  for (const r of history) {
+    const t = Date.parse(r?.ts);
+    (Number.isFinite(t) && t >= cutoff ? keep : retire).push(r);
+  }
 
   await mkdir(dirname(HISTORY_PATH), { recursive: true });
-  await writeFile(HISTORY_PATH, JSON.stringify(history) + '\n', 'utf8');
+  if (retire.length) {
+    await appendFile(ARCHIVE_PATH, retire.map((r) => JSON.stringify(r)).join('\n') + '\n', 'utf8');
+  }
+  await writeFile(HISTORY_PATH, JSON.stringify(keep) + '\n', 'utf8');
 
   console.log('Appended:', JSON.stringify(record));
-  console.log('Total records:', history.length);
+  console.log(`Live window: ${keep.length} records (${RETAIN_DAYS}d), archived this run: ${retire.length}`);
 }
 
 main().catch((err) => {

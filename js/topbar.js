@@ -5,7 +5,6 @@
 import { state } from './state.js';
 import { getSeasonInfo } from './season.js';
 import { ngfCurrent, ngfNext } from './contracts.js';
-import { dbLog } from './debug.js';
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -108,76 +107,6 @@ function updatePrices() {
         if (cur) setText('kpi-ngf-cur-ticker', cur.ticker || '');
         if (nxt) setText('kpi-ngf-nxt-ticker', nxt.ticker || '');
     } catch (_) {}
-}
-
-// ── Realized Volatility 20D ───────────────────────────────────────────────────
-// Standard 20-day annualized RV from daily log returns of front month (NG=F).
-// Note: includes rollover gaps — NG can legitimately move 25%+ in a day,
-// so we don't filter outliers. RV may spike around roll dates; that's expected.
-
-function calcRV20D() {
-    // Use TA 1d data (front month, NG=F) if available
-    const bars = state.taData && state.taData['1d'];
-    if (!bars || bars.length < 22) return null;
-
-    // Calculate log returns
-    const returns = [];
-    for (let i = 1; i < bars.length; i++) {
-        const c0 = bars[i - 1].close;
-        const c1 = bars[i].close;
-        if (c0 > 0 && c1 > 0) returns.push(Math.log(c1 / c0));
-    }
-    if (returns.length < 20) return null;
-
-    // Helper: compute annualized RV from a window of N daily returns
-    function rvFromWindow(window) {
-        const mean = window.reduce((a, b) => a + b, 0) / window.length;
-        const variance = window.reduce((acc, r) => acc + (r - mean) ** 2, 0) / (window.length - 1);
-        const stdev = Math.sqrt(variance);
-        return stdev * Math.sqrt(252) * 100; // annualized in %
-    }
-
-    // Current RV20D = last 20 returns
-    const currentWindow = returns.slice(-20);
-    const current = rvFromWindow(currentWindow);
-
-    // Compute historical RV20D for last 5y (or available) — rolling window
-    const history = [];
-    for (let i = 20; i <= returns.length; i++) {
-        history.push(rvFromWindow(returns.slice(i - 20, i)));
-    }
-
-    // Percentile rank — what % of historical RV values were ≤ current
-    history.sort((a, b) => a - b);
-    let rank = 0;
-    for (let i = 0; i < history.length; i++) {
-        if (history[i] <= current) rank = i + 1;
-        else break;
-    }
-    const pct = Math.round((rank / history.length) * 100);
-
-    return { value: current, rank: pct, samples: history.length };
-}
-
-function updateRV20D() {
-    const rv = calcRV20D();
-    const valEl = $('rv20d-val');
-    const rankEl = $('rv20d-rank');
-    if (!valEl || !rankEl) return;
-    if (!rv) {
-        valEl.textContent = '—';
-        rankEl.textContent = '—';
-        return;
-    }
-    valEl.textContent = rv.value.toFixed(1) + '%';
-    rankEl.textContent = 'rank ' + rv.rank + '/100';
-
-    // Color rank: high vol = orange/red, low vol = blue, normal = white
-    let rankColor = '#e6edf3';                       // normal — white
-    if (rv.rank >= 80) rankColor = '#ff7b72';        // extreme high
-    else if (rv.rank >= 60) rankColor = '#ffa657';   // elevated
-    else if (rv.rank <= 20) rankColor = '#4493f8';   // low
-    rankEl.style.color = rankColor;
 }
 
 // ── Sidebar API counters mirror ──────────────────────────────────────────────

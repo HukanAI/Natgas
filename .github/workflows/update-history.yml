@@ -32,7 +32,7 @@ jobs:
         run: |
           git config user.name "natgas-bot"
           git config user.email "natgas-bot@users.noreply.github.com"
-          git add data/history.json
+          git add data/history.json data/history-archive.ndjson
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else

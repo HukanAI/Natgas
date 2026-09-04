@@ -4,7 +4,7 @@ import { dbLog } from './debug.js';
 import { getSeasonInfo } from './season.js';
 import { st5y } from './storage5y.js';
 import { fairPrice } from './utils.js';
-import { t212RollDate, isBusinessDayNYMEX } from './contracts.js';
+import { t212RollDate } from './contracts.js';
 
 function $(id) { return document.getElementById(id); }
 function css(prop) { return getComputedStyle(document.documentElement).getPropertyValue(prop).trim(); }
@@ -1277,60 +1277,6 @@ export function initOverviewEvents() {
 // PUBLIC
 // ═══════════════════════════════════════════════════════════════════════════════
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// WEATHER DEMAND BANNER (1-7D and 8-16D vs 5y avg percentages)
-// ═══════════════════════════════════════════════════════════════════════════════
-
-function updateWxBanner() {
-    const stEl = document.getElementById('wx-banner-st');
-    const ltEl = document.getElementById('wx-banner-lt');
-    if (!stEl || !ltEl) return;
-
-    function fmtSt() {
-        const d = demHorizonFull(0, 7);
-        if (!d) return { text: '—', color: '' };
-        const sign = d.pct >= 0 ? '+' : '−';
-        const text = sign + Math.abs(d.pct).toFixed(1) + '%';
-        // Replicate signalWeatherShort scoring -> sentiment color
-        const { pct, rangePos, aboveMax, belowMin } = d;
-        let score;
-        if (aboveMax) score = 1;
-        else if (belowMin) score = -1;
-        else if (pct >= 20) score = 1;
-        else if (pct >= 10) score = rangePos > 0.75 ? 1 : 0.5;
-        else if (pct >= 0)  score = rangePos > 0.65 ? 0.5 : 0;
-        else if (pct >= -10) score = rangePos < 0.35 ? -0.5 : 0;
-        else if (pct >= -20) score = rangePos < 0.25 ? -1 : -0.5;
-        else score = -1;
-        const col = sentiment(score).col;
-        // Override neutral grey to white for better readability in banner
-        return { text, color: col === '#9ba3ad' ? '#e6edf3' : col };
-    }
-
-    function fmtLt() {
-        const d = demHorizonFull(7, 16);
-        if (!d) return { text: '—', color: '' };
-        const sign = d.pct >= 0 ? '+' : '−';
-        const text = sign + Math.abs(d.pct).toFixed(1) + '%';
-        // Replicate signalWeatherLong scoring
-        const { pct, aboveMax, belowMin } = d;
-        let score;
-        if (aboveMax || pct >= 20)   score = 0.5;
-        else if (belowMin || pct <= -20) score = -0.5;
-        else score = 0;
-        const col = sentiment(score).col;
-        return { text, color: col === '#9ba3ad' ? '#e6edf3' : col };
-    }
-
-    const st = fmtSt();
-    const lt = fmtLt();
-
-    stEl.textContent = st.text;
-    stEl.style.color = st.color;
-    ltEl.textContent = lt.text;
-    ltEl.style.color = lt.color;
-}
-
 export function updateAllWidgets() {
     try { updateEIABanner(); }       catch(e) { dbLog('EIA banner: '      + e.message, 'warn'); }
     try { updateCOTKpi(); }          catch(e) { dbLog('COT KPI: '         + e.message, 'warn'); }
@@ -1338,7 +1284,6 @@ export function updateAllWidgets() {
     try { updateCOTGauge(); }        catch(e) { dbLog('COT gauge: '       + e.message, 'warn'); }
     try { renderFuturesCurve(); }    catch(e) { dbLog('Futures curve: '   + e.message, 'warn'); }
     try { renderWeatherHeatmap(); }  catch(e) { dbLog('Heatmap: '         + e.message, 'warn'); }
-    try { updateWxBanner(); }        catch(e) { dbLog('Wx banner: '       + e.message, 'warn'); }
     try { renderOverview(); }        catch(e) { dbLog('Overview: '        + e.message, 'warn'); }
     try { updateEIATracker(); }      catch(e) { dbLog('EIA tracker: '     + e.message, 'warn'); }
 }
