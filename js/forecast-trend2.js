@@ -175,19 +175,45 @@ function updateStats(records) {
   }
 
   // vs 5y normal: how far the latest outlook is above/below the 5-year normal.
+  // This used to append a percentage, which is badly distorted outside the
+  // heating and cooling peaks. Demand is HDD+CDD around an 18 C base, so in
+  // shoulder season the 5-year baseline collapses toward zero and an ordinary
+  // anomaly reads as +50-70% — e.g. 127.1 against a 82.6 normal is "+54%" in
+  // September but the same absolute gap in January would be about +25%. The
+  // absolute deviation doesn't distort; the rank against the individual years
+  // supplies the context the percentage was standing in for.
   const elVs5y = $('ft-stat-vs5y');
   if (elVs5y) {
     if (typeof now.dem5y === 'number' && now.dem5y > 0) {
       const diff = now.dem - now.dem5y;
-      const pct = diff / now.dem5y * 100;
       const sign = diff >= 0 ? '+' : '';
-      elVs5y.textContent = sign + diff.toFixed(1) + ' (' + sign + pct.toFixed(0) + '%)';
+      let text = sign + diff.toFixed(1);
+      const rank = rankLabel(now.dem, now.dem5yYears);
+      if (rank) text += ' · ' + rank;
+      elVs5y.textContent = text;
       elVs5y.style.color = diff >= 0 ? COL_GREEN : COL_RED;
     } else {
       elVs5y.textContent = 'n/a';
       elVs5y.style.color = 'var(--text3)';
     }
   }
+}
+
+// Where the current outlook sits among the individual years behind the 5-year
+// normal. A percentile is the wrong tool at this sample size: with five years it
+// can only take six values and saturates at the 100th the moment the forecast
+// clears the warmest year, reporting the same number whether it is barely above
+// or half as high again. Counting the years beaten keeps that magnitude visible.
+// Returns null for older history records, which carry no per-year data.
+function rankLabel(cur, years) {
+  if (!Array.isArray(years) || typeof cur !== 'number') return null;
+  const vals = years.filter((v) => typeof v === 'number' && isFinite(v));
+  if (!vals.length) return null;
+  const n = vals.length;
+  const below = vals.filter((v) => v < cur).length;
+  if (below === n) return 'highest in ' + n + 'y';
+  if (below === 0) return 'lowest in ' + n + 'y';
+  return 'above ' + below + ' of ' + n;
 }
 
 // Build a horizontal gradient for one line segment that blends from the

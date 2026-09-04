@@ -150,7 +150,15 @@ async function fetch5yNormal(fromISO, toISO, nDays) {
   }
   if (!yearSums.length) return null;
   const avg = yearSums.reduce((a, b) => a + b, 0) / yearSums.length;
-  return { dem5y: +avg.toFixed(3), years: yearSums.length };
+  // Keep the individual years, not just their mean. The dashboard ranks the
+  // current outlook against them, which is the context the "% vs 5y" figure was
+  // standing in for — and that percentage is badly distorted in shoulder season,
+  // where the baseline collapses toward zero around the 18 C base.
+  return {
+    dem5y: +avg.toFixed(3),
+    years: yearSums.length,
+    yearSums: yearSums.map((v) => +v.toFixed(1)),
+  };
 }
 
 // -- Main --------------------------------------------------------------------
@@ -206,6 +214,7 @@ async function main() {
     cdd: +sumCdd.toFixed(3),            // SUM of weighted CDD over the window
     dem: +sumDem.toFixed(3),            // SUM of weighted total demand over the window
     dem5y: normal ? normal.dem5y : null,// 5-year normal of the summed demand
+    dem5yYears: normal ? normal.yearSums : null, // the individual years behind it
     days: nDays,                        // forecast days summed (normally 16)
   };
 
