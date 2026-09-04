@@ -16,7 +16,14 @@
 import { chromium } from 'playwright';
 import { writeFile, mkdir } from 'node:fs/promises';
 
-const URL = process.env.DASH_URL || 'http://localhost:8080/index.html';
+// Deliberately not named URL: a module-scope `const URL` shadows the global URL
+// constructor for the whole file, which made hostOf() throw on every call and
+// silently return '?'. Every request then landed in one '?' bucket, and because
+// the localhost filter compares against that same '?', local asset loads were
+// counted as network results too. The diagnostics reported 95 OK / 0 errors for
+// a run in which every single Yahoo request had failed — the one place that was
+// supposed to reveal that failure.
+const DASH_URL = process.env.DASH_URL || 'http://localhost:8080/index.html';
 const OUT = process.env.SNAPSHOT_OUT || 'data/snapshot.json';
 const MAX_WAIT_MS = 150000; // hard cap: wait up to 2.5 min for feeds
 const SETTLE_MS = 6000;     // small grace period after data looks complete
@@ -67,8 +74,8 @@ page.on('response', (resp) => {
   else r.err++;
 });
 
-console.log('Loading', URL);
-await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 60000 }).catch((e) => {
+console.log('Loading', DASH_URL);
+await page.goto(DASH_URL, { waitUntil: 'domcontentloaded', timeout: 60000 }).catch((e) => {
   console.error('goto warning:', e.message);
 });
 
@@ -113,8 +120,9 @@ snap.diagnostics = {
 await mkdir('data', { recursive: true });
 await writeFile(OUT, JSON.stringify(snap, null, 2) + '\n', 'utf8');
 
-const sigCount = snap.overview?.signals?.length || 0;
-console.log(`Wrote ${OUT} — sentiment="${snap.overview?.sentiment}", ${sigCount} signals, front=${snap.price?.front}`);
+// snap has no `overview` key, so the old line always printed
+// sentiment="undefined", 0 signals — misleading in the workflow log.
+console.log(`Wrote ${OUT} — front=${snap.price?.front}, storage=${snap.storage?.value}, cot=${snap.cot?.mmNet}`);
 console.log('Data counts:', JSON.stringify(snap.dataCounts));
 console.log('Network by host:', JSON.stringify(byHost));
 if (failedRequests.length) console.log('Failed requests:', JSON.stringify(failedRequests.slice(0, 40)));

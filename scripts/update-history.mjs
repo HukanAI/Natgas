@@ -104,9 +104,15 @@ function shiftYear(iso, deltaYears) {
 
 // Given per-region daily temps for one window, return the SUM of weighted
 // demand across the window (same math as the forecast path).
-function windowDemandSum(regionDaily, nDays) {
+// `days` is the list of day offsets the forecast actually covered. Passing a
+// bare count instead summed the historical window's FIRST n days, so a gap
+// anywhere but the end compared the forecast's days against a different set of
+// calendar days — e.g. forecast {0,1,2,4..15} against history {0..14}. 8 of the
+// last 48 hourly runs came back with an incomplete window, so this is not a
+// theoretical path.
+function windowDemandSum(regionDaily, days) {
   let sumDem = 0, used = 0;
-  for (let d = 0; d < nDays; d++) {
+  for (const d of days) {
     let hW = 0, cW = 0, wSum = 0;
     WX_REGIONS.forEach((r, ri) => {
       const t = regionDaily[ri] ? regionDaily[ri][d] : null;
@@ -126,7 +132,7 @@ function windowDemandSum(regionDaily, nDays) {
 // 5-year normal of the summed demand for the window [from,to] (this year's
 // dates). For each of the past NORMAL_YEARS years we fetch the same calendar
 // window from the archive, compute the summed demand, then average the years.
-async function fetch5yNormal(fromISO, toISO, nDays) {
+async function fetch5yNormal(fromISO, toISO, days) {
   const thisYear = Number(fromISO.slice(0, 4));
   const yearSums = [];
   for (let k = 1; k <= NORMAL_YEARS; k++) {
@@ -145,7 +151,7 @@ async function fetch5yNormal(fromISO, toISO, nDays) {
       await sleep(250);
     }
     if (!ok) continue;
-    const s = windowDemandSum(regionDaily, nDays);
+    const s = windowDemandSum(regionDaily, days);
     if (s != null) yearSums.push(s);
   }
   if (!yearSums.length) return null;
@@ -174,7 +180,8 @@ async function main() {
   }
 
   // SUM weighted HDD/CDD/demand across ALL 16 forecast days (include today).
-  let sumHdd = 0, sumCdd = 0, sumDem = 0, nDays = 0;
+  let sumHdd = 0, sumCdd = 0, sumDem = 0;
+  const usableDays = [];
   for (let d = 0; d < WX_FCST_DAYS; d++) {
     let hW = 0, cW = 0, wSum = 0;
     WX_REGIONS.forEach((r, ri) => {
@@ -189,8 +196,9 @@ async function main() {
     sumHdd += hW * sc;
     sumCdd += cW * sc;
     sumDem += (hW + cW) * sc;
-    nDays++;
+    usableDays.push(d);
   }
+  const nDays = usableDays.length;
   if (nDays === 0) throw new Error('No valid forecast days returned');
 
   const fromISO = forecastDates[0] || null;
@@ -200,7 +208,7 @@ async function main() {
   let normal = null;
   if (fromISO && toISO) {
     try {
-      normal = await fetch5yNormal(fromISO, toISO, nDays);
+      normal = await fetch5yNormal(fromISO, toISO, usableDays);
     } catch (e) {
       console.error('5y normal failed (continuing without it):', e.message);
     }
