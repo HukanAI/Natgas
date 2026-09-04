@@ -1,24 +1,56 @@
-// ═══════════════════════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════════════════════════
 // sessions.js — NG futures session detection and marker rendering
 //
-// Sessions (in UTC):
-//   Asian:        23:00 – 08:00  (purple)
-//   European:     08:00 – 14:00  (blue)
-//   US RTH:       14:00 – 22:00  (green)
-//   Daily pause:  22:00 – 23:00  (grey)
+// Boundaries are given in each market's OWN local time, so they follow that
+// market's daylight saving instead of drifting:
+//   Asian:    08:00–17:00 Tokyo     (JST never shifts, so this is fixed in UTC)
+//   European: 08:00–14:00 London    (GMT / BST)
+//   US RTH:   09:00–17:00 New York  (EST / EDT) — 17:00 is the NYMEX electronic
+//             close; the 17:00–18:00 maintenance break carries no marker of its
+//             own and is folded into the Asian block, as before.
+//
+// They used to be hard-coded as UTC hours (14:00–22:00 for US RTH and so on).
+// Those values are the winter mapping: in summer 14:00 UTC is 10:00 in New York,
+// an hour after the real open, and 08:00 UTC is 09:00 in London. Every marker
+// sat an hour late for the ~8 months of DST.
 //
 // Markers are drawn at the bar where a session BEGINS.
-// Labels are shown in Prague local time (handled automatically via Intl).
-// ═══════════════════════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════════════════════════
 
-// Returns session key for a given UTC timestamp (ms)
-function sessionAtUTC(ts) {
+const _hourFmt = {};
+function hourIn(tz, d) {
+  const f = _hourFmt[tz] || (_hourFmt[tz] = new Intl.DateTimeFormat('en-GB', {
+    timeZone: tz, hour: '2-digit', hourCycle: 'h23',
+  }));
+  return Number(f.format(d));
+}
+
+// Every zone involved is a whole number of hours from UTC, so the session can
+// only change on a UTC hour boundary. Memoising per hour keeps the Intl calls
+// to a handful per chart instead of two per candle.
+const _sessionByHour = new Map();
+
+function sessionAt(ts) {
+  const hourKey = Math.floor(ts / 3600000);
+  const hit = _sessionByHour.get(hourKey);
+  if (hit) return hit;
+
   const d = new Date(ts);
-  const h = d.getUTCHours();
-  if (h >= 14 && h < 22) return 'rth';
-  if (h >= 8 && h < 14)  return 'eu';
-  // 22-24 or 0-8 — merge pause hour into Asian (no visible marker for the 1h pause)
-  return 'asian';
+  let s;
+  const ny = hourIn('America/New_York', d);
+  if (ny >= 9 && ny < 17) s = 'rth';
+  else {
+    const london = hourIn('Europe/London', d);
+    // London and New York are contiguous by construction (London 14:00 is
+    // New York 09:00 in both winter and summer), and RTH is tested first, so
+    // the one-hour overlap that DST opens up resolves to the session that has
+    // actually started.
+    s = (london >= 8 && london < 14) ? 'eu' : 'asian';
+  }
+
+  if (_sessionByHour.size > 20000) _sessionByHour.clear();
+  _sessionByHour.set(hourKey, s);
+  return s;
 }
 
 const SESSION_INFO = {
@@ -36,7 +68,7 @@ export function buildSessionMarkers(candles) {
   const markers = [];
   let prevSession = null;
   for (let i = 0; i < candles.length; i++) {
-    const s = sessionAtUTC(candles[i].ts);
+    const s = sessionAt(candles[i].ts);
     if (s !== prevSession) {
       markers.push({ dataIndex: i, key: s, label: SESSION_INFO[s].label });
       prevSession = s;
