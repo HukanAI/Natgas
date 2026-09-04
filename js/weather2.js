@@ -11,7 +11,19 @@ import { updateAllWidgets } from './widgets.js';
 // ── Weighted average helpers ──────────────────────────────────────────────────
 
 function wAvg(vals) {
-  return WX_REGIONS.reduce((s,r,i) => s + r.w*(vals[i]||0), 0);
+  // A missing region used to fall through `vals[i]||0` and be averaged in as
+  // 0 °C, with no renormalisation — dropping the Northeast (w=0.35) alone pulled
+  // the weighted temperature down by ~9 °C and drew a false plunge to zero on
+  // the chart. Skip absent regions and reweight, the way weightedDemand() below
+  // already does. Returns null when nothing is available, so callers and
+  // Chart.js see a gap rather than a fabricated reading.
+  let s = 0, w = 0;
+  WX_REGIONS.forEach((r, i) => {
+    const t = vals[i];
+    if (t == null || isNaN(t)) return;
+    s += r.w * t; w += r.w;
+  });
+  return w < 0.01 ? null : s / w;
 }
 function hdd(t) { return Math.max(0, WX_BASE-t); }
 function cdd(t) { return Math.max(0, t-WX_BASE); }
@@ -119,24 +131,51 @@ async function fetchHist(lat,lon,s,e) {
 // ── Process raw data ──────────────────────────────────────────────────────────
 
 function processWx(raw) {
-  const {hDates,fDates,byY,HD,hTR,fTR,byYR} = raw;
-  const total=HD+WX_FCST_DAYS;
+  const {hDates,fDates,byY,HD,hTR,fTR,byYR,byYDates} = raw;
+  const allDates=hDates.concat(fDates);
+  const total=allDates.length;
+  // Today is the first forecast day, i.e. right after the history. Deriving it
+  // from the data rather than from HD keeps the index correct if the archive
+  // returns fewer days than requested.
+  const todayIdx=hDates.length;
+
+  // Each historical year was matched to the current year by array position. But
+  // its window is built by subtracting a fixed 365 days after shifting the year,
+  // so a leap day inside the window slides the whole series by one — the 5-year
+  // band ended up comparing e.g. 4 Sep against 5 Sep for those years. Match on
+  // the calendar day instead.
+  const mmdd = iso => iso.slice(5);
+  const yearIndex = (byYDates||[]).map(dates => {
+    const m = new Map();
+    (dates||[]).forEach((d,i) => m.set(mmdd(d), i));
+    return m;
+  });
+  function histPos(yi, iso) {
+    const m = yearIndex[yi];
+    if (!m) return -1;
+    const key = mmdd(iso);
+    let p = m.get(key);
+    // 29 Feb has no counterpart in a non-leap year — compare against 28 Feb.
+    if (p === undefined && key === '02-29') p = m.get('02-28');
+    return p === undefined ? -1 : p;
+  }
+
   const h5avg=[], h5min=[], h5max=[];
   for (let d=0;d<total;d++) {
-    const v=byY.map(yr=>yr[d]).filter(x=>x!=null&&!isNaN(x));
+    const v=byY.map((yr,yi)=>{ const p=histPos(yi,allDates[d]); return p<0?null:yr[p]; })
+               .filter(x=>x!=null&&!isNaN(x));
     if (!v.length) { h5avg.push(null);h5min.push(null);h5max.push(null); continue; }
     const av=v.reduce((a,b)=>a+b)/v.length;
     h5avg.push(av); h5min.push(Math.min(...v)); h5max.push(Math.max(...v));
   }
-  const allDates=hDates.concat(fDates);
+
   const hTemps=hDates.map((_,di)=>wAvg(WX_REGIONS.map((_,ri)=>hTR[ri]?hTR[ri][di]:null)));
   const fTemps=fDates.map((_,di)=>wAvg(WX_REGIONS.map((_,ri)=>fTR[ri]?fTR[ri][di]:null)));
   const allTemps=hTemps.concat(fTemps);
-  const todayIdx=HD;
 
   const allRT=[];
-  for (let d2=0;d2<HD;d2++)        allRT.push(WX_REGIONS.map((_,ri)=>hTR[ri]?hTR[ri][d2]:null));
-  for (let d3=0;d3<WX_FCST_DAYS;d3++) allRT.push(WX_REGIONS.map((_,ri)=>fTR[ri]?fTR[ri][d3]:null));
+  for (let d2=0;d2<hDates.length;d2++)  allRT.push(WX_REGIONS.map((_,ri)=>hTR[ri]?hTR[ri][d2]:null));
+  for (let d3=0;d3<fDates.length;d3++)  allRT.push(WX_REGIONS.map((_,ri)=>fTR[ri]?fTR[ri][d3]:null));
 
   const hddAll=[], cddAll=[], demAll=[];
   allRT.forEach(rt=>{const wd=weightedDemand(rt);hddAll.push(wd.hdd);cddAll.push(wd.cdd);demAll.push(wd.dem);});
@@ -144,7 +183,9 @@ function processWx(raw) {
   const dem5avg=[], dem5min=[], dem5max=[];
   for (let d4=0;d4<total;d4++) {
     const yds=byY.map((_,yi)=>{
-      const rt=WX_REGIONS.map((_2,ri)=>byYR[yi]&&byYR[yi][ri]?byYR[yi][ri][d4]:null);
+      const p=histPos(yi,allDates[d4]);
+      if (p<0) return null;
+      const rt=WX_REGIONS.map((_2,ri)=>byYR[yi]&&byYR[yi][ri]?byYR[yi][ri][p]:null);
       return weightedDemand(rt).dem;
     }).filter(x=>x!=null&&!isNaN(x));
     if (!yds.length) { dem5avg.push(null);dem5min.push(null);dem5max.push(null); continue; }
@@ -213,8 +254,11 @@ export async function wxLoadAll(force=false) {
       const pr=flat.slice(yi*WX_REGIONS.length,(yi+1)*WX_REGIONS.length);
       return pr.map(rh=>rh.map(d=>d.avg));
     });
+    // Dates for each historical year, so processWx can match on the calendar
+    // day instead of trusting array positions to line up across leap years.
+    const byYDates=WX_HIST_YRS.map((_,yi)=>flat[yi*WX_REGIONS.length].map(d=>d.date));
 
-    state.wxS=processWx({hDates,fDates,byY,HD,hTR,fTR,byYR});
+    state.wxS=processWx({hDates,fDates,byY,HD,hTR,fTR,byYR,byYDates});
     saveCache(state.wxWindow,state.wxS);
     document.getElementById('wx-upd').textContent='Live · next at '+nextHour();
     setBadge('live','Live data'); setDot('ok');
@@ -258,8 +302,9 @@ export async function wxLoadHeadless(histDays=7) {
     const pr=flat.slice(yi*WX_REGIONS.length,(yi+1)*WX_REGIONS.length);
     return pr.map(rh=>rh.map(d=>d.avg));
   });
+  const byYDates = WX_HIST_YRS.map((_,yi)=>flat[yi*WX_REGIONS.length].map(d=>d.date));
 
-  return processWx({hDates,fDates,byY,HD,hTR,fTR,byYR});
+  return processWx({hDates,fDates,byY,HD,hTR,fTR,byYR,byYDates});
 }
 
 export function wxForceRefresh() {
