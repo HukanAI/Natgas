@@ -41,11 +41,7 @@ export const PE_COLORS   = {prod:'#3fb950',can:'#f0883e',mex:'#e3b341',lng:'#a37
 export const PE_LABELS   = {prod:'Production',can:'Imports from Canada',mex:'Exports to Mexico',lng:'LNG Exports'};
 export const PE_NAMES    = {prod:'natgas_production',can:'natgas_canada_imports',mex:'natgas_mexico_exports',lng:'natgas_lng_exports'};
 
-export const NGF_PROXIES = [
-  function(u){ return 'https://corsproxy.io/?url=' + encodeURIComponent(u); },
-  function(u){ return 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u); },
-  function(u){ return 'https://proxy.cors.sh/' + u; }
-];
+// CORS proxies now live in js/proxy.js, which health-tracks and rate-limits them.
 
 export const GROQ_URL    = 'https://natgas-proxy.ondra-peter.workers.dev/';
 export const GROQ_MODEL  = 'deepseek-r1-distill-llama-70b';

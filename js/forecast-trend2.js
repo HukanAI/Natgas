@@ -10,6 +10,8 @@
 //   - the latest point is highlighted with a labelled value badge
 //   - a stats row above the chart shows current value, 24h change, 7d range
 
+import { renderWeatherHeatmap } from './widgets.js';
+
 const HISTORY_URL = 'data/history.json';
 const WINDOW_DAYS = 7;
 const COL_GREEN = '#3fb950';
@@ -372,6 +374,10 @@ function setMode(mode) {
   if (bTr) bTr.classList.toggle('on', isTrend);
 
   if (isTrend) showTrend();
+  // The heatmap is built once, while this card still shows the trend view, so
+  // Chart.js sizes it against a hidden container and it comes out 0x0. Switching
+  // to "Current" only unhid a blank canvas — redraw it now that it has a size.
+  else renderWeatherHeatmap();
 }
 
 export function initForecastTrend() {

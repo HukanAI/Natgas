@@ -8,13 +8,13 @@ import { dbLog, renderDbg } from './debug.js';
 import { ngfCurrent, ngfLogContracts, ngfFetchQuote, ngfNext, ngfFetchTwoDays, fetchDailyHistory } from './contracts.js';
 import { resetZoom } from './charts.js';
 
-import { wxLoadAll, wxForceRefresh, wxSetWindow, exportHistoricalWeekly } from './weather2.js';
+import { wxLoadAll, wxForceRefresh, wxSetWindow, wxRenderAll, exportHistoricalWeekly } from './weather2.js';
 import { stLoadAll, stSetWindow, stUpdateSubtitles, stRenderStorChart, stRenderDevChart, stRenderInjChart } from './storage.js';
-import { peLoadAll, peSetWindow, peRenderOne } from './production.js';
-import { ngfRenderChart, ngfUpdateSubtitle, ngfSetWindow, ngfSetChartType, fcLoad, fcToggle, fcSilentRefresh } from './futures2.js';
+import { peLoadAll, peSetWindow, peRenderOne, peRenderSupply } from './production.js';
+import { ngfRenderChart, renderFpSpreadChart, ngfUpdateSubtitle, ngfSetWindow, ngfSetChartType, fcLoad, fcToggle, fcSilentRefresh } from './futures2.js';
 import { renderSeasonChart, renderSeasonChartOverview, renderSeasonStats, seasonSetMode, fwCardSetMode, seasonOvSetYear } from './seasonality.js';
 import { taLoadAll, taRefresh, taSilentRefresh, taSetType, taSetTicker, taResetZoomTF, taRenderTF } from './technical.js';
-import { cotLoadAll, cotSetWindow, cotShowHelp, cotHideHelp, cotExportNet, cotExportLS, cotExportProd, cotExportSwap, cotExportChg } from './cot.js';
+import { cotLoadAll, cotRenderAll, cotSetWindow, cotShowHelp, cotHideHelp, cotExportNet, cotExportLS, cotExportProd, cotExportSwap, cotExportChg } from './cot.js';
 import { renderBiasCard, refreshFairPricesOnly } from './bias.js';
 import { stExportStorage, stExportDev, stExportNgf, stExportInj, peExport, peExportSupply, exportWxReg, exportWxTemp, exportWxDem } from './exports.js';
 import { startTopbarTicker, updateTopbar } from './topbar.js';
@@ -100,6 +100,37 @@ setTimeout(function() {
   }, 900_000); // 15 minutes
 }, 60_000); // first refresh 60s after start
 
+// Chart.js fixes the canvas size when the chart is constructed. Every panel
+// except the default one is display:none while its data loads, so its charts
+// were built against a zero-width container and stayed 0x0 — the tab looked
+// permanently empty even though the data was there. A zero-sized chart can't be
+// recovered with chart.resize(); it has to be rebuilt while the panel is
+// visible, which is what these renderers do.
+const PANEL_RENDERERS = {
+  frontmonth:  [ngfRenderChart, renderFpSpreadChart],
+  seasonality: [renderSeasonChart],
+  correlation: [cotRenderAll],
+  storage:     [stRenderStorChart, stRenderDevChart, stRenderInjChart],
+  prodexp:     [peRenderSupply, function() { ['prod','can','mex','lng'].forEach(peRenderOne); }],
+  weather:     [wxRenderAll],
+};
+
+// Rebuild any zero-sized chart inside `container`. Only rebuilds when something
+// is actually broken, so revealing a container doesn't throw away the user's
+// zoom/pan on charts that are already fine.
+function repairHiddenCharts(container, renderers, what) {
+  if (!container) return;
+  const broken = [...container.querySelectorAll('canvas')].some(function(c) { return !c.width || !c.height; });
+  if (!broken) return;
+  (renderers || []).forEach(function(fn) {
+    try { fn(); } catch (e) { dbLog('re-render ' + what + ': ' + e.message, 'warn'); }
+  });
+}
+
+function fixPanelCharts(id, panel) {
+  repairHiddenCharts(panel, PANEL_RENDERERS[id], id + ' on tab open');
+}
+
 // ── DOM ready ─────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -110,11 +141,31 @@ document.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('on'); });
       document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('on'); });
       this.classList.add('on');
-      document.getElementById('panel-' + id).classList.add('on');
-      // Charts measured while their panel was hidden can size wrong — re-render on open
-      if (id === 'seasonality') { try { renderSeasonChart(); } catch (e) { dbLog('season chart on tab open: ' + e.message, 'warn'); } }
+      const panel = document.getElementById('panel-' + id);
+      panel.classList.add('on');
+      // Chart.js locks in the canvas size at construction time. Every panel
+      // except the default one is display:none while its charts are built, so
+      // they came out 0x0 and stayed blank forever — the tab looked empty even
+      // though the data had loaded. Re-measure them now that the panel is
+      // visible; resize() is a no-op for charts that are already sized.
+      fixPanelCharts(id, panel);
     });
   });
+
+  // The collapsible strip under the overview starts closed, so the storage
+  // deviation chart inside it is also built at 0x0. Its open/close handler lives
+  // inline in index.html and only fires a window resize, which cannot recover a
+  // zero-sized canvas — rebuild the bias card instead once it is expanded.
+  var secToggle = document.getElementById('sec-toggle');
+  var secStrip  = document.getElementById('sec-strip');
+  if (secToggle && secStrip) {
+    secToggle.addEventListener('click', function() {
+      if (!secStrip.classList.contains('open')) return;
+      setTimeout(function() {
+        repairHiddenCharts(document.getElementById('sec-content'), [renderBiasCard], 'signals strip');
+      }, 80);
+    });
+  }
 
   // ── Global refresh ──────────────────────────────────────────────────────────
   document.getElementById('btn-refresh').addEventListener('click', function() {

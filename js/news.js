@@ -1,18 +1,27 @@
 // ═══════════════════════════════════════════════════════════════════════════════
 // news.js — Natural Gas news ticker
-// Source: Yahoo Finance RSS feed for NG=F ticker
+//
+// Feeds are pulled through the shared proxy layer and merged. Several sources
+// are used on purpose: Google News (the old single source) now answers HTTP 503
+// bot-check pages to any datacenter IP, so anything behind a CORS proxy gets
+// nothing back, and Yahoo's RSS endpoint answers 403 the same way. Merging a
+// few surviving feeds also means one of them going dark no longer empties the
+// ticker.
 // ═══════════════════════════════════════════════════════════════════════════════
 
 import { dbLog } from './debug.js';
+import { proxyFetch } from './proxy.js';
 
-// Use Google News RSS — works through CORS proxies, multiple sources
-const FEED_URL = 'https://news.google.com/rss/search?q=natural+gas+price+OR+henry+hub&hl=en-US&gl=US&ceid=US:en';
-
-const CORS_PROXIES = [
-  url => 'https://corsproxy.io/?url=' + encodeURIComponent(url),
-  url => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(url),
-  url => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url),
+const FEEDS = [
+  // Query-targeted, so every item is already on topic.
+  { name: 'Bing News', url: 'https://www.bing.com/news/search?q=natural+gas+price+OR+henry+hub&format=RSS', filter: false },
+  // Broader energy feeds — filtered to natural-gas stories below.
+  { name: 'OilPrice',  url: 'https://oilprice.com/rss/main', filter: true },
+  { name: 'EIA',       url: 'https://www.eia.gov/rss/todayinenergy.xml', filter: true },
 ];
+
+// Keeps the general energy feeds on topic for a natural-gas dashboard.
+const NG_RE = /\b(natural gas|nat gas|natgas|henry hub|lng|gas price|gas storage|gas demand|pipeline)\b/i;
 
 // Parse RSS XML to extract news items
 function parseRSS(xmlText) {
@@ -25,31 +34,47 @@ function parseRSS(xmlText) {
     const link  = el.querySelector('link')?.textContent || '';
     const pubDate = el.querySelector('pubDate')?.textContent || '';
     const description = el.querySelector('description')?.textContent || '';
-    // Google News appends " - Source Name" — extract source separately
-    let source = '';
-    const sourceMatch = title.match(/\s+-\s+([^-]+)$/);
-    if (sourceMatch) {
-      source = sourceMatch[1].trim();
-      title = title.replace(/\s+-\s+[^-]+$/, '').trim();
-    }
-    if (title) items.push({ title, link, source, pubDate: new Date(pubDate), description });
+    // Prefer the feed's own <source> element (Bing supplies one). The old code
+    // instead stripped a trailing " - Name" off the title, a Google News
+    // convention — with Google gone that heuristic only truncated real titles
+    // such as "Gas rises - what it means for winter".
+    const source = el.querySelector('source')?.textContent?.trim() || '';
+    if (title) items.push({ title: title.trim(), link, source, pubDate: new Date(pubDate), description });
   });
   return items;
 }
 
 async function fetchRSS() {
-  let lastErr = null;
-  for (const proxy of CORS_PROXIES) {
-    try {
-      const res = await fetch(proxy(FEED_URL), { signal: AbortSignal.timeout(8000), cache: 'no-store' });
-      if (!res.ok) { lastErr = new Error('HTTP ' + res.status); continue; }
-      const text = await res.text();
-      const items = parseRSS(text);
-      if (items.length) return items;
-      lastErr = new Error('no items');
-    } catch (e) { lastErr = e; }
-  }
-  throw lastErr || new Error('all proxies failed');
+  // Shares the health-tracked proxy pool with the price feeds — the ticker used
+  // to keep its own list of proxies, all three of which are now dead.
+  const settled = await Promise.allSettled(FEEDS.map(async f => {
+    const text = await proxyFetch(f.url, {
+      ttl: 5 * 60 * 1000,
+      validate: t => t.includes('<item') || t.includes('<entry'),
+    });
+    let items = parseRSS(text);
+    if (f.filter) items = items.filter(i => NG_RE.test(i.title + ' ' + i.description));
+    return items.map(i => ({ ...i, source: i.source || f.name }));
+  }));
+
+  const all = [];
+  const seen = new Set();
+  settled.forEach((r, i) => {
+    if (r.status !== 'fulfilled') {
+      dbLog('News feed ' + FEEDS[i].name + ': ' + r.reason?.message, 'warn');
+      return;
+    }
+    for (const item of r.value) {
+      // Same story often appears in more than one feed.
+      const k = item.title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 60);
+      if (seen.has(k)) continue;
+      seen.add(k);
+      all.push(item);
+    }
+  });
+
+  if (!all.length) throw new Error('no items from any feed');
+  return all;
 }
 
 // Format relative time
