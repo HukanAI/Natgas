@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T22:43:21.030Z",
+  "generatedAt": "2026-09-05T00:33:29.801Z",
   "price": {
     "front": 2.938999891281128,
     "next": 3.056999921798706,
@@ -23,10 +23,10 @@
     "demand_1_7D": null,
     "demand_8_16D": null,
     "trend": {
-      "nowDemand": "156.3",
-      "change24h": "+19.4",
+      "nowDemand": "155.9",
+      "change24h": "+15.2",
       "range7d": "110.1 – 158.7",
-      "vs5yNormal": "+73.8 · highest in 5y"
+      "vs5yNormal": "+73.3 · highest in 5y"
     }
   },
   "fairValue": {
@@ -244,13 +244,6 @@
   "pageErrors": [],
   "diagnostics": {
     "network": {
-      "cdn.jsdelivr.net": {
-        "ok": 1,
-        "err": 0,
-        "statuses": {
-          "200": 1
-        }
-      },
       "cdnjs.cloudflare.com": {
         "ok": 2,
         "err": 0,
@@ -259,6 +252,13 @@
         }
       },
       "fonts.googleapis.com": {
+        "ok": 1,
+        "err": 0,
+        "statuses": {
+          "200": 1
+        }
+      },
+      "cdn.jsdelivr.net": {
         "ok": 1,
         "err": 0,
         "statuses": {
@@ -306,9 +306,23 @@
         "statuses": {
           "200": 5
         }
+      },
+      "api.allorigins.win": {
+        "ok": 0,
+        "err": 1,
+        "statuses": {}
       }
     },
-    "failedRequests": [],
-    "console": []
+    "failedRequests": [
+      {
+        "host": "api.allorigins.win",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS",
+        "error": "net::ERR_FAILED"
+      }
+    ],
+    "console": [
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requ",
+      "[error] Failed to load resource: net::ERR_FAILED"
+    ]
   }
 }
