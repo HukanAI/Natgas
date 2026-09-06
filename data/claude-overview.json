@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-06T16:45:00Z",
-  "sourceSnapshotAt": "2026-09-06T16:39:48.557Z",
+  "generatedAt": "2026-09-06T21:05:00.000Z",
+  "sourceSnapshotAt": "2026-09-06T21:00:34.485Z",
   "frontPrice": null,
   "nextPrice": null,
-  "marketState": "neutral, data-constrained (crowded-short COT & bullish storage surprise vs. fading heat demand)",
-  "summary": "This snapshot is missing nearly all priority data: front/next futures prices, seasonality stats, technicals, and futures curve all failed to load (Yahoo Finance proxy calls were blocked/unresolved), so price-vs-fair-value and price-vs-median cannot be verified. What is usable points to a mixed picture: 1-7D weather demand is running far above normal (rangePos 1.22, above the 5y max) but is dropping sharply day-over-day (-34.8 24h) and the 8-16D outlook is -14.7% vs 5y (below-normal range), signaling the current heat-driven demand is fading fast into a weaker, cooler stretch. Managed money is net short but at only the 15th percentile of the past 5 years - an unusually crowded short that raises squeeze risk, especially with this week's storage build coming in smaller than forecast (a bullish surprise). That said, storage still sits +159 Bcf above the 5-year average, a persistent bearish overhang. Given the absence of confirmed price, seasonality, and technical data, conviction is low across the board and both trades default to WAIT pending better data.",
+  "marketState": "neutral, cautiously bullish undertone (weather + stretched short base) but blind on price/technicals",
+  "summary": "The live price feed is down (front and next are both null) and the seasonality block (vsMedian, probHigher, typicalMove, reliability) is entirely empty, knocking out two of the four priority inputs and making it unsafe to anchor concrete trade levels to a real price. What data does exist leans modestly bullish: 1-7D and 8-16D weather demand are both above the top of their 5-year ranges ('highest in 5y'), managed-money is net short but at just the 15th percentile of the last 5 years — a stretched short base that is a classic contrarian bullish setup — and this week's storage build undershot the forecast by 17 Bcf (bullish surprise), even though the absolute stockpile remains +159 Bcf above the 5-year average (a bearish overhang). The fair-value model implies a mildly rising path ($2.95 now to ~$3.11 by +21D), but with no live price to compare against that band, and with technicals and the futures curve also empty, there is no way to confirm whether price is cheap, fair, or rich, or what the near-term trend looks like. Given these gaps, both trade ideas below are WAIT pending restored price, seasonality and technicals data.",
   "longTerm": {
     "stance": "WAIT",
     "conviction": "low",
@@ -15,9 +15,9 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Crowded-short COT positioning (15th percentile) and a bullish storage surprise argue for upside risk over the coming weeks, but a +159 Bcf 5y storage surplus is a real bearish anchor, and with front price, seasonality vsMedian, and probHigher stats all unavailable there is no way to confirm price is actually cheap versus the $2.45-$3.55 fair-value band.",
-    "invalidation": "If restored price data shows front already trading above the fair-value band (~$3.55+) or COT flips toward a larger net short, the crowded-short/squeeze thesis is invalidated.",
-    "trigger": "Wait for live front-month price and seasonality data (vsMedian, probHigher) to confirm price is at or below the ~$2.45-$2.95 fair-value zone before entering long against the crowded-short COT setup."
+    "rationale": "Weather demand is above-normal through the 8-16 day window and managed-money shorts are historically stretched (15th 5y percentile), both medium-term supportive, but seasonality data is completely missing and there is no live price to compare to the rising fair-value band ($2.95 now to $3.11 by +21D).",
+    "invalidation": "Would flip bearish if the storage deviation vs 5y keeps widening beyond +159 Bcf while weather demand reverts to or below the 5y normal range.",
+    "trigger": "Wait for a restored live price feed and a populated seasonality read; then look to buy on a pullback toward the lower half of the fair-value band (roughly $2.45-$2.95) provided weather demand (1-7D/8-16D) stays above the 5y range and managed-money COT net stays below its 5y median."
   },
   "shortTerm": {
     "stance": "WAIT",
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "1-7D demand is above normal (rangePos 1.22, aboveMax) which could still support price near-term, but the -34.8 24h drop in demand and a negative 8-16D outlook (-14.7% vs 5y) point to fading heat into the shoulder season; with technicals, futures curve, and live front price all missing from this snapshot, no reliable levels can be set.",
-    "invalidation": "n/a",
-    "trigger": "Wait for technicals and futures-curve data (currently unavailable) plus confirmation that price holds near the ~$2.95 fair value on any pullback tied to fading 1-7D heat demand."
+    "rationale": "Technicals, the futures curve, and the live front/next price are all unavailable, so there is no near-term trend, momentum, or curve-shape signal to trade; only the weather backdrop (demand above the 5y range through 16 days) offers any short-term lean.",
+    "invalidation": "n/a until price and technicals data return",
+    "trigger": "Wait for technicals, futures-curve data and a live NG=F price to repopulate; then reassess against the near-term fair-value estimate (~$2.95-$3.00) and curve structure (contango/backwardation) for a 1-10 day setup."
   },
   "keyDrivers": [
-    "1-7D weather demand above 5y max (rangePos 1.22) but falling fast (-34.8 change24h)",
-    "8-16D demand outlook -14.7% vs 5y, rangePos 0.37 -> fading heat into shoulder season",
-    "Managed money net short at just 15th percentile of 5y range -> crowded short, squeeze risk",
-    "Storage +159 Bcf above 5y average (bearish overhang) but this week's build was a bullish surprise (-17 Bcf vs forecast)",
-    "Fair value drifting gently higher over next 3 weeks ($2.95 -> $3.05)"
+    "Weather demand (1-7D & 8-16D) running highest-in-5y, above the top of the historical range — near-term bullish for gas burn",
+    "Managed-money net short at 15th 5y percentile — stretched positioning, contrarian bullish risk",
+    "Storage surprise of -17 Bcf vs forecast (bullish) but absolute stocks +159 Bcf vs 5y (bearish overhang)",
+    "Fair-value model trending up from $2.95 (now) to roughly $3.11 (+21D)",
+    "No live price feed (front/next null) — cannot size or place price-anchored trades"
   ],
   "risks": [
-    "Front/next futures price, seasonality stats, technicals, and futures curve all failed to load this snapshot (data-source/proxy failures) - no way to verify actual price vs fair value or median",
-    "Large 5y storage surplus (+159 Bcf) is a persistent bearish anchor that could cap any COT-driven squeeze",
-    "Weather demand is swinging quickly (nowDemand 92.8 vs 7d range up to 158.7), increasing near-term forecast uncertainty"
+    "Front/next price feed is down; any trade taken blind on price is effectively unmanageable risk",
+    "Seasonality, technicals and futures curve are all empty — no confirmation of trend, momentum, or curve shape",
+    "Storage surplus (+159 Bcf vs 5y) caps upside if weather normalizes back toward the 5y average"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
