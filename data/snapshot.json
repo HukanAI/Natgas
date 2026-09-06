@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T21:00:34.485Z",
+  "generatedAt": "2026-09-06T22:50:13.829Z",
   "price": {
     "front": null,
     "next": null,
@@ -21,8 +21,8 @@
   },
   "weather": {
     "demand_1_7D": {
-      "pctVs5y": 50.7,
-      "rangePos": 1.16,
+      "pctVs5y": 50.9,
+      "rangePos": 1.17,
       "aboveMax": true,
       "belowMin": false
     },
@@ -33,10 +33,10 @@
       "belowMin": false
     },
     "trend": {
-      "nowDemand": "122.0",
-      "change24h": "+4.6",
+      "nowDemand": "121.7",
+      "change24h": "+4.0",
       "range7d": "92.7 – 158.7",
-      "vs5yNormal": "+41.3 · highest in 5y"
+      "vs5yNormal": "+41.1 · highest in 5y"
     }
   },
   "fairValue": {
@@ -167,13 +167,6 @@
           "200": 1
         }
       },
-      "api.open-meteo.com": {
-        "ok": 5,
-        "err": 0,
-        "statuses": {
-          "200": 5
-        }
-      },
       "api.eia.gov": {
         "ok": 5,
         "err": 0,
@@ -181,10 +174,19 @@
           "200": 5
         }
       },
+      "api.open-meteo.com": {
+        "ok": 5,
+        "err": 0,
+        "statuses": {
+          "200": 5
+        }
+      },
       "api.allorigins.win": {
-        "ok": 0,
+        "ok": 5,
         "err": 2,
-        "statuses": {}
+        "statuses": {
+          "200": 5
+        }
       }
     },
     "failedRequests": [
@@ -225,6 +227,11 @@
       },
       {
         "host": "proxy.cors.sh",
+        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGK27.NYM?interval=1d&range=1mo&events=history&lang=en-US&region=US",
+        "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGM27.NYM?interval=1d&range=1mo&events=history&lang=en-US&region=US",
         "error": "net::ERR_NAME_NOT_RESOLVED"
       },
@@ -240,27 +247,7 @@
       },
       {
         "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGK27.NYM?interval=1d&range=1mo&events=history&lang=en-US&region=US",
-        "error": "net::ERR_NAME_NOT_RESOLVED"
-      },
-      {
-        "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGN27.NYM?interval=1d&range=1mo&events=history&lang=en-US&region=US",
-        "error": "net::ERR_NAME_NOT_RESOLVED"
-      },
-      {
-        "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=5m&range=15d&_t=1788728398471&lang=en-US&region=US",
-        "error": "net::ERR_NAME_NOT_RESOLVED"
-      },
-      {
-        "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://oilprice.com/rss/main",
-        "error": "net::ERR_NAME_NOT_RESOLVED"
-      },
-      {
-        "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=1d&range=5y&_t=1788728398471&lang=en-US&region=US",
         "error": "net::ERR_NAME_NOT_RESOLVED"
       },
       {
@@ -270,12 +257,27 @@
       },
       {
         "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=1d&range=10d&lang=en-US&region=US",
+        "url": "https://proxy.cors.sh/https://oilprice.com/rss/main",
+        "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "proxy.cors.sh",
+        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=1d&range=5y&_t=1788734977815&lang=en-US&region=US",
         "error": "net::ERR_NAME_NOT_RESOLVED"
       },
       {
         "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://www.eia.gov/rss/todayinenergy.xml",
+        "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "proxy.cors.sh",
+        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=5m&range=15d&_t=1788734977815&lang=en-US&region=US",
+        "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "proxy.cors.sh",
+        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=1d&range=10d&lang=en-US&region=US",
         "error": "net::ERR_NAME_NOT_RESOLVED"
       },
       {
@@ -286,12 +288,12 @@
       {
         "host": "api.allorigins.win",
         "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D1d%26range%3D1mo%26events%3Dhistory%26lang%3Den-US%26region%3DUS",
-        "error": "net::ERR_ABORTED"
+        "error": "net::ERR_FAILED"
       },
       {
         "host": "api.allorigins.win",
         "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Finterval%3D1d%26range%3D1mo%26events%3Dhistory%26lang%3Den-US%26region%3DUS",
-        "error": "net::ERR_ABORTED"
+        "error": "net::ERR_FAILED"
       }
     ],
     "console": [
@@ -313,7 +315,11 @@
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
-      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D1d%26range%3D1mo%26events%3Dhistory%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Cont",
+      "[error] Failed to load resource: net::ERR_FAILED",
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Finterval%3D1d%26range%3D1mo%26events%3Dhistory%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Cont",
+      "[error] Failed to load resource: net::ERR_FAILED"
     ]
   }
 }
