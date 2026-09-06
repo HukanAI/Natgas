@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T05:25:07.475Z",
+  "generatedAt": "2026-09-06T10:05:10.616Z",
   "price": {
     "front": 2.9749999046325684,
     "next": 3.0950000286102295,
@@ -23,10 +23,10 @@
     "demand_1_7D": null,
     "demand_8_16D": null,
     "trend": {
-      "nowDemand": "117.5",
-      "change24h": "-15.1",
-      "range7d": "110.1 – 158.7",
-      "vs5yNormal": "+36.9 · highest in 5y"
+      "nowDemand": "105.3",
+      "change24h": "-26.9",
+      "range7d": "105.3 – 158.7",
+      "vs5yNormal": "+24.7 · highest in 5y"
     }
   },
   "fairValue": {
@@ -279,11 +279,11 @@
           "200": 23
         }
       },
-      "archive-api.open-meteo.com": {
-        "ok": 10,
+      "api.eia.gov": {
+        "ok": 5,
         "err": 0,
         "statuses": {
-          "200": 10
+          "200": 5
         }
       },
       "publicreporting.cftc.gov": {
@@ -293,11 +293,11 @@
           "200": 1
         }
       },
-      "api.eia.gov": {
-        "ok": 5,
+      "archive-api.open-meteo.com": {
+        "ok": 10,
         "err": 0,
         "statuses": {
-          "200": 5
+          "200": 10
         }
       },
       "api.open-meteo.com": {
@@ -306,25 +306,9 @@
         "statuses": {
           "200": 5
         }
-      },
-      "api.allorigins.win": {
-        "ok": 1,
-        "err": 1,
-        "statuses": {
-          "200": 1
-        }
       }
     },
-    "failedRequests": [
-      {
-        "host": "api.allorigins.win",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS",
-        "error": "net::ERR_FAILED"
-      }
-    ],
-    "console": [
-      "[error] Access to fetch at 'https://api.allorigins.win/get?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requ",
-      "[error] Failed to load resource: net::ERR_FAILED"
-    ]
+    "failedRequests": [],
+    "console": []
   }
 }
