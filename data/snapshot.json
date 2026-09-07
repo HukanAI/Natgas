@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07T11:18:59.011Z",
+  "generatedAt": "2026-09-07T17:02:34.617Z",
   "price": {
     "front": null,
     "next": null,
@@ -27,16 +27,16 @@
       "belowMin": false
     },
     "demand_8_16D": {
-      "pctVs5y": 11.7,
-      "rangePos": 0.75,
+      "pctVs5y": 4.6,
+      "rangePos": 0.65,
       "aboveMax": false,
       "belowMin": false
     },
     "trend": {
-      "nowDemand": "105.3",
-      "change24h": "-0.1",
+      "nowDemand": "102.0",
+      "change24h": "+9.2",
       "range7d": "92.7 – 158.7",
-      "vs5yNormal": "+26.9 · highest in 5y"
+      "vs5yNormal": "+23.6 · highest in 5y"
     }
   },
   "fairValue": {
@@ -67,8 +67,8 @@
       }
     },
     "plus14D": {
-      "fair": "$3.039",
-      "band": "$2.539 – $3.539",
+      "fair": "$3.040",
+      "band": "$2.540 – $3.540",
       "front": {
         "spread": "Spread —",
         "status": null
@@ -79,8 +79,8 @@
       }
     },
     "plus21D": {
-      "fair": "$3.092",
-      "band": "$2.592 – $3.592",
+      "fair": "$3.070",
+      "band": "$2.570 – $3.570",
       "front": {
         "spread": "Spread —",
         "status": null
@@ -160,18 +160,18 @@
           "200": 5
         }
       },
-      "archive-api.open-meteo.com": {
-        "ok": 30,
-        "err": 0,
-        "statuses": {
-          "200": 30
-        }
-      },
       "publicreporting.cftc.gov": {
         "ok": 1,
         "err": 0,
         "statuses": {
           "200": 1
+        }
+      },
+      "archive-api.open-meteo.com": {
+        "ok": 30,
+        "err": 0,
+        "statuses": {
+          "200": 30
         }
       },
       "api.open-meteo.com": {
@@ -250,12 +250,17 @@
       },
       {
         "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=1d&range=5y&_t=1788779902998&lang=en-US&region=US",
+        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=1d&range=10d&lang=en-US&region=US",
         "error": "net::ERR_NAME_NOT_RESOLVED"
       },
       {
         "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=1d&range=10d&lang=en-US&region=US",
+        "url": "https://proxy.cors.sh/https://www.eia.gov/rss/todayinenergy.xml",
+        "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "proxy.cors.sh",
+        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=5m&range=15d&_t=1788800518605&lang=en-US&region=US",
         "error": "net::ERR_NAME_NOT_RESOLVED"
       },
       {
@@ -265,17 +270,12 @@
       },
       {
         "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=5m&range=15d&_t=1788779902998&lang=en-US&region=US",
+        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=1d&range=5y&_t=1788800518605&lang=en-US&region=US",
         "error": "net::ERR_NAME_NOT_RESOLVED"
       },
       {
         "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://www.bing.com/news/search?q=natural+gas+price+OR+henry+hub&format=RSS",
-        "error": "net::ERR_NAME_NOT_RESOLVED"
-      },
-      {
-        "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://www.eia.gov/rss/todayinenergy.xml",
         "error": "net::ERR_NAME_NOT_RESOLVED"
       },
       {
