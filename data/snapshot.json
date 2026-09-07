@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-07T21:00:12.288Z",
+  "generatedAt": "2026-09-07T23:22:10.250Z",
   "price": {
-    "front": null,
-    "next": null,
+    "front": 2.9779999256134033,
+    "next": 3.0989999771118164,
     "frontPrevClose": null,
     "nextPrevClose": null,
-    "frontIsLive": false
+    "frontIsLive": true
   },
   "seasonality": {
     "season": "Cooling",
@@ -21,8 +21,8 @@
   },
   "weather": {
     "demand_1_7D": {
-      "pctVs5y": 59.4,
-      "rangePos": 1.35,
+      "pctVs5y": 60.3,
+      "rangePos": 1.36,
       "aboveMax": true,
       "belowMin": false
     },
@@ -33,61 +33,61 @@
       "belowMin": false
     },
     "trend": {
-      "nowDemand": "105.6",
-      "change24h": "-16.3",
+      "nowDemand": "105.8",
+      "change24h": "-15.9",
       "range7d": "92.7 – 158.7",
-      "vs5yNormal": "+27.2 · highest in 5y"
+      "vs5yNormal": "+27.4 · highest in 5y"
     }
   },
   "fairValue": {
-    "frontPrice": null,
-    "nextPrice": null,
+    "frontPrice": "$2.978",
+    "nextPrice": "$3.099",
     "now": {
       "fair": "$2.950",
       "band": "$2.450 – $3.450",
       "front": {
-        "spread": "Spread —",
-        "status": null
+        "spread": "Spread +$0.028",
+        "status": "FAIR"
       },
       "next": {
-        "spread": "Spread —",
-        "status": null
+        "spread": "Spread +$0.149",
+        "status": "FAIR"
       }
     },
     "plus7D": {
       "fair": "$2.997",
       "band": "$2.497 – $3.497",
       "front": {
-        "spread": "Spread —",
-        "status": null
+        "spread": "Spread −$0.019",
+        "status": "FAIR"
       },
       "next": {
-        "spread": "Spread —",
-        "status": null
+        "spread": "Spread +$0.102",
+        "status": "FAIR"
       }
     },
     "plus14D": {
-      "fair": "$3.040",
-      "band": "$2.540 – $3.540",
+      "fair": "$3.041",
+      "band": "$2.541 – $3.541",
       "front": {
-        "spread": "Spread —",
-        "status": null
+        "spread": "Spread −$0.063",
+        "status": "FAIR"
       },
       "next": {
-        "spread": "Spread —",
-        "status": null
+        "spread": "Spread +$0.058",
+        "status": "FAIR"
       }
     },
     "plus21D": {
-      "fair": "$3.070",
-      "band": "$2.570 – $3.570",
+      "fair": "$3.071",
+      "band": "$2.571 – $3.571",
       "front": {
-        "spread": "Spread —",
-        "status": null
+        "spread": "Spread −$0.093",
+        "status": "FAIR"
       },
       "next": {
-        "spread": "Spread —",
-        "status": null
+        "spread": "Spread +$0.028",
+        "status": "FAIR"
       }
     }
   },
@@ -120,18 +120,18 @@
   "pageErrors": [],
   "diagnostics": {
     "network": {
-      "cdn.jsdelivr.net": {
-        "ok": 1,
-        "err": 0,
-        "statuses": {
-          "200": 1
-        }
-      },
       "cdnjs.cloudflare.com": {
         "ok": 2,
         "err": 0,
         "statuses": {
           "200": 2
+        }
+      },
+      "cdn.jsdelivr.net": {
+        "ok": 1,
+        "err": 0,
+        "statuses": {
+          "200": 1
         }
       },
       "fonts.googleapis.com": {
@@ -153,13 +153,6 @@
         "err": 19,
         "statuses": {}
       },
-      "api.eia.gov": {
-        "ok": 5,
-        "err": 0,
-        "statuses": {
-          "200": 5
-        }
-      },
       "publicreporting.cftc.gov": {
         "ok": 1,
         "err": 0,
@@ -174,6 +167,13 @@
           "200": 30
         }
       },
+      "api.eia.gov": {
+        "ok": 5,
+        "err": 0,
+        "statuses": {
+          "200": 5
+        }
+      },
       "api.open-meteo.com": {
         "ok": 5,
         "err": 0,
@@ -182,9 +182,11 @@
         }
       },
       "api.allorigins.win": {
-        "ok": 0,
-        "err": 5,
-        "statuses": {}
+        "ok": 4,
+        "err": 2,
+        "statuses": {
+          "200": 4
+        }
       }
     },
     "failedRequests": [
@@ -220,16 +222,6 @@
       },
       {
         "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGQ27.NYM?interval=1d&range=1mo&events=history&lang=en-US&region=US",
-        "error": "net::ERR_NAME_NOT_RESOLVED"
-      },
-      {
-        "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGN27.NYM?interval=1d&range=1mo&events=history&lang=en-US&region=US",
-        "error": "net::ERR_NAME_NOT_RESOLVED"
-      },
-      {
-        "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGM27.NYM?interval=1d&range=1mo&events=history&lang=en-US&region=US",
         "error": "net::ERR_NAME_NOT_RESOLVED"
       },
@@ -245,7 +237,32 @@
       },
       {
         "host": "proxy.cors.sh",
+        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGQ27.NYM?interval=1d&range=1mo&events=history&lang=en-US&region=US",
+        "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "proxy.cors.sh",
+        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGN27.NYM?interval=1d&range=1mo&events=history&lang=en-US&region=US",
+        "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGU27.NYM?interval=1d&range=1mo&events=history&lang=en-US&region=US",
+        "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "proxy.cors.sh",
+        "url": "https://proxy.cors.sh/https://www.bing.com/news/search?q=natural+gas+price+OR+henry+hub&format=RSS",
+        "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "proxy.cors.sh",
+        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=5m&range=15d&_t=1788823294236&lang=en-US&region=US",
+        "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "proxy.cors.sh",
+        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=1d&range=5y&_t=1788823294236&lang=en-US&region=US",
         "error": "net::ERR_NAME_NOT_RESOLVED"
       },
       {
@@ -260,21 +277,6 @@
       },
       {
         "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=1d&range=5y&_t=1788814776271&lang=en-US&region=US",
-        "error": "net::ERR_NAME_NOT_RESOLVED"
-      },
-      {
-        "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=5m&range=15d&_t=1788814776271&lang=en-US&region=US",
-        "error": "net::ERR_NAME_NOT_RESOLVED"
-      },
-      {
-        "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://www.bing.com/news/search?q=natural+gas+price+OR+henry+hub&format=RSS",
-        "error": "net::ERR_NAME_NOT_RESOLVED"
-      },
-      {
-        "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=1d&range=10d&lang=en-US&region=US",
         "error": "net::ERR_NAME_NOT_RESOLVED"
       },
@@ -285,27 +287,12 @@
       },
       {
         "host": "api.allorigins.win",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D1d%26range%3D1mo%26events%3Dhistory%26lang%3Den-US%26region%3DUS",
-        "error": "net::ERR_ABORTED"
-      },
-      {
-        "host": "api.allorigins.win",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Finterval%3D1d%26range%3D1mo%26events%3Dhistory%26lang%3Den-US%26region%3DUS",
-        "error": "net::ERR_ABORTED"
-      },
-      {
-        "host": "api.allorigins.win",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Finterval%3D1d%26range%3D1mo%26events%3Dhistory%26lang%3Den-US%26region%3DUS",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGH27.NYM%3Finterval%3D1d%26range%3D1mo%26events%3Dhistory%26lang%3Den-US%26region%3DUS",
         "error": "net::ERR_FAILED"
       },
       {
         "host": "api.allorigins.win",
-        "url": "https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D1d%26range%3D1mo%26events%3Dhistory%26lang%3Den-US%26region%3DUS",
-        "error": "net::ERR_FAILED"
-      },
-      {
-        "host": "api.allorigins.win",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGF27.NYM%3Finterval%3D1d%26range%3D1mo%26events%3Dhistory%26lang%3Den-US%26region%3DUS",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGG27.NYM%3Finterval%3D1d%26range%3D1mo%26events%3Dhistory%26lang%3Den-US%26region%3DUS",
         "error": "net::ERR_FAILED"
       }
     ],
@@ -329,11 +316,9 @@
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
-      "[error] Access to fetch at 'https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGX26.NYM%3Finterval%3D1d%26range%3D1mo%26events%3Dhistory%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Cont",
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGH27.NYM%3Finterval%3D1d%26range%3D1mo%26events%3Dhistory%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Cont",
       "[error] Failed to load resource: net::ERR_FAILED",
-      "[error] Access to fetch at 'https://api.allorigins.win/get?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGV26.NYM%3Finterval%3D1d%26range%3D1mo%26events%3Dhistory%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Cont",
-      "[error] Failed to load resource: net::ERR_FAILED",
-      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGF27.NYM%3Finterval%3D1d%26range%3D1mo%26events%3Dhistory%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Cont",
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fquery1.finance.yahoo.com%2Fv8%2Ffinance%2Fchart%2FNGG27.NYM%3Finterval%3D1d%26range%3D1mo%26events%3Dhistory%26lang%3Den-US%26region%3DUS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Cont",
       "[error] Failed to load resource: net::ERR_FAILED"
     ]
   }
