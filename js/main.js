@@ -435,6 +435,8 @@ document.addEventListener('DOMContentLoaded', function() {
   setInterval(loadDailyHistory, 4 * 60 * 60 * 1000);
 });
 
+let _dailyRetries = 0;
+
 async function loadDailyHistory() {
   const cur = ngfCurrent();
   if (!cur) return;
@@ -446,8 +448,21 @@ async function loadDailyHistory() {
   if (front) state.dailyHistory.front = front;
   if (next)  state.dailyHistory.next  = next;
   if (front || next) {
+    _dailyRetries = 0;
     dbLog('Daily history loaded: ' + cur.ticker + ' ' + (front?.length||0) + ' bars · ' + (nxt?.ticker||'—') + ' ' + (next?.length||0) + ' bars', 'ok');
     document.dispatchEvent(new CustomEvent('daily:history:loaded'));
+    return;
+  }
+
+  // Both sides failed. This is the only source of the previous close, so until
+  // it lands every price change on the page reads "—" — and the periodic reload
+  // below is on a 4-hour timer, which is a long time to show nothing because a
+  // proxy was briefly rate-limited at startup. Back off and try again.
+  if (_dailyRetries < 5) {
+    const wait = Math.min(30000 * 2 ** _dailyRetries, 10 * 60 * 1000);
+    _dailyRetries++;
+    dbLog('Daily history unavailable — retry ' + _dailyRetries + '/5 in ' + Math.round(wait / 1000) + 's', 'warn');
+    setTimeout(loadDailyHistory, wait);
   }
 }
 

@@ -24,15 +24,30 @@ import { dbLog } from './debug.js';
 // `limit` = max concurrent requests this proxy tolerates before it starts
 // failing. `timeout` = how long to wait; the slow ones genuinely need it.
 //
-// Measured 2026-09-04 from the production origin:
-//   proxy.cors.sh      8/8 concurrent OK,  ~210ms   ← fastest, highest capacity
-//   allorigins /raw    1/1 OK ~4.6s, 0/8 concurrent ← usable only serialised
-//   corsproxy.io       HTTP 401 — now requires an API key
-//   thingproxy         DNS no longer resolves
-//   codetabs           times out
-// The dead three were removed; keeping them only added ~8s of retries per call.
+// Re-measured 2026-09-08 from the production origin, after cors.sh and
+// allorigins both went down on the same day and took every price feed with
+// them:
+//   r.jina.ai          12/12 concurrent OK, ~1.8s; 305 KB payload in 0.9s
+//   proxy.cors.sh      connection refused — no response at all, even to curl
+//   allorigins         HTTP 522 (their own origin is timing out)
+//   corsproxy.io       HTTP 401 — needs an API key
+//   corsfix            HTTP 403 — needs the domain registered
+//   codetabs, cors.lol, cors.eu.org, thingproxy, yacdn, whateverorigin: dead
+// cors.sh and allorigins are kept below because they have recovered before,
+// but nothing here is dependable. worker/cors-proxy.js removes the dependency
+// entirely and is the only real fix — see its header for the deploy command.
 
 const PROXIES = [
+  {
+    // A reader service rather than a CORS proxy: without this header it returns
+    // the page rendered as markdown, which is useless for a JSON API. The custom
+    // header costs a preflight, which jina does answer.
+    id: 'jina',
+    build: u => 'https://r.jina.ai/' + u,
+    headers: { 'x-respond-with': 'text' },
+    limit: 3,
+    timeout: 25000,
+  },
   {
     id: 'cors.sh',
     build: u => 'https://proxy.cors.sh/' + u,
@@ -110,6 +125,12 @@ function markOk(id) {
 function markFail(id) {
   const e = h(id);
   e.fails++;
+  // Drop the sticky preference on the first failure. It is read back on the next
+  // page load and sorted to the front, so a proxy that died since the last visit
+  // was still being tried first by every request — and because a gate slot is
+  // taken before we know whether the proxy answers, later requests queued behind
+  // its timeout instead of moving on. One failure is enough to stop trusting it.
+  if (id === preferredId()) forgetBest();
   if (e.fails >= FAILS_TO_BENCH) {
     e.benchedUntil = Date.now() + BENCH_MS;
     e.fails = 0;
@@ -120,11 +141,15 @@ function markFail(id) {
 function isBenched(id) { return h(id).benchedUntil > Date.now(); }
 
 // Sticky preferred proxy — survives reloads so we don't re-probe every time.
-const BEST_KEY = 'ng_proxy_best_v1';
+const BEST_KEY = 'ng_proxy_best_v2';
 const BEST_TTL = 30 * 60 * 1000;
 
 function rememberBest(id) {
   try { localStorage.setItem(BEST_KEY, JSON.stringify({ id, ts: Date.now() })); } catch (e) {}
+}
+
+function forgetBest() {
+  try { localStorage.removeItem(BEST_KEY); } catch (e) {}
 }
 
 function preferredId() {
@@ -201,6 +226,32 @@ function cacheSet(url, text, ttl) {
   }
 }
 
+// ── Rate limiting ───────────────────────────────────────────────────────────
+// A 429 is not a broken proxy, it is a proxy asking us to slow down, and the
+// dashboard's startup burst reliably trips one: 20 requests at jina came back
+// 11 OK and 9 rate-limited. Treating that as a failure benched a working proxy
+// and threw the data away. Wait the interval the service asks for and retry it,
+// holding the gate slot so the retry does not widen the burst.
+
+const RATE_LIMIT_RETRIES = 2;
+const RATE_LIMIT_MAX_WAIT = 8000;
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+function retryAfterMs(res, text) {
+  const hdr = res.headers.get('retry-after');
+  if (hdr) {
+    const n = Number(hdr);
+    if (Number.isFinite(n) && n >= 0) return n * 1000;
+  }
+  // jina reports it in the JSON body instead: {"retryAfter":3,...}
+  try {
+    const j = JSON.parse(text);
+    if (Number.isFinite(j?.retryAfter)) return j.retryAfter * 1000;
+  } catch (e) {}
+  return 2000;
+}
+
 // ── Public API ────────────────────────────────────────────────────────────────
 
 /**
@@ -237,13 +288,19 @@ export async function proxyFetch(url, opts = {}) {
     for (const p of proxies) {
       await acquire(p);
       try {
-        const res = await fetch(p.build(url), {
-          signal: AbortSignal.timeout(p.timeout),
-          cache: 'no-store',
-        });
+        let res, text;
+        for (let attempt = 0; ; attempt++) {
+          res = await fetch(p.build(url), {
+            signal: AbortSignal.timeout(p.timeout),
+            cache: 'no-store',
+            ...(p.headers ? { headers: p.headers } : {}),
+          });
+          text = await res.text();
+          if (res.status !== 429 || attempt >= RATE_LIMIT_RETRIES) break;
+          await sleep(Math.min(retryAfterMs(res, text), RATE_LIMIT_MAX_WAIT));
+        }
         if (!res.ok) throw new Error('HTTP ' + res.status);
 
-        let text = await res.text();
         if (p.unwrap) text = p.unwrap(text);
         if (!text) throw new Error('empty body');
         if (opts.validate && !opts.validate(text)) throw new Error('invalid payload');
