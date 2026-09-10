@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-09-10T07:47:53.000Z",
-  "sourceSnapshotAt": "2026-09-10T07:46:31.562Z",
-  "frontPrice": 2.7939999103546143,
-  "nextPrice": 2.930000066757202,
-  "marketState": "neutral, with bullish longer-term value/positioning tailwinds fighting bearish short-term technical and fading-weather pressure",
-  "summary": "Front (Oct) at $2.794 sits just inside its fair-value band ($2.45-$3.45, model fair $2.95) and is priced well below the seasonal median for this time of year (-18.0% YTD vs -7.6% median), while managed money is net short at only the 15th percentile of its 5-year range - a crowded, contrarian-bullish setup heading into withdrawal season. The futures curve backs this up with steep contango into winter (Dec $3.41, Jan $3.81). Near-term, the picture is murkier: 1-7D heating/cooling demand is running +68% above 5-year norms and above its seasonal max, but it's fading fast (-14.7 in 24h), and technicals are bearish across 15m/1h/1d/1w with 1h RSI near oversold (30.6). Storage is +159 Bcf above the 5-year average (bearish overhang) even though this week's build undershot forecast (bullish surprise). Net: longer-term skew is constructively long into winter strength, but the next 1-10 days lack a clean edge given the fading heat catalyst versus oversold, trend-down technicals.",
+  "generatedAt": "2026-09-10T13:05:00.000Z",
+  "sourceSnapshotAt": "2026-09-10T12:36:58.830Z",
+  "frontPrice": 2.7880001068115234,
+  "nextPrice": 2.9210000038146973,
+  "marketState": "neutral-to-bullish - cheap vs fair value/season, but short-term technical trend still bearish",
+  "summary": "Front-month NG ($2.788) trades at a discount to modeled fair value ($2.950 now, widening to $3.034 by +14D and $3.095 by +21D) and well below its seasonal median (-18.2% YTD vs -7.6% median), while managed money is net short at just the 15th percentile of its 5y range - a crowded short that argues for mean reversion higher, echoed by the futures curve's own $1.01 winter contango premium to Jan. Near-term weather demand is unusually hot (+28.5 vs 5y normal, above the 5y max) but is already fading (-5.1 24h) and the 8-16D outlook reverts close to normal (+8.6% vs 5y), removing the near-term bullish catalyst. Storage remains +159 Bcf above the 5-year average (structural oversupply) even though this week's build undershot forecast by 17 Bcf (a bullish surprise). Short-term technicals are broadly bearish (50<200 EMA cross on 5 of 6 timeframes, negative MACD on half), directly conflicting with the value/positioning case, so near-term direction lacks a clean edge. Seasonality reliability is flagged Low (71pp spread) and 4-week up-probability is only 44%, so we weight the fair-value/positioning/weather evidence above the raw seasonal odds.",
   "longTerm": {
     "stance": "LONG",
     "conviction": "medium",
     "horizon": "3-12 weeks",
-    "entry": "$2.70-$2.80 (scale in on weakness toward $2.60)",
-    "stop": "$2.40 (below fair-value band low of $2.45)",
-    "tp1": "$3.05 (near +7D/+14D fair value estimate)",
-    "tp2": "$3.40 (fair-value band upper edge / Dec-26 contract level)",
-    "riskReward": "~1:0.7 to TP1, ~1:1.8 to TP2",
-    "sizing": "1R approx 1% account risk",
-    "rationale": "Price is well below its seasonal median (-18% YTD vs -7.6% median) and increasingly under model fair value the further out the horizon runs (front spread widens from -$0.16 now to -$0.30 at +21D), while managed-money net shorts sit at just the 15th percentile of 5 years - a crowded positioning that historically unwinds higher into winter. The futures curve independently prices a strong seasonal ramp (Dec $3.41, Jan $3.81), and September is historically the strongest seasonal month.",
-    "invalidation": "A sustained close below $2.40-2.45 (fair-value band floor) alongside continued storage surplus growth and no reduction in managed-money shorts would break the thesis.",
+    "entry": "$2.70-$2.80 (scale in on weakness)",
+    "stop": "$2.50 (below near-term support, close to fair-value band low)",
+    "tp1": "$2.95 (now fair value)",
+    "tp2": "$3.15 (approaching +14D/+21D fair value and curve richness toward Dec/Jan)",
+    "riskReward": "~1:0.8 to TP1, ~1:1.6 to TP2 (avg entry $2.75, stop $2.50)",
+    "sizing": "1R approx 1% account risk; scale out half at TP1, trail stop to breakeven",
+    "rationale": "Front trades at a widening discount to fair value the further out you look (FAIR now, SLIGHTLY UNDER by +7D/+14D/+21D) and -18.2% YTD vs -7.6% seasonal median, while managed money is net short at only the 15th percentile of its 5y range - a crowded short that favors mean reversion higher as winter approaches, consistent with the curve's own $1.01 contango premium to Jan 2027.",
+    "invalidation": "A daily close below $2.45 (fair-value band low) alongside consistently bearish storage surprises would break the value/squeeze thesis.",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Signals conflict: front price is already FAIR (spread only -$0.156 vs a $1/MMBtu-wide band), the near-term heat-demand spike (+68% vs 5y, above seasonal max) is fading quickly (-14.7 in 24h), and trend is bearish on 15m/1h/1d/1w - yet 1h RSI (30.6) is near oversold, so a fresh short lacks a clean entry and there's no fair-value discount to justify a long.",
-    "invalidation": "n/a",
-    "trigger": "Wait for either: (a) a bounce/rejection into $2.90-$2.95 (next-month price / recent range) with RSI failing below 50 to sell the fading demand catalyst, or (b) a confirmed close below $2.70 to join bearish continuation, or (c) 1h/4h RSI turning up through 50 with price reclaiming $2.85 to instead front-run the longer-term long."
+    "rationale": "1-7D weather demand is at a 5y high (+28.5 vs normal, above max) but fading fast (-5.1 24h) with the 8-16D outlook back near normal, while technicals are bearish across 5 of 6 timeframes (50<200 EMA, negative MACD) even though front price is only 'FAIR' vs fair value (spread -$0.162), not cheap enough for an immediate mean-reversion long.",
+    "invalidation": "If 1-7D demand re-accelerates while technicals turn bullish (50>200 EMA reclaim), shift long; if the 8-16D outlook cools further while bearish trend persists, shift short.",
+    "trigger": "Wait for either a pullback into the $2.55-$2.65 zone with weather demand still elevated (long entry), or a daily close below $2.65 confirming the bearish EMA/MACD trend (short entry)."
   },
   "keyDrivers": [
-    "Extreme 1-7D heat demand (+68.2% vs 5y, above seasonal max) but fading fast (-14.7 24h change)",
-    "Managed-money net short at 15th percentile of 5-year range - crowded, contrarian-bullish positioning",
-    "Front price increasingly under computed fair value at longer horizons (-$0.16 now to -$0.30 at +21D)",
-    "Price well below seasonal median for the year (-18.0% YTD vs -7.6% median)",
-    "Bearish technical trend across 15m-1w with 1h RSI near oversold (30.6)"
+    "Front trades at a growing discount to fair value as horizon extends (FAIR now -> SLIGHTLY UNDER by +21D)",
+    "Managed money net short at the 15th percentile of its 5y range - crowded short, squeeze risk",
+    "1-7D weather demand at a 5y high (+28.5 vs normal, above max) but fading fast, with 8-16D reverting near normal",
+    "Storage +159 Bcf above 5y average (oversupply overhang) despite this week's smaller-than-forecast build (bullish surprise)",
+    "Short-term technicals bearish across 5m-1w timeframes (50<200 EMA cross, negative MACD on half)"
   ],
   "risks": [
-    "Storage +159 Bcf above 5-year average is a bearish overhang that caps upside if demand keeps fading",
-    "Seasonality reliability is flagged Low (71pp 10-90% spread) - weak statistical confidence in the seasonal read",
-    "Bearish technical trend could extend further before any COT-driven reversal materializes"
+    "Seasonality reliability is Low (71pp spread) and 4-week up-probability is only 44%, weakening the seasonal edge",
+    "Storage well above the 5-year average is a structural bearish overhang that can cap rallies",
+    "Winter contango means negative roll yield for a long position held across contract rolls, and short-term technical weakness could pressure price further before any reversion"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
