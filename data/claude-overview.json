@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-09-10T22:15:00.000Z",
-  "sourceSnapshotAt": "2026-09-10T22:11:34.218Z",
-  "frontPrice": 2.8380000591278076,
-  "nextPrice": 2.984999895095825,
-  "marketState": "neutral with a modest bullish skew — price sits fair-to-cheap vs a rising fair-value curve while near-term weather demand is unusually hot",
-  "summary": "Seasonality is weak evidence here: price is running well below its typical-year path (-16.7% YTD vs -7.6% median) but the model's own reliability read is Low and the 4-week up-probability is only 44%, so this factor should not dominate. Weather is the standout: 1-7D demand is 65.5% above the 5-year norm and above the historical max range (highest reading in 5 years), though it just rolled over -6.6 in the last 24h and normalizes by the 8-16D window. Fair value is telling a consistent story across the curve — front price is FAIR now but the fair-value estimate itself rises from $2.966 to ~$3.05 by +14D/+21D, leaving the front contract increasingly \"SLIGHTLY UNDER\" its own forward fair value. Layered on top, managed money is net short at only the 15th percentile of 5-year positioning (crowded short), a classic contrarian setup, even as storage sits +146 Bcf above the 5-year average with a bearish build surprise this week. Technicals are genuinely mixed/directionless across timeframes, so there is no near-term trend confirmation to act on yet.",
+  "generatedAt": "2026-09-11T00:47:46.000Z",
+  "sourceSnapshotAt": "2026-09-11T00:46:18.337Z",
+  "frontPrice": 2.8350000381469727,
+  "nextPrice": 2.9809999465942383,
+  "marketState": "neutral, tilted bullish medium-term but capped near-term",
+  "summary": "Front price ($2.835) sits modestly below its own fair-value model ($2.966 now, rising toward ~$3.06 by +21D) and well below its seasonal median path (-9.2pp; -16.8% YTD vs -7.6% median), while managed money is near a 5-year extreme net-short (15th percentile) - a setup that historically favors mean-reversion higher into the winter contango already priced into the curve (Dec $3.458, Jan $3.872). Countering that, storage is +146 Bcf above the 5-year average with a bearish +24 Bcf build surprise, and technicals on the 1d/1w timeframes are bearish with EMA50<200. Near-term weather demand is the standout signal: 1-7D demand is 56.7% above the 5-year norm and above its own max range (highest in 5 years), but it is already rolling over (-2.9 in 24h) and fades to near-normal by 8-16D, so the heat-driven bid looks temporary. Seasonality reliability is explicitly flagged \"Low\" this week (71pp 10-90% spread), so directional confidence should stay modest across both horizons.",
   "longTerm": {
     "stance": "LONG",
     "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$2.70 – $2.85 (scale in on any dip toward the lower end)",
-    "stop": "$2.55",
+    "entry": "$2.75 - $2.85",
+    "stop": "$2.50",
     "tp1": "$3.00",
-    "tp2": "$3.15",
-    "riskReward": "approx 1:1.5 blended (TP1 ~1:0.9, TP2 ~1:1.7)",
+    "tp2": "$3.35",
+    "riskReward": "1:1.8 (to TP2)",
     "sizing": "1R approx 1% account risk",
-    "rationale": "Fair value rises steadily from $2.966 (now) to ~$3.05 (+14D/+21D) while front price stays at or below it, and managed money is near a 5-year extreme net-short (15th percentile), which raises short-covering risk into the seasonal winter build (Nov/Dec/Jan curve already shows normal contango up to $3.88). Seasonality itself is muted and flagged Low reliability, so conviction is kept low, and the +146 Bcf storage surplus plus a bearish build surprise caps upside and argues against sizing up.",
-    "invalidation": "Sustained closes below $2.55, continued outsized bearish storage surprises, or managed-money net-short position extending to new 5y lows without a price bounce would invalidate the contrarian long thesis.",
+    "rationale": "Front price is below fair value across all horizons out to +21D (spread widening from -$0.13 to -$0.22) and well below its seasonal median, while managed-money COT positioning is near a 5-year net-short extreme (15th pct) - both argue for mean reversion toward the fair-value band and the strong winter contango already visible in the curve (Dec/Jan near $3.46-$3.87). Storage well above the 5-year average and a bearish build surprise, plus bearish 1d/1w technicals, keep conviction low and argue for a wide stop below the fair-value band floor.",
+    "invalidation": "A confirmed break and close below the fair-value band low (~$2.47-2.50) on rising storage surpluses, or the 5y net-short COT extreme continuing to build without a price response, would invalidate the mean-reversion thesis.",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Front price is already assessed FAIR (spread only -$0.128 to -$0.164 through +7D), technicals are split with no aligned trend (5m bullish, 1d/1w bearish, RSI mid-range everywhere, MACD flipping sign by timeframe), and the extreme 1-7D weather demand spike (above max, highest in 5y) is already decelerating (-6.6 in 24h) and normalizes by 8-16D. There is no band-edge dislocation or technical confirmation to trade yet.",
+    "rationale": "The 1-7D demand spike (+56.7% vs 5y, above its max range, highest in 5 years) is a genuine near-term bullish catalyst, but it is already fading 24h-over-24h and the 8-16D outlook drops to near-normal (+4.1%), so a weather-driven pop risks getting sold. Front price is currently rated FAIR (not cheap) versus the near-term fair-value model, and technicals disagree across timeframes (5m bullish, 1h/1d/1w bearish), leaving no clean edge for a 1-10 day trade right now.",
     "invalidation": "n/a",
-    "trigger": "Wait for either: (a) price pushing to/through the upper fair-value band with confirming momentum (RSI >60 and aligned MACD across 1h/4h/1d) to trade the heat-driven demand spike long, or (b) a break below $2.70 with bearish momentum confirmation to play continued bearish storage surprises short toward the $2.55 area."
+    "trigger": "Wait for either (a) a pullback toward $2.60-2.65 support with technicals stabilizing for a long entry, or (b) a confirmed close above $2.95 with 1h/4h trend turning bullish to confirm the weather-driven bid is holding; also watch the next EIA storage report for surprise direction."
   },
   "keyDrivers": [
-    "1-7D weather demand +65.5% vs 5y and above the historical max (highest in 5y), though decelerating",
-    "Fair value curve rising from $2.966 now to ~$3.05 by +14D/+21D while front price lags behind it",
-    "Managed money net short at just the 15th percentile of 5-year positioning (crowded short, squeeze risk)",
-    "Storage +146 Bcf above 5y average with a bearish +24 Bcf build surprise this week",
-    "Seasonality shows price well below its typical-year path but with Low stated reliability"
+    "Front price below fair value at every horizon (now through +21D), with the discount widening over time",
+    "Managed-money COT net short near a 5-year extreme (15th percentile) - contrarian bullish setup",
+    "Near-term weather demand at a 5-year high but already rolling over into a near-normal 8-16D outlook",
+    "Storage +146 Bcf above 5-year average with a bearish build surprise - structural overhang",
+    "Futures curve in strong contango into winter (Dec/Jan well above front), consistent with normal seasonal pricing"
   ],
   "risks": [
-    "Storage surplus and bearish build surprises are a real fundamental headwind that could keep price capped even if positioning unwinds",
-    "Technicals show no aligned trend across timeframes, so any breakout (either direction) could reverse quickly",
-    "Weather demand is already rolling over, so the near-term bullish catalyst may fade before a longer-term thesis plays out"
+    "Seasonality reliability is explicitly \"Low\" this week (71pp spread) - low confidence in the seasonal edge",
+    "1d/1w technicals are bearish with EMA50<200, conflicting with the fair-value/COT mean-reversion case",
+    "A colder-than-expected storage build trend or a fade in the current heat spike could push price toward the fair-value band floor before any reversion higher"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
