@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-12T14:49:13.016Z",
+  "generatedAt": "2026-09-12T17:38:10.163Z",
   "price": {
     "front": 2.8310000896453857,
     "next": 2.9830000400543213,
@@ -21,7 +21,7 @@
   },
   "weather": {
     "demand_1_7D": {
-      "pctVs5y": 29,
+      "pctVs5y": 29.2,
       "rangePos": 0.95,
       "aboveMax": false,
       "belowMin": false
@@ -33,10 +33,10 @@
       "belowMin": false
     },
     "trend": {
-      "nowDemand": "87.4",
-      "change24h": "-7.2",
-      "range7d": "79.7 – 127.1",
-      "vs5yNormal": "+14.9 · highest in 5y"
+      "nowDemand": "86.6",
+      "change24h": "-7.5",
+      "range7d": "79.7 – 123.7",
+      "vs5yNormal": "+14.1 · highest in 5y"
     }
   },
   "fairValue": {
@@ -109,7 +109,56 @@
     "forecast": "Forecast: +16 Bcf",
     "surprise": "Surprise: +24 Bcf Bearish"
   },
-  "technicals": {},
+  "technicals": {
+    "5m": {
+      "close": 2.831,
+      "trend": "bullish",
+      "rsi14": 59.4,
+      "macdHist": "negative",
+      "emaCross": "50>200",
+      "bollinger": "inside band"
+    },
+    "15m": {
+      "close": 2.831,
+      "trend": "neutral",
+      "rsi14": 57.4,
+      "macdHist": "positive",
+      "emaCross": "50<200",
+      "bollinger": "inside band"
+    },
+    "1h": {
+      "close": 2.831,
+      "trend": "neutral",
+      "rsi14": 56.4,
+      "macdHist": "positive",
+      "emaCross": "50<200",
+      "bollinger": "inside band"
+    },
+    "4h": {
+      "close": 2.831,
+      "trend": "bearish",
+      "rsi14": 45.6,
+      "macdHist": "positive",
+      "emaCross": "50<200",
+      "bollinger": "inside band"
+    },
+    "1d": {
+      "close": 2.831,
+      "trend": "bearish",
+      "rsi14": 46.6,
+      "macdHist": "negative",
+      "emaCross": "50<200",
+      "bollinger": "inside band"
+    },
+    "1w": {
+      "close": 2.831,
+      "trend": "bearish",
+      "rsi14": 39,
+      "macdHist": "positive",
+      "emaCross": "50<200",
+      "bollinger": "inside band"
+    }
+  },
   "futuresCurve": [
     {
       "label": "Oct 2026",
@@ -200,7 +249,7 @@
     "ngf": 872,
     "storage": 871,
     "cot": 520,
-    "taTimeframes": 0
+    "taTimeframes": 6
   },
   "pageErrors": [],
   "diagnostics": {
@@ -234,11 +283,11 @@
         }
       },
       "r.jina.ai": {
-        "ok": 21,
-        "err": 1,
+        "ok": 23,
+        "err": 2,
         "statuses": {
-          "200": 21,
-          "429": 1
+          "200": 23,
+          "429": 2
         }
       },
       "archive-api.open-meteo.com": {
@@ -248,18 +297,18 @@
           "200": 30
         }
       },
-      "api.eia.gov": {
-        "ok": 5,
-        "err": 0,
-        "statuses": {
-          "200": 5
-        }
-      },
       "publicreporting.cftc.gov": {
         "ok": 1,
         "err": 0,
         "statuses": {
           "200": 1
+        }
+      },
+      "api.eia.gov": {
+        "ok": 5,
+        "err": 0,
+        "statuses": {
+          "200": 5
         }
       },
       "api.open-meteo.com": {
@@ -273,9 +322,19 @@
         "ok": 0,
         "err": 3,
         "statuses": {}
+      },
+      "api.allorigins.win": {
+        "ok": 0,
+        "err": 2,
+        "statuses": {}
       }
     },
     "failedRequests": [
+      {
+        "host": "proxy.cors.sh",
+        "url": "https://proxy.cors.sh/https://www.eia.gov/rss/todayinenergy.xml",
+        "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
       {
         "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://www.bing.com/news/search?q=natural+gas+price+OR+henry+hub&format=RSS",
@@ -287,16 +346,26 @@
         "error": "net::ERR_NAME_NOT_RESOLVED"
       },
       {
-        "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://www.eia.gov/rss/todayinenergy.xml",
-        "error": "net::ERR_NAME_NOT_RESOLVED"
+        "host": "api.allorigins.win",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.eia.gov%2Frss%2Ftodayinenergy.xml",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "host": "api.allorigins.win",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS",
+        "error": "net::ERR_FAILED"
       }
     ],
     "console": [
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
-      "[error] Failed to load resource: the server responded with a status of 429 ()",
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
-      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+      "[error] Failed to load resource: the server responded with a status of 429 ()",
+      "[error] Failed to load resource: the server responded with a status of 429 ()",
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.eia.gov%2Frss%2Ftodayinenergy.xml' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your nee",
+      "[error] Failed to load resource: net::ERR_FAILED",
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requ",
+      "[error] Failed to load resource: net::ERR_FAILED"
     ]
   }
 }
