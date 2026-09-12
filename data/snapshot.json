@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-12T07:35:06.573Z",
+  "generatedAt": "2026-09-12T11:54:04.126Z",
   "price": {
     "front": 2.8310000896453857,
     "next": 2.9830000400543213,
@@ -21,22 +21,22 @@
   },
   "weather": {
     "demand_1_7D": {
-      "pctVs5y": 36.6,
-      "rangePos": 1.06,
-      "aboveMax": true,
+      "pctVs5y": 30.9,
+      "rangePos": 0.98,
+      "aboveMax": false,
       "belowMin": false
     },
     "demand_8_16D": {
-      "pctVs5y": 14.8,
-      "rangePos": 0.74,
+      "pctVs5y": 10.3,
+      "rangePos": 0.68,
       "aboveMax": false,
       "belowMin": false
     },
     "trend": {
-      "nowDemand": "97.0",
-      "change24h": "+0.1",
+      "nowDemand": "90.1",
+      "change24h": "-9.0",
       "range7d": "79.7 – 127.6",
-      "vs5yNormal": "+23.6 · highest in 5y"
+      "vs5yNormal": "+17.6 · highest in 5y"
     }
   },
   "fairValue": {
@@ -67,14 +67,14 @@
       }
     },
     "plus14D": {
-      "fair": "$3.040",
-      "band": "$2.540 – $3.540",
+      "fair": "$3.034",
+      "band": "$2.534 – $3.534",
       "front": {
-        "spread": "Spread −$0.209",
+        "spread": "Spread −$0.203",
         "status": "SLIGHTLY UNDER"
       },
       "next": {
-        "spread": "Spread −$0.057",
+        "spread": "Spread −$0.051",
         "status": "FAIR"
       }
     },
@@ -111,33 +111,33 @@
   },
   "technicals": {
     "5m": {
-      "close": 2.82,
-      "trend": "neutral",
-      "rsi14": 41.1,
+      "close": 2.831,
+      "trend": "bullish",
+      "rsi14": 59.4,
       "macdHist": "negative",
       "emaCross": "50>200",
       "bollinger": "inside band"
     },
     "15m": {
-      "close": 2.82,
+      "close": 2.831,
       "trend": "neutral",
-      "rsi14": 49.6,
-      "macdHist": "negative",
+      "rsi14": 57.4,
+      "macdHist": "positive",
       "emaCross": "50<200",
       "bollinger": "inside band"
     },
     "1h": {
-      "close": 2.82,
-      "trend": "bearish",
-      "rsi14": 51.4,
+      "close": 2.831,
+      "trend": "neutral",
+      "rsi14": 56.4,
       "macdHist": "positive",
       "emaCross": "50<200",
       "bollinger": "inside band"
     },
     "4h": {
-      "close": 2.82,
+      "close": 2.831,
       "trend": "bearish",
-      "rsi14": 43.4,
+      "rsi14": 45.6,
       "macdHist": "positive",
       "emaCross": "50<200",
       "bollinger": "inside band"
@@ -261,18 +261,18 @@
           "200": 1
         }
       },
-      "cdnjs.cloudflare.com": {
-        "ok": 2,
-        "err": 0,
-        "statuses": {
-          "200": 2
-        }
-      },
       "fonts.googleapis.com": {
         "ok": 1,
         "err": 0,
         "statuses": {
           "200": 1
+        }
+      },
+      "cdnjs.cloudflare.com": {
+        "ok": 2,
+        "err": 0,
+        "statuses": {
+          "200": 2
         }
       },
       "fonts.gstatic.com": {
@@ -282,19 +282,19 @@
           "200": 2
         }
       },
-      "r.jina.ai": {
-        "ok": 23,
-        "err": 1,
-        "statuses": {
-          "200": 23,
-          "429": 1
-        }
-      },
-      "publicreporting.cftc.gov": {
-        "ok": 1,
+      "api.eia.gov": {
+        "ok": 5,
         "err": 0,
         "statuses": {
-          "200": 1
+          "200": 5
+        }
+      },
+      "r.jina.ai": {
+        "ok": 23,
+        "err": 2,
+        "statuses": {
+          "200": 23,
+          "429": 2
         }
       },
       "archive-api.open-meteo.com": {
@@ -304,11 +304,11 @@
           "200": 30
         }
       },
-      "api.eia.gov": {
-        "ok": 5,
+      "publicreporting.cftc.gov": {
+        "ok": 1,
         "err": 0,
         "statuses": {
-          "200": 5
+          "200": 1
         }
       },
       "api.open-meteo.com": {
@@ -324,12 +324,9 @@
         "statuses": {}
       },
       "api.allorigins.win": {
-        "ok": 3,
-        "err": 1,
-        "statuses": {
-          "200": 3,
-          "408": 1
-        }
+        "ok": 0,
+        "err": 2,
+        "statuses": {}
       }
     },
     "failedRequests": [
@@ -347,6 +344,16 @@
         "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://oilprice.com/rss/main",
         "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "api.allorigins.win",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "host": "api.allorigins.win",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.eia.gov%2Frss%2Ftodayinenergy.xml",
+        "error": "net::ERR_FAILED"
       }
     ],
     "console": [
@@ -354,7 +361,11 @@
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: the server responded with a status of 429 ()",
-      "[error] Failed to load resource: the server responded with a status of 408 ()"
+      "[error] Failed to load resource: the server responded with a status of 429 ()",
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requ",
+      "[error] Failed to load resource: net::ERR_FAILED",
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.eia.gov%2Frss%2Ftodayinenergy.xml' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your nee",
+      "[error] Failed to load resource: net::ERR_FAILED"
     ]
   }
 }
