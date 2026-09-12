@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T23:47:40.472Z",
+  "generatedAt": "2026-09-12T02:38:28.300Z",
   "price": {
     "front": 2.819999933242798,
     "next": 2.9730000495910645,
@@ -21,22 +21,22 @@
   },
   "weather": {
     "demand_1_7D": {
-      "pctVs5y": 41.5,
-      "rangePos": 1.15,
+      "pctVs5y": 36.7,
+      "rangePos": 1.06,
       "aboveMax": true,
       "belowMin": false
     },
     "demand_8_16D": {
-      "pctVs5y": -20.3,
-      "rangePos": 0.24,
+      "pctVs5y": 28.6,
+      "rangePos": 0.94,
       "aboveMax": false,
       "belowMin": false
     },
     "trend": {
-      "nowDemand": "79.7",
-      "change24h": "-19.6",
-      "range7d": "79.7 – 132.5",
-      "vs5yNormal": "+6.3 · above 4 of 5"
+      "nowDemand": "98.2",
+      "change24h": "-1.2",
+      "range7d": "79.7 – 132.2",
+      "vs5yNormal": "+24.8 · highest in 5y"
     }
   },
   "fairValue": {
@@ -55,38 +55,38 @@
       }
     },
     "plus7D": {
-      "fair": "$3.003",
-      "band": "$2.503 – $3.503",
+      "fair": "$3.001",
+      "band": "$2.501 – $3.501",
       "front": {
-        "spread": "Spread −$0.183",
+        "spread": "Spread −$0.181",
         "status": "SLIGHTLY UNDER"
       },
       "next": {
-        "spread": "Spread −$0.030",
+        "spread": "Spread −$0.028",
         "status": "FAIR"
       }
     },
     "plus14D": {
-      "fair": "$3.038",
-      "band": "$2.538 – $3.538",
+      "fair": "$3.040",
+      "band": "$2.540 – $3.540",
       "front": {
-        "spread": "Spread −$0.218",
+        "spread": "Spread −$0.220",
         "status": "SLIGHTLY UNDER"
       },
       "next": {
-        "spread": "Spread −$0.065",
+        "spread": "Spread −$0.067",
         "status": "FAIR"
       }
     },
     "plus21D": {
-      "fair": "$3.025",
-      "band": "$2.525 – $3.525",
+      "fair": "$3.055",
+      "band": "$2.555 – $3.555",
       "front": {
-        "spread": "Spread −$0.205",
+        "spread": "Spread −$0.235",
         "status": "SLIGHTLY UNDER"
       },
       "next": {
-        "spread": "Spread −$0.052",
+        "spread": "Spread −$0.082",
         "status": "FAIR"
       }
     }
@@ -282,14 +282,6 @@
           "200": 2
         }
       },
-      "r.jina.ai": {
-        "ok": 23,
-        "err": 2,
-        "statuses": {
-          "200": 23,
-          "429": 2
-        }
-      },
       "publicreporting.cftc.gov": {
         "ok": 1,
         "err": 0,
@@ -304,11 +296,11 @@
           "200": 30
         }
       },
-      "api.open-meteo.com": {
-        "ok": 5,
+      "r.jina.ai": {
+        "ok": 23,
         "err": 0,
         "statuses": {
-          "200": 5
+          "200": 23
         }
       },
       "api.eia.gov": {
@@ -318,9 +310,21 @@
           "200": 5
         }
       },
+      "api.open-meteo.com": {
+        "ok": 5,
+        "err": 0,
+        "statuses": {
+          "200": 5
+        }
+      },
       "proxy.cors.sh": {
         "ok": 0,
         "err": 3,
+        "statuses": {}
+      },
+      "api.allorigins.win": {
+        "ok": 0,
+        "err": 1,
         "statuses": {}
       }
     },
@@ -339,14 +343,19 @@
         "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://www.eia.gov/rss/todayinenergy.xml",
         "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "api.allorigins.win",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Foilprice.com%2Frss%2Fmain",
+        "error": "net::ERR_FAILED"
       }
     ],
     "console": [
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
-      "[error] Failed to load resource: the server responded with a status of 429 ()",
-      "[error] Failed to load resource: the server responded with a status of 429 ()"
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Foilprice.com%2Frss%2Fmain' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the ",
+      "[error] Failed to load resource: net::ERR_FAILED"
     ]
   }
 }
