@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-19T19:54:11.205Z",
+  "generatedAt": "2026-09-19T22:02:39.744Z",
   "price": {
     "front": 2.9119999408721924,
     "next": 3.0429999828338623,
@@ -21,8 +21,8 @@
   },
   "weather": {
     "demand_1_7D": {
-      "pctVs5y": 7,
-      "rangePos": 0.63,
+      "pctVs5y": 4.7,
+      "rangePos": 0.6,
       "aboveMax": false,
       "belowMin": false
     },
@@ -33,10 +33,10 @@
       "belowMin": false
     },
     "trend": {
-      "nowDemand": "62.7",
-      "change24h": "-12.5",
+      "nowDemand": "61.8",
+      "change24h": "-9.8",
       "range7d": "60.7 – 100.8",
-      "vs5yNormal": "+0.7 · above 3 of 5"
+      "vs5yNormal": "-0.2 · above 3 of 5"
     }
   },
   "fairValue": {
@@ -67,40 +67,31 @@
       }
     },
     "plus14D": {
-      "fair": "$3.038",
-      "band": "$2.538 – $3.538",
+      "fair": "$3.036",
+      "band": "$2.536 – $3.536",
       "front": {
-        "spread": "Spread −$0.126",
+        "spread": "Spread −$0.124",
         "status": "FAIR"
       },
       "next": {
-        "spread": "Spread +$0.005",
+        "spread": "Spread +$0.007",
         "status": "FAIR"
       }
     },
     "plus21D": {
-      "fair": "$3.033",
-      "band": "$2.533 – $3.533",
+      "fair": "$3.032",
+      "band": "$2.532 – $3.532",
       "front": {
-        "spread": "Spread −$0.121",
+        "spread": "Spread −$0.120",
         "status": "FAIR"
       },
       "next": {
-        "spread": "Spread +$0.010",
+        "spread": "Spread +$0.011",
         "status": "FAIR"
       }
     }
   },
-  "cot": {
-    "date": "2026-09-15",
-    "mmNet": -100205,
-    "mmLong": 264362,
-    "mmShort": 364567,
-    "mmRatio": 0.73,
-    "producerNet": -17207,
-    "swapNet": 223959,
-    "mmNetPercentile5y": 12
-  },
+  "cot": null,
   "storage": {
     "value": "3,298 Bcf",
     "weekChange": "+44 Bcf vs last week",
@@ -248,7 +239,7 @@
   "dataCounts": {
     "ngf": 873,
     "storage": 872,
-    "cot": 520,
+    "cot": 0,
     "taTimeframes": 6
   },
   "pageErrors": [],
@@ -283,11 +274,9 @@
         }
       },
       "publicreporting.cftc.gov": {
-        "ok": 1,
-        "err": 0,
-        "statuses": {
-          "200": 1
-        }
+        "ok": 0,
+        "err": 1,
+        "statuses": {}
       },
       "archive-api.open-meteo.com": {
         "ok": 30,
@@ -297,17 +286,11 @@
         }
       },
       "r.jina.ai": {
-        "ok": 23,
-        "err": 0,
+        "ok": 24,
+        "err": 3,
         "statuses": {
-          "200": 23
-        }
-      },
-      "api.eia.gov": {
-        "ok": 5,
-        "err": 0,
-        "statuses": {
-          "200": 5
+          "200": 24,
+          "429": 3
         }
       },
       "api.open-meteo.com": {
@@ -317,18 +300,32 @@
           "200": 5
         }
       },
+      "api.eia.gov": {
+        "ok": 5,
+        "err": 0,
+        "statuses": {
+          "200": 5
+        }
+      },
       "proxy.cors.sh": {
         "ok": 0,
-        "err": 3,
+        "err": 4,
         "statuses": {}
       },
       "api.allorigins.win": {
-        "ok": 0,
-        "err": 2,
-        "statuses": {}
+        "ok": 3,
+        "err": 0,
+        "statuses": {
+          "200": 3
+        }
       }
     },
     "failedRequests": [
+      {
+        "host": "publicreporting.cftc.gov",
+        "url": "https://publicreporting.cftc.gov/resource/72hh-3qpy.json?cftc_contract_market_code=023651&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=520",
+        "error": "net::ERR_FAILED"
+      },
       {
         "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://www.bing.com/news/search?q=natural+gas+price+OR+henry+hub&format=RSS",
@@ -345,24 +342,21 @@
         "error": "net::ERR_NAME_NOT_RESOLVED"
       },
       {
-        "host": "api.allorigins.win",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.eia.gov%2Frss%2Ftodayinenergy.xml",
-        "error": "net::ERR_FAILED"
-      },
-      {
-        "host": "api.allorigins.win",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS",
-        "error": "net::ERR_FAILED"
+        "host": "proxy.cors.sh",
+        "url": "https://proxy.cors.sh/https://publicreporting.cftc.gov/resource/72hh-3qpy.json?cftc_contract_market_code=023651&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=520",
+        "error": "net::ERR_NAME_NOT_RESOLVED"
       }
     ],
     "console": [
-      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
-      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
-      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
-      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.eia.gov%2Frss%2Ftodayinenergy.xml' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your nee",
+      "[error] Access to fetch at 'https://publicreporting.cftc.gov/resource/72hh-3qpy.json?cftc_contract_market_code=023651&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=520' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the req",
       "[error] Failed to load resource: net::ERR_FAILED",
-      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requ",
-      "[error] Failed to load resource: net::ERR_FAILED"
+      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+      "[error] Failed to load resource: the server responded with a status of 429 ()",
+      "[error] Failed to load resource: the server responded with a status of 429 ()",
+      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+      "[error] Failed to load resource: the server responded with a status of 429 ()"
     ]
   }
 }
