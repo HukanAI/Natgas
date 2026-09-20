@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-19T22:02:39.744Z",
+  "generatedAt": "2026-09-20T00:33:34.619Z",
   "price": {
     "front": 2.9119999408721924,
     "next": 3.0429999828338623,
@@ -21,22 +21,22 @@
   },
   "weather": {
     "demand_1_7D": {
-      "pctVs5y": 4.7,
-      "rangePos": 0.6,
+      "pctVs5y": 9.6,
+      "rangePos": 0.63,
       "aboveMax": false,
       "belowMin": false
     },
     "demand_8_16D": {
-      "pctVs5y": -4.8,
-      "rangePos": 0.38,
+      "pctVs5y": -10.2,
+      "rangePos": 0.29,
       "aboveMax": false,
       "belowMin": false
     },
     "trend": {
-      "nowDemand": "61.8",
-      "change24h": "-9.8",
+      "nowDemand": "62.0",
+      "change24h": "-9.0",
       "range7d": "60.7 – 100.8",
-      "vs5yNormal": "-0.2 · above 3 of 5"
+      "vs5yNormal": "+0.0 · above 3 of 5"
     }
   },
   "fairValue": {
@@ -67,31 +67,40 @@
       }
     },
     "plus14D": {
-      "fair": "$3.036",
-      "band": "$2.536 – $3.536",
+      "fair": "$3.037",
+      "band": "$2.537 – $3.537",
       "front": {
-        "spread": "Spread −$0.124",
+        "spread": "Spread −$0.125",
         "status": "FAIR"
       },
       "next": {
-        "spread": "Spread +$0.007",
+        "spread": "Spread +$0.006",
         "status": "FAIR"
       }
     },
     "plus21D": {
-      "fair": "$3.032",
-      "band": "$2.532 – $3.532",
+      "fair": "$3.033",
+      "band": "$2.533 – $3.533",
       "front": {
-        "spread": "Spread −$0.120",
+        "spread": "Spread −$0.121",
         "status": "FAIR"
       },
       "next": {
-        "spread": "Spread +$0.011",
+        "spread": "Spread +$0.010",
         "status": "FAIR"
       }
     }
   },
-  "cot": null,
+  "cot": {
+    "date": "2026-09-15",
+    "mmNet": -100205,
+    "mmLong": 264362,
+    "mmShort": 364567,
+    "mmRatio": 0.73,
+    "producerNet": -17207,
+    "swapNet": 223959,
+    "mmNetPercentile5y": 12
+  },
   "storage": {
     "value": "3,298 Bcf",
     "weekChange": "+44 Bcf vs last week",
@@ -100,56 +109,7 @@
     "forecast": "Forecast: +45 Bcf",
     "surprise": "Surprise: -1 Bcf In line"
   },
-  "technicals": {
-    "5m": {
-      "close": 2.912,
-      "trend": "bullish",
-      "rsi14": 65.1,
-      "macdHist": "positive",
-      "emaCross": "50>200",
-      "bollinger": "above upper"
-    },
-    "15m": {
-      "close": 2.912,
-      "trend": "bullish",
-      "rsi14": 56.3,
-      "macdHist": "negative",
-      "emaCross": "50>200",
-      "bollinger": "inside band"
-    },
-    "1h": {
-      "close": 2.912,
-      "trend": "bullish",
-      "rsi14": 57.4,
-      "macdHist": "positive",
-      "emaCross": "50>200",
-      "bollinger": "inside band"
-    },
-    "4h": {
-      "close": 2.912,
-      "trend": "bullish",
-      "rsi14": 54.2,
-      "macdHist": "positive",
-      "emaCross": "50>200",
-      "bollinger": "inside band"
-    },
-    "1d": {
-      "close": 2.912,
-      "trend": "neutral",
-      "rsi14": 53.2,
-      "macdHist": "positive",
-      "emaCross": "50<200",
-      "bollinger": "inside band"
-    },
-    "1w": {
-      "close": 2.912,
-      "trend": "bearish",
-      "rsi14": 42.5,
-      "macdHist": "positive",
-      "emaCross": "50<200",
-      "bollinger": "inside band"
-    }
-  },
+  "technicals": {},
   "futuresCurve": [
     {
       "label": "Oct 2026",
@@ -239,13 +199,20 @@
   "dataCounts": {
     "ngf": 873,
     "storage": 872,
-    "cot": 0,
-    "taTimeframes": 6
+    "cot": 520,
+    "taTimeframes": 0
   },
   "pageErrors": [],
   "diagnostics": {
     "network": {
       "cdn.jsdelivr.net": {
+        "ok": 1,
+        "err": 0,
+        "statuses": {
+          "200": 1
+        }
+      },
+      "fonts.googleapis.com": {
         "ok": 1,
         "err": 0,
         "statuses": {
@@ -259,13 +226,6 @@
           "200": 2
         }
       },
-      "fonts.googleapis.com": {
-        "ok": 1,
-        "err": 0,
-        "statuses": {
-          "200": 1
-        }
-      },
       "fonts.gstatic.com": {
         "ok": 2,
         "err": 0,
@@ -274,30 +234,26 @@
         }
       },
       "publicreporting.cftc.gov": {
-        "ok": 0,
-        "err": 1,
-        "statuses": {}
+        "ok": 1,
+        "err": 0,
+        "statuses": {
+          "200": 1
+        }
+      },
+      "r.jina.ai": {
+        "ok": 21,
+        "err": 3,
+        "statuses": {
+          "200": 21,
+          "403": 1,
+          "429": 1
+        }
       },
       "archive-api.open-meteo.com": {
         "ok": 30,
         "err": 0,
         "statuses": {
           "200": 30
-        }
-      },
-      "r.jina.ai": {
-        "ok": 24,
-        "err": 3,
-        "statuses": {
-          "200": 24,
-          "429": 3
-        }
-      },
-      "api.open-meteo.com": {
-        "ok": 5,
-        "err": 0,
-        "statuses": {
-          "200": 5
         }
       },
       "api.eia.gov": {
@@ -307,33 +263,23 @@
           "200": 5
         }
       },
-      "proxy.cors.sh": {
-        "ok": 0,
-        "err": 4,
-        "statuses": {}
-      },
-      "api.allorigins.win": {
-        "ok": 3,
+      "api.open-meteo.com": {
+        "ok": 5,
         "err": 0,
         "statuses": {
-          "200": 3
+          "200": 5
         }
+      },
+      "proxy.cors.sh": {
+        "ok": 0,
+        "err": 3,
+        "statuses": {}
       }
     },
     "failedRequests": [
       {
-        "host": "publicreporting.cftc.gov",
-        "url": "https://publicreporting.cftc.gov/resource/72hh-3qpy.json?cftc_contract_market_code=023651&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=520",
-        "error": "net::ERR_FAILED"
-      },
-      {
         "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://www.bing.com/news/search?q=natural+gas+price+OR+henry+hub&format=RSS",
-        "error": "net::ERR_NAME_NOT_RESOLVED"
-      },
-      {
-        "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://www.eia.gov/rss/todayinenergy.xml",
         "error": "net::ERR_NAME_NOT_RESOLVED"
       },
       {
@@ -343,20 +289,23 @@
       },
       {
         "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://publicreporting.cftc.gov/resource/72hh-3qpy.json?cftc_contract_market_code=023651&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=520",
+        "url": "https://proxy.cors.sh/https://www.eia.gov/rss/todayinenergy.xml",
         "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "r.jina.ai",
+        "url": "https://r.jina.ai/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=1wk&range=10y&_t=1789864408641&lang=en-US&region=US",
+        "error": "net::ERR_FAILED"
       }
     ],
     "console": [
-      "[error] Access to fetch at 'https://publicreporting.cftc.gov/resource/72hh-3qpy.json?cftc_contract_market_code=023651&$order=report_date_as_yyyy_mm_dd%20DESC&$limit=520' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the req",
-      "[error] Failed to load resource: net::ERR_FAILED",
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+      "[error] Failed to load resource: the server responded with a status of 403 ()",
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: the server responded with a status of 429 ()",
-      "[error] Failed to load resource: the server responded with a status of 429 ()",
-      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
-      "[error] Failed to load resource: the server responded with a status of 429 ()"
+      "[error] Access to fetch at 'https://r.jina.ai/https://query1.finance.yahoo.com/v8/finance/chart/NGV26.NYM?interval=1wk&range=10y&_t=1789864408641&lang=en-US&region=US' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the reque",
+      "[error] Failed to load resource: net::ERR_FAILED"
     ]
   }
 }
