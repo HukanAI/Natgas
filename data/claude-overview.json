@@ -1,49 +1,49 @@
 {
-  "generatedAt": "2026-09-27T10:05:00.000Z",
-  "sourceSnapshotAt": "2026-09-27T09:43:57.041Z",
+  "generatedAt": "2026-09-27T14:58:14.000Z",
+  "sourceSnapshotAt": "2026-09-27T14:57:00.024Z",
   "frontPrice": 3.2249999046325684,
   "nextPrice": 3.5339999198913574,
-  "marketState": "neutral, tilted cautious/bearish near-term as demand momentum fades into an oversupplied backdrop",
-  "summary": "Seasonality is genuinely mixed and explicitly flagged Low reliability: only 38-44% odds of higher prices in 2-3 weeks versus 63% by week 4, with a modest typical +1.4% 4-week move, so it offers no clean edge for a directional long-term trade. Near-term weather demand is strong (+28.2% vs 5y, near the top of its range) but decaying quickly (24h change -12.4, above-normal only 2 of the last 5 days), while the 8-16 day outlook has already rolled over to -10.7% vs 5y - a fading tailwind for the next 1-3 weeks. Front price ($3.225) sits modestly above the model's fair value ($3.037, band $2.537-$3.537) and that fair value is projected to stay roughly flat through +21 days, while storage is +92 Bcf above its 5-year average (an in-line build), both arguing against chasing strength. Technicals are choppy with no consensus across timeframes (5m and 1w bearish, 1h/4h bullish, 15m/1d neutral), and managed-money is net short but only at the 34th percentile of the last 5 years - not an extreme, contrarian signal either way. Net: the medium/long-term picture lacks conviction and favors patience, while the short-term setup slightly favors fading the current overbought/above-fair-value bounce."",
+  "marketState": "neutral-to-bearish, price stretched slightly above fair value with an ample storage cushion",
+  "summary": "Front ($3.225) and next ($3.534) contracts are both flagged 'SLIGHTLY OVER' fair value ($3.037/$3.03x) across the 0-21 day horizon, and that persists even as the fair-value model rolls forward, meaning the premium isn't shrinking on its own. Storage is +92 Bcf above the 5-year average with an in-line build, and managed money is net short (-65.5k contracts, 34th percentile) - both lean bearish without being extreme. Weather is the split signal: 1-7D demand is running hot (+16.4% vs 5y, rangePos 0.73) but 8-16D demand has already rolled over to -6.9% vs 5y and is falling 24h-over-24h, so the supportive backdrop looks short-lived. Seasonality itself is low-reliability (65pp spread) and only mildly informative (price already -5.3% YTD vs -3.0% median), while technicals are genuinely mixed across timeframes (bullish 1h/4h, bearish 5m/1w, neutral 15m/1d) with no consensus trend. Net read: a modest bearish tilt for the multi-week horizon on fair-value/storage/COT grounds, but no clean short-term edge given conflicting weather and choppy technicals.",
   "longTerm": {
-    "stance": "WAIT",
+    "stance": "SHORT",
     "conviction": "low",
     "horizon": "3-12 weeks",
+    "entry": "$3.30-3.40 (sell into strength, current front $3.225 also acceptable)",
+    "stop": "$3.60",
+    "tp1": "$3.05 (current fair value)",
+    "tp2": "$2.80 (shoulder-month curve level, e.g. Mar/Apr contracts ~$2.71-2.83)",
+    "riskReward": "~1:0.8 to TP1, ~1:1.7 to TP2 (from $3.30 entry)",
+    "sizing": "1R approx 1% account risk, scale out half at TP1",
+    "rationale": "Front and next are both persistently 'SLIGHTLY OVER' fair value out to +21 days, storage sits +92 Bcf above the 5-year average, and managed money is already net short (though not extreme at the 34th percentile) - a combination that favors mean reversion toward the $3.00-3.05 fair-value zone and the lower, backwardated shoulder-month curve levels ($2.71-2.83). The 8-16D weather demand signal has also rolled over to -6.9% vs 5y, removing near-term support for a multi-week rally.",
+    "invalidation": "A sustained break and close above $3.60 (through the fair-value band top and next-month contract), a materially bullish storage surprise (large deficit builds), or a shift to well-below-normal 8-16D+ temperature forecasts that reignites heating demand",
+    "trigger": ""
+  },
+  "shortTerm": {
+    "stance": "WAIT",
+    "conviction": "low",
+    "horizon": "1-10 days",
     "entry": "n/a",
     "stop": "n/a",
     "tp1": "n/a",
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Seasonality is conflicting (weaker 2-3wk odds vs stronger but low-reliability 4wk odds) and storage running +92 Bcf above its 5-year average caps upside, while 8-16D weather demand has already dropped below 5-year normal (-10.7%, rangePos 0.32) removing near-term support for a longer hold.",
-    "invalidation": "A shift of the 8-16D weather demand outlook back above 5-year normal, a storage deficit/bullish surprise developing, or price pulling back into the $2.7-2.9 fair-value zone would each materially change this view.",
-    "trigger": "Wait for 8-16D weather demand to turn back above 5-year normal, or for price to retrace into the $2.75-2.95 fair-value zone for a lower-risk long entry, or for storage prints to flip to a deficit vs 5y."
-  },
-  "shortTerm": {
-    "stance": "SHORT",
-    "conviction": "low",
-    "horizon": "1-10 days",
-    "entry": "$3.25 - $3.30 (sell into current strength / minor bounce)",
-    "stop": "$3.42",
-    "tp1": "$3.04 (fair value now)",
-    "tp2": "$2.85 (toward lower fair-value band)",
-    "riskReward": "~1:1.2 to TP1, ~1:2.3 to TP2",
-    "sizing": "1R approx 1% account risk; trim roughly half the position at TP1",
-    "rationale": "Front price is already SLIGHTLY OVER fair value ($3.225 vs $3.037 fair) and the near-term weather demand spike (+28.2% vs 5y, rangePos 0.93) is fading fast (24h change -12.4, above-normal only 2 of the last 5 days), while technicals stay non-trending/choppy across timeframes rather than confirming a breakout.",
-    "invalidation": "A confirmed bullish break and close above $3.42-3.45 with technical alignment across timeframes, or a fresh spike in 1-7D weather demand, would invalidate this short.",
-    "trigger": ""
+    "rationale": "Near-term weather demand is strong (+16.4% vs 5y) which argues for near-term price support, but price is already 'SLIGHTLY OVER' fair value and technicals are contradictory across timeframes (bearish 5m, neutral 15m, bullish 1h/4h, neutral 1d, bearish 1w) with no clean trend to trade with confidence.",
+    "invalidation": "n/a",
+    "trigger": "Wait for either (a) a pullback into the $3.03-$3.10 fair-value zone to buy the residual near-term weather-demand strength, or (b) a confirmed break of the 1h/4h uptrend (EMA flips 50<200, RSI<45) to align a short entry with the longer-term bearish thesis"
   },
   "keyDrivers": [
-    "Storage +92 Bcf above 5y average with an in-line build keeps a supply cushion into winter",
-    "Near-term weather demand strong (+28% vs 5y, near top of range) but fading fast; 8-16D demand already -10.7% vs 5y",
-    "Front price SLIGHTLY OVER fair value ($3.225 vs $3.037 fair); next-month contract even more stretched near its band top",
-    "Seasonality mixed and reliability flagged Low (65pp 10-90% spread) - weak 2-3wk odds vs stronger 4wk odds",
-    "Technicals choppy/non-trending across 5m-1w timeframes; managed money net short but not at an extreme (34th percentile 5y)"
+    "Front and next contracts both trade 'SLIGHTLY OVER' model fair value, and the premium persists through the +21D projection",
+    "Storage +92 Bcf above 5-year average with an in-line build keeps the supply cushion ample heading toward winter",
+    "Managed-money net short (-65.5k contracts, 34th percentile) - bearish fund positioning but not yet crowded/extreme",
+    "1-7D weather demand strong (+16.4% vs 5y) but 8-16D demand has rolled over to -6.9% vs 5y and is falling",
+    "Seasonality reliability is LOW (65pp spread) and technicals are mixed/non-consensus across the 5m-1w timeframes"
   ],
   "risks": [
-    "Low seasonality reliability means the seasonal edge could easily invert over the trade horizon",
-    "8-16D weather forecasts can shift quickly and re-flip the demand outlook bullish",
-    "A cold-snap or bullish storage surprise could spike price against the short-term short bias"
+    "Low seasonality reliability means the seasonal read (63% prob higher in 4wks) could easily invert",
+    "A colder shift in 8-16D+ forecasts or a bullish (larger-than-expected draw) storage surprise could quickly erase the bearish edge",
+    "Choppy, non-aligned technicals (bullish 1h/4h vs bearish 5m/1w) raise whipsaw risk for any short-term entry"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
