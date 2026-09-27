@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T23:20:10.887Z",
+  "generatedAt": "2026-09-27T03:05:42.222Z",
   "price": {
     "front": 3.2249999046325684,
     "next": 3.5339999198913574,
@@ -21,22 +21,22 @@
   },
   "weather": {
     "demand_1_7D": {
-      "pctVs5y": 21,
-      "rangePos": 0.81,
+      "pctVs5y": 16.7,
+      "rangePos": 0.73,
       "aboveMax": false,
       "belowMin": false
     },
     "demand_8_16D": {
-      "pctVs5y": -10.8,
-      "rangePos": 0.31,
+      "pctVs5y": 7.8,
+      "rangePos": 0.61,
       "aboveMax": false,
       "belowMin": false
     },
     "trend": {
-      "nowDemand": "60.0",
-      "change24h": "-13.7",
+      "nowDemand": "66.4",
+      "change24h": "-5.9",
       "range7d": "50.2 – 80.8",
-      "vs5yNormal": "+1.2 · above 2 of 5"
+      "vs5yNormal": "+7.3 · above 3 of 5"
     }
   },
   "fairValue": {
@@ -79,14 +79,14 @@
       }
     },
     "plus21D": {
-      "fair": "$3.037",
-      "band": "$2.537 – $3.537",
+      "fair": "$3.034",
+      "band": "$2.534 – $3.534",
       "front": {
-        "spread": "Spread +$0.188",
+        "spread": "Spread +$0.191",
         "status": "SLIGHTLY OVER"
       },
       "next": {
-        "spread": "Spread +$0.497",
+        "spread": "Spread +$0.500",
         "status": "SLIGHTLY OVER"
       }
     }
@@ -297,13 +297,6 @@
           "429": 2
         }
       },
-      "publicreporting.cftc.gov": {
-        "ok": 1,
-        "err": 0,
-        "statuses": {
-          "200": 1
-        }
-      },
       "archive-api.open-meteo.com": {
         "ok": 30,
         "err": 0,
@@ -318,18 +311,25 @@
           "200": 5
         }
       },
+      "publicreporting.cftc.gov": {
+        "ok": 1,
+        "err": 0,
+        "statuses": {
+          "200": 1
+        }
+      },
       "proxy.cors.sh": {
         "ok": 0,
         "err": 3,
         "statuses": {}
+      },
+      "api.allorigins.win": {
+        "ok": 0,
+        "err": 2,
+        "statuses": {}
       }
     },
     "failedRequests": [
-      {
-        "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://www.eia.gov/rss/todayinenergy.xml",
-        "error": "net::ERR_NAME_NOT_RESOLVED"
-      },
       {
         "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://www.bing.com/news/search?q=natural+gas+price+OR+henry+hub&format=RSS",
@@ -337,8 +337,23 @@
       },
       {
         "host": "proxy.cors.sh",
+        "url": "https://proxy.cors.sh/https://www.eia.gov/rss/todayinenergy.xml",
+        "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://oilprice.com/rss/main",
         "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "api.allorigins.win",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "host": "api.allorigins.win",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.eia.gov%2Frss%2Ftodayinenergy.xml",
+        "error": "net::ERR_FAILED"
       }
     ],
     "console": [
@@ -346,7 +361,11 @@
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: the server responded with a status of 429 ()",
-      "[error] Failed to load resource: the server responded with a status of 429 ()"
+      "[error] Failed to load resource: the server responded with a status of 429 ()",
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requ",
+      "[error] Failed to load resource: net::ERR_FAILED",
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.eia.gov%2Frss%2Ftodayinenergy.xml' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your nee",
+      "[error] Failed to load resource: net::ERR_FAILED"
     ]
   }
 }
