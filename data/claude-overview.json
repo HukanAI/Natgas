@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-09-29T23:30:00Z",
-  "sourceSnapshotAt": "2026-09-29T23:21:33.055Z",
+  "generatedAt": "2026-09-30T03:40:00Z",
+  "sourceSnapshotAt": "2026-09-30T03:30:05.837Z",
   "frontPrice": 3.025,
-  "nextPrice": 3.358,
-  "marketState": "neutral — price at fair value, bearish trend vs. bullish winter curve",
-  "summary": "Front (Nov) at $3.025 sits almost exactly on fair value ($3.037, band $2.54-$3.54) across all horizons, so there is no valuation edge. Seasonality is weak: price is 8 pp below the median year, 4-week odds are 63% but the typical move is only +1.4% and reliability is low. Weather demand is near normal (1-7D +0.2%, 8-16D +6.8% vs 5y), a mild supportive tilt. Storage is +92 Bcf above the 5y average (bearish) while managed money is net short (34th percentile), leaving some squeeze potential. Higher-timeframe technicals are bearish (50<200 EMAs), and the steep contango into Jan ($3.72) rewards patient winter length but not a chase.",
+  "nextPrice": 3.359,
+  "marketState": "neutral-to-bearish: price at fair value, but weak 8-16D demand and a storage surplus cap upside",
+  "summary": "Nov NG sits at $3.025, essentially on the fair-value midpoint ($3.037, band $2.54-$3.54) at every horizon, so valuation gives no edge. Seasonality is soft: price is 8.3pp below a typical year, 1-3 week odds of a higher price are only 38-50%, and reliability is low. Weather is the main negative, with 8-16D demand 13.9% below the 5y average (range position 0.23) and demand falling 4.6 over 24h. Storage is +92 Bcf vs the 5y average with an in-line build, and managed money is net short (34th percentile), which limits downside squeeze risk but does not support a rally. Technicals are bearish on the 15m, 1h, 1d and 1w timeframes, and the steep contango to Jan ($3.73) reflects a winter premium already priced in. No clean edge, so both trades wait for a better level.",
   "longTerm": {
-    "stance": "LONG",
+    "stance": "WAIT",
     "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$2.90-$3.05",
-    "stop": "$2.62",
-    "tp1": "$3.35",
-    "tp2": "$3.70",
-    "riskReward": "1:1.3 to TP1, 1:2.6 to TP2",
-    "sizing": "0.5R approx 0.5% risk",
-    "rationale": "Price is at fair value with the band floor near $2.53, the winter curve prices Dec-Jan at $3.36-$3.72, and managed money is net short (34th pct) with 8-16D demand +6.8% above 5y. Offsetting this, the storage surplus (+92 Bcf) and a bearish weekly trend cap conviction, so size small.",
-    "invalidation": "Daily close below $2.60 (fair-value band floor), or mild 8-16D weather flipping demand below the 5y average while storage builds beat forecasts.",
-    "trigger": ""
+    "entry": "n/a",
+    "stop": "n/a",
+    "tp1": "n/a",
+    "tp2": "n/a",
+    "riskReward": "n/a",
+    "sizing": "n/a",
+    "rationale": "Price is at fair value with no band-edge edge, and seasonality is weak and low-reliability (38% odds of a higher price at 3 weeks). Storage +92 Bcf vs the 5y average and weak 8-16D demand argue against a long. A short is not attractive either, because the market is already net short and the winter curve carries a premium.",
+    "invalidation": "n/a while waiting; a sustained break above $3.55 would show the surplus is being absorbed.",
+    "trigger": "Go LONG on a dip toward the lower fair band ($2.55-$2.70) with a storage surplus that is shrinking, or when 8-16D demand turns above the 5y average. Go SHORT on a rally to $3.50-$3.55 (upper band) while the surplus persists."
   },
   "shortTerm": {
     "stance": "WAIT",
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Front is within $0.01 of fair value at every horizon, 1-7D demand is normal (+0.2%), and technicals are mixed (1h/1d/1w bearish, 5m/15m/1d MACD positive). Price was unchanged from the previous close, so the quote may be stale, and there is no edge either way.",
-    "invalidation": "n/a",
-    "trigger": "Wait for a dip toward $2.85-$2.90 with 1h RSI recovering from below 35, or a close above $3.15 with 1-7D demand rising above +5% vs 5y."
+    "rationale": "Technicals lean bearish on the higher timeframes, but the 1h and 4h RSI at about 35 is near oversold and the front price is at fair value. The price is flat against the previous close, so momentum is unconfirmed and the risk:reward is poor at the midpoint.",
+    "invalidation": "n/a while waiting.",
+    "trigger": "Go SHORT on a daily close below about $2.95 with the 8-16D forecast still weak (targets $2.75 / $2.55). Go LONG only on a reclaim of about $3.15 with a rising demand forecast, or on a dip to about $2.70 with RSI under 30."
   },
   "keyDrivers": [
-    "Front price equals fair value ($3.025 vs $3.037); no valuation edge",
-    "Storage +92 Bcf vs 5y is a bearish overhang; the latest injection was in line",
-    "Managed money net short -65.5k (34th pct) gives squeeze potential",
-    "Curve contango Nov→Jan +$0.69 reflects winter demand premium",
-    "8-16D weather demand +6.8% vs 5y is mildly supportive"
+    "8-16D weather demand -13.9% vs the 5y average, a bearish signal",
+    "Price at fair value ($3.025 vs $3.037), so valuation gives no edge",
+    "Storage +92 Bcf vs the 5y average, a supply overhang",
+    "Managed money net short (34th percentile), limiting downside squeeze fuel",
+    "Seasonality weak: 38-50% odds of a higher price over 1-3 weeks, low reliability"
   ],
   "risks": [
-    "Mild early-winter weather would erode the storage-surplus support and push price toward $2.55",
-    "Bearish higher-timeframe trend (50<200 EMAs on 1d/1w) can extend before fundamentals turn",
-    "Snapshot price was unchanged from the previous close, so the quote may be stale or the market thin"
+    "An early cold snap could lift 8-16D demand and quickly close the Nov to Jan contango",
+    "Short covering from the managed-money net short could cause sharp rallies",
+    "Price is flat against the previous close, so the data may be stale or thin, and the news feeds failed to load"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
