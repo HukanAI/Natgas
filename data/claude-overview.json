@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-10-02T23:00:00Z",
-  "sourceSnapshotAt": "2026-10-02T22:45:58.477Z",
+  "generatedAt": "2026-10-03T02:00:00Z",
+  "sourceSnapshotAt": "2026-10-03T01:38:38.637Z",
   "frontPrice": 3.039,
   "nextPrice": 3.343,
-  "marketState": "neutral - fairly valued, near-term bearish weather vs. extreme short positioning",
-  "summary": "Nov NG at $3.039 sits almost exactly on fair value ($3.064, band $2.56-$3.56) and 4.1 pp below the seasonal median path, so there is no valuation edge in the front month. The 8-16D weather demand is 14.7% below the 5y norm and storage is +71 Bcf vs the 5y average, which argues for soft prices over the next 1-2 weeks (seasonal odds of being higher are only 44%/25% at 1/2 weeks). Against that, managed money is net short at the 2nd percentile of 5 years, the last storage surprise was bullish (-24 Bcf), and seasonal odds improve to 63-69% at 3-4 weeks, with a steep winter contango (Jan $3.71). Higher-timeframe technicals are bearish (1d/1w EMA 50<200) while intraday is mixed, and seasonal reliability is low.",
+  "marketState": "neutral - fairly valued front month, bearish near-term weather vs. extreme spec shorting",
+  "summary": "Front (Nov) at $3.039 sits almost exactly on fair value ($3.064, band $2.56-$3.56), so there is no valuation edge. Seasonality is mildly supportive further out (63%/69% odds higher in 3/4 weeks, but only 44%/25% in 1/2 weeks, and reliability is Low). 1-7D weather demand is weak (-13.8% vs 5y), which pressures the very near term, while 8-16D is slightly above normal (+3.9%). Storage is a +71 Bcf surplus vs the 5y average (bearish), partly offset by a bullish -24 Bcf surprise. Managed money is at the 2nd percentile of its 5y net range, which is a strong contrarian squeeze setup. Technicals are bearish on 4h-1w and mixed intraday, and the curve is in steep contango into winter (Jan $3.71).",
   "longTerm": {
     "stance": "LONG",
     "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$2.90-$3.05 (scale in on dips)",
-    "stop": "$2.62",
-    "tp1": "$3.45",
-    "tp2": "$3.75",
-    "riskReward": "1:1.5 to TP1, 1:2.7 to TP2 (from $2.97 avg)",
-    "sizing": "1R approx 0.75% risk, half size until weather turns",
-    "rationale": "Price is at fair value with the band extending to $3.56, seasonal 3-4 week odds of a higher price are 63-69%, and winter contract pricing ($3.34-$3.71) pulls the front up as heating season approaches. Record-low managed-money percentile (2nd) makes shorts vulnerable to a squeeze, though the +71 Bcf storage surplus and low seasonal reliability cap conviction.",
-    "invalidation": "Daily close below $2.62 (band floor area) or storage surplus vs 5y widening past roughly +100 Bcf with persistently mild forecasts.",
+    "entry": "$2.90-$3.05",
+    "stop": "$2.65",
+    "tp1": "$3.40",
+    "tp2": "$3.70",
+    "riskReward": "1:1.1 to TP1, 1:2 to TP2 (from ~$3.00)",
+    "sizing": "0.5R approx 0.5% risk",
+    "rationale": "Managed money net is at the 2nd percentile of its 5y range (-132.8k), which leaves room for short covering. Seasonality favors higher prices over 3-4 weeks, and the Dec-Jan curve prices a winter premium. Price is at fair value with the band midpoint-to-top at $3.56, so upside is available. The storage surplus and bearish higher-timeframe trend cap conviction.",
+    "invalidation": "Daily close below $2.65 (under the fair-value band floor area), or storage surplus vs 5y widening well beyond +100 Bcf with mild 8-16D weather.",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Front price is on fair value (spread -$0.025), so there is no band-edge edge. Weather 8-16D is bearish (-14.7% vs 5y), 1-2 week seasonal odds are poor (44%/25%), and daily/weekly trends are bearish, while the 1h RSI of 74.6 is stretched and the extreme-short COT limits downside follow-through.",
+    "rationale": "Price is on fair value (spread -$0.025), so valuation gives no edge. 1-7D demand is -13.8% vs 5y and 4h/1d/1w trends are bearish, while 1h RSI is 74.6 and 5m/15m are bullish. The 1-week odds of a higher price are 44% and the 2-week odds are 25%. The signals conflict, so there is no clean edge.",
     "invalidation": "n/a",
-    "trigger": "Look for a dip to about $2.85-$2.95 with RSI stabilizing (long setup), or a bounce failing near $3.25-$3.35 with 8-16D demand still below normal (short setup); a bullish storage surprise or warmer 8-16D revision would also turn this to LONG."
+    "trigger": "Wait for a dip toward $2.85-$2.90 with RSI stabilizing for a long, or a daily close above $3.20 with 1-7D demand turning toward normal. A weather-driven failure below $2.85 would favor shorts toward $2.60."
   },
   "keyDrivers": [
     "Price at fair value ($3.039 vs $3.064), band $2.56-$3.56",
-    "8-16D weather demand -14.7% vs 5y (bearish near term)",
-    "Managed money net short at 2nd percentile of 5y (squeeze risk)",
-    "Storage +71 Bcf vs 5y, but last report was a -24 Bcf bullish surprise",
-    "Seasonal odds 44%/25% at 1-2w improving to 63%/69% at 3-4w; steep winter contango"
+    "Managed money net short at 2nd percentile of 5y (contrarian bullish)",
+    "1-7D weather demand -13.8% vs 5y (bearish near term)",
+    "Storage +71 Bcf vs 5y (bearish) despite -24 Bcf bullish surprise",
+    "Steep contango to Jan ($3.71) and 3-4 week seasonal upside bias"
   ],
   "risks": [
-    "Mild autumn weather and production strength widening the storage surplus",
-    "Low seasonal reliability (10-90% spread 68 pp) and bearish higher-timeframe trend",
-    "News feeds failed in this snapshot, so headline risk is not captured"
+    "Mild autumn weather and a persistent storage surplus could push price to the band floor (~$2.56)",
+    "Low seasonal reliability (68 pp spread) and bearish higher-timeframe trends",
+    "Data gaps: news feeds failed, and the price may be stale or illiquid at the weekend (front equals previous close)"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
