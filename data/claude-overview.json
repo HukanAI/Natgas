@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-10-08T01:35:00Z",
-  "sourceSnapshotAt": "2026-10-08T01:30:09.715Z",
-  "frontPrice": 3.2639999389648438,
-  "nextPrice": 3.569000005722046,
-  "marketState": "neutral-to-bullish medium term, but short-term stretched: weak weather and storage surplus vs extreme spec shorts",
-  "summary": "Front Nov at $3.264 sits $0.20 above fair value ($3.064) but well inside the $2.56-$3.56 band, so it is only slightly rich. Seasonality is mildly supportive (price +6pp above typical YTD, 81% odds higher over 2-3 weeks, +5.5% typical 4w move) but reliability is low and 1-week odds are just 38%. Weather is bearish, with 8-16D demand -16.8% vs the 5y average, and storage is +71 Bcf above the 5y average, although the last report was a bullish -24 Bcf surprise. Managed money is at the 2nd percentile of its 5y net range (-132.8k), which leaves short-covering risk. Short-term technicals are overbought (4h RSI 76) against a bearish weekly trend, and the curve is in steep contango to Jan ($3.95).",
+  "generatedAt": "2026-10-08T08:20:00Z",
+  "sourceSnapshotAt": "2026-10-08T08:17:13.731Z",
+  "frontPrice": 3.258,
+  "nextPrice": 3.557,
+  "marketState": "neutral-to-mildly bullish medium term; near term capped by mild weather and price above fair value",
+  "summary": "Nov NG sits at $3.258, about $0.19 above the $3.06 fair value but inside the $2.56-$3.56 band. Seasonality favors higher prices over 2-4 weeks (81%/81%/69%) but only 38% over 1 week, and reliability is low. Weather is bearish: 1-7D demand is -5.7% and 8-16D is -16.3% vs the 5y average. Managed money is at the 2nd percentile of its 5y range (net -133k), so short-covering risk is large, and the latest storage surprise was bullish (-24 Bcf), though storage is still +71 Bcf above the 5y average. The curve is in steep contango into Jan ($3.94), which is typical for the shoulder season, and technicals are mixed (4h overbought, weekly bearish).",
   "longTerm": {
     "stance": "LONG",
     "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$3.10-$3.26 (prefer pullbacks toward $3.10)",
+    "entry": "$3.10-$3.26 (scale in, prefer dips toward $3.10)",
     "stop": "$2.85",
-    "tp1": "$3.55",
-    "tp2": "$3.95",
-    "riskReward": "1:2.1 (to TP2, from ~$3.20)",
-    "sizing": "0.5R approx 0.5% risk (low conviction)",
-    "rationale": "Seasonality shows 81% odds of a higher price at 2-3 weeks and a +5.5% typical 4w move into winter. Managed-money positioning is at a 2nd-percentile extreme short, and the curve prices winter well above the front (Jan $3.95). Offsetting this are the storage surplus and weak 8-16D demand, so size is small and a pullback entry is preferred.",
-    "invalidation": "Daily close below $2.85, or storage surpluses widening well beyond +100 Bcf vs the 5y average while the weather outlook stays warm.",
+    "tp1": "$3.56",
+    "tp2": "$3.94",
+    "riskReward": "1:1.3 to TP1, 1:2.5 to TP2 (from $3.20)",
+    "sizing": "0.5R approx 0.5% risk, add to 1R on weather turning colder",
+    "rationale": "Seasonality shows an 81% chance of higher prices at 2-3 weeks with a typical +5.5% 4-week move, and winter-heavy contracts (Dec/Jan $3.56/$3.94) show where the market expects prices to go. Extreme managed-money shorts (2nd percentile) and a bullish storage surprise add squeeze potential, but price is above fair value and weather is soft, so conviction is low.",
+    "invalidation": "Daily close below $2.85, or the storage surplus widening well beyond +100 Bcf with persistently mild 8-16D forecasts.",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Price is above fair value ($3.06) and the 8-16D weather is bearish. 1-week odds of a higher price are only 38%, and the 4h RSI of 76 is overbought against a bearish weekly trend. This gives no clean edge in either direction.",
+    "rationale": "Only 38% of weeks are higher in seasonality, price is $0.19-$0.21 above fair across all horizons, and 1-16D weather demand is below normal. Against that, short positioning is extreme and the 4h RSI is 73, so a clean directional edge is missing.",
     "invalidation": "n/a",
-    "trigger": "Wait for a pullback to $3.05-$3.10 (fair value) with the 1h/4h RSI reset below 55 for a long, or a daily close above $3.56 (band top) with a weather demand upgrade for a breakout long."
+    "trigger": "Long on a pullback to $3.05-$3.15 holding the band midpoint area, or a break and close above $3.36 with colder 8-16D demand revisions. Short only on a failed rally near $3.50-$3.56 (band top)."
   },
   "keyDrivers": [
-    "Seasonality: 81% odds higher at 2-3 weeks, +5.5% typical 4w move (low reliability)",
-    "Weather: 8-16D demand -16.8% vs 5y, which is bearish",
-    "Fair value: front $0.20 above fair ($3.06), inside the band; Dec is overvalued by $0.51",
-    "COT: managed money at the 2nd percentile of 5y net, a short-squeeze setup",
-    "Storage: +71 Bcf vs 5y average, but a -24 Bcf bullish surprise"
+    "Seasonality: 81% higher at 2-3 weeks, +5.5% typical 4-week move (low reliability)",
+    "Weather: 8-16D demand -16.3% vs 5y is bearish near term",
+    "Price $0.19 above fair ($3.06), inside the band up to $3.56",
+    "COT managed money net -133k, 2nd percentile of 5y: squeeze fuel",
+    "Storage +71 Bcf vs 5y, but the latest injection surprise was bullish (-24 Bcf)"
   ],
   "risks": [
-    "Warm autumn weather and weak heating demand extend the storage surplus",
-    "Spec shorts can stay extreme, and the weekly trend is still bearish",
-    "Contango roll cost and headline volatility around the storage report"
+    "Mild weather persisting into November keeps injections large and pressures prices toward $2.80-$3.00",
+    "Short-covering can overshoot quickly in either direction around the Nov contract roll and storage reports",
+    "News feeds failed to load, so headline and event risk is not captured in this data"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
