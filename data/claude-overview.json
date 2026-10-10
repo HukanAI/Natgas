@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-10-10T00:30:00Z",
-  "sourceSnapshotAt": "2026-10-10T00:26:25.963Z",
-  "frontPrice": 3.2039999961853027,
-  "nextPrice": 3.5260000228881836,
-  "marketState": "neutral-to-mildly bullish: bearish fundamentals (mild weather, storage surplus) offset by record-short funds and a seasonal lift",
-  "summary": "Nov NG sits at $3.20, about $0.13 above fair value ($3.07) but well inside the $2.57-$3.57 band, so price is not stretched. Seasonality is mildly supportive: price is +4.2pp above the typical year, and 2-4 week odds of a higher price are 69-81% (typical 4w move +5.5%), though 1-week odds are only 38% and reliability is low. Weather is a headwind, with 1-7D demand -4.9% and 8-16D demand -8.6% vs the 5y average, and storage is +67 Bcf vs 5y (the last print was a slightly bullish -8 Bcf surprise). Managed money is at the 1st 5y percentile of net positioning (-144.5k), which is a large squeeze risk against a weak demand backdrop. The curve is steeply contangoed into Jan ($3.95), and technicals are mixed, with bullish intraday trends but a bearish weekly and 1d 50<200.",
+  "generatedAt": "2026-10-10T06:40:00Z",
+  "sourceSnapshotAt": "2026-10-10T06:36:43.372Z",
+  "frontPrice": 3.2200000286102295,
+  "nextPrice": 3.5460000038146973,
+  "marketState": "mildly bullish medium-term; neutral near-term, with price slightly above fair value",
+  "summary": "Seasonality favors upside over 2-4 weeks (81%/81%/69% historical odds higher, typical +5.5%), but the 1-week odds are only 38% and reliability is low. The 8-16D weather demand is +8.7% vs the 5y average, while the 1-7D demand is slightly below normal (-2%). The front contract at $3.22 sits about $0.15 above fair ($3.07) but well inside the $2.57-$3.57 band. Managed money is extremely short (1st percentile of 5y), which sets up squeeze risk. Storage is +67 Bcf above the 5y average (bearish), and the last injection was a bullish -8 Bcf surprise. The curve is in steep contango into winter (Jan $3.97), and the weekly trend is still bearish.",
   "longTerm": {
     "stance": "LONG",
-    "conviction": "low",
+    "conviction": "medium",
     "horizon": "3-12 weeks",
-    "entry": "$3.05-$3.20",
-    "stop": "$2.78",
-    "tp1": "$3.60",
-    "tp2": "$3.95",
-    "riskReward": "1:1.2 to TP1, 1:2.3 to TP2",
-    "sizing": "0.5R approx 0.5% risk (low conviction)",
-    "rationale": "Seasonality shows 69-81% odds of higher prices over 2-4 weeks, and heating-season demand plus a steep contango toward Jan ($3.95) support upside. Record-short managed money (1st percentile) adds squeeze potential, and entry is near the fair value of $3.07. The surplus storage and mild weather keep conviction low.",
-    "invalidation": "A weekly close below $2.78 (the lower fair-value band is $2.55-$2.57), or storage surpluses widening well beyond +67 Bcf alongside persistently warm 8-16D forecasts.",
+    "entry": "$3.10-$3.22",
+    "stop": "$2.88",
+    "tp1": "$3.55",
+    "tp2": "$3.90",
+    "riskReward": "1:1.2 to TP1, 1:2.4 to TP2 (from $3.20)",
+    "sizing": "1R approx 1% risk; scale in half at $3.20 and half near $3.10",
+    "rationale": "Seasonality gives 69-81% odds of higher prices over 2-4 weeks. The 8-16D weather demand is above normal, and winter contracts price well above spot. Managed money at the 1st percentile net short adds squeeze fuel, and the latest storage report was a bullish surprise. The storage surplus and the bearish weekly trend cap conviction.",
+    "invalidation": "A daily close below $2.88 (below the fair-value band floor area), or the 8-16D weather outlook turning sharply milder.",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "1-week odds of a higher price are only 38%, near-term demand is below normal (-4.9%), and price is already above fair value with the 5m price above the upper Bollinger band. Timeframes disagree (4h bullish, 1d neutral, 1w bearish), so there is no clean edge.",
+    "rationale": "The 1-week odds of a higher price are only 38%, 1-7D demand is slightly below normal, and the front is about $0.15 above fair value. Intraday trends are bullish but the daily and weekly trends are neutral to bearish, so the edge is thin.",
     "invalidation": "n/a",
-    "trigger": "Wait for a pullback to $3.05-$3.10 (near fair value) with RSI(1h) cooling and stabilizing, for a long; or a daily close above $3.35 with a warmer or colder shift in the 1-7D forecast."
+    "trigger": "Wait for a pullback to $3.05-$3.10 (near fair value) with stabilization, or a daily close above $3.30 with the 1-7D weather forecast turning colder."
   },
   "keyDrivers": [
-    "Seasonality: 2-4w higher odds 69-81%, typical 4w move +5.5%, but low reliability",
-    "Weather demand below 5y average (-4.9% 1-7D, -8.6% 8-16D) is a headwind",
-    "Price $3.20 vs fair $3.07, within the $2.57-$3.57 band",
-    "Managed money net -144.5k at the 1st 5y percentile means squeeze risk",
-    "Storage +67 Bcf vs 5y, but a -8 Bcf bullish surprise; steep contango to Jan $3.95"
+    "Seasonality: 81%/81%/69% odds higher at 2/3/4 weeks, typical +5.5%",
+    "Weather: 8-16D demand +8.7% vs 5y, 1-7D -2%",
+    "Fair value $3.07 (band $2.57-$3.57); front is fair, Dec is slightly over",
+    "Managed money net short at 1st percentile of 5y (squeeze potential)",
+    "Storage +67 Bcf vs 5y, but a -8 Bcf bullish surprise; curve in steep contango"
   ],
   "risks": [
-    "Persistently mild weather and a growing storage surplus could push price to the band floor near $2.55",
-    "Low seasonal reliability (60pp 10-90% spread) and bearish weekly technicals",
-    "Contango roll costs and gap risk around the Nov contract expiry"
+    "Storage surplus vs the 5y average and a bearish weekly trend could cap rallies",
+    "Mild weather in the 8-16D window would erase the demand support",
+    "Low seasonal reliability (60 pp spread) and a possible further decline toward the $2.57 band floor"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
