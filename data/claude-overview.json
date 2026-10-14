@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-10-14T12:50:00Z",
-  "sourceSnapshotAt": "2026-10-14T12:43:25.042Z",
-  "frontPrice": 3.242,
-  "nextPrice": 3.589,
-  "marketState": "neutral-to-mildly bullish medium term; near-term bearish weather caps upside",
-  "summary": "Nov NG sits at $3.24, slightly above the $3.07 fair value but well inside the $2.57-$3.57 band. Seasonality is constructive beyond the first week (81%/81%/69% odds higher at 2/3/4 weeks, typical +5.5% over 4 weeks), though reliability is low and the 1-week odds are only 38%. Weather is the headwind: 1-7D demand is 25.8% below the 5y average and 8-16D is 20.5% below, and storage is 67 Bcf above the 5y average. Managed money is net short at the 1st percentile of its 5y range, which leaves room for a squeeze. Technicals are mixed, with the 1h below its lower Bollinger band and the 4h and 1d neutral to bullish. The curve is in steep contango (Dec +$0.35, Jan +$0.74), which fits a looser market now and winter risk premium later.",
+  "generatedAt": "2026-10-14T17:50:00Z",
+  "sourceSnapshotAt": "2026-10-14T17:44:20.229Z",
+  "frontPrice": 3.176,
+  "nextPrice": 3.548,
+  "marketState": "neutral — bearish fundamentals (weather/storage) offset by crowded record-short positioning and seasonal tailwind",
+  "summary": "Front (Nov) at $3.176 sits just above fair value ($3.069) and well inside the $2.57-$3.57 band, so price offers no valuation edge. Weather is clearly bearish: 1-7D demand is -26.5% vs 5y (near range low) and 8-16D is -20.5%, with the trend at a 5y low, while storage is +67 Bcf above the 5y average. Against that, managed money is net short -144.5k (1st percentile of 5y), which creates squeeze risk, and seasonality shows 81% odds of a higher price at 2-3 weeks (typical 4w move +5.5%, though reliability is Low). Technicals are missing from the snapshot (0 timeframes), so short-term timing is unconfirmed. The curve is in steep contango to Jan ($3.946), pricing a winter premium.",
   "longTerm": {
     "stance": "LONG",
     "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$3.10-$3.25 (scale in)",
-    "stop": "$2.88",
+    "entry": "$3.05-$3.20 (scale in, reference $3.18)",
+    "stop": "$2.80",
     "tp1": "$3.55",
-    "tp2": "$3.90",
-    "riskReward": "1:1.2 to TP1, 1:2.3 to TP2",
-    "sizing": "1R approx 0.75% risk (reduced; low seasonal reliability)",
-    "rationale": "Seasonality favors higher prices over 2-4 weeks, and managed money is near its most extreme net short, which sets up a squeeze. The fair-value band extends to $3.57 and the winter contango (Jan $3.98) supports a seasonal lift. The storage surplus and weak demand limit conviction.",
-    "invalidation": "A daily close below $2.88, which is below fair value and near the lower band, or storage surpluses widening further with continued mild weather into November.",
+    "tp2": "$3.95",
+    "riskReward": "1:1.1 to TP1, 1:2.2 to TP2",
+    "sizing": "0.5R approx 0.5% risk (reduced for low conviction)",
+    "rationale": "Seasonality favors upside over 2-4 weeks (81%/81%/69%) and winter contango with the Jan contract at $3.95 supports the move into heating season. Managed-money net short at the 1st 5y percentile makes the downside asymmetric, and price is only near the fair midpoint with room to the $3.57 band top. Bearish weather and a storage surplus cap conviction.",
+    "invalidation": "Daily close below $2.80 (below the fair-value band floor of about $2.55-$2.57 zone approach), or weather demand staying at a 5y low into November with storage surplus widening.",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "The next week's weather is strongly bearish (demand -25.8% vs 5y) and price is above fair value. 1-week seasonality is only 38% up, and short-timeframe momentum is weak. The extreme managed-money short and the 1h oversold reading argue against chasing a short.",
+    "rationale": "Near-term weather is strongly bearish (-26.5% vs 5y), seasonality 1-week odds are only 38% higher, and price is at fair value, so there is no edge. Technicals are unavailable, so there is no timing confirmation.",
     "invalidation": "n/a",
-    "trigger": "Wait for a dip into $3.05-$3.12 that holds (long, stop $2.95, target $3.40) or a rise above $3.40 with a forecast turn colder (long continuation). A failed bounce below $3.15 on a bearish storage print would favor a short toward $2.95."
+    "trigger": "Either a dip toward $2.95-$3.05 that holds with a bullish storage surprise (long), or a forecast revision lifting 8-16D demand toward normal with a break above $3.30 (long). A break below $2.95 on continued weak demand would open a short toward $2.75."
   },
   "keyDrivers": [
-    "Seasonality: 81% odds higher at 2-3 weeks, typical +5.5% over 4 weeks (low reliability)",
-    "Weather: 1-7D and 8-16D demand 20-26% below 5y average, which is bearish near term",
-    "Fair value $3.07 (band $2.57-$3.57); front is slightly over, next month is overvalued",
-    "COT: managed money net short -144.5k at the 1st percentile, a squeeze risk",
-    "Storage +67 Bcf vs 5y, though the last injection was an 8 Bcf bullish surprise"
+    "Weather demand -26.5% (1-7D) and -20.5% (8-16D) vs 5y, trend lowest in 5y: bearish",
+    "Managed money net short -144.5k at 1st 5y percentile: squeeze risk",
+    "Seasonality: 81% higher at 2-3 weeks, typical 4w +5.5% (reliability Low)",
+    "Price $3.176 vs fair $3.069, band $2.57-$3.57: fairly valued",
+    "Storage +67 Bcf vs 5y, last week -8 Bcf bullish surprise; contango to Jan $3.95"
   ],
   "risks": [
-    "Persistent mild weather widens the storage surplus and pushes price to the fair-value lows near $2.55-$2.90",
-    "Seasonal reliability is low (60 pp spread), so historical odds may not hold",
-    "Weather forecast flips (a colder outlook) can cause fast upside gaps, which hurts any short"
+    "Persistent mild weather deepens the storage surplus and pushes price to the band floor near $2.55",
+    "Technicals data missing, so timing signals are unverified",
+    "Short-covering rallies can reverse quickly with low seasonal reliability"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
