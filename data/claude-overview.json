@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-10-15T15:35:00Z",
-  "sourceSnapshotAt": "2026-10-15T15:27:30.887Z",
-  "frontPrice": 3.251,
-  "nextPrice": 3.545,
-  "marketState": "neutral-to-mildly bullish: bearish weather offset by bullish seasonality, record-short COT and a bullish storage surprise",
-  "summary": "Front Nov at $3.251 sits almost exactly on fair value ($3.10, band $2.60-$3.60), so price offers no valuation edge. Seasonality leans bullish (81%/69%/63%/63% odds of higher at 1-4 weeks, typical 4w move +6.8%, price +5pp above the median year), but reliability is Low. Weather is the main headwind: 1-7D and 8-16D demand are -23% and -27% vs the 5y average and the current trend is the lowest in 5y. Against that, managed money is at the 1st percentile of its 5y net range (-144.5k), which sets up squeeze risk, and today's storage build of +67 Bcf missed the +96 forecast (-29 Bcf bullish), although inventories remain +43 Bcf vs the 5y. The curve is in steep contango into winter (Jan $3.94), and the weak technicals are mixed across timeframes.",
+  "generatedAt": "2026-10-15T19:45:00Z",
+  "sourceSnapshotAt": "2026-10-15T19:38:08.963Z",
+  "frontPrice": 3.2339999675750732,
+  "nextPrice": 3.5329999923706055,
+  "marketState": "neutral - bearish weather near term vs. bullish seasonality, washed-out COT and winter contango",
+  "summary": "Front Nov at $3.23 sits just above fair value ($3.10, band $2.60-$3.60), so price is not stretched either way. Seasonality leans bullish (81%/69%/63%/63% higher over 1-4 weeks, price 4.5 pp above the typical year) but reliability is low. Weather is clearly bearish: 1-7D demand is -20% vs the 5y average and 8-16D is -51%, below the 5y minimum, and current demand is the lowest in 5y. Storage is +43 Bcf vs the 5y average, but the +67 Bcf build was 29 Bcf below the +96 forecast (bullish surprise). Managed money is at the 1st percentile of net positioning (-144k), which sets up squeeze risk, and the curve is in steep contango into Jan ($3.93).",
   "longTerm": {
     "stance": "LONG",
     "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$3.10-$3.25",
-    "stop": "$2.85",
-    "tp1": "$3.60",
+    "entry": "$3.10-$3.25 (scale in)",
+    "stop": "$2.78",
+    "tp1": "$3.65",
     "tp2": "$3.95",
-    "riskReward": "1:2 (to TP2, from $3.25 entry)",
-    "sizing": "0.5R approx 0.5% risk (reduced, conviction low)",
-    "rationale": "Seasonality favours higher prices over 3-4 weeks (63% odds, +6.8% typical move) and the curve prices winter strength (Jan $3.94). Record-short managed money (1st percentile) and a bullish storage surprise add squeeze potential, while the front is still inside the fair band with room to the $3.60 upper edge. Mild weather and a +43 Bcf storage surplus cap conviction.",
-    "invalidation": "Weekly close below $2.85 (near the fair-value lower band of $2.60-$2.85), or weather demand staying at multi-year lows into November with storage surplus widening.",
+    "riskReward": "1:1.1 to TP1, 1:1.9 to TP2",
+    "sizing": "1R approx 0.5% risk (reduced for low conviction)",
+    "rationale": "Seasonality favors higher prices over 3-4 weeks (63%, typical +6.8%), and managed-money shorts are at a 5y extreme, a contrarian squeeze setup. The curve prices Jan at $3.93, and the fair-value band extends to $3.60, which supports upside into winter. The storage surplus and the record-low weather demand cap conviction.",
+    "invalidation": "Daily close below $2.78 (below the fair-value band floor area), or storage surplus vs 5y widening well past +60 Bcf with continued mild winter outlooks.",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Price is at fair value (+$0.15 spread, FAIR now, slightly over at +14D/+21D), and near-term weather demand is -23% vs the 5y, which argues against longs. Seasonality and COT argue against shorts, and technicals are split (1h/4h bullish, 5m/1w bearish, RSI about 48-57), so there is no clean edge.",
+    "rationale": "Weather is strongly bearish (8-16D demand -51% vs 5y) while 1-week seasonality (81% up) and the COT extreme argue against shorting. Price is FAIR vs the model, and technicals are mixed (1d neutral, 1w bearish, 4h bullish, RSI 46-57), so there is no clear edge.",
     "invalidation": "n/a",
-    "trigger": "Long on a daily close above $3.35 with weather forecasts warming, or a dip to $3.05-$3.10 that holds. Short only on a break below $3.00 with a larger-than-expected storage build."
+    "trigger": "Wait for a daily close below $3.10 with weather staying bearish (short toward $2.85), or a reclaim of $3.35 with a 8-16D weather demand upgrade (long toward $3.55)."
   },
   "keyDrivers": [
-    "Seasonality bullish: 81% odds higher in 1w, +6.8% typical 4w move (reliability Low)",
-    "Weather very bearish: demand -23% (1-7D) and -27% (8-16D) vs 5y, lowest in 5y",
-    "Price at fair value $3.10, band $2.60-$3.60; slightly over at +14D/+21D",
-    "Managed money net -144.5k, 1st percentile of 5y: squeeze risk",
-    "Storage +43 Bcf vs 5y, but the build missed the forecast by 29 Bcf (bullish)"
+    "Seasonality: 81% odds of a higher price in 1 week, typical 4w move +6.8%, but low reliability",
+    "Weather: 8-16D demand -51% vs 5y and below the 5y min, the main near-term bearish force",
+    "Fair value: front $3.23 vs fair $3.10, band $2.60-$3.60, status FAIR",
+    "COT: managed-money net -144k at the 1st percentile of 5y, squeeze risk",
+    "Storage +43 Bcf vs 5y, but the latest build missed the forecast bullishly by 29 Bcf"
   ],
   "risks": [
-    "A prolonged warm pattern cuts heating demand and pushes the front toward $2.80 or lower",
-    "Storage surplus vs the 5y could widen if builds return to or above forecasts",
-    "The shorts' positioning can persist, and winter contango means rolls lose carry for longs"
+    "Persistently mild weather extends the storage surplus and pushes price toward the $2.60 band floor",
+    "Crowded short positioning can spark a sharp squeeze that hits a short-biased stance",
+    "Low seasonality reliability (56 pp spread) and a wide, noisy fair-value band"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
