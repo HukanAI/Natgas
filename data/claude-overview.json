@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-10-17T13:40:00Z",
-  "sourceSnapshotAt": "2026-10-17T13:32:57.797Z",
-  "frontPrice": 3.116,
-  "nextPrice": 3.386,
-  "marketState": "neutral - fair-valued with bearish weather offset by crowded managed-money shorts and bullish seasonality",
-  "summary": "Nov NG at $3.116 sits almost exactly on fair value ($3.10, band $2.60-$3.60) and slightly above the seasonal median path (+1.1 pp), so price offers no edge by itself. Weather is clearly bearish: 8-16D demand is 47% below the 5y average and below the 5y minimum, and current demand is the lowest in 5y. Storage is +43 Bcf vs the 5y average, though the latest injection missed the forecast by 29 Bcf (bullish). Managed money is net short at the 4th percentile of its 5y range, which carries squeeze risk. Seasonality is supportive (81% odds of a higher price in 1 week, typical 4w move +6.8%) but reliability is low, and the curve is in steep contango to Jan ($3.76).",
+  "generatedAt": "2026-10-17T16:55:00Z",
+  "sourceSnapshotAt": "2026-10-17T16:48:19.199Z",
+  "frontPrice": 3.115999937057495,
+  "nextPrice": 3.385999917984009,
+  "marketState": "neutral-to-bearish near term, but crowded shorts cap downside conviction",
+  "summary": "Seasonality (vs median, base rates) and the fair-value band are empty in this snapshot, so two of the four priority inputs are missing and conviction is lowered. Weather is clearly bearish: 8-16D demand is -47% vs the 5y average and below the 5y minimum, and the trend reading is the lowest in 5 years, while 1-7D is only slightly soft (-4%). Offsetting that, managed money is net short 126k contracts at the 4th percentile of 5 years, which leaves squeeze risk, and the last storage print was a bullish surprise (-29 Bcf vs forecast). Technicals are mostly bearish (1d/1w EMA50<200, 1h/4h RSI around 38) and the curve is in steep contango to Jan ($3.76), which is normal for the pre-winter shoulder season. With conflicting signals and no seasonal or fair-value anchor, standing aside is the better choice.",
   "longTerm": {
-    "stance": "LONG",
+    "stance": "WAIT",
     "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$2.95-$3.10",
-    "stop": "$2.65",
-    "tp1": "$3.45",
-    "tp2": "$3.75",
-    "riskReward": "1:1.1 to TP1, 1:1.9 to TP2",
-    "sizing": "0.5R approx 0.5% risk (low conviction, scale in on dips)",
-    "rationale": "Price is at fair value with the lower band edge ($2.60) well below, so downside is bounded while the winter curve ($3.39-$3.76) and the heading into the heating season favour upside. Extreme managed-money short positioning (4th percentile) and the storage-injection miss add squeeze fuel. Near-term weather is a headwind, so entries should be staged on weakness.",
-    "invalidation": "Daily close below $2.65, or a persistently mild winter outlook pushing storage surplus well above +80 Bcf vs 5y.",
-    "trigger": ""
+    "entry": "n/a",
+    "stop": "n/a",
+    "tp1": "n/a",
+    "tp2": "n/a",
+    "riskReward": "n/a",
+    "sizing": "n/a",
+    "rationale": "Seasonality and fair-value data are unavailable, so no anchor exists for a multi-week view. The extreme-short COT positioning (4th percentile) and the Jan contango argue for a bullish winter skew, but the record-low weather demand argues against it. These conflict.",
+    "invalidation": "n/a (no position)",
+    "trigger": "Wait for seasonality and fair-value data to return, then look for a long on a weekly close above about $3.40 (Dec level) with the weather outlook turning to normal or colder, or on a dip to about $2.85-2.95 with COT still extremely short."
   },
   "shortTerm": {
     "stance": "WAIT",
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Weather (lowest demand in 5y, 8-16D far below min) and bearish daily/weekly trend conflict with bullish 1-week seasonality and a crowded short. Price is on fair value (spread +$0.016), so there is no valuation edge, and intraday RSI of 38 on 1h/4h shows mild downside momentum without an extreme.",
-    "invalidation": "n/a",
-    "trigger": "Long on a dip to $2.90-$2.98 with a 1h/4h RSI recovery above 40, or on a daily close above $3.25 showing a short-covering breakout. Short only on a close below $2.90 with weather still worsening."
+    "rationale": "The 8-16D weather is strongly bearish and the daily/weekly technicals are bearish, but 1h/4h RSI is already near 38 and shorts are crowded, so a new short risks a squeeze. The price is unchanged from the previous close and there is no fair-value band to measure against.",
+    "invalidation": "n/a (no position)",
+    "trigger": "Short on a failed bounce toward about $3.25-3.30 with the 8-16D outlook still well below normal (stop about $3.45, targets about $2.95 and $2.80), or on a 4h close below about $3.00. Reconsider long only if there is a sharp rise in weather demand or a short squeeze through about $3.40."
   },
   "keyDrivers": [
-    "Weather demand extremely low: 8-16D -47% vs 5y, below the 5y min",
-    "Price at fair value ($3.10) inside the $2.60-$3.60 band",
-    "Managed money net short at the 4th percentile (squeeze risk)",
-    "Storage +43 Bcf vs 5y, but the latest injection missed the forecast (bullish)",
-    "Seasonality: 81% odds higher in 1w, +6.8% typical 4w move, low reliability"
+    "8-16D weather demand -47% vs 5y, below the 5y minimum",
+    "Managed money net short at the 4th percentile of 5y (squeeze risk)",
+    "Seasonality and fair-value data missing, so conviction is reduced",
+    "Daily/weekly trend bearish; the curve is in contango to Jan at $3.76",
+    "Storage surprise was bullish (-29 Bcf vs forecast)"
   ],
   "risks": [
-    "A mild early winter keeps demand below normal and extends the storage surplus",
-    "Short-term momentum is bearish (daily/weekly EMA 50<200) and could drive a move to the $2.60 band floor",
-    "Contango to Jan means a fall in the front month is possible even if winter contracts hold; low seasonal reliability"
+    "Short squeeze from record-low managed-money positioning",
+    "Early cold-weather forecast shift reversing the demand picture",
+    "Missing seasonality and fair-value inputs, so the view rests on partial data"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
