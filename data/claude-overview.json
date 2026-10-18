@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-17T23:50:00Z",
-  "sourceSnapshotAt": "2026-10-17T23:43:10.392Z",
-  "frontPrice": 3.115999937057495,
-  "nextPrice": 3.385999917984009,
-  "marketState": "neutral-to-bearish near term, but crowded shorts cap downside; priority data largely missing",
-  "summary": "Seasonality (vs median, base rates), the fair-value band and storage are all empty in this snapshot, so the top-priority inputs cannot be used and conviction is low. What is available leans bearish near term: 8-16D weather demand is 33% below the 5y average (range position 0.13) and current demand is the lowest in 5y for the date, with a bearish daily and weekly trend (50<200 EMA). Offsetting that, managed money is net short 126k contracts at the 4th percentile of 5y history, which raises short-squeeze risk on any cold shift. The curve is in steep contango to winter (Jan 3.76 vs Nov 3.12), consistent with a shoulder-season glut being priced against winter risk. Without fair value or seasonality edges, standing aside is the disciplined call.",
+  "generatedAt": "2026-10-18T03:00:00Z",
+  "sourceSnapshotAt": "2026-10-18T02:34:35.532Z",
+  "frontPrice": 3.116,
+  "nextPrice": 3.386,
+  "marketState": "neutral-to-bearish near term; weather weak but positioning is extremely short",
+  "summary": "Seasonality (vs median, base rates), fair-value band and storage data are all missing from this snapshot, so the top-priority evidence cannot be used and conviction is limited. Weather is clearly bearish: 1-7D demand is -13.5% vs 5y and 8-16D is -32.7% vs 5y (range position 0.14), and the current demand trend is the lowest in 5y. Against that, managed money is net short -126k contracts (4th percentile over 5y), which creates short-squeeze risk and argues against chasing shorts at $3.12. Technicals are mostly bearish or neutral (daily and weekly 50<200, hourly RSI about 38). The curve is in steep contango into winter (Jan $3.76 vs Nov $3.12), which reflects the expected heating-season premium.",
   "longTerm": {
     "stance": "WAIT",
     "conviction": "low",
@@ -15,9 +15,9 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Seasonality, fair value and storage data are missing, so no edge can be verified. Extreme managed-money short positioning (4th percentile) and a steep winter contango argue for a long bias later, but weather demand is the weakest in 5y.",
+    "rationale": "Seasonality, fair value and storage are missing, so there is no verified edge. Extreme managed-money shorts and a steep winter contango lean mildly bullish over weeks, but the weather is the lowest in 5y and works against that.",
     "invalidation": "n/a while waiting.",
-    "trigger": "Wait for seasonality/fair-value/storage data to return, or for 8-16D demand to rise toward the 5y norm with front holding above ~$3.00 and a weekly close above the 50 EMA, then consider a long toward the Jan contract."
+    "trigger": "Wait for seasonality and fair-value data to return. A long becomes attractive if price is at or below the fair-value band floor with storage near or below the 5y average, or if the 8-16D demand outlook turns to normal or colder. Alternatively, wait for a daily close above about $3.40 as confirmation of a COT-driven short squeeze."
   },
   "shortTerm": {
     "stance": "WAIT",
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Weather is bearish (1-7D -5.5%, 8-16D -33% vs 5y) but the market sits at mixed technicals (1h/4h neutral, RSI ~38, daily RSI 49.5) with no fair-value band to judge stretch. Short exposure into a 4th-percentile COT positioning carries squeeze risk, so the edge is unclear.",
+    "rationale": "Near-term weather and technicals favor the downside, but with no fair-value band to confirm and extreme short positioning, a short at $3.12 has poor asymmetry. The price is flat at its previous close, which suggests the market is not live-trading.",
     "invalidation": "n/a while waiting.",
-    "trigger": "Short only on a failed bounce/breakdown below recent lows with weather still deeply below normal; long only on a 4h/1d MACD and EMA turn up with 8-16D demand revised higher."
+    "trigger": "Short on a daily close below about $3.00 with weather still weak (target about $2.80). Long only on a reclaim of about $3.30 with the 1-7D weather outlook improving."
   },
   "keyDrivers": [
-    "8-16D weather demand -33% vs 5y (lowest in 5y)",
-    "Managed money net short 126k, 4th percentile of 5y",
-    "Daily and weekly trend bearish (50<200 EMA)",
-    "Steep contango to Jan ($3.76 vs $3.12 front)",
+    "8-16D weather demand -32.7% vs 5y, the lowest in 5y",
+    "Managed money net -126k, 4th percentile over 5y (squeeze risk)",
+    "Daily and weekly technicals bearish (50<200 EMA)",
+    "Steep winter contango: Jan 2027 at $3.76 vs front $3.12",
     "Seasonality, fair value and storage data unavailable"
   ],
   "risks": [
-    "Short squeeze from crowded managed-money shorts on a colder forecast shift",
-    "Missing storage/fair-value inputs mean hidden fundamental surprises",
-    "Shoulder-season weather volatility can flip forecasts quickly"
+    "Short squeeze from record-low managed-money positioning",
+    "Early cold-weather forecast shift that lifts winter demand expectations",
+    "Missing data (seasonality, fair value, storage) makes the read incomplete"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
