@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-10-20T12:45:00Z",
-  "sourceSnapshotAt": "2026-10-20T12:38:13.948Z",
-  "frontPrice": 2.986,
-  "nextPrice": 3.286,
-  "marketState": "neutral-to-bullish medium term: fair-priced with a crowded-short COT, but near-term trend and weather are soft",
-  "summary": "Front Nov at $2.986 sits just below fair value ($3.10, band $2.60-$3.60) and is slightly below the seasonal median path (-2.8 pp). Shoulder-season history is constructive, with 81%/69%/63%/63% odds of higher prices at 1-4 weeks, but reliability is low. Managed money is deeply short (net -126k, 4th percentile over 5y), which makes a squeeze possible, and the last storage print was a 29 Bcf bullish surprise, though inventories are still +43 Bcf vs the 5y average. Near-term 1-7D weather demand is 19% below normal and technicals are bearish on most timeframes (RSI 33-43), so timing is poor even though the medium-term skew is up. The curve is in steep contango to Jan ($3.70), which confirms winter risk premium but also rolls against longs.",
+  "generatedAt": "2026-10-20T17:45:00Z",
+  "sourceSnapshotAt": "2026-10-20T17:43:26.176Z",
+  "frontPrice": 2.9709999561309814,
+  "nextPrice": 3.2939999103546143,
+  "marketState": "neutral-to-mildly bullish medium term; near-term bearish weather and trend",
+  "summary": "Front Nov at $2.971 sits slightly below fair value ($3.10, band $2.60-$3.60), with seasonality favoring upside (81% odds higher in 1 week, 63% at 4 weeks, typical +6.8%), though reliability is low. Weather demand is weak (-19.8% vs 5y for 1-7D, -9.3% for 8-16D), which caps rallies near term, and storage is +43 Bcf above the 5y average. Offsetting this, managed money is at a 4th-percentile net short (a crowded short) and the latest storage print was a 29 Bcf bullish surprise. Technicals are bearish on most timeframes but 1h/4h RSI near 32 is oversold; the curve is in steep contango into winter (Jan $3.68).",
   "longTerm": {
     "stance": "LONG",
     "conviction": "medium",
     "horizon": "3-12 weeks",
-    "entry": "$2.90-$3.00",
-    "stop": "$2.70",
+    "entry": "$2.85-$3.00",
+    "stop": "$2.68",
     "tp1": "$3.30",
     "tp2": "$3.65",
-    "riskReward": "1:2.5 (to TP2)",
-    "sizing": "1R approx 1% risk; scale in half at $3.00 and half near $2.90",
-    "rationale": "Price is below fair value ($3.10) and the seasonal median, with 63-81% historical odds of a higher price over 1-4 weeks and a +6.8% typical 4-week move. Managed money is at the 4th percentile net short, and the Jan 2027 contract at $3.70 shows the market pricing winter. The risks are the +43 Bcf storage surplus and low seasonal reliability.",
-    "invalidation": "Weekly close below $2.70, or storage builds that keep beating forecasts while the 8-16D weather outlook stays well below normal.",
+    "riskReward": "1:1.2 to TP1, 1:2.5 to TP2",
+    "sizing": "1R approx 1% risk (scale in half at a time)",
+    "rationale": "Price is below fair value with the band midpoint at about $3.05-$3.10 through +21D, and seasonality plus winter contango point higher. Managed money is at an extreme short (4th percentile, ratio 0.64) and the storage surprise was bullish, so short-covering risk is skewed up. The storage surplus and weak weather keep conviction at medium.",
+    "invalidation": "Daily close below $2.68 (lower fair-value band area), or a bearish storage surprise combined with persistently warm forecasts.",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "1-7D weather demand is 19% below the 5y average and 1h/1d/1w trends are bearish with negative MACD, which argues against buying now. Price is within the fair band (spread -$0.114) and RSI is near oversold, so a short has poor reward against the 4th-percentile COT short and the seasonal up-bias.",
+    "rationale": "Weather demand is 20% below the 5y average and trend is bearish on 5m-1d, which argues against buying now. Seasonality (81% up over 1 week), fair value above price and oversold 1h/4h RSI argue against shorting, so signals conflict.",
     "invalidation": "n/a",
-    "trigger": "Go long on a 1h/4h close back above about $3.05 with RSI turning up from the low 30s, or on a dip to $2.85-$2.90 that holds. Go short only on a daily close below $2.85 with no weather upgrade."
+    "trigger": "Go long on a 1h close above about $3.04 with RSI turning up from the 30s (stop near $2.88, targets $3.20/$3.30), or on a dip to $2.88-2.90 that holds with a bullish 1h reversal. Short only on a break below $2.88 with 1-7D demand weakening further."
   },
   "keyDrivers": [
-    "Price $2.986 is below fair value $3.10 and inside the $2.60-$3.60 band",
-    "Seasonality: 81%/69%/63%/63% odds of higher at 1-4 weeks, but reliability is low",
-    "COT managed money at the 4th percentile net short, so a squeeze is possible",
-    "Storage +43 Bcf vs 5y, but the last print was a 29 Bcf bullish surprise",
-    "1-7D weather demand -19% vs 5y and bearish multi-timeframe technicals"
+    "Seasonality favors upside: 81% / 63% odds higher at 1 / 3 weeks, +6.8% typical 4-week move",
+    "Weather demand weak: -19.8% vs 5y (1-7D), -9.3% (8-16D)",
+    "Price $2.97 below fair $3.10 inside $2.60-$3.60 band",
+    "COT managed money net short at 4th percentile (contrarian bullish)",
+    "Storage +43 Bcf vs 5y but last print was a 29 Bcf bullish surprise; steep winter contango"
   ],
   "risks": [
-    "Mild weather prolongs the shoulder season and storage surpluses widen",
-    "Contango roll cost and a weak technical trend can push price toward the $2.60 band floor",
-    "Low seasonal reliability (56 pp spread) and a sparse data feed (news sources failed)"
+    "Persistently mild weather and a growing storage surplus could push price toward the $2.60 band floor",
+    "Bearish trend (50<200 EMA on most timeframes) can extend; short-covering may fail to materialize",
+    "Low seasonality reliability (56 pp 10-90% spread) and Nov expiry dynamics"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
