@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-10-23T20:00:00Z",
-  "sourceSnapshotAt": "2026-10-23T19:54:19.473Z",
-  "frontPrice": 3.055000066757202,
-  "nextPrice": 3.055000066757202,
-  "marketState": "neutral-to-bearish near term - record-low weather demand and storage surplus vs. extreme managed-money short; price data inconsistent",
-  "summary": "Weather is the dominant bearish factor: 1-7D demand is -31.7% and 8-16D is -46.4% vs the 5y average (range position 0.05-0.14), with the trend gauge at a 5y low. Storage is +37 Bcf vs the 5y average after a +77 Bcf build, though the report was a 15 Bcf bullish surprise. Managed-money positioning is at the 0th 5y percentile (net -157k), which is a squeeze risk, and seasonality shows 69%/63% odds of higher prices at 2/3 weeks (+5.9% typical 4w move) but with low reliability. Price data conflict: front is 3.055 (not live, next identical, prev close 2.637) while all technicals close at 2.637 and are deeply oversold and bearish. Fair value is about $3.10 with a $2.60-3.60 band, so price is FAIR on either reading. The futures curve is missing, so I lean WAIT on both trades until the price reference is confirmed.",
+  "generatedAt": "2026-10-23T23:00:00Z",
+  "sourceSnapshotAt": "2026-10-23T22:49:58.126Z",
+  "frontPrice": 2.626,
+  "nextPrice": 3.047,
+  "marketState": "bearish near-term, stretched/oversold with contrarian upside risk",
+  "summary": "Front Nov is $2.626, sitting on the lower edge of the fair-value band ($2.609-$3.609, fair about $3.11) and 23 pp below the typical year-to-date seasonal path. Weather is the dominant bear: 1-7D demand is -32% and 8-16D is -46% vs 5y, with demand at a 5y low, and storage is +37 Bcf vs 5y. Against that, managed money is at the 0th 5y percentile (very crowded short), the last storage print was a bullish -15 Bcf surprise, and every timeframe is deeply oversold (4h RSI about 21, daily and weekly below the lower Bollinger band). The steep contango (Dec +$0.42, Jan +$0.88) reflects winter risk premium but also adds roll drag for longs. Seasonality reliability is low, though 2-3 week odds of a higher price are 63-69%. Net: fade-the-fear mean-reversion long over weeks, but no short-term entry while the trend and weather remain bearish.",
   "longTerm": {
-    "stance": "WAIT",
+    "stance": "LONG",
     "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "n/a",
-    "stop": "n/a",
-    "tp1": "n/a",
-    "tp2": "n/a",
-    "riskReward": "n/a",
-    "sizing": "n/a",
-    "rationale": "Contrarian long case is real: price is 10.6 pp below the seasonal median, MM positioning is at a 5y extreme short, and fair value ($3.0-3.1) sits at or above price. Against that, weather demand is the lowest in 5y and storage has a surplus, and the price reference is unreliable (3.055 vs 2.637).",
-    "invalidation": "n/a while waiting; a sustained break below the fair-value band floor (~$2.50-2.60) would remove the long case.",
-    "trigger": "Confirm a live front price. Then go LONG on a hold or reclaim of $2.60-2.70 with a bullish 1d/4h momentum turn (RSI rising from oversold, MACD histogram positive) or a weather-demand upgrade in the 8-16D outlook. Stop below $2.50, TP1 ~$3.10 (fair), TP2 ~$3.55 (band top)."
+    "entry": "$2.55-$2.65 (scale in)",
+    "stop": "$2.30",
+    "tp1": "$3.05",
+    "tp2": "$3.40",
+    "riskReward": "1:2.3",
+    "sizing": "0.5R approx 0.5% risk (reduced for low conviction and contango roll drag)",
+    "rationale": "Price is at the bottom of the fair-value band (fair about $3.1, +21D band floor $2.49) and well below seasonal median, while managed money is at an extreme short (0th percentile), a squeeze setup. Winter curve premium (Jan $3.50) and a bullish storage surprise support a reversion toward fair value, but warm weather and the storage surplus cap conviction.",
+    "invalidation": "Weekly close below $2.40, or a further storage surplus build together with warm 8-16D forecasts holding demand more than 40% below the 5y average into mid-November.",
+    "trigger": ""
   },
   "shortTerm": {
     "stance": "WAIT",
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "All six timeframes are bearish with 50<200 EMA crosses, and the daily and weekly closes are below the lower Bollinger band. RSI is oversold at 21-30 on the 4h and 1d, which argues against chasing shorts. The front price (3.055) conflicts with the technical close (2.637) and the curve is unavailable, so there is no clean edge.",
-    "invalidation": "n/a while waiting.",
-    "trigger": "Wait for a verified live quote. A bounce from oversold with a 1h MACD cross up gives a small tactical long toward $2.85-3.05. A daily close back below the Bollinger low with falling RSI and a weather downgrade gives a short."
+    "rationale": "All six timeframes are bearish with 50<200 EMAs and negative MACD on 1h and above, and weather demand is at a 5y low. Oversold RSI and the band floor argue against shorting here, but there is no reversal confirmation to go long.",
+    "invalidation": "n/a",
+    "trigger": "Long on a 1h/4h close back above about $2.75 with MACD turning positive and RSI recovering above 40, targeting $3.00. Alternatively short only on a daily close below $2.55 (band break), targeting $2.40."
   },
   "keyDrivers": [
-    "Weather demand -32% (1-7D) and -46% (8-16D) vs 5y, near range lows - bearish",
-    "Storage +37 Bcf vs 5y, but a 15 Bcf bullish surprise on the latest report",
-    "Managed-money net short at the 0th 5y percentile - squeeze risk",
-    "Seasonality: 69%/63% odds higher at 2/3 weeks, price 10.6 pp below the median, low reliability",
-    "Price is within the fair-value band ($2.6-3.6) on all horizons"
+    "Weather demand -32% (1-7D) and -46% (8-16D) vs 5y, lowest in 5y",
+    "Price at the lower fair-value band edge ($2.61) vs fair $3.11",
+    "Managed money net short at the 0th 5y percentile (squeeze risk)",
+    "Storage +37 Bcf vs 5y, but a bullish -15 Bcf surprise",
+    "Steep contango (Dec +$0.42, Jan +$0.88) and oversold technicals on all timeframes"
   ],
   "risks": [
-    "Front price 3.055 vs technical close 2.637, with next identical to front: possible stale or roll data",
-    "Futures curve data missing; no contango/backwardation read",
-    "Short-covering rally against bearish weather, or a weather-driven further leg down"
+    "Persistently warm forecasts keep demand depressed and extend the downtrend through the band floor",
+    "Contango roll drag and low seasonal reliability weaken the long-term edge",
+    "Short-covering rallies can be sharp and reverse quickly, so whipsaws are likely"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
