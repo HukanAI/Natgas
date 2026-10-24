@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-10-23T23:00:00Z",
-  "sourceSnapshotAt": "2026-10-23T22:49:58.126Z",
+  "generatedAt": "2026-10-24T01:30:00Z",
+  "sourceSnapshotAt": "2026-10-24T01:19:24.230Z",
   "frontPrice": 2.626,
   "nextPrice": 3.047,
-  "marketState": "bearish near-term, stretched/oversold with contrarian upside risk",
-  "summary": "Front Nov is $2.626, sitting on the lower edge of the fair-value band ($2.609-$3.609, fair about $3.11) and 23 pp below the typical year-to-date seasonal path. Weather is the dominant bear: 1-7D demand is -32% and 8-16D is -46% vs 5y, with demand at a 5y low, and storage is +37 Bcf vs 5y. Against that, managed money is at the 0th 5y percentile (very crowded short), the last storage print was a bullish -15 Bcf surprise, and every timeframe is deeply oversold (4h RSI about 21, daily and weekly below the lower Bollinger band). The steep contango (Dec +$0.42, Jan +$0.88) reflects winter risk premium but also adds roll drag for longs. Seasonality reliability is low, though 2-3 week odds of a higher price are 63-69%. Net: fade-the-fear mean-reversion long over weeks, but no short-term entry while the trend and weather remain bearish.",
+  "marketState": "bearish near term, stretched to the downside: record-mild weather vs a low-edge fair value and washed-out positioning",
+  "summary": "Nov NG at $2.626 is sitting on the bottom edge of the fair-value band ($2.609-$3.609) and is about 23pp below the typical seasonal YTD path. Weather is the main headwind: 1-7D and 8-16D demand are about 35% below the 5y average, and the 5y-low trend keeps the tape bearish on every timeframe. Against that, managed money is at the 0th 5y percentile of net positioning, the last storage report was a bullish miss (-15 Bcf), RSI is 21-30 on the 4h and daily, and price is below the lower Bollinger band on the daily and weekly. Seasonality is weakly supportive (69%/63% higher at 2/3 weeks, +5.9% typical 4w move) but its reliability is low. The steep contango to Dec ($3.05) and Jan ($3.50) shows the market is pricing winter, which favors a mean-reversion long over weeks but not a catch of the falling knife today.",
   "longTerm": {
     "stance": "LONG",
-    "conviction": "low",
+    "conviction": "medium",
     "horizon": "3-12 weeks",
-    "entry": "$2.55-$2.65 (scale in)",
-    "stop": "$2.30",
+    "entry": "$2.55-$2.68 (scale in, current front $2.626)",
+    "stop": "$2.35",
     "tp1": "$3.05",
-    "tp2": "$3.40",
-    "riskReward": "1:2.3",
-    "sizing": "0.5R approx 0.5% risk (reduced for low conviction and contango roll drag)",
-    "rationale": "Price is at the bottom of the fair-value band (fair about $3.1, +21D band floor $2.49) and well below seasonal median, while managed money is at an extreme short (0th percentile), a squeeze setup. Winter curve premium (Jan $3.50) and a bullish storage surprise support a reversion toward fair value, but warm weather and the storage surplus cap conviction.",
-    "invalidation": "Weekly close below $2.40, or a further storage surplus build together with warm 8-16D forecasts holding demand more than 40% below the 5y average into mid-November.",
+    "tp2": "$3.50",
+    "riskReward": "1:1.7 to TP1, 1:3.5 to TP2",
+    "sizing": "1R approx 1% risk; build in two halves",
+    "rationale": "Price is at the fair-value band floor ($2.61 now, $2.51 at +21D) with fair near $3.0-3.1, and managed money is at a 0th-percentile net short, which is a classic squeeze setup into winter. Seasonality shows 63-69% odds of a higher 2-3 week close and a +5.9% typical 4w move. Storage is +37 Bcf over the 5y average, which caps the upside.",
+    "invalidation": "Weekly close below $2.35, or a break below the $2.50 band floor at +21D with storage surpluses widening further.",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "All six timeframes are bearish with 50<200 EMAs and negative MACD on 1h and above, and weather demand is at a 5y low. Oversold RSI and the band floor argue against shorting here, but there is no reversal confirmation to go long.",
+    "rationale": "Trend is bearish on all six timeframes with 50<200 EMAs, and 1-16 day demand is about 35% below normal, so there is no reason for a bounce yet. But RSI of 21-30 and the lower-Bollinger breach make fresh shorts poor value near the fair-value floor.",
     "invalidation": "n/a",
-    "trigger": "Long on a 1h/4h close back above about $2.75 with MACD turning positive and RSI recovering above 40, targeting $3.00. Alternatively short only on a daily close below $2.55 (band break), targeting $2.40."
+    "trigger": "Go long on a 1h/4h close back above about $2.70 with MACD histogram turning positive, or on a flush into $2.50-$2.55 that reverses. Consider shorting only on a daily close below $2.55 with no RSI divergence."
   },
   "keyDrivers": [
-    "Weather demand -32% (1-7D) and -46% (8-16D) vs 5y, lowest in 5y",
-    "Price at the lower fair-value band edge ($2.61) vs fair $3.11",
-    "Managed money net short at the 0th 5y percentile (squeeze risk)",
-    "Storage +37 Bcf vs 5y, but a bullish -15 Bcf surprise",
-    "Steep contango (Dec +$0.42, Jan +$0.88) and oversold technicals on all timeframes"
+    "Weather demand about 35% below 5y for 1-16D, the lowest in 5y (bearish)",
+    "Price at fair-value band floor, $0.48 below fair (supportive)",
+    "Managed money net short at 0th 5y percentile (squeeze risk)",
+    "Storage +37 Bcf vs 5y but last print was a -15 Bcf bullish surprise",
+    "Steep contango: Dec +$0.42, Jan +$0.88 over Nov"
   ],
   "risks": [
-    "Persistently warm forecasts keep demand depressed and extend the downtrend through the band floor",
-    "Contango roll drag and low seasonal reliability weaken the long-term edge",
-    "Short-covering rallies can be sharp and reverse quickly, so whipsaws are likely"
+    "Persistent mild weather widens the storage surplus and pushes price through the band floor",
+    "Oversold bounces may fail in a strong downtrend, since the fair-value band is wide and seasonality reliability is low",
+    "Front-month roll or expiry volatility distorts the Nov/Dec spread"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
