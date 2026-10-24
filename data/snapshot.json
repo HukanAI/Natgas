@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T18:31:43.406Z",
+  "generatedAt": "2026-10-24T21:23:34.553Z",
   "price": {
     "front": 2.640000104904175,
     "next": 3.049999952316284,
@@ -21,7 +21,7 @@
   },
   "weather": {
     "demand_1_7D": {
-      "pctVs5y": -33.1,
+      "pctVs5y": -33.6,
       "rangePos": 0.08,
       "aboveMax": false,
       "belowMin": false
@@ -33,10 +33,10 @@
       "belowMin": false
     },
     "trend": {
-      "nowDemand": "61.3",
-      "change24h": "+6.2",
+      "nowDemand": "61.2",
+      "change24h": "+6.0",
       "range7d": "54.0 – 85.2",
-      "vs5yNormal": "-32.7 · lowest in 5y"
+      "vs5yNormal": "-32.8 · lowest in 5y"
     }
   },
   "fairValue": {
@@ -67,14 +67,14 @@
       }
     },
     "plus14D": {
-      "fair": "$3.061",
-      "band": "$2.561 – $3.561",
+      "fair": "$3.060",
+      "band": "$2.560 – $3.560",
       "front": {
-        "spread": "Spread −$0.421",
+        "spread": "Spread −$0.420",
         "status": "SLIGHTLY UNDER"
       },
       "next": {
-        "spread": "Spread −$0.011",
+        "spread": "Spread −$0.010",
         "status": "FAIR"
       }
     },
@@ -109,7 +109,56 @@
     "forecast": "Forecast: +92 Bcf",
     "surprise": "Surprise: -15 Bcf Bullish"
   },
-  "technicals": {},
+  "technicals": {
+    "5m": {
+      "close": 2.64,
+      "trend": "neutral",
+      "rsi14": 58.4,
+      "macdHist": "positive",
+      "emaCross": "50<200",
+      "bollinger": "inside band"
+    },
+    "15m": {
+      "close": 2.64,
+      "trend": "bearish",
+      "rsi14": 44.3,
+      "macdHist": "positive",
+      "emaCross": "50<200",
+      "bollinger": "inside band"
+    },
+    "1h": {
+      "close": 2.64,
+      "trend": "bearish",
+      "rsi14": 29.6,
+      "macdHist": "negative",
+      "emaCross": "50<200",
+      "bollinger": "inside band"
+    },
+    "4h": {
+      "close": 2.64,
+      "trend": "bearish",
+      "rsi14": 23.3,
+      "macdHist": "negative",
+      "emaCross": "50<200",
+      "bollinger": "inside band"
+    },
+    "1d": {
+      "close": 2.64,
+      "trend": "bearish",
+      "rsi14": 30.4,
+      "macdHist": "negative",
+      "emaCross": "50<200",
+      "bollinger": "below lower"
+    },
+    "1w": {
+      "close": 2.64,
+      "trend": "bearish",
+      "rsi14": 33.2,
+      "macdHist": "negative",
+      "emaCross": "50<200",
+      "bollinger": "below lower"
+    }
+  },
   "futuresCurve": [
     {
       "label": "Nov 2026",
@@ -200,19 +249,12 @@
     "ngf": 878,
     "storage": 877,
     "cot": 520,
-    "taTimeframes": 0
+    "taTimeframes": 6
   },
   "pageErrors": [],
   "diagnostics": {
     "network": {
       "cdn.jsdelivr.net": {
-        "ok": 1,
-        "err": 0,
-        "statuses": {
-          "200": 1
-        }
-      },
-      "fonts.googleapis.com": {
         "ok": 1,
         "err": 0,
         "statuses": {
@@ -226,6 +268,13 @@
           "200": 2
         }
       },
+      "fonts.googleapis.com": {
+        "ok": 1,
+        "err": 0,
+        "statuses": {
+          "200": 1
+        }
+      },
       "fonts.gstatic.com": {
         "ok": 2,
         "err": 0,
@@ -234,11 +283,11 @@
         }
       },
       "r.jina.ai": {
-        "ok": 22,
-        "err": 4,
+        "ok": 23,
+        "err": 3,
         "statuses": {
-          "200": 22,
-          "429": 4
+          "200": 23,
+          "429": 3
         }
       },
       "api.eia.gov": {
@@ -271,7 +320,7 @@
       },
       "proxy.cors.sh": {
         "ok": 0,
-        "err": 2,
+        "err": 1,
         "statuses": {}
       }
     },
@@ -280,18 +329,11 @@
         "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://www.bing.com/news/search?q=natural+gas+price+OR+henry+hub&format=RSS",
         "error": "net::ERR_NAME_NOT_RESOLVED"
-      },
-      {
-        "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://oilprice.com/rss/main",
-        "error": "net::ERR_NAME_NOT_RESOLVED"
       }
     ],
     "console": [
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: the server responded with a status of 429 ()",
-      "[error] Failed to load resource: the server responded with a status of 429 ()",
-      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: the server responded with a status of 429 ()",
       "[error] Failed to load resource: the server responded with a status of 429 ()"
     ]
