@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-10-26T01:10:00Z",
-  "sourceSnapshotAt": "2026-10-26T01:02:38.438Z",
-  "frontPrice": 2.5239999294281006,
-  "nextPrice": 2.9839999675750732,
-  "marketState": "bearish near-term, deeply oversold with mean-reversion upside potential",
-  "summary": "Nov NG at $2.52 is in a firm downtrend (all timeframes bearish, 50<200 EMAs, daily/weekly below lower Bollinger, 4h RSI ~18) driven by record-low 1-7D weather demand (-44.5% vs 5y, below min) and a storage surplus of +37 Bcf vs 5y. Against that, price sits ~$0.58 below fair value ($3.11, band floor $2.61), YTD performance is 26pp below the seasonal median, managed money is at the 0th 5y percentile (net -157k), and the last storage print was a bullish surprise. Seasonality is mildly supportive (63-69% odds higher over 2-3 weeks, +5.9% typical 4w move) but reliability is low. The steep contango to Dec/Jan ($2.98/$3.45) reflects winter premium and limits roll-yield for longs. Net: stretched downside favors a patient long over weeks, but chasing a falling knife short-term has poor edge.",
+  "generatedAt": "2026-10-26T07:30:00Z",
+  "sourceSnapshotAt": "2026-10-26T07:19:04.028Z",
+  "frontPrice": 2.5139999389648438,
+  "nextPrice": 2.990000009536743,
+  "marketState": "bearish near term, deeply oversold with stretched-short positioning (squeeze-prone)",
+  "summary": "Front Nov at $2.514 is trading $0.60 under fair value ($3.109, band floor $2.609) and 26 pp below the median seasonal YTD path, while managed money sits at the 0th 5y percentile net short. Against that, near-term weather demand is very weak (1-7D -50% vs 5y, below the 5y min), storage is +37 Bcf above the 5y average, and every timeframe from 5m to 1w is bearish with the daily and weekly closes below the lower Bollinger band. Seasonality has a mild upward bias over 2-3 weeks (69%/63%), but reliability is low. Deep oversold RSI (4h 17) and a steep contango to Dec/Jan favor a bounce or squeeze, but there is no reversal confirmation yet. Stance: constructive over weeks, patient over days.",
   "longTerm": {
     "stance": "LONG",
-    "conviction": "low",
+    "conviction": "medium",
     "horizon": "3-12 weeks",
-    "entry": "$2.45-$2.55 (scale in)",
+    "entry": "$2.45-$2.55",
     "stop": "$2.20",
-    "tp1": "$2.98",
+    "tp1": "$2.99",
     "tp2": "$3.40",
-    "riskReward": "1:1.4 to TP1, 1:2.7 to TP2",
-    "sizing": "0.5R approx 0.5% risk, add to 1R on confirmation of weather turn",
-    "rationale": "Price is far below the fair-value band floor ($2.61) and 26pp below seasonal median YTD, with managed money at an extreme 0th-percentile short, a classic squeeze setup into winter. Seasonality shows 63-69% odds of higher prices over 2-3 weeks and a +5.9% typical 4-week move, though reliability is low.",
-    "invalidation": "Daily close below $2.20, or winter forecasts staying well below normal demand with storage surplus widening beyond +60 Bcf vs 5y.",
+    "riskReward": "1:1.5 to TP1, 1:2.9 to TP2",
+    "sizing": "1R approx 0.75% risk (scale in, half at $2.55, half near $2.45)",
+    "rationale": "Price is below the fair-value band floor with fair value $3.0-3.1 across all horizons, and managed money is at a 5y-extreme net short, giving asymmetric squeeze potential into winter. Seasonality shows a +5.9% typical 4-week move and the curve prices Jan at $3.46. Storage surplus and weak weather cap conviction at medium.",
+    "invalidation": "Weekly close below $2.20, or storage surpluses widening well beyond +50 Bcf vs 5y while mild weather persists into December.",
     "trigger": ""
   },
   "shortTerm": {
     "stance": "WAIT",
-    "conviction": "medium",
+    "conviction": "low",
     "horizon": "1-10 days",
     "entry": "n/a",
     "stop": "n/a",
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Technicals are bearish on every timeframe with lowest-in-5y weather demand for the next 7 days, so shorting an extremely oversold market (RSI 18-27, below lower Bollinger) at fair-value undervaluation is risky, while catching the bottom lacks confirmation. 8-16D demand is near normal (+3.2%), hinting at a turn but not yet confirmed.",
+    "rationale": "All timeframes are bearish with 1-7D demand below the 5y minimum, so shorting an extremely oversold market below the lower Bollinger band at the 0th COT percentile is poor risk. Going long into a falling trend lacks confirmation.",
     "invalidation": "n/a",
-    "trigger": "Wait for a 1h/4h close back above ~$2.65 with RSI rising and positive MACD (long), or an 8-16D forecast upgrade toward colder; avoid shorts below $2.45 unless a clean breakdown with volume."
+    "trigger": "Long on a 4h/daily close back above ~$2.62 (fair-value band floor) with MACD histogram turning positive, or on forecasts lifting the 8-16D demand; short only on a failed bounce and a clean break below $2.45."
   },
   "keyDrivers": [
-    "1-7D weather demand -44.5% vs 5y (below min), lowest in 5y: bearish near term",
-    "Price $0.58 under fair value $3.11; below band floor $2.61",
-    "Managed money net -157k at 0th 5y percentile: squeeze risk",
-    "Storage +37 Bcf vs 5y but last print -15 Bcf bullish surprise",
-    "All technical timeframes bearish yet extremely oversold"
+    "Front $0.60 below fair value and under band floor",
+    "Managed money at 0th percentile net short (squeeze risk)",
+    "1-7D weather demand -50% vs 5y, below 5y min",
+    "Storage +37 Bcf vs 5y, though last report was a bullish -15 Bcf miss",
+    "Steep contango: Dec +$0.48, Jan +$0.94 over front"
   ],
   "risks": [
-    "Persistent mild weather and growing storage surplus can extend the selloff well below fair-value band",
-    "Steep contango (Nov to Jan +$0.93) erodes returns on long positions rolled",
-    "Low seasonality reliability (65pp spread) and thin shoulder-season liquidity can cause gaps"
+    "Persistently mild weather and a growing storage surplus drive further downside",
+    "Momentum is bearish on all timeframes; oversold can stay oversold",
+    "Low seasonal reliability and thin shoulder-season liquidity around the Nov contract roll"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
