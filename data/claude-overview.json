@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-10-27T00:30:00Z",
-  "sourceSnapshotAt": "2026-10-27T00:20:30.038Z",
-  "frontPrice": 3.0350000858306885,
-  "nextPrice": 3.5320000648498535,
-  "marketState": "bearish near term, stretched/oversold - contrarian long setup building for the winter",
-  "summary": "Dec NG sits at $3.035, in the middle of the fair-value band ($2.61-$3.61, fair ~$3.11), so valuation gives no edge by itself. Seasonality is mildly constructive (price 11 pp below a typical year, 63-69% odds higher over 2-3 weeks, typical 4w move +5.9%) but reliability is low. The 1-7D weather demand is -46% vs 5y (near range floor) which caps rallies now, while 8-16D demand turns +16% vs 5y, hinting at a recovery. Positioning is extremely washed out (managed-money net -157k, 0th 5y percentile) and daily/weekly RSI is ~29 below the lower Bollinger band, against a bearish trend and a +37 Bcf storage surplus (last print a bullish -15 Bcf miss). Net: wait for the near-term trade, favor a scaled long for the multi-week horizon.",
+  "generatedAt": "2026-10-27T06:00:00Z",
+  "sourceSnapshotAt": "2026-10-27T05:52:29.955Z",
+  "frontPrice": 3.038,
+  "nextPrice": 3.537,
+  "marketState": "neutral-to-bearish near term, with a contrarian bullish setup building (oversold, record-short funds)",
+  "summary": "Dec NG at $3.038 is trading at fair value ($3.109, band $2.61-$3.61) and about 11 pp below the typical seasonal path. Near-term weather demand is very weak (-45% vs 5y for days 1-7, -17% for days 8-16), and every timeframe from 1h to 1w is bearish. Daily and weekly RSI are near 30. Managed money sits at the 0th 5-year percentile of net positioning (-157k), and the last storage print was a bullish surprise (-15 Bcf), even though inventories remain +37 Bcf above the 5y average. Seasonality favors a 2-3 week bounce (69%/63% higher) but reliability is low. Weak demand caps the short-term upside, while stretched positioning and oversold readings argue against chasing shorts.",
   "longTerm": {
     "stance": "LONG",
     "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$2.95-$3.05 (scale in)",
-    "stop": "$2.68",
+    "entry": "$2.95-$3.08 (scale in)",
+    "stop": "$2.62",
     "tp1": "$3.45",
-    "tp2": "$3.60",
-    "riskReward": "1:1.3 to 1:1.7",
-    "sizing": "0.75R approx 0.75% risk (low conviction, trend still down)",
-    "rationale": "Record-short managed money (0th percentile) and oversold weekly RSI ~29 plus price below seasonal median give squeeze/mean-reversion potential into winter. Fair value is $3.01-$3.11 with band top at ~$3.6 and the curve prices Jan at $3.53, supporting targets in the $3.45-$3.60 zone. Storage surplus and bearish trend keep conviction low.",
-    "invalidation": "Daily close below $2.68 (near the fair-value band floor ~$2.6) or storage surplus widening quickly with mild 8-16D forecasts.",
+    "tp2": "$3.85",
+    "riskReward": "1:1.2 to TP1, 1:2.3 to TP2",
+    "sizing": "1R approx 0.75% risk (reduced for low conviction)",
+    "rationale": "Managed money is at an extreme short (0th percentile) and price is below the seasonal median, with 63-69% odds of being higher in 2-3 weeks. Price is mid-band, with the winter strip (Jan $3.54) priced well above the front month, and a -15 Bcf storage surprise supports a heating-season bid. A storage surplus (+37 Bcf) and a bearish trend keep conviction low.",
+    "invalidation": "A daily close below $2.62 (the lower fair-value band), or a rising storage surplus together with a warm mid-November outlook.",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "1-7D demand is -46% vs 5y and 1h-1w trends are all bearish, so downside momentum is not exhausted, while oversold RSI and extreme short positioning argue against chasing shorts. Price is FAIR vs the band, so no valuation edge either way.",
+    "rationale": "Days 1-7 weather demand is at the bottom of its range (-45% vs 5y) and the 1h-1w trends are bearish, so a short-term long is fighting momentum. Shorting is unattractive too: price is at fair value, daily and weekly RSI are near 30, and funds are already at an extreme short.",
     "invalidation": "n/a",
-    "trigger": "Long on a 4h/daily close back above ~$3.15 with MACD turning up, or a flush toward $2.85-$2.90 that shows rejection; short only on a break below $2.90 with expanding volume."
+    "trigger": "Go long on a daily close back above about $3.15 with a positive MACD, or on a flush toward $2.80-2.85 that stalls. Go short only on a daily close below $2.95 with weather demand still weak."
   },
   "keyDrivers": [
-    "1-7D weather demand -46% vs 5y (bearish) vs 8-16D +16% (turning supportive)",
-    "Managed-money net -157k at 0th 5y percentile - squeeze fuel",
-    "Price mid-band of fair value ($2.61-$3.61); Jan contango +$0.50 over Dec",
-    "Daily/weekly RSI ~29 and below lower Bollinger within a bearish trend",
-    "Storage +37 Bcf vs 5y, but latest injection missed forecast by 15 Bcf"
+    "Managed-money net short at the 0th 5y percentile (contrarian bullish)",
+    "Weather demand 1-7D at -45% vs 5y (bearish near term)",
+    "Price at fair value ($3.109), mid-band $2.61-$3.61, 11 pp below the seasonal median",
+    "Storage +37 Bcf vs 5y, but the last report was a -15 Bcf bullish surprise",
+    "Steep Dec-to-Jan contango (+$0.50) and bearish multi-timeframe technicals with oversold RSI"
   ],
   "risks": [
-    "Persistently mild weather and storage surplus extend the downtrend below $2.80",
-    "Short-covering rally may fade quickly given low seasonal reliability (65 pp spread)",
-    "Snapshot had some failed data requests (news feeds), so sentiment/news is not captured"
+    "A mild November would keep demand weak and widen the storage surplus, pushing price toward $2.6",
+    "A short squeeze or a cold-forecast shift could spike prices quickly, which hurts any short idea",
+    "Seasonal reliability is low (65 pp spread), and the data is a snapshot taken before the US open"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
