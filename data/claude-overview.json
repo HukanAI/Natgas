@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-10-30T09:30:00Z",
-  "sourceSnapshotAt": "2026-10-30T09:26:06.081Z",
-  "frontPrice": 2.916,
+  "generatedAt": "2026-10-30T16:30:00Z",
+  "sourceSnapshotAt": "2026-10-30T16:26:54.219Z",
+  "frontPrice": 2.896,
   "nextPrice": 3.368,
-  "marketState": "bearish near term, but stretched/oversold with extreme spec shorting",
-  "summary": "Dec NG at $2.916 sits below the seasonal median path (-24.5 pp YTD vs median) and weather demand is the weakest in 5y (-50% vs 5y for days 1-7, -38% for 8-16 and below the 5y min), with storage +39 Bcf above the 5y average and an in-line +80 Bcf build. Technicals are bearish on all timeframes from 1h to 1w with daily RSI 25.8 and weekly price below the lower Bollinger band. Counterweights: price is slightly under fair value ($3.106, band $2.61-$3.61), managed money is at the 0th 5y percentile of net position (crowded short), and Jan trades +$0.45 above Dec. Seasonality is low-reliability with a slight -4.9% typical 4-week drift. Net: the trend is down but the downside looks increasingly priced in, so I favor a patient, small-size long scale-in for the longer horizon and no chase in the short term.",
+  "marketState": "bearish near term, stretched/oversold - weak weather demand and storage surplus vs. extreme spec shorts and sub-fair price",
+  "summary": "Front Dec at $2.896 sits below fair value ($3.106, band $2.606-$3.606) and YTD performance trails the seasonal median by 25 pp, but the shoulder-season seasonal edge is weak (44-56% up-probability, typical 4w move -4.9%, low reliability). The next 7 days of weather demand are 48.6% below the 5y average (range position 0.07), with the 8-16 day outlook near normal (-4.1%) and demand trending up +14.9 over 24h, so the worst of the demand drought may be priced. Storage is +39 Bcf vs 5y with an in-line print (+80 Bcf), a mild bearish backdrop, while managed money is at the 0th 5y percentile (net -157k), a major squeeze setup. Technicals are bearish and deeply oversold (daily RSI 25, weekly below lower Bollinger), and the curve has a steep winter premium (Jan $3.37 vs Dec $2.90). Net: tactical longs have a good reward/risk over weeks, but no timing edge yet over days.",
   "longTerm": {
     "stance": "LONG",
     "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$2.75-$2.92 (scale in, half now / half on dips)",
+    "entry": "$2.75-$2.90 (scale in)",
     "stop": "$2.50",
-    "tp1": "$3.25",
+    "tp1": "$3.20",
     "tp2": "$3.60",
-    "riskReward": "1:2.1 (to TP2, avg entry ~$2.85)",
-    "sizing": "0.5R approx 0.5% risk (low conviction)",
-    "rationale": "Price is at/below fair value ($3.106; +21D fair $2.91 band $2.41-$3.41) while managed money is at the 0th 5y percentile, a classic squeeze setup into winter when the Jan contract is priced $0.45 higher. Weather and storage are bearish and seasonality only mildly supportive, so conviction and size stay low.",
-    "invalidation": "Daily close below $2.50 (below lower fair-value band edge region), or storage surplus vs 5y widening materially with mild forecasts persisting into December.",
+    "riskReward": "1:2.3",
+    "sizing": "1R approx 0.75% risk (reduced, low conviction)",
+    "rationale": "Price is below fair value at every horizon (fair $2.96-$3.11) with the band floor near $2.47-$2.61, and managed money is at a 0th-percentile net short, which favors upside skew into winter. Jan contract at $3.37 shows the market already prices winter demand; the 8-16D weather is near normal rather than extreme-warm. Offsetting this are the storage surplus and weak seasonality, so conviction is low.",
+    "invalidation": "Weekly close below $2.50 (under the fair-value band floor), or forecasts shifting to persistently warm 8-16D with storage surplus widening beyond +60 Bcf.",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Weather demand for days 1-16 is the lowest in 5y and every timeframe from 1h to 1w is bearish below the 200 EMA, so shorting is attractive on trend but daily RSI 25.8 and weekly below-lower-band make it a poor risk entry. Longing a falling knife lacks confirmation; price is near fair (spread -$0.08 to -$0.19), leaving no edge.",
+    "rationale": "Next-7-day demand is 48.6% below normal and trend is bearish on 1h through 1w, so shorting oversold (daily RSI 25) near the band floor is poor value, while catching the falling knife lacks confirmation. Front is only slightly under fair, offering no clear edge.",
     "invalidation": "n/a",
-    "trigger": "Long on a 1d/4h close above ~$3.00 with RSI turning up from oversold or a weather-model shift colder; short only on a bounce to ~$3.10-$3.20 that fails, or a daily close below ~$2.85."
+    "trigger": "Long on a 4h/daily close back above ~$2.98 with RSI turning up and revised colder forecasts, or short only on a bounce to ~$3.10 that fails; alternatively a dip to $2.60-$2.65 with bullish divergence."
   },
   "keyDrivers": [
-    "Weather demand lowest in 5y (-50% days 1-7, -38% days 8-16, below 5y min)",
-    "Managed-money net short at 0th 5y percentile (contrarian squeeze risk)",
-    "Front price slightly under fair value $3.106; band $2.61-$3.61",
-    "Storage +39 Bcf vs 5y, in-line build (+80 vs +81 forecast)",
-    "Bearish technicals but deeply oversold (daily RSI 25.8, weekly below lower band)"
+    "Price below fair value ($2.896 vs $3.106; band $2.606-$3.606)",
+    "7-day weather demand -48.6% vs 5y, 8-16D near normal",
+    "Managed money net short at 0th 5y percentile (squeeze risk)",
+    "Storage +39 Bcf vs 5y, in-line injection",
+    "Deeply oversold bearish technicals; steep Dec-Jan winter premium"
   ],
   "risks": [
-    "Persistent mild weather and storage surplus can drive price below the fair-value band floor ($2.41-$2.61)",
-    "Short squeeze or cold-forecast flip can produce sharp upside gaps against any short",
-    "Seasonality reliability is low (59 pp spread), and news data feed failed in this snapshot"
+    "Persistently mild weather and larger storage surplus push price to the $2.50 band floor or below",
+    "Bearish momentum can stay oversold; shorts may keep adding",
+    "Low-reliability seasonality and contract roll to Jan can distort front-price signals"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
