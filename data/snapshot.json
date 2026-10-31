@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-31T18:59:47.138Z",
+  "generatedAt": "2026-10-31T22:21:43.675Z",
   "price": {
     "front": 2.8980000019073486,
     "next": 3.371000051498413,
@@ -21,7 +21,7 @@
   },
   "weather": {
     "demand_1_7D": {
-      "pctVs5y": -47.1,
+      "pctVs5y": -45.8,
       "rangePos": 0.09,
       "aboveMax": false,
       "belowMin": false
@@ -33,10 +33,10 @@
       "belowMin": false
     },
     "trend": {
-      "nowDemand": "79.3",
-      "change24h": "+34.5",
+      "nowDemand": "79.9",
+      "change24h": "+35.1",
       "range7d": "44.8 – 87.0",
-      "vs5yNormal": "-36.1 · lowest in 5y"
+      "vs5yNormal": "-35.5 · lowest in 5y"
     }
   },
   "fairValue": {
@@ -67,26 +67,26 @@
       }
     },
     "plus14D": {
-      "fair": "$2.997",
-      "band": "$2.497 – $3.497",
+      "fair": "$2.998",
+      "band": "$2.498 – $3.498",
       "front": {
-        "spread": "Spread −$0.099",
+        "spread": "Spread −$0.100",
         "status": "FAIR"
       },
       "next": {
-        "spread": "Spread +$0.374",
+        "spread": "Spread +$0.373",
         "status": "SLIGHTLY OVER"
       }
     },
     "plus21D": {
-      "fair": "$2.919",
-      "band": "$2.419 – $3.419",
+      "fair": "$2.920",
+      "band": "$2.420 – $3.420",
       "front": {
-        "spread": "Spread −$0.021",
+        "spread": "Spread −$0.022",
         "status": "FAIR"
       },
       "next": {
-        "spread": "Spread +$0.452",
+        "spread": "Spread +$0.451",
         "status": "SLIGHTLY OVER"
       }
     }
@@ -325,7 +325,7 @@
       },
       "api.allorigins.win": {
         "ok": 1,
-        "err": 1,
+        "err": 0,
         "statuses": {
           "200": 1
         }
@@ -336,19 +336,12 @@
         "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://www.bing.com/news/search?q=natural+gas+price+OR+henry+hub&format=RSS",
         "error": "net::ERR_NAME_NOT_RESOLVED"
-      },
-      {
-        "host": "api.allorigins.win",
-        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS",
-        "error": "net::ERR_FAILED"
       }
     ],
     "console": [
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: the server responded with a status of 429 ()",
       "[error] Failed to load resource: the server responded with a status of 429 ()",
-      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requ",
-      "[error] Failed to load resource: net::ERR_FAILED",
       "[error] Failed to load resource: the server responded with a status of 429 ()"
     ]
   }
