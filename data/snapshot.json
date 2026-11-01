@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-10-31T22:21:43.675Z",
+  "generatedAt": "2026-11-01T01:46:10.633Z",
   "price": {
     "front": 2.8980000019073486,
     "next": 3.371000051498413,
     "frontPrevClose": 2.8980000019073486,
-    "nextPrevClose": 3.371000051498413,
+    "nextPrevClose": null,
     "frontIsLive": true
   },
   "seasonality": {
-    "season": "Shoulder",
+    "season": "Heating",
     "vsMedian": "-25.0 pp",
     "vsMedianDetail": "below typical year (-14.9% YTD vs +10.1% median)",
     "probHigher_1_2_3_4w": "56% / 50% / 50% / 44%",
@@ -22,13 +22,13 @@
   "weather": {
     "demand_1_7D": {
       "pctVs5y": -45.8,
-      "rangePos": 0.09,
+      "rangePos": 0.07,
       "aboveMax": false,
       "belowMin": false
     },
     "demand_8_16D": {
-      "pctVs5y": -20.9,
-      "rangePos": 0.11,
+      "pctVs5y": -15.2,
+      "rangePos": 0.2,
       "aboveMax": false,
       "belowMin": false
     },
@@ -44,50 +44,50 @@
     "nextPrice": "$3.371",
     "now": {
       "fair": "$3.106",
-      "band": "$2.606 – $3.606",
+      "band": "$2.606 – $5.006",
       "front": {
         "spread": "Spread −$0.208",
         "status": "SLIGHTLY UNDER"
       },
       "next": {
         "spread": "Spread +$0.265",
-        "status": "SLIGHTLY OVER"
+        "status": "FAIR"
       }
     },
     "plus7D": {
       "fair": "$3.063",
-      "band": "$2.563 – $3.563",
+      "band": "$2.563 – $4.963",
       "front": {
         "spread": "Spread −$0.165",
         "status": "FAIR"
       },
       "next": {
         "spread": "Spread +$0.308",
-        "status": "SLIGHTLY OVER"
+        "status": "FAIR"
       }
     },
     "plus14D": {
-      "fair": "$2.998",
-      "band": "$2.498 – $3.498",
+      "fair": "$3.000",
+      "band": "$2.500 – $4.900",
       "front": {
-        "spread": "Spread −$0.100",
+        "spread": "Spread −$0.102",
         "status": "FAIR"
       },
       "next": {
-        "spread": "Spread +$0.373",
-        "status": "SLIGHTLY OVER"
+        "spread": "Spread +$0.371",
+        "status": "FAIR"
       }
     },
     "plus21D": {
-      "fair": "$2.920",
-      "band": "$2.420 – $3.420",
+      "fair": "$2.938",
+      "band": "$2.438 – $4.838",
       "front": {
-        "spread": "Spread −$0.022",
+        "spread": "Spread −$0.040",
         "status": "FAIR"
       },
       "next": {
-        "spread": "Spread +$0.451",
-        "status": "SLIGHTLY OVER"
+        "spread": "Spread +$0.433",
+        "status": "FAIR"
       }
     }
   },
@@ -283,11 +283,18 @@
         }
       },
       "r.jina.ai": {
-        "ok": 23,
-        "err": 3,
+        "ok": 22,
+        "err": 4,
         "statuses": {
-          "200": 23,
-          "429": 3
+          "200": 22,
+          "429": 4
+        }
+      },
+      "api.eia.gov": {
+        "ok": 5,
+        "err": 0,
+        "statuses": {
+          "200": 5
         }
       },
       "archive-api.open-meteo.com": {
@@ -311,24 +318,10 @@
           "200": 5
         }
       },
-      "api.eia.gov": {
-        "ok": 5,
-        "err": 0,
-        "statuses": {
-          "200": 5
-        }
-      },
       "proxy.cors.sh": {
         "ok": 0,
-        "err": 1,
+        "err": 2,
         "statuses": {}
-      },
-      "api.allorigins.win": {
-        "ok": 1,
-        "err": 0,
-        "statuses": {
-          "200": 1
-        }
       }
     },
     "failedRequests": [
@@ -336,13 +329,20 @@
         "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://www.bing.com/news/search?q=natural+gas+price+OR+henry+hub&format=RSS",
         "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "proxy.cors.sh",
+        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGF27.NYM?interval=1d&range=10d&lang=en-US&region=US",
+        "error": "net::ERR_NAME_NOT_RESOLVED"
       }
     ],
     "console": [
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
       "[error] Failed to load resource: the server responded with a status of 429 ()",
       "[error] Failed to load resource: the server responded with a status of 429 ()",
-      "[error] Failed to load resource: the server responded with a status of 429 ()"
+      "[error] Failed to load resource: the server responded with a status of 429 ()",
+      "[error] Failed to load resource: the server responded with a status of 429 ()",
+      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
     ]
   }
 }
