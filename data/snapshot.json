@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T01:46:10.633Z",
+  "generatedAt": "2026-11-01T08:33:40.569Z",
   "price": {
     "front": 2.8980000019073486,
     "next": 3.371000051498413,
@@ -21,22 +21,22 @@
   },
   "weather": {
     "demand_1_7D": {
-      "pctVs5y": -45.8,
-      "rangePos": 0.07,
+      "pctVs5y": -47.3,
+      "rangePos": 0.06,
       "aboveMax": false,
       "belowMin": false
     },
     "demand_8_16D": {
-      "pctVs5y": -15.2,
-      "rangePos": 0.2,
+      "pctVs5y": -19,
+      "rangePos": 0.14,
       "aboveMax": false,
       "belowMin": false
     },
     "trend": {
-      "nowDemand": "79.9",
-      "change24h": "+35.1",
+      "nowDemand": "84.0",
+      "change24h": "+20.3",
       "range7d": "44.8 – 87.0",
-      "vs5yNormal": "-35.5 · lowest in 5y"
+      "vs5yNormal": "-32.6 · lowest in 5y"
     }
   },
   "fairValue": {
@@ -67,26 +67,26 @@
       }
     },
     "plus14D": {
-      "fair": "$3.000",
-      "band": "$2.500 – $4.900",
+      "fair": "$2.998",
+      "band": "$2.498 – $4.898",
       "front": {
-        "spread": "Spread −$0.102",
+        "spread": "Spread −$0.100",
         "status": "FAIR"
       },
       "next": {
-        "spread": "Spread +$0.371",
+        "spread": "Spread +$0.373",
         "status": "FAIR"
       }
     },
     "plus21D": {
-      "fair": "$2.938",
-      "band": "$2.438 – $4.838",
+      "fair": "$2.921",
+      "band": "$2.421 – $4.821",
       "front": {
-        "spread": "Spread −$0.040",
+        "spread": "Spread −$0.023",
         "status": "FAIR"
       },
       "next": {
-        "spread": "Spread +$0.433",
+        "spread": "Spread +$0.450",
         "status": "FAIR"
       }
     }
@@ -283,18 +283,10 @@
         }
       },
       "r.jina.ai": {
-        "ok": 22,
-        "err": 4,
-        "statuses": {
-          "200": 22,
-          "429": 4
-        }
-      },
-      "api.eia.gov": {
-        "ok": 5,
+        "ok": 23,
         "err": 0,
         "statuses": {
-          "200": 5
+          "200": 23
         }
       },
       "archive-api.open-meteo.com": {
@@ -311,6 +303,13 @@
           "200": 1
         }
       },
+      "api.eia.gov": {
+        "ok": 5,
+        "err": 0,
+        "statuses": {
+          "200": 5
+        }
+      },
       "api.open-meteo.com": {
         "ok": 5,
         "err": 0,
@@ -320,7 +319,7 @@
       },
       "proxy.cors.sh": {
         "ok": 0,
-        "err": 2,
+        "err": 1,
         "statuses": {}
       }
     },
@@ -329,19 +328,9 @@
         "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://www.bing.com/news/search?q=natural+gas+price+OR+henry+hub&format=RSS",
         "error": "net::ERR_NAME_NOT_RESOLVED"
-      },
-      {
-        "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGF27.NYM?interval=1d&range=10d&lang=en-US&region=US",
-        "error": "net::ERR_NAME_NOT_RESOLVED"
       }
     ],
     "console": [
-      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
-      "[error] Failed to load resource: the server responded with a status of 429 ()",
-      "[error] Failed to load resource: the server responded with a status of 429 ()",
-      "[error] Failed to load resource: the server responded with a status of 429 ()",
-      "[error] Failed to load resource: the server responded with a status of 429 ()",
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
     ]
   }

@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-11-01T02:00:00Z",
-  "sourceSnapshotAt": "2026-11-01T01:46:10.633Z",
-  "frontPrice": 2.8980000019073486,
-  "nextPrice": 3.371000051498413,
-  "marketState": "bearish near term, but washed out and stretched (managed money at 0th percentile short)",
-  "summary": "Dec NG at $2.898 sits below the $3.106 fair value and near the bottom of the $2.606-$5.006 band, with a steep Dec-Jan contango (+$0.47) pricing winter risk. Near-term fundamentals are bearish: 1-7D weather demand is -45.8% vs 5y (range position 0.07), the lowest in 5y, storage is +39 Bcf above the 5y average, and seasonality is weak (YTD -25 pp below the median year, 4-week odds 44%, low reliability). Technicals are bearish on 1h-1w, but the daily RSI is 25 and the weekly price is below its lower Bollinger band. Managed money is at an extreme 0th-percentile net short (-206k), which leaves a large short-covering squeeze risk if weather turns. The edge is asymmetric for a patient long over weeks, but there is no timing edge in the next few days.",
+  "generatedAt": "2026-11-01T09:00:00Z",
+  "sourceSnapshotAt": "2026-11-01T08:33:40.569Z",
+  "frontPrice": 2.898,
+  "nextPrice": 3.371,
+  "marketState": "bearish near-term, stretched/oversold - mean-reversion risk building",
+  "summary": "Dec NG at $2.898 sits in a bearish trend on every timeframe from 1h to 1w, with daily RSI 25 and weekly RSI 27 (deeply oversold). Weather is the main headwind: 1-7D demand is 47% below the 5y average (range position 0.06) and 8-16D is 19% below, though demand rose 20 points in 24h. Price is slightly under fair value ($3.106; band $2.606-$5.006) and storage is +39 Bcf vs 5y with an in-line print. Managed money is at the 0th 5y percentile net short (-206k), a classic squeeze set-up. Seasonality is weak and unreliable (YTD -25pp vs median, 4w typical move -4.9%, ~50% odds higher), so the near-term edge is low and the medium-term skew is modestly bullish.",
   "longTerm": {
     "stance": "LONG",
     "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$2.75-$2.90 (scale in)",
-    "stop": "$2.42",
-    "tp1": "$3.30",
-    "tp2": "$3.75",
-    "riskReward": "1:1.2 to TP1, 1:2.3 to TP2",
-    "sizing": "0.5R initial, add to 1R on confirmation; 1R approx 1% risk",
-    "rationale": "Price is under fair value ($3.106) and the 21D fair of $2.94, with the market at an extreme managed-money short (0th percentile) and oversold on the daily/weekly (RSI about 25-27). The Jan contract at $3.37 shows the market prices a winter premium. Against that, weak seasonality and a +39 Bcf storage surplus cap conviction.",
-    "invalidation": "Weekly close below $2.42 (under the fair-value band floor of about $2.44-$2.50), or storage surplus vs 5y widening materially while weather stays well below normal into December.",
+    "entry": "$2.75-$2.90",
+    "stop": "$2.52",
+    "tp1": "$3.25",
+    "tp2": "$3.70",
+    "riskReward": "1:1.3 to 1:2.7",
+    "sizing": "1R approx 0.5-1% risk (half size given weak seasonality)",
+    "rationale": "Price is below fair ($3.11) and near the low edge of the band ($2.61), with record-low managed-money positioning and deeply oversold weekly RSI. The Jan contract at $3.37 shows the market pricing winter risk, and cold turning from record-low demand is a likely catalyst. Seasonality and storage surplus cap conviction.",
+    "invalidation": "Weekly close below $2.52 (under the fair-value band floor of about $2.50-$2.60), or storage surplus vs 5y widening materially with persistent warm forecasts into December.",
     "trigger": ""
   },
   "shortTerm": {
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "The lowest 5y weather demand (-45.8% vs 5y over 1-7D) and bearish 1h-1w trends argue against buying now. Shorting is poor value with a daily RSI of 25, price near the fair-value band floor and an extreme short COT, so squeeze risk is high. The 1-10 day risk/reward is unclear.",
+    "rationale": "1-7D weather demand is 47% below normal and the trend is bearish on 1h-1w, which argues against buying, but daily/weekly RSI near 25 and extreme short positioning make shorting here poor risk:reward. Price is only slightly under near-term fair ($3.06 at +7D).",
     "invalidation": "n/a",
-    "trigger": "Go LONG on a daily close above about $3.00 with 8-16D demand turning toward normal, or on a flush toward $2.65-$2.70 that holds with a reversal. Go SHORT only on a daily close below about $2.78 with the weather outlook still deteriorating."
+    "trigger": "Go LONG on a daily close back above about $3.00 with 8-16D demand forecasts rising, or on a flush toward $2.60 with bullish momentum divergence. Go SHORT only on a failed bounce below $2.95 with a daily close under $2.80."
   },
   "keyDrivers": [
-    "Weather demand 1-7D -45.8% vs 5y, lowest in 5y (bearish near term)",
-    "Price $2.90 vs fair $3.11, and the 21D fair is $2.94 (slight undervaluation)",
-    "COT managed money at the 0th percentile 5y (contrarian bullish)",
-    "Storage +39 Bcf vs 5y, in line with forecast (mildly bearish)",
-    "Seasonality: YTD -25 pp below the median year with weak 4-week odds (44%), low reliability"
+    "Weather demand 47% below 5y (1-7D), lowest in 5y - bearish now, but turning up",
+    "Price $0.21 under fair ($3.11); band floor $2.61 close below",
+    "Managed money net short at 0th 5y percentile - squeeze risk",
+    "Daily/weekly RSI 25/27 oversold, but trend bearish on all higher timeframes",
+    "Storage +39 Bcf vs 5y, in-line report; Jan contango +$0.47 prices winter risk"
   ],
   "risks": [
-    "Persistent warm weather deepens the storage surplus and pushes price to the $2.4-$2.6 band floor",
-    "Short-covering rally on a cold forecast shift can gap price higher against a WAIT stance",
-    "Contract roll Dec to Jan (+$0.47 contango) distorts continuous-chart levels"
+    "Persistent warm weather and surplus storage push price through the $2.60 band floor",
+    "Short squeeze or cold forecast shift causing sharp upside gap against a short bias",
+    "Low seasonality reliability and thin data (news fetch failed) - limited edge"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
