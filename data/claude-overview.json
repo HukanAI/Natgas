@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-11-01T09:00:00Z",
-  "sourceSnapshotAt": "2026-11-01T08:33:40.569Z",
+  "generatedAt": "2026-11-01T15:45:00Z",
+  "sourceSnapshotAt": "2026-11-01T15:40:55.867Z",
   "frontPrice": 2.898,
   "nextPrice": 3.371,
-  "marketState": "bearish near-term, stretched/oversold - mean-reversion risk building",
-  "summary": "Dec NG at $2.898 sits in a bearish trend on every timeframe from 1h to 1w, with daily RSI 25 and weekly RSI 27 (deeply oversold). Weather is the main headwind: 1-7D demand is 47% below the 5y average (range position 0.06) and 8-16D is 19% below, though demand rose 20 points in 24h. Price is slightly under fair value ($3.106; band $2.606-$5.006) and storage is +39 Bcf vs 5y with an in-line print. Managed money is at the 0th 5y percentile net short (-206k), a classic squeeze set-up. Seasonality is weak and unreliable (YTD -25pp vs median, 4w typical move -4.9%, ~50% odds higher), so the near-term edge is low and the medium-term skew is modestly bullish.",
+  "marketState": "bearish near-term, but washed out - oversold with record-short positioning",
+  "summary": "Front (Dec) at $2.90 is 25pp below the seasonal median (-14.9% YTD vs +10.1%), but seasonal odds are only ~50% with low reliability and a -4.9% typical 4-week move. Weather is the main bearish driver: 1-7D demand is -51% and 8-16D is -32% vs the 5y average (below the 5y min), and storage sits +39 Bcf above the 5y average. Offsetting this, price is slightly under fair value ($3.11, band $2.61-$5.01), managed money is at the 0th 5y percentile (net -206k), and daily/weekly RSI is 25-27 with weekly price below the lower Bollinger band. The curve has a steep Jan premium ($3.37) that prices winter risk. Net: downtrend is intact, but the downside looks limited and the squeeze risk is rising.",
   "longTerm": {
     "stance": "LONG",
     "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$2.75-$2.90",
-    "stop": "$2.52",
-    "tp1": "$3.25",
-    "tp2": "$3.70",
-    "riskReward": "1:1.3 to 1:2.7",
-    "sizing": "1R approx 0.5-1% risk (half size given weak seasonality)",
-    "rationale": "Price is below fair ($3.11) and near the low edge of the band ($2.61), with record-low managed-money positioning and deeply oversold weekly RSI. The Jan contract at $3.37 shows the market pricing winter risk, and cold turning from record-low demand is a likely catalyst. Seasonality and storage surplus cap conviction.",
-    "invalidation": "Weekly close below $2.52 (under the fair-value band floor of about $2.50-$2.60), or storage surplus vs 5y widening materially with persistent warm forecasts into December.",
+    "entry": "$2.75-$2.90 (scale in)",
+    "stop": "$2.42",
+    "tp1": "$3.30",
+    "tp2": "$3.75",
+    "riskReward": "1:2 (to TP2, from about $2.85)",
+    "sizing": "0.5R approx 0.5% risk (low conviction, scale in)",
+    "rationale": "Price is below the median and slightly under fair value, with the band low around $2.42-$2.61 close by. Managed money is at the 0th percentile (max short) and the weekly/daily RSI is extremely oversold. The Jan contract at $3.37 shows the market already pays for winter cold, so any cold shift in the 8-16D outlook could force short covering.",
+    "invalidation": "Daily close below $2.42 (the +21D fair-value band floor). Also invalid if storage surpluses widen well beyond +39 Bcf while weather stays mild into December.",
     "trigger": ""
   },
   "shortTerm": {
     "stance": "WAIT",
-    "conviction": "low",
+    "conviction": "medium",
     "horizon": "1-10 days",
     "entry": "n/a",
     "stop": "n/a",
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "1-7D weather demand is 47% below normal and the trend is bearish on 1h-1w, which argues against buying, but daily/weekly RSI near 25 and extreme short positioning make shorting here poor risk:reward. Price is only slightly under near-term fair ($3.06 at +7D).",
+    "rationale": "1-7D demand is -51% vs the 5y average and the 1h-1w trends are all bearish with EMA50<200 on every timeframe, so a long fights the trend. Shorting at $2.90 is poor value: the daily RSI is 25, price is near the fair-value lower band, and COT is at an extreme short. The edge is unclear in either direction.",
     "invalidation": "n/a",
-    "trigger": "Go LONG on a daily close back above about $3.00 with 8-16D demand forecasts rising, or on a flush toward $2.60 with bullish momentum divergence. Go SHORT only on a failed bounce below $2.95 with a daily close under $2.80."
+    "trigger": "Go long on a daily close above about $3.00 with the 8-16D demand forecast rising, or on a flush to about $2.60-$2.65 that holds. Go short only on a daily close below $2.75 with weather still weak."
   },
   "keyDrivers": [
-    "Weather demand 47% below 5y (1-7D), lowest in 5y - bearish now, but turning up",
-    "Price $0.21 under fair ($3.11); band floor $2.61 close below",
-    "Managed money net short at 0th 5y percentile - squeeze risk",
-    "Daily/weekly RSI 25/27 oversold, but trend bearish on all higher timeframes",
-    "Storage +39 Bcf vs 5y, in-line report; Jan contango +$0.47 prices winter risk"
+    "Weather demand very weak: 1-7D -51.5% and 8-16D -32.2% vs 5y, lowest in 5y",
+    "Storage +39 Bcf vs 5y, injection in line with forecast (+80 Bcf)",
+    "Managed money net -206k, 0th 5y percentile: squeeze fuel",
+    "Price $2.90 vs fair $3.11 (band $2.61-$5.01), 25pp below seasonal median",
+    "Daily/weekly RSI 25/27 oversold, but trend bearish on all timeframes from 1h up"
   ],
   "risks": [
-    "Persistent warm weather and surplus storage push price through the $2.60 band floor",
-    "Short squeeze or cold forecast shift causing sharp upside gap against a short bias",
-    "Low seasonality reliability and thin data (news fetch failed) - limited edge"
+    "Mild weather persists through November, deepening the storage surplus and pushing price to the $2.40s",
+    "Sharp short-covering rally on any cold forecast change, which hurts shorts and WAIT sidelines",
+    "Dec/Jan roll and curve kinks (Jan $3.37 vs Dec $2.90, Mar $2.41) distort the front-month signal"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }

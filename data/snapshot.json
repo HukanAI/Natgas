@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-01T08:33:40.569Z",
+  "generatedAt": "2026-11-01T15:40:55.867Z",
   "price": {
     "front": 2.8980000019073486,
     "next": 3.371000051498413,
     "frontPrevClose": 2.8980000019073486,
-    "nextPrevClose": null,
+    "nextPrevClose": 3.371000051498413,
     "frontIsLive": true
   },
   "seasonality": {
@@ -21,22 +21,22 @@
   },
   "weather": {
     "demand_1_7D": {
-      "pctVs5y": -47.3,
-      "rangePos": 0.06,
+      "pctVs5y": -51.5,
+      "rangePos": 0.02,
       "aboveMax": false,
       "belowMin": false
     },
     "demand_8_16D": {
-      "pctVs5y": -19,
-      "rangePos": 0.14,
+      "pctVs5y": -32.2,
+      "rangePos": -0.04,
       "aboveMax": false,
-      "belowMin": false
+      "belowMin": true
     },
     "trend": {
-      "nowDemand": "84.0",
-      "change24h": "+20.3",
+      "nowDemand": "82.4",
+      "change24h": "+23.3",
       "range7d": "44.8 – 87.0",
-      "vs5yNormal": "-32.6 · lowest in 5y"
+      "vs5yNormal": "-35.2 · lowest in 5y"
     }
   },
   "fairValue": {
@@ -67,26 +67,26 @@
       }
     },
     "plus14D": {
-      "fair": "$2.998",
-      "band": "$2.498 – $4.898",
+      "fair": "$2.997",
+      "band": "$2.497 – $4.897",
       "front": {
-        "spread": "Spread −$0.100",
+        "spread": "Spread −$0.099",
         "status": "FAIR"
       },
       "next": {
-        "spread": "Spread +$0.373",
+        "spread": "Spread +$0.374",
         "status": "FAIR"
       }
     },
     "plus21D": {
-      "fair": "$2.921",
-      "band": "$2.421 – $4.821",
+      "fair": "$2.922",
+      "band": "$2.422 – $4.822",
       "front": {
-        "spread": "Spread −$0.023",
+        "spread": "Spread −$0.024",
         "status": "FAIR"
       },
       "next": {
-        "spread": "Spread +$0.450",
+        "spread": "Spread +$0.449",
         "status": "FAIR"
       }
     }
@@ -284,16 +284,17 @@
       },
       "r.jina.ai": {
         "ok": 23,
-        "err": 0,
+        "err": 4,
         "statuses": {
-          "200": 23
+          "200": 23,
+          "429": 4
         }
       },
-      "archive-api.open-meteo.com": {
-        "ok": 30,
+      "api.eia.gov": {
+        "ok": 5,
         "err": 0,
         "statuses": {
-          "200": 30
+          "200": 5
         }
       },
       "publicreporting.cftc.gov": {
@@ -303,11 +304,11 @@
           "200": 1
         }
       },
-      "api.eia.gov": {
-        "ok": 5,
+      "archive-api.open-meteo.com": {
+        "ok": 30,
         "err": 0,
         "statuses": {
-          "200": 5
+          "200": 30
         }
       },
       "api.open-meteo.com": {
@@ -331,7 +332,11 @@
       }
     ],
     "console": [
-      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+      "[error] Failed to load resource: the server responded with a status of 429 ()",
+      "[error] Failed to load resource: the server responded with a status of 429 ()",
+      "[error] Failed to load resource: the server responded with a status of 429 ()",
+      "[error] Failed to load resource: the server responded with a status of 429 ()"
     ]
   }
 }
