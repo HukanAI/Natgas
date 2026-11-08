@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-07T21:19:31.577Z",
+  "generatedAt": "2026-11-08T01:00:46.177Z",
   "price": {
     "front": 2.997999906539917,
     "next": 3.4539999961853027,
@@ -21,22 +21,22 @@
   },
   "weather": {
     "demand_1_7D": {
-      "pctVs5y": -14.3,
-      "rangePos": 0.18,
+      "pctVs5y": -10.5,
+      "rangePos": 0.24,
       "aboveMax": false,
       "belowMin": false
     },
     "demand_8_16D": {
-      "pctVs5y": -27.2,
-      "rangePos": 0.1,
+      "pctVs5y": -34,
+      "rangePos": 0.03,
       "aboveMax": false,
       "belowMin": false
     },
     "trend": {
-      "nowDemand": "107.2",
-      "change24h": "+0.1",
+      "nowDemand": "107.8",
+      "change24h": "+0.8",
       "range7d": "70.6 – 119.4",
-      "vs5yNormal": "-31.8 · lowest in 5y"
+      "vs5yNormal": "-31.1 · lowest in 5y"
     }
   },
   "fairValue": {
@@ -67,26 +67,26 @@
       }
     },
     "plus14D": {
-      "fair": "$2.954",
-      "band": "$2.454 – $4.854",
+      "fair": "$2.959",
+      "band": "$2.459 – $4.859",
       "front": {
-        "spread": "Spread +$0.044",
+        "spread": "Spread +$0.039",
         "status": "FAIR"
       },
       "next": {
-        "spread": "Spread +$0.500",
+        "spread": "Spread +$0.495",
         "status": "FAIR"
       }
     },
     "plus21D": {
-      "fair": "$2.867",
-      "band": "$2.367 – $4.767",
+      "fair": "$2.881",
+      "band": "$2.381 – $4.781",
       "front": {
-        "spread": "Spread +$0.131",
+        "spread": "Spread +$0.117",
         "status": "FAIR"
       },
       "next": {
-        "spread": "Spread +$0.587",
+        "spread": "Spread +$0.573",
         "status": "FAIR"
       }
     }
@@ -284,17 +284,17 @@
       },
       "r.jina.ai": {
         "ok": 23,
-        "err": 3,
+        "err": 2,
         "statuses": {
           "200": 23,
-          "429": 3
+          "429": 2
         }
       },
-      "api.eia.gov": {
-        "ok": 5,
+      "publicreporting.cftc.gov": {
+        "ok": 1,
         "err": 0,
         "statuses": {
-          "200": 5
+          "200": 1
         }
       },
       "archive-api.open-meteo.com": {
@@ -311,17 +311,17 @@
           "200": 5
         }
       },
-      "publicreporting.cftc.gov": {
-        "ok": 1,
-        "err": 0,
-        "statuses": {
-          "200": 1
-        }
-      },
       "proxy.cors.sh": {
         "ok": 0,
         "err": 1,
         "statuses": {}
+      },
+      "api.eia.gov": {
+        "ok": 5,
+        "err": 0,
+        "statuses": {
+          "200": 5
+        }
       },
       "api.allorigins.win": {
         "ok": 0,
@@ -348,13 +348,12 @@
     ],
     "console": [
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+      "[error] Failed to load resource: the server responded with a status of 429 ()",
+      "[error] Failed to load resource: the server responded with a status of 429 ()",
       "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requ",
       "[error] Failed to load resource: net::ERR_FAILED",
-      "[error] Failed to load resource: the server responded with a status of 429 ()",
       "[error] Access to fetch at 'https://api.allorigins.win/get?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requ",
-      "[error] Failed to load resource: net::ERR_FAILED",
-      "[error] Failed to load resource: the server responded with a status of 429 ()",
-      "[error] Failed to load resource: the server responded with a status of 429 ()"
+      "[error] Failed to load resource: net::ERR_FAILED"
     ]
   }
 }
