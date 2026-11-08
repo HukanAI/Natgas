@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-08T01:10:00Z",
-  "sourceSnapshotAt": "2026-11-08T01:00:46.177Z",
+  "generatedAt": "2026-11-08T07:10:00Z",
+  "sourceSnapshotAt": "2026-11-08T07:05:16.037Z",
   "frontPrice": 2.998,
   "nextPrice": 3.454,
-  "marketState": "bearish-leaning - record-low weather demand and storage surplus, offset by extreme managed-money short positioning",
-  "summary": "Dec NG at $2.998 sits almost exactly on fair value ($3.082, band $2.58-$4.98), so valuation gives no edge. Weather is the dominant bearish force: 8-16D demand is 34% below the 5y average (range position 0.03) and the demand trend is the lowest in 5y. Seasonality is soft (YTD 16.9 pp below the median, typical 4-week move -8.8%, only 38% of years higher after 4 weeks), though reliability is low. Storage is +58 Bcf vs the 5y average, but the last build missed forecast by 14 Bcf (bullish). Managed money is at the 0th 5y percentile (net -225k), which creates sharp short-covering risk against any bearish trade. Daily and weekly technicals are bearish, with weekly RSI near oversold.",
+  "marketState": "bearish near term, but stretched: weak weather and storage surplus vs record-short COT positioning",
+  "summary": "Dec NG sits at $2.998, about 8c under the $3.08 fair value and well inside the $2.58-$4.98 band, so valuation gives no edge. Seasonality is bearish (price -16.9 pp vs median, 4-week odds up only 38%, typical 4-week move -8.8%), though reliability is low. Weather is the dominant bearish force: 8-16D demand is -34.7% vs 5y and below the 5y minimum, and the demand trend is the lowest in 5y. Storage is +58 Bcf above the 5y average, although the latest report was a 14 Bcf bullish surprise. Managed money is at the 0th percentile of its 5y net position, which leaves squeeze risk against any short. The daily and weekly technicals are bearish with RSI near 31-38, so the weekly chart is approaching oversold.",
   "longTerm": {
     "stance": "WAIT",
     "conviction": "low",
@@ -15,35 +15,35 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Bearish weather, a storage surplus and negative seasonality argue for downside. A fair-value reading, record-extreme MM shorts and a steep Jan winter premium ($3.45) make a multi-week short crowded and prone to squeezes. No clear asymmetric edge at this price.",
-    "invalidation": "n/a",
-    "trigger": "Go SHORT on a failed bounce into $3.25-3.45 with 8-16D demand still below -20% vs 5y. Go LONG only if price holds the $2.55-2.60 band floor and 8-16D demand turns above normal, or if storage builds fall short of forecast again."
+    "rationale": "Bearish weather, a storage surplus and weak seasonality conflict with a record-short COT position and a steep Jan premium (Jan at $3.45 vs Dec at $3.00). Price is fair-valued, so neither side has an edge over 3-12 weeks.",
+    "invalidation": "n/a while waiting.",
+    "trigger": "Go long on a drop to $2.55-2.65 (the lower band edge) with 8-16D demand turning up toward normal, or on a weekly RSI turn up from below 30 with storage surpluses shrinking. Go short on a bounce to $3.30-3.45 if forecasts stay at or below the 5y minimum."
   },
   "shortTerm": {
     "stance": "SHORT",
     "conviction": "low",
     "horizon": "1-10 days",
-    "entry": "$3.00-3.10",
-    "stop": "$3.24",
-    "tp1": "$2.80",
-    "tp2": "$2.62",
+    "entry": "$2.98-3.05",
+    "stop": "$3.20",
+    "tp1": "$2.75",
+    "tp2": "$2.58",
     "riskReward": "1:1.5 to TP1, 1:2.5 to TP2",
     "sizing": "0.5R approx 0.5% risk (reduced for squeeze risk)",
-    "rationale": "Forecast demand is far below normal in both the 1-7D and 8-16D windows. The daily and weekly trends are bearish with EMA50 below EMA200. The front month is not cheap versus fair value, since the spread is about -$0.08 to +$0.12 across the horizons. The 63% one-week seasonal upside and the extreme MM short keep conviction and size low.",
-    "invalidation": "Daily close above $3.24, or a rapid weather-model flip to colder 8-16D demand.",
+    "rationale": "The 8-16D demand forecast is below the 5y minimum and the 1d and 1w trends are bearish. The 4-week seasonal odds are only 38%. The 21-day fair value drifts down to $2.86 and the band floor is about $2.36-2.58. Low-conviction because COT is at an extreme short and the weekly RSI is near 31.",
+    "invalidation": "A daily close above $3.20, or a weather forecast shift to colder 8-16D demand, would invalidate this.",
     "trigger": ""
   },
   "keyDrivers": [
-    "8-16D weather demand -34% vs 5y, lowest in 5y",
-    "Storage +58 Bcf vs 5y, despite a bullish -14 Bcf surprise",
-    "Price at fair value ($3.08), so no valuation edge",
-    "Managed money at the 0th 5y percentile (net short), a squeeze risk",
-    "Seasonality: typical 4w move -8.8%, but reliability is low"
+    "8-16D weather demand -34.7% vs 5y, below the 5y minimum",
+    "Seasonality bearish: 38% odds higher at 4 weeks, -8.8% typical move",
+    "Storage +58 Bcf vs 5y, partly offset by a 14 Bcf bullish surprise",
+    "Managed money at the 0th 5y percentile, a contrarian squeeze setup",
+    "Price near fair ($3.08) with the band floor at $2.58"
   ],
   "risks": [
-    "Short-covering rally from record-extreme MM shorts",
-    "Sudden cold shift in 8-16D weather forecasts",
-    "Steep Jan contango ($3.45) and a low-price floor from LNG demand"
+    "Short squeeze from record-short managed money",
+    "Sudden cold forecast shift lifting 8-16D demand",
+    "Winter-premium volatility around the Dec/Jan roll (Jan +$0.46 vs Dec)"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
