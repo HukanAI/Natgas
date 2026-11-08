@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-08T14:42:07.289Z",
+  "generatedAt": "2026-11-08T19:17:02.416Z",
   "price": {
     "front": 2.997999906539917,
     "next": 3.4539999961853027,
@@ -21,22 +21,22 @@
   },
   "weather": {
     "demand_1_7D": {
-      "pctVs5y": -14.8,
+      "pctVs5y": -14.6,
       "rangePos": 0.18,
       "aboveMax": false,
       "belowMin": false
     },
     "demand_8_16D": {
-      "pctVs5y": -34.3,
-      "rangePos": 0,
+      "pctVs5y": -29.3,
+      "rangePos": 0.06,
       "aboveMax": false,
       "belowMin": false
     },
     "trend": {
-      "nowDemand": "105.4",
-      "change24h": "+0.7",
+      "nowDemand": "109.9",
+      "change24h": "+2.8",
       "range7d": "70.6 – 119.4",
-      "vs5yNormal": "-38.5 · lowest in 5y"
+      "vs5yNormal": "-34.1 · lowest in 5y"
     }
   },
   "fairValue": {
@@ -67,26 +67,26 @@
       }
     },
     "plus14D": {
-      "fair": "$2.955",
-      "band": "$2.455 – $4.855",
+      "fair": "$2.956",
+      "band": "$2.456 – $4.856",
       "front": {
-        "spread": "Spread +$0.043",
+        "spread": "Spread +$0.042",
         "status": "FAIR"
       },
       "next": {
-        "spread": "Spread +$0.499",
+        "spread": "Spread +$0.498",
         "status": "FAIR"
       }
     },
     "plus21D": {
-      "fair": "$2.885",
-      "band": "$2.385 – $4.785",
+      "fair": "$2.854",
+      "band": "$2.354 – $4.754",
       "front": {
-        "spread": "Spread +$0.113",
+        "spread": "Spread +$0.144",
         "status": "FAIR"
       },
       "next": {
-        "spread": "Spread +$0.569",
+        "spread": "Spread +$0.600",
         "status": "FAIR"
       }
     }
@@ -212,18 +212,18 @@
           "200": 1
         }
       },
-      "fonts.googleapis.com": {
-        "ok": 1,
-        "err": 0,
-        "statuses": {
-          "200": 1
-        }
-      },
       "cdnjs.cloudflare.com": {
         "ok": 2,
         "err": 0,
         "statuses": {
           "200": 2
+        }
+      },
+      "fonts.googleapis.com": {
+        "ok": 1,
+        "err": 0,
+        "statuses": {
+          "200": 1
         }
       },
       "fonts.gstatic.com": {
@@ -240,13 +240,6 @@
           "200": 20
         }
       },
-      "api.eia.gov": {
-        "ok": 5,
-        "err": 0,
-        "statuses": {
-          "200": 5
-        }
-      },
       "publicreporting.cftc.gov": {
         "ok": 1,
         "err": 0,
@@ -261,6 +254,13 @@
           "200": 30
         }
       },
+      "api.eia.gov": {
+        "ok": 5,
+        "err": 0,
+        "statuses": {
+          "200": 5
+        }
+      },
       "api.open-meteo.com": {
         "ok": 5,
         "err": 0,
@@ -272,19 +272,12 @@
         "ok": 0,
         "err": 2,
         "statuses": {}
-      },
-      "api.allorigins.win": {
-        "ok": 1,
-        "err": 0,
-        "statuses": {
-          "200": 1
-        }
       }
     },
     "failedRequests": [
       {
         "host": "proxy.cors.sh",
-        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGZ26.NYM?interval=5m&range=15d&_t=1794148915553&lang=en-US&region=US",
+        "url": "https://proxy.cors.sh/https://query1.finance.yahoo.com/v8/finance/chart/NGZ26.NYM?interval=5m&range=15d&_t=1794165410128&lang=en-US&region=US",
         "error": "net::ERR_NAME_NOT_RESOLVED"
       },
       {
