@@ -1,49 +1,49 @@
 {
-  "generatedAt": "2026-11-11T23:20:00Z",
-  "sourceSnapshotAt": "2026-11-11T23:16:15.115Z",
-  "frontPrice": 3.23799991607666,
-  "nextPrice": 3.6559998989105225,
-  "marketState": "neutral-to-bearish: soft weather and storage surplus vs. extreme managed-money short positioning",
-  "summary": "Dec NG at $3.238 sits modestly above fair value ($3.08, band $2.58-$4.98), so it is not stretched. Seasonality is soft: YTD is about 10pp below the median year and the typical 4-week move is -8.8%, though the 1-week odds are 63% higher and reliability is low. Weather leans bearish, with 8-16D demand 16% below the 5y average, and storage is +58 Bcf vs the 5y despite a bullish -14 Bcf surprise. Managed money is at its 0th 5y percentile for net length (-225k), which creates real short-squeeze risk. The curve is steeply backwardated beyond Jan, and the Jan-Feb spread is a sharp inversion. Overall the bias is mildly bearish over weeks but not tradable at this price in the short run.",
+  "generatedAt": "2026-11-12T05:30:00Z",
+  "sourceSnapshotAt": "2026-11-12T05:20:29.514Z",
+  "frontPrice": 3.2760000228881836,
+  "nextPrice": 3.7049999237060547,
+  "marketState": "bearish-leaning — weather demand collapsing and storage surplus, but record-short positioning limits downside",
+  "summary": "Dec NG at $3.276 sits above the model fair value ($3.08, band $2.58-$4.98) and fair value drifts lower to $2.89 by +21D, so price is not cheap despite a wide band. Seasonality is unfavorable: YTD is 16.6pp below the median year, only 31% of years were higher after 4 weeks and the typical 4-week move is -11.9% (reliability low). The 8-16D weather demand is -37.7% vs 5y and below the historical min, a clearly bearish driver, and storage is +58 Bcf above 5y even after a bullish -14 Bcf surprise. Counterweight: managed money net is -225k (0th 5y percentile), a squeeze setup, and the steep Dec/Jan contango (+$0.43) suggests the market already prices winter risk. Net: tactical bearish bias with tight risk and low-to-medium conviction.",
   "longTerm": {
     "stance": "SHORT",
     "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "3.30-3.45 (sell rallies)",
-    "stop": "3.80",
-    "tp1": "2.95",
-    "tp2": "2.60",
-    "riskReward": "1:1 to TP1, 1:1.8 to TP2",
-    "sizing": "0.5R approx 0.5% risk (reduced due to COT squeeze risk)",
-    "rationale": "Seasonality shows a -8.8% typical 4-week move with below-median YTD, 8-16D weather demand is -16% vs the 5y average, and storage is +58 Bcf above the 5y. Fair value drifts lower from $3.08 to $2.90 over 21 days, with the front above fair at every horizon. Entry is a rally rather than the current price because the record-short COT can fuel squeezes.",
-    "invalidation": "Daily close above $3.80, a sustained cold shift lifting 8-16D demand above the 5y average, or storage builds repeatedly undershooting forecasts.",
-    "trigger": "Wait for a bounce into 3.30-3.45 before entering; no chase below 3.20."
+    "entry": "$3.30-$3.45 (scale in on bounces)",
+    "stop": "$3.80",
+    "tp1": "$2.90",
+    "tp2": "$2.55",
+    "riskReward": "1:2.1",
+    "sizing": "0.5R approx 0.5% risk (reduced: extreme MM short percentile)",
+    "rationale": "Seasonality is bearish (31% odds higher at 4w, -11.9% typical move) and fair value trends down to $2.89 by +21D. 8-16D weather demand is below the 5y min and storage is +58 Bcf vs 5y. Record-short COT caps conviction.",
+    "invalidation": "Daily close above $3.80, a sustained forecast flip to colder-than-normal 8-16D demand, or storage draws well above expectations that erase the surplus.",
+    "trigger": ""
   },
   "shortTerm": {
-    "stance": "WAIT",
+    "stance": "SHORT",
     "conviction": "low",
     "horizon": "1-10 days",
-    "entry": "n/a",
-    "stop": "n/a",
-    "tp1": "n/a",
-    "tp2": "n/a",
-    "riskReward": "n/a",
-    "sizing": "n/a",
-    "rationale": "Seasonal 1-week odds favor a higher close (63%) while the 4-week odds and weather trend lean down, and technicals are mixed (1d/1w bearish, intraday neutral, RSI 40-58). Price is within 5% of fair value, so there is no edge in either direction.",
-    "invalidation": "n/a",
-    "trigger": "Short on a rejection at 3.35-3.45 with RSI(1h) above 60; long only on a daily close above 3.50 with 8-16D demand improving."
+    "entry": "$3.30-$3.40 (sell strength)",
+    "stop": "$3.58",
+    "tp1": "$3.05",
+    "tp2": "$2.90",
+    "riskReward": "1:1.8",
+    "sizing": "0.5R approx 0.5% risk",
+    "rationale": "Front is $0.19 above fair with fair value declining at +7D/+14D, and 8-16D demand is -37.7% vs 5y. Daily/weekly technicals are bearish (50<200 EMA) while the 5m RSI near 70 offers a bounce to fade; 1h/15m are mildly bullish so entry on strength is preferred.",
+    "invalidation": "Close above $3.58 or a sharp upward revision in 8-16D weather demand; short-covering from record-short COT could spike price.",
+    "trigger": ""
   },
   "keyDrivers": [
-    "Seasonality: -8.8% typical 4-week move, YTD below median (low reliability)",
-    "Weather: 8-16D demand -16.2% vs 5y; trend -12 vs normal",
-    "Fair value $3.08 (band 2.58-4.98), front +$0.16 above fair",
-    "Storage +58 Bcf vs 5y; the -14 Bcf surprise was bullish",
-    "COT: managed money net -225k at the 0th 5y percentile (squeeze risk)"
+    "8-16D weather demand -37.7% vs 5y, below historical min",
+    "Seasonality: 31% odds higher at 4w, typical -11.9%",
+    "Front above fair ($3.08) with fair value falling to $2.89 by +21D",
+    "Storage +58 Bcf vs 5y despite bullish -14 Bcf surprise",
+    "COT managed money at 0th 5y percentile (squeeze risk)"
   ],
   "risks": [
-    "Short squeeze from record-short managed money positioning",
-    "Sudden cold-forecast shift or a Jan-contract premium (+$0.42 over Dec) pulling the front higher",
-    "Low seasonal reliability (66pp 10-90 spread)"
+    "Short-covering squeeze from extreme managed-money net short",
+    "Cold weather forecast flip or early winter storm lifting Dec/Jan contracts",
+    "Contract roll/low liquidity and steep Dec/Jan contango causing gaps"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
