@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T04:18:45.031Z",
+  "generatedAt": "2026-11-15T12:26:28.830Z",
   "price": {
     "front": 3.2300000190734863,
     "next": 3.6050000190734863,
@@ -20,23 +20,13 @@
     "reliabilityDetail": "10–90% spread 80 pp this week"
   },
   "weather": {
-    "demand_1_7D": {
-      "pctVs5y": -24.8,
-      "rangePos": 0.15,
-      "aboveMax": false,
-      "belowMin": false
-    },
-    "demand_8_16D": {
-      "pctVs5y": -12.9,
-      "rangePos": 0.23,
-      "aboveMax": false,
-      "belowMin": false
-    },
+    "demand_1_7D": null,
+    "demand_8_16D": null,
     "trend": {
-      "nowDemand": "142.4",
-      "change24h": "-21.7",
+      "nowDemand": "118.2",
+      "change24h": "-23.7",
       "range7d": "103.4 – 164.1",
-      "vs5yNormal": "-27.7 · lowest in 5y"
+      "vs5yNormal": "-55.5 · lowest in 5y"
     }
   },
   "fairValue": {
@@ -55,39 +45,39 @@
       }
     },
     "plus7D": {
-      "fair": "$2.997",
-      "band": "$2.497 – $4.897",
+      "fair": null,
+      "band": null,
       "front": {
-        "spread": "Spread +$0.233",
-        "status": "FAIR"
+        "spread": null,
+        "status": null
       },
       "next": {
-        "spread": "Spread +$0.608",
-        "status": "FAIR"
+        "spread": null,
+        "status": null
       }
     },
     "plus14D": {
-      "fair": "$2.932",
-      "band": "$2.432 – $4.832",
+      "fair": null,
+      "band": null,
       "front": {
-        "spread": "Spread +$0.298",
-        "status": "FAIR"
+        "spread": null,
+        "status": null
       },
       "next": {
-        "spread": "Spread +$0.673",
-        "status": "SLIGHTLY OVER"
+        "spread": null,
+        "status": null
       }
     },
     "plus21D": {
-      "fair": "$2.894",
-      "band": "$2.394 – $4.794",
+      "fair": null,
+      "band": null,
       "front": {
-        "spread": "Spread +$0.336",
-        "status": "FAIR"
+        "spread": null,
+        "status": null
       },
       "next": {
-        "spread": "Spread +$0.711",
-        "status": "SLIGHTLY OVER"
+        "spread": null,
+        "status": null
       }
     }
   },
@@ -106,8 +96,8 @@
     "weekChange": "+61 Bcf vs last week",
     "deviationVs5y": "+77 Bcf vs 5y",
     "date": "Report: 12.11.",
-    "forecast": "Forecast: +89 Bcf",
-    "surprise": "Surprise: -28 Bcf Bullish"
+    "forecast": "Forecast: weather data unavailable",
+    "surprise": "Surprise: —"
   },
   "technicals": {
     "5m": {
@@ -129,7 +119,7 @@
     "1h": {
       "close": 3.23,
       "trend": "neutral",
-      "rsi14": 39.1,
+      "rsi14": 39.2,
       "macdHist": "negative",
       "emaCross": "50>200",
       "bollinger": "inside band"
@@ -283,21 +273,14 @@
         }
       },
       "r.jina.ai": {
-        "ok": 22,
+        "ok": 23,
         "err": 1,
         "statuses": {
-          "200": 22,
-          "403": 1
+          "200": 23,
+          "429": 1
         }
       },
       "archive-api.open-meteo.com": {
-        "ok": 30,
-        "err": 0,
-        "statuses": {
-          "200": 30
-        }
-      },
-      "api.open-meteo.com": {
         "ok": 5,
         "err": 0,
         "statuses": {
@@ -313,22 +296,20 @@
       },
       "proxy.cors.sh": {
         "ok": 0,
-        "err": 1,
+        "err": 2,
         "statuses": {}
+      },
+      "api.eia.gov": {
+        "ok": 5,
+        "err": 0,
+        "statuses": {
+          "200": 5
+        }
       },
       "api.allorigins.win": {
         "ok": 0,
-        "err": 1,
-        "statuses": {
-          "408": 1
-        }
-      },
-      "api.eia.gov": {
-        "ok": 3,
-        "err": 0,
-        "statuses": {
-          "200": 3
-        }
+        "err": 2,
+        "statuses": {}
       }
     },
     "failedRequests": [
@@ -336,12 +317,31 @@
         "host": "proxy.cors.sh",
         "url": "https://proxy.cors.sh/https://www.bing.com/news/search?q=natural+gas+price+OR+henry+hub&format=RSS",
         "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "proxy.cors.sh",
+        "url": "https://proxy.cors.sh/https://oilprice.com/rss/main",
+        "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "host": "api.allorigins.win",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "host": "api.allorigins.win",
+        "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Foilprice.com%2Frss%2Fmain",
+        "error": "net::ERR_FAILED"
       }
     ],
     "console": [
-      "[error] Failed to load resource: the server responded with a status of 403 ()",
       "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
-      "[error] Failed to load resource: the server responded with a status of 408 ()"
+      "[error] Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+      "[error] Failed to load resource: the server responded with a status of 429 ()",
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bing.com%2Fnews%2Fsearch%3Fq%3Dnatural%2Bgas%2Bprice%2BOR%2Bhenry%2Bhub%26format%3DRSS' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requ",
+      "[error] Failed to load resource: net::ERR_FAILED",
+      "[error] Access to fetch at 'https://api.allorigins.win/raw?url=https%3A%2F%2Foilprice.com%2Frss%2Fmain' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the ",
+      "[error] Failed to load resource: net::ERR_FAILED"
     ]
   }
 }
