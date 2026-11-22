@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-11-22T09:20:00Z",
-  "sourceSnapshotAt": "2026-11-22T09:13:13.353Z",
-  "frontPrice": null,
-  "nextPrice": null,
-  "marketState": "neutral/bearish-leaning fundamentals, but price, seasonality and technicals data are missing",
-  "summary": "Price feeds (front/next), seasonality, technicals and the futures curve all failed to load (Yahoo proxy errors), so price vs fair value and price vs median cannot be assessed. Weather is clearly bearish: 1-7D demand is -21% vs 5y and 8-16D is -47% vs 5y and below the 5y minimum, with current demand the lowest in 5y. Storage is 86 Bcf above the 5y average, though the latest injection missed the forecast by 37 Bcf (bullish surprise). Managed money is extremely short (net -211.5k, 1st percentile over 5y), which creates short-squeeze risk against the bearish weather. Fair value is about $3.05 now, falling to $2.74 by +21D, so the model points to drift lower. Without a live price, no entry or stop can be anchored, so both trades are WAIT.",
+  "generatedAt": "2026-11-22T17:40:00Z",
+  "sourceSnapshotAt": "2026-11-22T17:33:32.134Z",
+  "frontPrice": 3.4110000133514404,
+  "nextPrice": 3.747999906539917,
+  "marketState": "bearish bias - weak weather demand and storage surplus, but crowded managed-money shorts cap downside",
+  "summary": "Seasonality and weather lean bearish: price is 15pp below the median seasonal path, only 19-31% of past years were higher over 1-4 weeks, the typical 4-week move is -8.4%, and 8-16D demand is 47% below the 5y norm (below the historical min). Front price of $3.41 is above fair value ($3.05, falling to $2.72 at +21D) but well inside the wide band, so the valuation signal is only mildly bearish. Storage is +86 Bcf vs the 5y average, which is bearish despite a bullish -37 Bcf surprise last week. Managed money is at the 1st percentile of net positioning (-211k), which creates sharp short-covering risk, and the 1h-4h technicals are bullish while 1d/1w are neutral/bearish. Net read: prefer fading strength over the medium term, but stay patient on the short-term trade.",
   "longTerm": {
-    "stance": "WAIT",
-    "conviction": "low",
+    "stance": "SHORT",
+    "conviction": "medium",
     "horizon": "3-12 weeks",
-    "entry": "n/a",
-    "stop": "n/a",
-    "tp1": "n/a",
-    "tp2": "n/a",
-    "riskReward": "n/a",
-    "sizing": "n/a",
-    "rationale": "Seasonality, price vs median and price vs fair value are unavailable, so the priority data is incomplete. Fair value declines from $3.045 to $2.743 over 21D with record-low weather demand, but the 1st-percentile managed-money short and the bullish storage surprise argue against a blind short.",
-    "invalidation": "n/a (no position)",
-    "trigger": "Wait for a live front price. A short only makes sense on strength toward the upper half of the fair-value band ($3.5+ vs fair $3.0) with weather still below normal. A long only makes sense near or below the $2.25-$2.55 band floor, with colder 8-16D forecasts or a continued storage miss."
+    "entry": "$3.40-$3.55 (scale in on rallies)",
+    "stop": "$3.90",
+    "tp1": "$3.05",
+    "tp2": "$2.72",
+    "riskReward": "1:1.8 (to TP2, from $3.50 entry)",
+    "sizing": "1R approx 1% risk; halve size given extreme COT short-squeeze risk",
+    "rationale": "Seasonality shows only 19% of years higher over 3-4 weeks, with a typical -8.4% move. Weather demand is lowest in 5y and storage is +86 Bcf above the 5y average. The fair-value midpoint is $3.05 and declines to $2.72 by +21D, below the $3.41 front price.",
+    "invalidation": "Daily close above $3.90, a sustained cold shift in the 8-16D forecast, or a string of storage draws well above forecast that erases the surplus.",
+    "trigger": ""
   },
   "shortTerm": {
     "stance": "WAIT",
@@ -29,20 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "There is no price, technicals or curve data, so the short-term setup cannot be built. Weather is bearish for 1-10 days (-21% and -47% vs 5y), but positioning is stretched short, so the downside may already be partly priced in.",
-    "invalidation": "n/a (no position)",
-    "trigger": "Wait for the price feed to recover. Then go short on a bounce toward the +7D fair value of about $3.0 or higher that fails on the 1h/4h technicals, or go long on a flush below the $2.49 band floor with RSI oversold."
+    "rationale": "Near-term signals conflict: 1-7D weather demand is 22% below normal and fair value is below price, but intraday/4h technicals are bullish, COT is extremely short, and the last storage print was a bullish surprise. The front price sits in FAIR status, so there is no clean edge.",
+    "invalidation": "n/a",
+    "trigger": "Go SHORT on a rejection at $3.55-$3.70 (RSI 1h above 70 turning down), or on a 4h close below $3.30 with weather still bearish. Avoid shorting into a squeeze above $3.75."
   },
   "keyDrivers": [
-    "Weather demand far below normal: 8-16D at -47% vs 5y and below the 5y minimum",
-    "Storage +86 Bcf vs 5y, though the latest injection was 37 Bcf below forecast (bullish)",
-    "Managed money net short -211.5k at the 1st percentile over 5y: squeeze risk",
-    "Fair value drifting lower: $3.045 now to $2.743 at +21D, band $2.24-$4.94"
+    "Seasonality: -15pp vs median, 19% of years higher at 4 weeks, typical -8.4%",
+    "Weather: 8-16D demand -47% vs 5y, below historical min; trend lowest in 5y",
+    "Fair value $3.05 (falling to $2.72 at +21D) vs front $3.41",
+    "Storage +86 Bcf vs 5y, offset by a bullish -37 Bcf surprise",
+    "COT managed money net -211k at 1st percentile (squeeze risk)"
   ],
   "risks": [
-    "Data outage: no price, seasonality, technicals or curve, so the read is incomplete",
-    "Short squeeze from record-extreme managed-money shorts if the weather outlook turns colder",
-    "Forecast revisions: the 8-16D weather outlook can change quickly in the winter heating season"
+    "Short squeeze from record-crowded managed-money shorts",
+    "Sudden cold forecast revision lifting 8-16D demand, with Dec-Jan contango showing winter risk premium",
+    "Low seasonal reliability (79pp 10-90% spread) and no production data in the snapshot"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
