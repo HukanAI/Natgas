@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-24T04:00:00Z",
-  "sourceSnapshotAt": "2026-11-24T03:46:34.067Z",
-  "frontPrice": 3.5420000553131104,
-  "nextPrice": 3.11299991607666,
-  "marketState": "neutral-to-bearish fundamentals, but crowded-short positioning caps downside conviction",
-  "summary": "Seasonality (vs median, win rates, typical 4w move), technicals and the futures curve are empty in this snapshot, so a priority input is missing and conviction is lowered. Weather is clearly bearish: 1-7D demand is 25.7% below the 5y average and below the 5y minimum, 8-16D is 27.3% below, and current demand is the lowest in 5y. Front at $3.54 sits $0.50 above fair ($3.05) but well inside the $2.55-$4.95 band, and the spread widens to +$0.78 by +21D, so it is only mildly rich. Storage is +86 Bcf vs 5y (bearish) but the last report was a 37 Bcf bullish surprise. Managed money is at the 1st percentile of 5y net (-211.5k), which creates short-squeeze risk against any short. Front-next is $0.43 backwardation, which favors waiting.",
+  "generatedAt": "2026-11-24T14:35:00Z",
+  "sourceSnapshotAt": "2026-11-24T14:29:30.250Z",
+  "frontPrice": null,
+  "nextPrice": null,
+  "marketState": "neutral - price, seasonality and technicals feeds are missing; weather and positioning lean bearish/contrarian",
+  "summary": "The price feed failed (front/next are null), so price vs fair value and price vs median can't be assessed. Seasonality and technicals are empty and the futures curve is missing. Weather is clearly bearish: 1-7D demand is -23% vs the 5y average, 8-16D demand is -41% (below the 5y minimum), and the trend sits at the lowest in 5y. Storage is +86 Bcf above the 5y average, though the last report was a bullish -37 Bcf surprise vs forecast. Managed money is extremely short (net -211.5k, 1st percentile of 5y), which raises short-squeeze risk against the bearish weather. With the key inputs missing, both trades are WAIT.",
   "longTerm": {
     "stance": "WAIT",
     "conviction": "low",
@@ -15,9 +15,9 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Seasonality data is missing, so the top-priority input cannot be used. Bearish weather and a storage surplus are offset by a record-crowded managed-money short and a bullish storage surprise. Price is within the fair-value band, so there is no edge at band edges.",
-    "invalidation": "n/a while waiting; a sustained break above $4.20 would signal a squeeze that invalidates any bearish bias.",
-    "trigger": "Wait for seasonality data to return plus either a rally toward $4.2-4.5 with weather still below normal (short setup), or a pullback to $2.6-2.9 near the fair-band floor with demand forecasts recovering (long setup)."
+    "rationale": "Seasonality, price vs median and the front price are missing, so there is no reliable entry. Weather and the storage surplus are bearish, while the record-short COT positioning (1st percentile) is a contrarian bullish factor. The signals conflict.",
+    "invalidation": "n/a",
+    "trigger": "Wait for the price feed and seasonality data to return. Consider a LONG only if the front trades near or below the lower fair-value band edge (about $2.27-$2.55) with the weather outlook turning colder. Consider a SHORT only if the price is above fair (about $3.0) with weak weather and no short-covering."
   },
   "shortTerm": {
     "stance": "WAIT",
@@ -29,21 +29,20 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Near-term weather is bearish and price is $0.50 over fair, but technicals and the curve are unavailable to time entries. The 1st-percentile MM short makes fading rallies risky without confirmation.",
-    "invalidation": "n/a while waiting.",
-    "trigger": "Wait for technicals to load and a bearish confirmation (rejection below the EMAs or a failed bounce near $3.70-3.80) before shorting toward $3.10; or a clean break above $3.90 for a squeeze long."
+    "rationale": "There is no live price, technicals or curve data, so the entry, stop and targets can't be anchored to the market. Near-term weather is bearish (1-7D demand -23% vs 5y), but the extreme managed-money short makes chasing a short risky.",
+    "invalidation": "n/a",
+    "trigger": "Wait for a valid front price and technicals. A SHORT needs the price at or above fair ($3.05) with a bearish trend. A LONG needs a bounce from the $2.55 band floor with a weather upgrade."
   },
   "keyDrivers": [
-    "Weather demand 1-7D at -25.7% vs 5y, below the 5y minimum",
-    "Front $0.50 above fair value but inside the band ($2.55-$4.95)",
-    "Storage +86 Bcf vs 5y, with a 37 Bcf bullish surprise",
-    "Managed money net at 1st percentile of 5y (squeeze risk)",
-    "Front-next backwardation of about $0.43"
+    "Weather demand 8-16D is -41% vs 5y and below the 5y minimum (bearish)",
+    "Storage is +86 Bcf above 5y, but the last report was a -37 Bcf bullish surprise",
+    "Managed-money net -211.5k is the 1st percentile of 5y (squeeze risk)",
+    "Fair value is about $3.05 now, drifting to $2.77 by +21D (band $2.27-$4.95)"
   ],
   "risks": [
-    "Short squeeze from record-crowded managed-money shorts",
-    "Cold forecast revisions could rapidly lift heating demand",
-    "Missing seasonality, technicals and curve data reduce reliability of this read"
+    "Data outage: no price, seasonality, technicals or curve in the snapshot",
+    "Short squeeze or a sudden cold forecast change against the bearish weather view",
+    "A wide fair-value band (about $2.4 wide) limits its precision"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
