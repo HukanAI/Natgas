@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-11-25T17:50:00Z",
-  "sourceSnapshotAt": "2026-11-25T17:48:12.465Z",
-  "frontPrice": 3.703000068664551,
-  "nextPrice": 3.240999937057495,
-  "marketState": "bearish - weak weather demand and rich price vs fair value, but record-short positioning limits downside momentum",
-  "summary": "Jan at $3.70 sits above the $3.05 fair value and ~$0.66 over the midpoint, though well inside the $2.55-$4.95 band. Seasonality is soft: YTD gain trails the median by 6.7pp, only 19% of years were higher after 3-4 weeks, and the typical 4-week move is -8.4% (reliability low). Weather is the dominant bearish factor: 1-7D demand is -22% vs 5y and 8-16D is -42%, below the 5y min, with trend demand at a 5y low. Storage is +86 Bcf above the 5y average, although last week's -37 Bcf surprise was bullish. Managed money is at the 1st percentile of net positioning (-211k), so a short squeeze is a real tail risk, and the steep backwardation (Jan 3.70 vs Mar 2.46) shows the market already prices the winter premium as fleeting.",
+  "generatedAt": "2026-11-26T01:35:00Z",
+  "sourceSnapshotAt": "2026-11-26T01:27:05.837Z",
+  "frontPrice": 3.691999912261963,
+  "nextPrice": 3.2300000190734863,
+  "marketState": "neutral-to-bearish near term, but crowded shorts cap downside conviction",
+  "summary": "Seasonality (vs median, win rates, typical move), the fair-value band and storage are all empty in this snapshot, so the top-priority inputs are missing and conviction is lowered. Weather is clearly bearish: 1-7D demand is -29% vs the 5y average, 8-16D demand is -36% and below the 5y minimum, and the demand trend is the lowest in 5 years. Managed money is net short 211.5k contracts (1st percentile over 5y, long/short ratio 0.46), which is a squeeze risk against any bearish bias. The curve is steeply backwardated (Jan 3.69, Feb 3.23, Mar 2.46), so the front month carries a large winter premium that is vulnerable if the weather stays mild. Technicals conflict: intraday is bullish, while 1d and 1w are bearish. With no fair-value anchor, staying flat is the disciplined choice.",
   "longTerm": {
-    "stance": "SHORT",
-    "conviction": "medium",
+    "stance": "WAIT",
+    "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$3.70-$3.90",
-    "stop": "$4.30",
-    "tp1": "$3.05",
-    "tp2": "$2.65",
-    "riskReward": "1:1.6 to TP1, 1:2.5 to TP2 (from ~$3.80)",
-    "sizing": "1R approx 0.75% risk (reduced for crowded-short squeeze risk)",
-    "rationale": "Price is above fair value (+$0.66 now, widening to +$0.92 at +21D), seasonality points to a -8% 4-week drift with only 19% of years higher, and weather demand is the weakest in 5y. Storage surplus of +86 Bcf and a backwardated curve reinforce mean reversion toward $3.00 or lower.",
-    "invalidation": "Weekly close above $4.30, a sustained cold-weather forecast flip (8-16D demand back above 5y normal), or repeated large bullish storage surprises.",
-    "trigger": ""
+    "entry": "n/a",
+    "stop": "n/a",
+    "tp1": "n/a",
+    "tp2": "n/a",
+    "riskReward": "n/a",
+    "sizing": "n/a",
+    "rationale": "Seasonality, fair value and storage data are missing, so no edge can be quantified. Record-low weather demand and a 1st-percentile managed-money short position pull in opposite directions (bearish fundamentals vs. squeeze risk).",
+    "invalidation": "n/a while flat.",
+    "trigger": "Wait for seasonality/fair-value/storage data to populate. Consider SHORT if the front month rallies toward 4.00-4.20 with weather demand still well below the 5y range. Consider LONG if price drops toward 2.90-3.10 and 8-16D demand turns above normal."
   },
   "shortTerm": {
     "stance": "WAIT",
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Fundamentals (weather, fair value) favour downside, but lower-timeframe technicals are bullish (5m-1h trend up, RSI ~60, MACD positive) and the 1st-percentile COT short positioning invites sharp squeezes. Price is flat versus previous close, so there is no clear edge at current levels.",
-    "invalidation": "n/a",
-    "trigger": "Short on a bounce into $3.90-$4.00 with rejection, or on a 1h/4h close below ~$3.55 confirming momentum rollover; target $3.05."
+    "rationale": "Weather is bearish, but the fair-value band is unavailable and technicals are mixed (1h bullish, 1d/1w bearish, RSI 53-58). The extreme managed-money short raises the risk of sharp short-covering bounces against a short.",
+    "invalidation": "n/a while flat.",
+    "trigger": "Look for a SHORT on a failed bounce into about 3.85-3.95 with 1d staying bearish and weather demand still negative. Alternatively, a daily close below about 3.50 would confirm bearish momentum."
   },
   "keyDrivers": [
-    "Weather demand -22% (1-7D) and -42% (8-16D) vs 5y, below the 5y min",
-    "Front $0.66 above fair value; gap widens in the forward fair-value projections",
-    "Seasonality: 19% odds higher at 3-4 weeks, typical 4w move -8.4%",
-    "Storage +86 Bcf vs 5y despite a bullish -37 Bcf surprise",
-    "Steep backwardation: Jan 3.70 to Mar 2.46"
+    "Weather demand -29% (1-7D) and -36% (8-16D) vs 5y, lowest in 5y",
+    "Managed money net short -211.5k, 1st percentile over 5y: squeeze risk",
+    "Steep backwardation: Jan 3.69 vs Mar 2.46 shows a large front-month winter premium",
+    "Mixed technicals: intraday bullish, daily/weekly bearish",
+    "Seasonality, fair value and storage data missing"
   ],
   "risks": [
-    "Managed money at 1st percentile net short: short-covering squeeze risk",
-    "Cold-weather forecast reversal or LNG demand surge could rapidly reprice Jan",
-    "Low seasonal reliability (79pp spread) and wide fair-value band up to $4.95"
+    "Short squeeze from crowded managed-money shorts or a sudden cold forecast shift",
+    "Missing seasonality, fair-value and storage inputs reduce reliability of this read",
+    "Jan contract expiry and roll dynamics can distort front-month price"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
