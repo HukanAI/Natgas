@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-11-26T10:25:00Z",
-  "sourceSnapshotAt": "2026-11-26T10:19:46.243Z",
-  "frontPrice": 3.615,
-  "nextPrice": 3.172,
-  "marketState": "bearish – very warm weather and surplus storage, but crowded shorts limit downside",
-  "summary": "Weather is the dominant driver: 1-7D and 8-16D heating demand are -28% and -30% vs the 5y average, near the bottom of the range, and the trend is the lowest in 5y. Front Jan at $3.615 sits about $0.57-0.83 above fair value, which falls from $3.05 to $2.78 over 21 days. It is still inside the band, so this is not an extreme. Seasonality is mildly negative (typical 4w move -6.3%, only 19-44% odds of being higher) but reliability is low. Storage is +86 Bcf vs the 5y despite a bullish -37 Bcf surprise. Managed money is at the 1st percentile of net positioning, which makes short-covering spikes a real risk, and the curve is steeply backwardated (Mar $2.42), which favours shorts via roll-down.",
+  "generatedAt": "2026-11-26T20:00:00Z",
+  "sourceSnapshotAt": "2026-11-26T19:57:36.418Z",
+  "frontPrice": 3.599,
+  "nextPrice": 3.145,
+  "marketState": "neutral - bearish weather is offset by record-crowded managed-money shorts",
+  "summary": "Seasonality (vs median, base rates), fair-value band and storage data are all missing from this snapshot, so the priority inputs are incomplete and conviction is capped at low. Weather is clearly bearish: 1-7D demand is 25.6% below the 5y average and 8-16D is 36.5% below, under the 5y minimum, with trend demand the lowest in 5y. Against that, managed money is net short 211.5k contracts (1st percentile over 5y), which leaves squeeze risk on any cold shift. The curve is steeply backwardated (Jan 3.60, Feb 3.15, Mar 2.40), so the front is pricing a winter premium that the weather is not supporting. Technicals are mixed: 1d and 1w bearish, intraday bullish. With no fair-value anchor and two opposing extremes, both trades lean WAIT.",
   "longTerm": {
-    "stance": "SHORT",
-    "conviction": "medium",
+    "stance": "WAIT",
+    "conviction": "low",
     "horizon": "3-12 weeks",
-    "entry": "$3.60-3.80 (scale in, prefer bounces)",
-    "stop": "$4.10",
-    "tp1": "$3.15",
-    "tp2": "$2.75",
-    "riskReward": "1:2.1 (to TP2, from ~$3.70)",
-    "sizing": "1R approx 1% risk; half size initially given extreme COT short positioning",
-    "rationale": "Record-low heating demand outlook, price above a declining fair value, storage surplus and negative seasonal drift all point lower. Backwardation (Jan to Mar -$1.19) implies the market already expects normalization, and the position carries roll-down benefit if expressed in the front contract.",
-    "invalidation": "Weekly close above $4.10, a sustained cold shift in the 8-16D forecast toward or above 5y normal, or storage surprises repeatedly bullish and cutting the surplus.",
-    "trigger": ""
+    "entry": "n/a",
+    "stop": "n/a",
+    "tp1": "n/a",
+    "tp2": "n/a",
+    "riskReward": "n/a",
+    "sizing": "n/a",
+    "rationale": "Seasonality, fair value and storage are empty, so there is no anchor for a multi-week view. Record-low weather demand argues for SHORT while the 1st-percentile COT short positioning argues for LONG, and the two cancel out.",
+    "invalidation": "n/a while waiting.",
+    "trigger": "Wait for seasonality, fair-value and storage data to return. Then consider SHORT if the 8-16D forecast stays below the 5y minimum and the front trades above the fair-value band max. Consider LONG on a weather turn to colder than normal, or a storage draw above expectations, while COT is still near the 5y extreme."
   },
   "shortTerm": {
     "stance": "WAIT",
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Fundamentals lean bearish, but intraday technicals are mixed (1h/15m bullish, 1d/1w bearish, RSI ~50) and price is within fair-value band. With managed money at a 1st-percentile net short, a squeeze can happen on any forecast shift, so the risk/reward from mid-range is poor.",
-    "invalidation": "n/a",
-    "trigger": "Short on a rejection in the $3.85-3.95 zone, or a daily close below $3.50 with warm forecast confirmed (stop above $4.05). Go long only on a clear cold shift in the 1-7D forecast with a break above $3.95."
+    "rationale": "Near-term weather is bearish, but the daily and weekly trend is bearish while intraday is bullish (1h RSI 55). The front is flat at 3.599 with no fair-value band to measure against. A short here risks a squeeze from extreme COT positioning.",
+    "invalidation": "n/a while waiting.",
+    "trigger": "SHORT on a failed bounce toward 3.70-3.75 with 1h momentum turning negative and the 8-16D forecast still below the 5y minimum, with a stop near 3.95. Alternatively, a daily close above 3.80 with a warmer-to-colder forecast revision would favor LONG."
   },
   "keyDrivers": [
-    "Heating demand 28-30% below 5y over next 16 days, lowest in 5y",
-    "Front price $0.57-0.83 above falling fair value",
-    "Storage +86 Bcf vs 5y; bullish -37 Bcf surprise is a partial offset",
-    "Seasonality: typical 4w move -6.3%, low reliability",
-    "Steep backwardation: Jan $3.615 vs Mar $2.42"
+    "Weather demand 25-37% below the 5y average, with 8-16D below the 5y minimum",
+    "Managed-money net short of 211.5k contracts at the 1st percentile over 5y, a squeeze risk",
+    "Steep backwardation, Jan 3.60 vs Mar 2.40, shows an expensive front relative to the curve",
+    "Daily and weekly trend bearish, intraday bullish: mixed technicals",
+    "Seasonality, fair-value and storage data missing, so conviction is lowered"
   ],
   "risks": [
-    "Managed-money net short at 1st percentile of 5y: violent short-covering risk",
-    "Sudden cold forecast change or early-winter supply disruption would spike the front contract",
-    "Low seasonal reliability and wide fair-value band ($2.5-$4.9) mean price may not mean-revert"
+    "A sudden cold forecast revision combined with crowded shorts could cause a sharp short-covering rally",
+    "Missing storage, seasonality and fair-value inputs mean the view may be incomplete or biased",
+    "Jan contract expiry and winter volatility could produce gaps through stops"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
