@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-26T20:00:00Z",
-  "sourceSnapshotAt": "2026-11-26T19:57:36.418Z",
-  "frontPrice": 3.599,
-  "nextPrice": 3.145,
-  "marketState": "neutral - bearish weather is offset by record-crowded managed-money shorts",
-  "summary": "Seasonality (vs median, base rates), fair-value band and storage data are all missing from this snapshot, so the priority inputs are incomplete and conviction is capped at low. Weather is clearly bearish: 1-7D demand is 25.6% below the 5y average and 8-16D is 36.5% below, under the 5y minimum, with trend demand the lowest in 5y. Against that, managed money is net short 211.5k contracts (1st percentile over 5y), which leaves squeeze risk on any cold shift. The curve is steeply backwardated (Jan 3.60, Feb 3.15, Mar 2.40), so the front is pricing a winter premium that the weather is not supporting. Technicals are mixed: 1d and 1w bearish, intraday bullish. With no fair-value anchor and two opposing extremes, both trades lean WAIT.",
+  "generatedAt": "2026-11-27T03:00:00Z",
+  "sourceSnapshotAt": "2026-11-27T02:39:34.314Z",
+  "frontPrice": 3.5969998836517334,
+  "nextPrice": 3.1440000534057617,
+  "marketState": "neutral/bearish-tilt: very weak weather demand vs extreme managed-money short positioning",
+  "summary": "Priority data is largely missing: seasonality (vsMedian, base rates), the fair-value band and storage are all null, so conviction is capped and both trades lean WAIT. What is available conflicts. Weather demand is very bearish (1-7D -29.5% and 8-16D -28.7% vs 5y, near the bottom of the range, trend lowest in 5y), and daily/weekly technicals are bearish with the 50 EMA below the 200 EMA. Against that, managed money is net short 211.5k contracts (1st percentile over 5y), which is a classic short-squeeze setup if weather forecasts turn colder. The curve is steeply backwardated (Jan 3.60, Feb 3.14, Mar 2.41), so the front is pricing a winter premium that the weather is not delivering.",
   "longTerm": {
     "stance": "WAIT",
     "conviction": "low",
@@ -15,9 +15,9 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Seasonality, fair value and storage are empty, so there is no anchor for a multi-week view. Record-low weather demand argues for SHORT while the 1st-percentile COT short positioning argues for LONG, and the two cancel out.",
-    "invalidation": "n/a while waiting.",
-    "trigger": "Wait for seasonality, fair-value and storage data to return. Then consider SHORT if the 8-16D forecast stays below the 5y minimum and the front trades above the fair-value band max. Consider LONG on a weather turn to colder than normal, or a storage draw above expectations, while COT is still near the 5y extreme."
+    "rationale": "Seasonality, fair value and storage are unavailable, so there is no basis for a directional multi-week view. Record-short COT (1st percentile) favours upside asymmetry, but the lowest-in-5y weather trend and the steep backwardation (front 3.60 vs Mar 2.41) argue against buying now.",
+    "invalidation": "n/a while waiting; a sustained break above 4.00 on a colder forecast would confirm the squeeze thesis, and a drop below 3.10 would confirm weather-driven downside.",
+    "trigger": "Seasonality, fair-value and storage data return, and either (a) the 8-16D demand forecast moves back toward or above the 5y normal while COT stays extremely short (look for long entries on a pullback to 3.20-3.40), or (b) a storage surplus vs 5y confirms bearish supply (look to short rallies toward 3.9-4.0)."
   },
   "shortTerm": {
     "stance": "WAIT",
@@ -29,21 +29,21 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Near-term weather is bearish, but the daily and weekly trend is bearish while intraday is bullish (1h RSI 55). The front is flat at 3.599 with no fair-value band to measure against. A short here risks a squeeze from extreme COT positioning.",
+    "rationale": "Near-term weather is very bearish and the 1d/1w technicals are bearish, but the intraday 1h timeframe is bullish (RSI 55, 50>200), the 1d RSI is neutral at 48.6, and a record-short COT makes shorting risky. Fair-value bands are missing, so there is no edge from price vs fair value.",
     "invalidation": "n/a while waiting.",
-    "trigger": "SHORT on a failed bounce toward 3.70-3.75 with 1h momentum turning negative and the 8-16D forecast still below the 5y minimum, with a stop near 3.95. Alternatively, a daily close above 3.80 with a warmer-to-colder forecast revision would favor LONG."
+    "trigger": "Short only on a daily close below about 3.45 with demand forecasts still near the bottom of the range. Long only on a daily close above about 3.80 with the weather forecast turning colder. Otherwise stay flat."
   },
   "keyDrivers": [
-    "Weather demand 25-37% below the 5y average, with 8-16D below the 5y minimum",
-    "Managed-money net short of 211.5k contracts at the 1st percentile over 5y, a squeeze risk",
-    "Steep backwardation, Jan 3.60 vs Mar 2.40, shows an expensive front relative to the curve",
-    "Daily and weekly trend bearish, intraday bullish: mixed technicals",
-    "Seasonality, fair-value and storage data missing, so conviction is lowered"
+    "Weather demand 1-7D and 8-16D are about -29% vs 5y; the trend is the lowest in 5y",
+    "Managed-money net -211.5k (1st percentile 5y): squeeze risk",
+    "Steep backwardation: Jan 3.60 / Feb 3.14 / Mar 2.41",
+    "Daily and weekly technicals bearish (50 EMA < 200 EMA); intraday mixed",
+    "Seasonality, fair value and storage data unavailable"
   ],
   "risks": [
-    "A sudden cold forecast revision combined with crowded shorts could cause a sharp short-covering rally",
-    "Missing storage, seasonality and fair-value inputs mean the view may be incomplete or biased",
-    "Jan contract expiry and winter volatility could produce gaps through stops"
+    "A sudden colder forecast could trigger a sharp short-covering rally from extreme short positioning",
+    "Missing storage, fair-value and seasonality inputs mean the view is incomplete",
+    "The Jan contract is nearing expiry (late Dec), so roll and expiry volatility can distort the front price"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
