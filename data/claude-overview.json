@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-28T03:10:00Z",
-  "sourceSnapshotAt": "2026-11-28T03:02:24.311Z",
-  "frontPrice": 3.490999937057495,
-  "nextPrice": 3.1040000915527344,
-  "marketState": "Bearish-leaning but crowded: record-low weather demand and above-fair price vs an extreme managed-money short",
-  "summary": "Seasonality data (vs median, base rates, typical move) is missing from the snapshot, so conviction is reduced and the long-term trade leans WAIT. Weather is clearly bearish: 1-7D demand is 38% below the 5y norm and below the 5y min, 8-16D is 20% below, and current demand is the lowest in 5y. The Jan front at $3.49 sits $0.45 above the $3.04 fair value (still inside the $2.54-$4.94 band) and the gap widens to +$0.78 by +21D as fair value drifts to $2.71. Storage is 89 Bcf above the 5y average, although the latest report was a bullish surprise (-24 vs +19 forecast). Managed money is at the 1st percentile of net positioning (-211k), which makes a short squeeze a real risk against a bearish technical trend (short-timeframe RSI is deeply oversold). The curve is in steep backwardation (Jan 3.49 vs Mar 2.36), so the front is pricing a winter premium that warm weather is eroding.",
+  "generatedAt": "2026-11-28T12:45:00Z",
+  "sourceSnapshotAt": "2026-11-28T12:38:59.087Z",
+  "frontPrice": 3.491,
+  "nextPrice": 3.104,
+  "marketState": "bearish-leaning neutral: very weak weather demand vs. crowded record-low managed-money shorts",
+  "summary": "Jan front at $3.49 sits $0.45 above the $3.04 fair value (inside a wide $2.54-$4.94 band) and the fair path drifts lower to $2.72 by +21D, as weather demand is 37% below the 5y norm for days 1-7 (below the 5y min) and 18% below for 8-16D. Seasonality is mildly negative (price -5pp vs median year, typical 4w move -6.3%, but low reliability). Storage is +89 Bcf vs 5y, though the last report was a 43 Bcf bullish surprise. COT managed money net is at the 1st 5y percentile, so short-covering squeezes are a real threat to any bearish trade. Technicals are bearish across most timeframes but oversold on 15m/1h (RSI 26-27), and the curve is steeply backwardated (Mar $2.36), which favors roll-down on longs' cost.",
   "longTerm": {
     "stance": "WAIT",
     "conviction": "low",
@@ -15,35 +15,35 @@
     "tp2": "n/a",
     "riskReward": "n/a",
     "sizing": "n/a",
-    "rationale": "Seasonality inputs are missing, so the top-priority evidence is absent. Bearish weather and a front price above fair value are offset by an extreme record-short COT position and a bullish storage surprise, giving no clean edge.",
-    "invalidation": "n/a while waiting.",
-    "trigger": "Wait for either (a) a rally to $3.80-$4.00 on a weather forecast that does not turn colder, for a short toward fair value, or (b) a dip to $2.80-$3.00 with demand forecasts turning above normal and COT still extremely short, for a long. Also wait for seasonality data to return."
+    "rationale": "Bearish weather, fair value drifting down to ~$2.7 and mild negative seasonality conflict with record-crowded shorts (1st percentile) and a bullish storage surprise. Evidence is mixed and seasonality reliability is low, so no edge for a multi-week directional bet at $3.49.",
+    "invalidation": "n/a while on the sidelines; a sustained cold shift in 8-16D demand would turn the bias bullish.",
+    "trigger": "Go LONG on a dip toward $2.9-3.0 (near fair value) with weather demand turning toward/above 5y normal or further bullish storage surprises; go SHORT only on a rally to $3.8+ with weather still below normal."
   },
   "shortTerm": {
     "stance": "SHORT",
     "conviction": "low",
     "horizon": "1-10 days",
-    "entry": "$3.55-$3.65 (sell a bounce, not the oversold low)",
-    "stop": "$3.85",
-    "tp1": "$3.20",
-    "tp2": "$3.04",
-    "riskReward": "1:1.5 to 1:2.2",
+    "entry": "$3.58-3.65 (sell a bounce)",
+    "stop": "$3.88",
+    "tp1": "$3.30",
+    "tp2": "$3.05",
+    "riskReward": "1:1.4 to TP1, 1:2.4 to TP2",
     "sizing": "0.5R approx 0.5% risk (reduced for squeeze risk)",
-    "rationale": "1-7D weather demand is below the 5y min and the front is $0.45-$0.65 above fair value across the +0D to +14D horizons. Technicals are bearish on 4h, 1d and 1w, and the steep backwardation signals a front-month premium that can bleed. Short-term RSI is oversold, so only sell strength.",
-    "invalidation": "Daily close above $3.85, or a forecast shift to colder 8-16D demand, or a sharp storage-driven squeeze from the record-short COT positioning.",
-    "trigger": ""
+    "rationale": "Near-term demand is far below normal and below the 5y min, price is above the +7D/+14D fair values ($2.97/$2.84), and trend is bearish on 4h/1d/1w. Shorting at the current oversold level is poor, so wait for a bounce to fade.",
+    "invalidation": "Daily close above $3.88 or a colder weather model shift; extreme short positioning can fuel a sharp squeeze.",
+    "trigger": "Do not chase at $3.49 with RSI 26-27 on 15m/1h; wait for a bounce into $3.58-3.65."
   },
   "keyDrivers": [
-    "Weather demand lowest in 5y: 1-7D -38% vs 5y, below the 5y min",
-    "Front $3.49 vs fair $3.04 and falling (+21D fair $2.71)",
-    "Managed money at 1st percentile net short: squeeze risk",
-    "Storage +89 Bcf vs 5y, but a bullish -43 Bcf surprise",
-    "Steep backwardation: Jan 3.49 vs Mar 2.36"
+    "Weather demand 1-7D -37% vs 5y, below 5y min; 8-16D -18%",
+    "Front $0.45 above fair, fair path falling to $2.72 by +21D",
+    "Managed money net at 1st 5y percentile: squeeze risk",
+    "Storage +89 Bcf vs 5y but -43 Bcf bullish surprise",
+    "Steep backwardation Jan to Mar (-$1.13)"
   ],
   "risks": [
-    "Short squeeze from record-short speculative positioning",
-    "Cold-forecast reversal in the 8-16D models",
-    "Seasonality data missing; thin holiday liquidity may cause gaps"
+    "Short squeeze from record-crowded specs",
+    "Sudden cold forecast change or a larger-than-expected storage draw",
+    "Oversold intraday readings producing sharp mean-reversion rallies"
   ],
   "disclaimer": "Informational only, not financial advice. Auto-generated hourly."
 }
